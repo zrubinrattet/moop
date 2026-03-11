@@ -1,0 +1,23 @@
+@media only screen {
+	.mainbg {
+		background: var(--mainbg-gradient);
+		background-repeat: no-repeat;
+		height: 100%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		flex-direction: column;
+	}
+
+	.mainbg-header {
+		font-size: 60px;
+		margin-bottom: 30px;
+		color: #fff;
+		opacity: var(--mainbg-opacity);
+		position: relative;
+	}
+
+	.mainbg-svgcontainer-svg {
+		opacity: var(--mainbg-opacity);
+	}
+}

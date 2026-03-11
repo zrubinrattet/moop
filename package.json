@@ -1,0 +1,24 @@
+{
+	"name": "moop",
+	"version": "1.0.0",
+	"description": "A simple Electrobun app showcasing core features",
+	"scripts": {
+		"scss": "sass src/mainview/index.scss src/mainview/index.css --watch",
+		"dev": "electrobun dev --watch",
+		"build": "electrobun build",
+		"start": "bun run build && bun run dev --watch"
+	},
+	"devDependencies": {
+		"@types/bun": "latest",
+		"@types/react": "^19.2.14",
+		"@types/react-dom": "^19.2.3",
+		"bun-css-loader": "^1.4.2",
+		"sass": "^1.97.3"
+	},
+	"dependencies": {
+		"electrobun": "^1.15.1",
+		"react": "^19.2.4",
+		"react-devtools": "^7.0.1",
+		"react-dom": "^19.2.4"
+	}
+}

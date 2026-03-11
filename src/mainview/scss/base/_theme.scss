@@ -1,0 +1,10 @@
+body{
+	&.theme-light{
+		--mainbg-gradient: linear-gradient(45deg, #667EEA, #764BA2);
+		--mainbg-opacity: 0.3;
+	}
+	&.theme-dark{
+		--mainbg-gradient: linear-gradient(45deg, #3D4C8C, #472D61);
+		--mainbg-opacity: 0.2;
+	}
+}
