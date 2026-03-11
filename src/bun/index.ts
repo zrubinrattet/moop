@@ -10,9 +10,10 @@ const mainWindow = new BrowserWindow({
 		x: 200,
 		y: 200,
 	},
+	titleBarStyle: "hidden",
 });
 
-mainWindow.webview.openDevTools(); 
+mainWindow.webview.openDevTools();
 
 // Quit the app when the main window is closed
 mainWindow.on("close", () => {

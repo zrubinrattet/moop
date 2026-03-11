@@ -25,11 +25,11 @@ h6 {
 }
 
 body.theme-light {
-  --mainbg-gradient: linear-gradient(45deg, #667EEA, #764BA2);
+  --mainbg-gradient: linear-gradient(-45deg, #667EEA, #764BA2);
   --mainbg-opacity: 0.3;
 }
 body.theme-dark {
-  --mainbg-gradient: linear-gradient(45deg, #3D4C8C, #472D61);
+  --mainbg-gradient: linear-gradient(-45deg, #3D4C8C, #472D61);
   --mainbg-opacity: 0.2;
 }
 
@@ -42,6 +42,7 @@ body.theme-dark {
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    padding: 0px 40px;
   }
   .mainbg-header {
     font-size: 60px;
@@ -49,9 +50,12 @@ body.theme-dark {
     color: #fff;
     opacity: var(--mainbg-opacity);
     position: relative;
+    text-align: center;
   }
   .mainbg-svgcontainer-svg {
     opacity: var(--mainbg-opacity);
+    width: 100%;
+    height: 100%;
   }
 }
 
