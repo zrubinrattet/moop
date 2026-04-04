@@ -9,16 +9,28 @@
 		"start": "bun run build && bun run dev --watch"
 	},
 	"devDependencies": {
+		"@eslint/js": "^10.0.1",
 		"@types/bun": "latest",
 		"@types/react": "^19.2.14",
 		"@types/react-dom": "^19.2.3",
+		"@types/sharp": "^0.32.0",
 		"bun-css-loader": "^1.4.2",
-		"sass": "^1.97.3"
+		"eslint": "^10.1.0",
+		"eslint-plugin-react": "^7.37.5",
+		"eslint-plugin-react-hooks": "^7.0.1",
+		"globals": "^17.4.0",
+		"jiti": "^2.6.1",
+		"sass": "^1.97.3",
+		"typescript-eslint": "^8.57.2"
 	},
 	"dependencies": {
 		"electrobun": "^1.16.0",
+		"fastq": "^1.20.1",
 		"react": "^19.2.4",
 		"react-devtools": "^7.0.1",
-		"react-dom": "^19.2.4"
+		"react-dom": "^19.2.4",
+		"react-dropzone": "^15.0.0",
+		"react-easy-crop": "^5.5.7",
+		"sharp": "^0.34.5"
 	}
 }

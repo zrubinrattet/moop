@@ -1,0 +1,190 @@
+@media only screen {
+	.imageslist {
+		display: grid;
+		grid-template-rows: 8% 82% 10%;
+		max-height: 100vh;
+		overflow: hidden;
+		background-color: var(--imagelist-reveal-bg);
+	}
+
+	.imageslist-header {
+		width: 100%;
+		text-align: center;
+		padding: 5px 0px;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.25);
+		background-color: var(--imagelist-header-bg);
+	}
+
+	.imageslist-header-item {
+		color: var(--imagelist-font-color);
+		font-family: var(--font-body);
+		font-size: 14px;
+		text-align: center;
+		display: block;
+	}
+
+	.imageslist-header-subitem {
+		@extend .imageslist-header-item;
+		font-size: 12px;
+	}
+
+	.imageslist-list {
+		overflow: scroll;
+		background-color: var(--imagelist-bg);
+	}
+
+	.imageslist-list-item {
+		display: block;
+		position: relative;
+		width: calc(100% - 24px);
+		margin: 12px;
+		box-sizing: border-box;
+
+		&:hover {
+			.imageslist-list-item-close {
+				pointer-events: all;
+				opacity: 1;
+				transform: scale(1);
+			}
+		}
+
+		&.active {
+			.imageslist-list-item-image {
+				border: 2px solid var(--imagelist-item-border-color);
+				box-shadow: 0px 4px 15px var(--imagelist-item-border-color);
+			}
+		}
+	}
+
+	.imageslist-list-item-close {
+		position: absolute;
+		top: 0px;
+		left: 0px;
+		text-decoration: none;
+		color: var(--imagelist-item-close-font-color);
+		background-color: var(--imagelist-item-close-bg);
+		padding: 0px 6px;
+		border-radius: 25px;
+		font-family: var(--font-body);
+		border: 1px solid var(--imagelist-item-close-stroke-color);
+		pointer-events: none;
+		opacity: 0;
+		transition: opacity 0.25s ease, transform 0.25s ease;
+		transform: scale(0);
+	}
+
+	.imageslist-list-item-image {
+		background-size: cover;
+		background-repeat: no-repeat;
+		background-position: center center;
+		height: 100%;
+		display: block;
+		min-height: 200px;
+		box-shadow: 0px 4px 15px var(--imagelist-item-shadow-color);
+		transition: box-shadow 0.25s ease, border-color 0.25s ease;
+		border: 2px solid transparent;
+	}
+
+	.imageslist-list-item-actions {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		grid-gap: 24px 17px;
+		padding: 15px;
+		min-width: 0;
+	}
+
+	.imageslist-list-item-actions-action {
+		display: inline-block;
+		text-decoration: none;
+		font-family: var(--font-body);
+		font-size: 20px;
+		background-image: var(--imagelist-action-gradient);
+		border: 1px solid var(--imagelist-action-stroke-color);
+		padding: 10px 20px;
+		color: var(--imagelist-font-color);
+		text-align: center;
+
+		&.delete {
+			background-image: var(--imagelist-delete-gradient);
+			border: 1px solid var(--imagelist-delete-stroke-color);
+		}
+	}
+
+	.imageslist-list-loading {
+		width: 50px;
+		aspect-ratio: 1;
+		border-radius: 50%;
+		border: 8px solid var(--imagelist-loading-fill);
+		animation:
+			l20-1 0.8s infinite linear alternate,
+			l20-2 1.6s infinite linear;
+		position: relative;
+		left: calc(50% - 33px);
+
+		@keyframes l20-1 {
+			0% {
+				clip-path: polygon(50% 50%, 0 0, 50% 0%, 50% 0%, 50% 0%, 50% 0%, 50% 0%)
+			}
+
+			12.5% {
+				clip-path: polygon(50% 50%, 0 0, 50% 0%, 100% 0%, 100% 0%, 100% 0%, 100% 0%)
+			}
+
+			25% {
+				clip-path: polygon(50% 50%, 0 0, 50% 0%, 100% 0%, 100% 100%, 100% 100%, 100% 100%)
+			}
+
+			50% {
+				clip-path: polygon(50% 50%, 0 0, 50% 0%, 100% 0%, 100% 100%, 50% 100%, 0% 100%)
+			}
+
+			62.5% {
+				clip-path: polygon(50% 50%, 100% 0, 100% 0%, 100% 0%, 100% 100%, 50% 100%, 0% 100%)
+			}
+
+			75% {
+				clip-path: polygon(50% 50%, 100% 100%, 100% 100%, 100% 100%, 100% 100%, 50% 100%, 0% 100%)
+			}
+
+			100% {
+				clip-path: polygon(50% 50%, 50% 100%, 50% 100%, 50% 100%, 50% 100%, 50% 100%, 0% 100%)
+			}
+		}
+
+		@keyframes l20-2 {
+			0% {
+				transform: scaleY(1) rotate(0deg)
+			}
+
+			49.99% {
+				transform: scaleY(1) rotate(135deg)
+			}
+
+			50% {
+				transform: scaleY(-1) rotate(0deg)
+			}
+
+			100% {
+				transform: scaleY(-1) rotate(-135deg)
+			}
+		}
+	}
+
+	.imageslist-revealbutton {
+		font-family: var(--font-body);
+		width: calc(100% - 40px);
+		height: calc(100% - 40px);
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		text-decoration: none;
+		color: var(--imagelist-reveal-button-font-color);
+		background-color: var(--imagelist-reveal-button-bg);
+		border: 1px solid var(--imagelist-reveal-button-stroke-color);
+		box-sizing: border-box;
+		margin: 20px;
+	}
+}

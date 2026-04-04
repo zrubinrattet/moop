@@ -1070,6 +1070,974 @@ var require_jsx_dev_runtime = __commonJS((exports, module) => {
   }
 });
 
+// node_modules/react-is/cjs/react-is.development.js
+var require_react_is_development = __commonJS((exports) => {
+  if (true) {
+    (function() {
+      var hasSymbol = typeof Symbol === "function" && Symbol.for;
+      var REACT_ELEMENT_TYPE = hasSymbol ? Symbol.for("react.element") : 60103;
+      var REACT_PORTAL_TYPE = hasSymbol ? Symbol.for("react.portal") : 60106;
+      var REACT_FRAGMENT_TYPE = hasSymbol ? Symbol.for("react.fragment") : 60107;
+      var REACT_STRICT_MODE_TYPE = hasSymbol ? Symbol.for("react.strict_mode") : 60108;
+      var REACT_PROFILER_TYPE = hasSymbol ? Symbol.for("react.profiler") : 60114;
+      var REACT_PROVIDER_TYPE = hasSymbol ? Symbol.for("react.provider") : 60109;
+      var REACT_CONTEXT_TYPE = hasSymbol ? Symbol.for("react.context") : 60110;
+      var REACT_ASYNC_MODE_TYPE = hasSymbol ? Symbol.for("react.async_mode") : 60111;
+      var REACT_CONCURRENT_MODE_TYPE = hasSymbol ? Symbol.for("react.concurrent_mode") : 60111;
+      var REACT_FORWARD_REF_TYPE = hasSymbol ? Symbol.for("react.forward_ref") : 60112;
+      var REACT_SUSPENSE_TYPE = hasSymbol ? Symbol.for("react.suspense") : 60113;
+      var REACT_SUSPENSE_LIST_TYPE = hasSymbol ? Symbol.for("react.suspense_list") : 60120;
+      var REACT_MEMO_TYPE = hasSymbol ? Symbol.for("react.memo") : 60115;
+      var REACT_LAZY_TYPE = hasSymbol ? Symbol.for("react.lazy") : 60116;
+      var REACT_BLOCK_TYPE = hasSymbol ? Symbol.for("react.block") : 60121;
+      var REACT_FUNDAMENTAL_TYPE = hasSymbol ? Symbol.for("react.fundamental") : 60117;
+      var REACT_RESPONDER_TYPE = hasSymbol ? Symbol.for("react.responder") : 60118;
+      var REACT_SCOPE_TYPE = hasSymbol ? Symbol.for("react.scope") : 60119;
+      function isValidElementType(type) {
+        return typeof type === "string" || typeof type === "function" || type === REACT_FRAGMENT_TYPE || type === REACT_CONCURRENT_MODE_TYPE || type === REACT_PROFILER_TYPE || type === REACT_STRICT_MODE_TYPE || type === REACT_SUSPENSE_TYPE || type === REACT_SUSPENSE_LIST_TYPE || typeof type === "object" && type !== null && (type.$$typeof === REACT_LAZY_TYPE || type.$$typeof === REACT_MEMO_TYPE || type.$$typeof === REACT_PROVIDER_TYPE || type.$$typeof === REACT_CONTEXT_TYPE || type.$$typeof === REACT_FORWARD_REF_TYPE || type.$$typeof === REACT_FUNDAMENTAL_TYPE || type.$$typeof === REACT_RESPONDER_TYPE || type.$$typeof === REACT_SCOPE_TYPE || type.$$typeof === REACT_BLOCK_TYPE);
+      }
+      function typeOf(object) {
+        if (typeof object === "object" && object !== null) {
+          var $$typeof = object.$$typeof;
+          switch ($$typeof) {
+            case REACT_ELEMENT_TYPE:
+              var type = object.type;
+              switch (type) {
+                case REACT_ASYNC_MODE_TYPE:
+                case REACT_CONCURRENT_MODE_TYPE:
+                case REACT_FRAGMENT_TYPE:
+                case REACT_PROFILER_TYPE:
+                case REACT_STRICT_MODE_TYPE:
+                case REACT_SUSPENSE_TYPE:
+                  return type;
+                default:
+                  var $$typeofType = type && type.$$typeof;
+                  switch ($$typeofType) {
+                    case REACT_CONTEXT_TYPE:
+                    case REACT_FORWARD_REF_TYPE:
+                    case REACT_LAZY_TYPE:
+                    case REACT_MEMO_TYPE:
+                    case REACT_PROVIDER_TYPE:
+                      return $$typeofType;
+                    default:
+                      return $$typeof;
+                  }
+              }
+            case REACT_PORTAL_TYPE:
+              return $$typeof;
+          }
+        }
+        return;
+      }
+      var AsyncMode = REACT_ASYNC_MODE_TYPE;
+      var ConcurrentMode = REACT_CONCURRENT_MODE_TYPE;
+      var ContextConsumer = REACT_CONTEXT_TYPE;
+      var ContextProvider = REACT_PROVIDER_TYPE;
+      var Element = REACT_ELEMENT_TYPE;
+      var ForwardRef = REACT_FORWARD_REF_TYPE;
+      var Fragment = REACT_FRAGMENT_TYPE;
+      var Lazy = REACT_LAZY_TYPE;
+      var Memo = REACT_MEMO_TYPE;
+      var Portal = REACT_PORTAL_TYPE;
+      var Profiler = REACT_PROFILER_TYPE;
+      var StrictMode = REACT_STRICT_MODE_TYPE;
+      var Suspense = REACT_SUSPENSE_TYPE;
+      var hasWarnedAboutDeprecatedIsAsyncMode = false;
+      function isAsyncMode(object) {
+        {
+          if (!hasWarnedAboutDeprecatedIsAsyncMode) {
+            hasWarnedAboutDeprecatedIsAsyncMode = true;
+            console["warn"]("The ReactIs.isAsyncMode() alias has been deprecated, " + "and will be removed in React 17+. Update your code to use " + "ReactIs.isConcurrentMode() instead. It has the exact same API.");
+          }
+        }
+        return isConcurrentMode(object) || typeOf(object) === REACT_ASYNC_MODE_TYPE;
+      }
+      function isConcurrentMode(object) {
+        return typeOf(object) === REACT_CONCURRENT_MODE_TYPE;
+      }
+      function isContextConsumer(object) {
+        return typeOf(object) === REACT_CONTEXT_TYPE;
+      }
+      function isContextProvider(object) {
+        return typeOf(object) === REACT_PROVIDER_TYPE;
+      }
+      function isElement(object) {
+        return typeof object === "object" && object !== null && object.$$typeof === REACT_ELEMENT_TYPE;
+      }
+      function isForwardRef(object) {
+        return typeOf(object) === REACT_FORWARD_REF_TYPE;
+      }
+      function isFragment(object) {
+        return typeOf(object) === REACT_FRAGMENT_TYPE;
+      }
+      function isLazy(object) {
+        return typeOf(object) === REACT_LAZY_TYPE;
+      }
+      function isMemo(object) {
+        return typeOf(object) === REACT_MEMO_TYPE;
+      }
+      function isPortal(object) {
+        return typeOf(object) === REACT_PORTAL_TYPE;
+      }
+      function isProfiler(object) {
+        return typeOf(object) === REACT_PROFILER_TYPE;
+      }
+      function isStrictMode(object) {
+        return typeOf(object) === REACT_STRICT_MODE_TYPE;
+      }
+      function isSuspense(object) {
+        return typeOf(object) === REACT_SUSPENSE_TYPE;
+      }
+      exports.AsyncMode = AsyncMode;
+      exports.ConcurrentMode = ConcurrentMode;
+      exports.ContextConsumer = ContextConsumer;
+      exports.ContextProvider = ContextProvider;
+      exports.Element = Element;
+      exports.ForwardRef = ForwardRef;
+      exports.Fragment = Fragment;
+      exports.Lazy = Lazy;
+      exports.Memo = Memo;
+      exports.Portal = Portal;
+      exports.Profiler = Profiler;
+      exports.StrictMode = StrictMode;
+      exports.Suspense = Suspense;
+      exports.isAsyncMode = isAsyncMode;
+      exports.isConcurrentMode = isConcurrentMode;
+      exports.isContextConsumer = isContextConsumer;
+      exports.isContextProvider = isContextProvider;
+      exports.isElement = isElement;
+      exports.isForwardRef = isForwardRef;
+      exports.isFragment = isFragment;
+      exports.isLazy = isLazy;
+      exports.isMemo = isMemo;
+      exports.isPortal = isPortal;
+      exports.isProfiler = isProfiler;
+      exports.isStrictMode = isStrictMode;
+      exports.isSuspense = isSuspense;
+      exports.isValidElementType = isValidElementType;
+      exports.typeOf = typeOf;
+    })();
+  }
+});
+
+// node_modules/react-is/index.js
+var require_react_is = __commonJS((exports, module) => {
+  var react_is_development = __toESM(require_react_is_development());
+  if (false) {} else {
+    module.exports = react_is_development;
+  }
+});
+
+// node_modules/object-assign/index.js
+var require_object_assign = __commonJS((exports, module) => {
+  var getOwnPropertySymbols = Object.getOwnPropertySymbols;
+  var hasOwnProperty = Object.prototype.hasOwnProperty;
+  var propIsEnumerable = Object.prototype.propertyIsEnumerable;
+  function toObject(val) {
+    if (val === null || val === undefined) {
+      throw new TypeError("Object.assign cannot be called with null or undefined");
+    }
+    return Object(val);
+  }
+  function shouldUseNative() {
+    try {
+      if (!Object.assign) {
+        return false;
+      }
+      var test1 = new String("abc");
+      test1[5] = "de";
+      if (Object.getOwnPropertyNames(test1)[0] === "5") {
+        return false;
+      }
+      var test2 = {};
+      for (var i = 0;i < 10; i++) {
+        test2["_" + String.fromCharCode(i)] = i;
+      }
+      var order2 = Object.getOwnPropertyNames(test2).map(function(n) {
+        return test2[n];
+      });
+      if (order2.join("") !== "0123456789") {
+        return false;
+      }
+      var test3 = {};
+      "abcdefghijklmnopqrst".split("").forEach(function(letter) {
+        test3[letter] = letter;
+      });
+      if (Object.keys(Object.assign({}, test3)).join("") !== "abcdefghijklmnopqrst") {
+        return false;
+      }
+      return true;
+    } catch (err) {
+      return false;
+    }
+  }
+  module.exports = shouldUseNative() ? Object.assign : function(target, source) {
+    var from;
+    var to = toObject(target);
+    var symbols;
+    for (var s = 1;s < arguments.length; s++) {
+      from = Object(arguments[s]);
+      for (var key in from) {
+        if (hasOwnProperty.call(from, key)) {
+          to[key] = from[key];
+        }
+      }
+      if (getOwnPropertySymbols) {
+        symbols = getOwnPropertySymbols(from);
+        for (var i = 0;i < symbols.length; i++) {
+          if (propIsEnumerable.call(from, symbols[i])) {
+            to[symbols[i]] = from[symbols[i]];
+          }
+        }
+      }
+    }
+    return to;
+  };
+});
+
+// node_modules/prop-types/lib/ReactPropTypesSecret.js
+var require_ReactPropTypesSecret = __commonJS((exports, module) => {
+  var ReactPropTypesSecret = "SECRET_DO_NOT_PASS_THIS_OR_YOU_WILL_BE_FIRED";
+  module.exports = ReactPropTypesSecret;
+});
+
+// node_modules/prop-types/lib/has.js
+var require_has = __commonJS((exports, module) => {
+  module.exports = Function.call.bind(Object.prototype.hasOwnProperty);
+});
+
+// node_modules/prop-types/checkPropTypes.js
+var require_checkPropTypes = __commonJS((exports, module) => {
+  var printWarning = function() {};
+  if (true) {
+    ReactPropTypesSecret = require_ReactPropTypesSecret();
+    loggedTypeFailures = {};
+    has = require_has();
+    printWarning = function(text) {
+      var message = "Warning: " + text;
+      if (typeof console !== "undefined") {
+        console.error(message);
+      }
+      try {
+        throw new Error(message);
+      } catch (x) {}
+    };
+  }
+  var ReactPropTypesSecret;
+  var loggedTypeFailures;
+  var has;
+  function checkPropTypes(typeSpecs, values, location, componentName, getStack) {
+    if (true) {
+      for (var typeSpecName in typeSpecs) {
+        if (has(typeSpecs, typeSpecName)) {
+          var error;
+          try {
+            if (typeof typeSpecs[typeSpecName] !== "function") {
+              var err = Error((componentName || "React class") + ": " + location + " type `" + typeSpecName + "` is invalid; " + "it must be a function, usually from the `prop-types` package, but received `" + typeof typeSpecs[typeSpecName] + "`." + "This often happens because of typos such as `PropTypes.function` instead of `PropTypes.func`.");
+              err.name = "Invariant Violation";
+              throw err;
+            }
+            error = typeSpecs[typeSpecName](values, typeSpecName, componentName, location, null, ReactPropTypesSecret);
+          } catch (ex) {
+            error = ex;
+          }
+          if (error && !(error instanceof Error)) {
+            printWarning((componentName || "React class") + ": type specification of " + location + " `" + typeSpecName + "` is invalid; the type checker " + "function must return `null` or an `Error` but returned a " + typeof error + ". " + "You may have forgotten to pass an argument to the type checker " + "creator (arrayOf, instanceOf, objectOf, oneOf, oneOfType, and " + "shape all require an argument).");
+          }
+          if (error instanceof Error && !(error.message in loggedTypeFailures)) {
+            loggedTypeFailures[error.message] = true;
+            var stack = getStack ? getStack() : "";
+            printWarning("Failed " + location + " type: " + error.message + (stack != null ? stack : ""));
+          }
+        }
+      }
+    }
+  }
+  checkPropTypes.resetWarningCache = function() {
+    if (true) {
+      loggedTypeFailures = {};
+    }
+  };
+  module.exports = checkPropTypes;
+});
+
+// node_modules/prop-types/factoryWithTypeCheckers.js
+var require_factoryWithTypeCheckers = __commonJS((exports, module) => {
+  var ReactIs = __toESM(require_react_is());
+  var assign = require_object_assign();
+  var ReactPropTypesSecret = require_ReactPropTypesSecret();
+  var has = require_has();
+  var checkPropTypes = require_checkPropTypes();
+  var printWarning = function() {};
+  if (true) {
+    printWarning = function(text) {
+      var message = "Warning: " + text;
+      if (typeof console !== "undefined") {
+        console.error(message);
+      }
+      try {
+        throw new Error(message);
+      } catch (x) {}
+    };
+  }
+  function emptyFunctionThatReturnsNull() {
+    return null;
+  }
+  module.exports = function(isValidElement, throwOnDirectAccess) {
+    var ITERATOR_SYMBOL = typeof Symbol === "function" && Symbol.iterator;
+    var FAUX_ITERATOR_SYMBOL = "@@iterator";
+    function getIteratorFn(maybeIterable) {
+      var iteratorFn = maybeIterable && (ITERATOR_SYMBOL && maybeIterable[ITERATOR_SYMBOL] || maybeIterable[FAUX_ITERATOR_SYMBOL]);
+      if (typeof iteratorFn === "function") {
+        return iteratorFn;
+      }
+    }
+    var ANONYMOUS = "<<anonymous>>";
+    var ReactPropTypes = {
+      array: createPrimitiveTypeChecker("array"),
+      bigint: createPrimitiveTypeChecker("bigint"),
+      bool: createPrimitiveTypeChecker("boolean"),
+      func: createPrimitiveTypeChecker("function"),
+      number: createPrimitiveTypeChecker("number"),
+      object: createPrimitiveTypeChecker("object"),
+      string: createPrimitiveTypeChecker("string"),
+      symbol: createPrimitiveTypeChecker("symbol"),
+      any: createAnyTypeChecker(),
+      arrayOf: createArrayOfTypeChecker,
+      element: createElementTypeChecker(),
+      elementType: createElementTypeTypeChecker(),
+      instanceOf: createInstanceTypeChecker,
+      node: createNodeChecker(),
+      objectOf: createObjectOfTypeChecker,
+      oneOf: createEnumTypeChecker,
+      oneOfType: createUnionTypeChecker,
+      shape: createShapeTypeChecker,
+      exact: createStrictShapeTypeChecker
+    };
+    function is(x, y) {
+      if (x === y) {
+        return x !== 0 || 1 / x === 1 / y;
+      } else {
+        return x !== x && y !== y;
+      }
+    }
+    function PropTypeError(message, data) {
+      this.message = message;
+      this.data = data && typeof data === "object" ? data : {};
+      this.stack = "";
+    }
+    PropTypeError.prototype = Error.prototype;
+    function createChainableTypeChecker(validate) {
+      if (true) {
+        var manualPropTypeCallCache = {};
+        var manualPropTypeWarningCount = 0;
+      }
+      function checkType(isRequired, props, propName, componentName, location, propFullName, secret) {
+        componentName = componentName || ANONYMOUS;
+        propFullName = propFullName || propName;
+        if (secret !== ReactPropTypesSecret) {
+          if (throwOnDirectAccess) {
+            var err = new Error("Calling PropTypes validators directly is not supported by the `prop-types` package. " + "Use `PropTypes.checkPropTypes()` to call them. " + "Read more at http://fb.me/use-check-prop-types");
+            err.name = "Invariant Violation";
+            throw err;
+          } else if (typeof console !== "undefined") {
+            var cacheKey = componentName + ":" + propName;
+            if (!manualPropTypeCallCache[cacheKey] && manualPropTypeWarningCount < 3) {
+              printWarning("You are manually calling a React.PropTypes validation " + "function for the `" + propFullName + "` prop on `" + componentName + "`. This is deprecated " + "and will throw in the standalone `prop-types` package. " + "You may be seeing this warning due to a third-party PropTypes " + "library. See https://fb.me/react-warning-dont-call-proptypes " + "for details.");
+              manualPropTypeCallCache[cacheKey] = true;
+              manualPropTypeWarningCount++;
+            }
+          }
+        }
+        if (props[propName] == null) {
+          if (isRequired) {
+            if (props[propName] === null) {
+              return new PropTypeError("The " + location + " `" + propFullName + "` is marked as required " + ("in `" + componentName + "`, but its value is `null`."));
+            }
+            return new PropTypeError("The " + location + " `" + propFullName + "` is marked as required in " + ("`" + componentName + "`, but its value is `undefined`."));
+          }
+          return null;
+        } else {
+          return validate(props, propName, componentName, location, propFullName);
+        }
+      }
+      var chainedCheckType = checkType.bind(null, false);
+      chainedCheckType.isRequired = checkType.bind(null, true);
+      return chainedCheckType;
+    }
+    function createPrimitiveTypeChecker(expectedType) {
+      function validate(props, propName, componentName, location, propFullName, secret) {
+        var propValue = props[propName];
+        var propType = getPropType(propValue);
+        if (propType !== expectedType) {
+          var preciseType = getPreciseType(propValue);
+          return new PropTypeError("Invalid " + location + " `" + propFullName + "` of type " + ("`" + preciseType + "` supplied to `" + componentName + "`, expected ") + ("`" + expectedType + "`."), { expectedType });
+        }
+        return null;
+      }
+      return createChainableTypeChecker(validate);
+    }
+    function createAnyTypeChecker() {
+      return createChainableTypeChecker(emptyFunctionThatReturnsNull);
+    }
+    function createArrayOfTypeChecker(typeChecker) {
+      function validate(props, propName, componentName, location, propFullName) {
+        if (typeof typeChecker !== "function") {
+          return new PropTypeError("Property `" + propFullName + "` of component `" + componentName + "` has invalid PropType notation inside arrayOf.");
+        }
+        var propValue = props[propName];
+        if (!Array.isArray(propValue)) {
+          var propType = getPropType(propValue);
+          return new PropTypeError("Invalid " + location + " `" + propFullName + "` of type " + ("`" + propType + "` supplied to `" + componentName + "`, expected an array."));
+        }
+        for (var i = 0;i < propValue.length; i++) {
+          var error = typeChecker(propValue, i, componentName, location, propFullName + "[" + i + "]", ReactPropTypesSecret);
+          if (error instanceof Error) {
+            return error;
+          }
+        }
+        return null;
+      }
+      return createChainableTypeChecker(validate);
+    }
+    function createElementTypeChecker() {
+      function validate(props, propName, componentName, location, propFullName) {
+        var propValue = props[propName];
+        if (!isValidElement(propValue)) {
+          var propType = getPropType(propValue);
+          return new PropTypeError("Invalid " + location + " `" + propFullName + "` of type " + ("`" + propType + "` supplied to `" + componentName + "`, expected a single ReactElement."));
+        }
+        return null;
+      }
+      return createChainableTypeChecker(validate);
+    }
+    function createElementTypeTypeChecker() {
+      function validate(props, propName, componentName, location, propFullName) {
+        var propValue = props[propName];
+        if (!ReactIs.isValidElementType(propValue)) {
+          var propType = getPropType(propValue);
+          return new PropTypeError("Invalid " + location + " `" + propFullName + "` of type " + ("`" + propType + "` supplied to `" + componentName + "`, expected a single ReactElement type."));
+        }
+        return null;
+      }
+      return createChainableTypeChecker(validate);
+    }
+    function createInstanceTypeChecker(expectedClass) {
+      function validate(props, propName, componentName, location, propFullName) {
+        if (!(props[propName] instanceof expectedClass)) {
+          var expectedClassName = expectedClass.name || ANONYMOUS;
+          var actualClassName = getClassName(props[propName]);
+          return new PropTypeError("Invalid " + location + " `" + propFullName + "` of type " + ("`" + actualClassName + "` supplied to `" + componentName + "`, expected ") + ("instance of `" + expectedClassName + "`."));
+        }
+        return null;
+      }
+      return createChainableTypeChecker(validate);
+    }
+    function createEnumTypeChecker(expectedValues) {
+      if (!Array.isArray(expectedValues)) {
+        if (true) {
+          if (arguments.length > 1) {
+            printWarning("Invalid arguments supplied to oneOf, expected an array, got " + arguments.length + " arguments. " + "A common mistake is to write oneOf(x, y, z) instead of oneOf([x, y, z]).");
+          } else {
+            printWarning("Invalid argument supplied to oneOf, expected an array.");
+          }
+        }
+        return emptyFunctionThatReturnsNull;
+      }
+      function validate(props, propName, componentName, location, propFullName) {
+        var propValue = props[propName];
+        for (var i = 0;i < expectedValues.length; i++) {
+          if (is(propValue, expectedValues[i])) {
+            return null;
+          }
+        }
+        var valuesString = JSON.stringify(expectedValues, function replacer(key, value) {
+          var type = getPreciseType(value);
+          if (type === "symbol") {
+            return String(value);
+          }
+          return value;
+        });
+        return new PropTypeError("Invalid " + location + " `" + propFullName + "` of value `" + String(propValue) + "` " + ("supplied to `" + componentName + "`, expected one of " + valuesString + "."));
+      }
+      return createChainableTypeChecker(validate);
+    }
+    function createObjectOfTypeChecker(typeChecker) {
+      function validate(props, propName, componentName, location, propFullName) {
+        if (typeof typeChecker !== "function") {
+          return new PropTypeError("Property `" + propFullName + "` of component `" + componentName + "` has invalid PropType notation inside objectOf.");
+        }
+        var propValue = props[propName];
+        var propType = getPropType(propValue);
+        if (propType !== "object") {
+          return new PropTypeError("Invalid " + location + " `" + propFullName + "` of type " + ("`" + propType + "` supplied to `" + componentName + "`, expected an object."));
+        }
+        for (var key in propValue) {
+          if (has(propValue, key)) {
+            var error = typeChecker(propValue, key, componentName, location, propFullName + "." + key, ReactPropTypesSecret);
+            if (error instanceof Error) {
+              return error;
+            }
+          }
+        }
+        return null;
+      }
+      return createChainableTypeChecker(validate);
+    }
+    function createUnionTypeChecker(arrayOfTypeCheckers) {
+      if (!Array.isArray(arrayOfTypeCheckers)) {
+        printWarning("Invalid argument supplied to oneOfType, expected an instance of array.");
+        return emptyFunctionThatReturnsNull;
+      }
+      for (var i = 0;i < arrayOfTypeCheckers.length; i++) {
+        var checker = arrayOfTypeCheckers[i];
+        if (typeof checker !== "function") {
+          printWarning("Invalid argument supplied to oneOfType. Expected an array of check functions, but " + "received " + getPostfixForTypeWarning(checker) + " at index " + i + ".");
+          return emptyFunctionThatReturnsNull;
+        }
+      }
+      function validate(props, propName, componentName, location, propFullName) {
+        var expectedTypes = [];
+        for (var i2 = 0;i2 < arrayOfTypeCheckers.length; i2++) {
+          var checker2 = arrayOfTypeCheckers[i2];
+          var checkerResult = checker2(props, propName, componentName, location, propFullName, ReactPropTypesSecret);
+          if (checkerResult == null) {
+            return null;
+          }
+          if (checkerResult.data && has(checkerResult.data, "expectedType")) {
+            expectedTypes.push(checkerResult.data.expectedType);
+          }
+        }
+        var expectedTypesMessage = expectedTypes.length > 0 ? ", expected one of type [" + expectedTypes.join(", ") + "]" : "";
+        return new PropTypeError("Invalid " + location + " `" + propFullName + "` supplied to " + ("`" + componentName + "`" + expectedTypesMessage + "."));
+      }
+      return createChainableTypeChecker(validate);
+    }
+    function createNodeChecker() {
+      function validate(props, propName, componentName, location, propFullName) {
+        if (!isNode(props[propName])) {
+          return new PropTypeError("Invalid " + location + " `" + propFullName + "` supplied to " + ("`" + componentName + "`, expected a ReactNode."));
+        }
+        return null;
+      }
+      return createChainableTypeChecker(validate);
+    }
+    function invalidValidatorError(componentName, location, propFullName, key, type) {
+      return new PropTypeError((componentName || "React class") + ": " + location + " type `" + propFullName + "." + key + "` is invalid; " + "it must be a function, usually from the `prop-types` package, but received `" + type + "`.");
+    }
+    function createShapeTypeChecker(shapeTypes) {
+      function validate(props, propName, componentName, location, propFullName) {
+        var propValue = props[propName];
+        var propType = getPropType(propValue);
+        if (propType !== "object") {
+          return new PropTypeError("Invalid " + location + " `" + propFullName + "` of type `" + propType + "` " + ("supplied to `" + componentName + "`, expected `object`."));
+        }
+        for (var key in shapeTypes) {
+          var checker = shapeTypes[key];
+          if (typeof checker !== "function") {
+            return invalidValidatorError(componentName, location, propFullName, key, getPreciseType(checker));
+          }
+          var error = checker(propValue, key, componentName, location, propFullName + "." + key, ReactPropTypesSecret);
+          if (error) {
+            return error;
+          }
+        }
+        return null;
+      }
+      return createChainableTypeChecker(validate);
+    }
+    function createStrictShapeTypeChecker(shapeTypes) {
+      function validate(props, propName, componentName, location, propFullName) {
+        var propValue = props[propName];
+        var propType = getPropType(propValue);
+        if (propType !== "object") {
+          return new PropTypeError("Invalid " + location + " `" + propFullName + "` of type `" + propType + "` " + ("supplied to `" + componentName + "`, expected `object`."));
+        }
+        var allKeys = assign({}, props[propName], shapeTypes);
+        for (var key in allKeys) {
+          var checker = shapeTypes[key];
+          if (has(shapeTypes, key) && typeof checker !== "function") {
+            return invalidValidatorError(componentName, location, propFullName, key, getPreciseType(checker));
+          }
+          if (!checker) {
+            return new PropTypeError("Invalid " + location + " `" + propFullName + "` key `" + key + "` supplied to `" + componentName + "`." + `
+Bad object: ` + JSON.stringify(props[propName], null, "  ") + `
+Valid keys: ` + JSON.stringify(Object.keys(shapeTypes), null, "  "));
+          }
+          var error = checker(propValue, key, componentName, location, propFullName + "." + key, ReactPropTypesSecret);
+          if (error) {
+            return error;
+          }
+        }
+        return null;
+      }
+      return createChainableTypeChecker(validate);
+    }
+    function isNode(propValue) {
+      switch (typeof propValue) {
+        case "number":
+        case "string":
+        case "undefined":
+          return true;
+        case "boolean":
+          return !propValue;
+        case "object":
+          if (Array.isArray(propValue)) {
+            return propValue.every(isNode);
+          }
+          if (propValue === null || isValidElement(propValue)) {
+            return true;
+          }
+          var iteratorFn = getIteratorFn(propValue);
+          if (iteratorFn) {
+            var iterator = iteratorFn.call(propValue);
+            var step;
+            if (iteratorFn !== propValue.entries) {
+              while (!(step = iterator.next()).done) {
+                if (!isNode(step.value)) {
+                  return false;
+                }
+              }
+            } else {
+              while (!(step = iterator.next()).done) {
+                var entry = step.value;
+                if (entry) {
+                  if (!isNode(entry[1])) {
+                    return false;
+                  }
+                }
+              }
+            }
+          } else {
+            return false;
+          }
+          return true;
+        default:
+          return false;
+      }
+    }
+    function isSymbol(propType, propValue) {
+      if (propType === "symbol") {
+        return true;
+      }
+      if (!propValue) {
+        return false;
+      }
+      if (propValue["@@toStringTag"] === "Symbol") {
+        return true;
+      }
+      if (typeof Symbol === "function" && propValue instanceof Symbol) {
+        return true;
+      }
+      return false;
+    }
+    function getPropType(propValue) {
+      var propType = typeof propValue;
+      if (Array.isArray(propValue)) {
+        return "array";
+      }
+      if (propValue instanceof RegExp) {
+        return "object";
+      }
+      if (isSymbol(propType, propValue)) {
+        return "symbol";
+      }
+      return propType;
+    }
+    function getPreciseType(propValue) {
+      if (typeof propValue === "undefined" || propValue === null) {
+        return "" + propValue;
+      }
+      var propType = getPropType(propValue);
+      if (propType === "object") {
+        if (propValue instanceof Date) {
+          return "date";
+        } else if (propValue instanceof RegExp) {
+          return "regexp";
+        }
+      }
+      return propType;
+    }
+    function getPostfixForTypeWarning(value) {
+      var type = getPreciseType(value);
+      switch (type) {
+        case "array":
+        case "object":
+          return "an " + type;
+        case "boolean":
+        case "date":
+        case "regexp":
+          return "a " + type;
+        default:
+          return type;
+      }
+    }
+    function getClassName(propValue) {
+      if (!propValue.constructor || !propValue.constructor.name) {
+        return ANONYMOUS;
+      }
+      return propValue.constructor.name;
+    }
+    ReactPropTypes.checkPropTypes = checkPropTypes;
+    ReactPropTypes.resetWarningCache = checkPropTypes.resetWarningCache;
+    ReactPropTypes.PropTypes = ReactPropTypes;
+    return ReactPropTypes;
+  };
+});
+
+// node_modules/prop-types/index.js
+var require_prop_types = __commonJS((exports, module) => {
+  var ReactIs = __toESM(require_react_is());
+  if (true) {
+    throwOnDirectAccess = true;
+    module.exports = require_factoryWithTypeCheckers()(ReactIs.isElement, throwOnDirectAccess);
+  } else {}
+  var throwOnDirectAccess;
+});
+
+// node_modules/attr-accept/dist/es/index.js
+var require_es = __commonJS((exports) => {
+  exports.__esModule = true;
+  exports.default = function(file, acceptedFiles) {
+    if (file && acceptedFiles) {
+      var acceptedFilesArray = Array.isArray(acceptedFiles) ? acceptedFiles : acceptedFiles.split(",");
+      if (acceptedFilesArray.length === 0) {
+        return true;
+      }
+      var fileName = file.name || "";
+      var mimeType = (file.type || "").toLowerCase();
+      var baseMimeType = mimeType.replace(/\/.*$/, "");
+      return acceptedFilesArray.some(function(type) {
+        var validType = type.trim().toLowerCase();
+        if (validType.charAt(0) === ".") {
+          return fileName.toLowerCase().endsWith(validType);
+        } else if (validType.endsWith("/*")) {
+          return baseMimeType === validType.replace(/\/.*$/, "");
+        }
+        return mimeType === validType;
+      });
+    }
+    return true;
+  };
+});
+
+// node_modules/normalize-wheel/src/UserAgent_DEPRECATED.js
+var require_UserAgent_DEPRECATED = __commonJS((exports, module) => {
+  var _populated = false;
+  var _ie;
+  var _firefox;
+  var _opera;
+  var _webkit;
+  var _chrome;
+  var _ie_real_version;
+  var _osx;
+  var _windows;
+  var _linux;
+  var _android;
+  var _win64;
+  var _iphone;
+  var _ipad;
+  var _native;
+  var _mobile;
+  function _populate() {
+    if (_populated) {
+      return;
+    }
+    _populated = true;
+    var uas = navigator.userAgent;
+    var agent = /(?:MSIE.(\d+\.\d+))|(?:(?:Firefox|GranParadiso|Iceweasel).(\d+\.\d+))|(?:Opera(?:.+Version.|.)(\d+\.\d+))|(?:AppleWebKit.(\d+(?:\.\d+)?))|(?:Trident\/\d+\.\d+.*rv:(\d+\.\d+))/.exec(uas);
+    var os = /(Mac OS X)|(Windows)|(Linux)/.exec(uas);
+    _iphone = /\b(iPhone|iP[ao]d)/.exec(uas);
+    _ipad = /\b(iP[ao]d)/.exec(uas);
+    _android = /Android/i.exec(uas);
+    _native = /FBAN\/\w+;/i.exec(uas);
+    _mobile = /Mobile/i.exec(uas);
+    _win64 = !!/Win64/.exec(uas);
+    if (agent) {
+      _ie = agent[1] ? parseFloat(agent[1]) : agent[5] ? parseFloat(agent[5]) : NaN;
+      if (_ie && document && document.documentMode) {
+        _ie = document.documentMode;
+      }
+      var trident = /(?:Trident\/(\d+.\d+))/.exec(uas);
+      _ie_real_version = trident ? parseFloat(trident[1]) + 4 : _ie;
+      _firefox = agent[2] ? parseFloat(agent[2]) : NaN;
+      _opera = agent[3] ? parseFloat(agent[3]) : NaN;
+      _webkit = agent[4] ? parseFloat(agent[4]) : NaN;
+      if (_webkit) {
+        agent = /(?:Chrome\/(\d+\.\d+))/.exec(uas);
+        _chrome = agent && agent[1] ? parseFloat(agent[1]) : NaN;
+      } else {
+        _chrome = NaN;
+      }
+    } else {
+      _ie = _firefox = _opera = _chrome = _webkit = NaN;
+    }
+    if (os) {
+      if (os[1]) {
+        var ver = /(?:Mac OS X (\d+(?:[._]\d+)?))/.exec(uas);
+        _osx = ver ? parseFloat(ver[1].replace("_", ".")) : true;
+      } else {
+        _osx = false;
+      }
+      _windows = !!os[2];
+      _linux = !!os[3];
+    } else {
+      _osx = _windows = _linux = false;
+    }
+  }
+  var UserAgent_DEPRECATED = {
+    ie: function() {
+      return _populate() || _ie;
+    },
+    ieCompatibilityMode: function() {
+      return _populate() || _ie_real_version > _ie;
+    },
+    ie64: function() {
+      return UserAgent_DEPRECATED.ie() && _win64;
+    },
+    firefox: function() {
+      return _populate() || _firefox;
+    },
+    opera: function() {
+      return _populate() || _opera;
+    },
+    webkit: function() {
+      return _populate() || _webkit;
+    },
+    safari: function() {
+      return UserAgent_DEPRECATED.webkit();
+    },
+    chrome: function() {
+      return _populate() || _chrome;
+    },
+    windows: function() {
+      return _populate() || _windows;
+    },
+    osx: function() {
+      return _populate() || _osx;
+    },
+    linux: function() {
+      return _populate() || _linux;
+    },
+    iphone: function() {
+      return _populate() || _iphone;
+    },
+    mobile: function() {
+      return _populate() || (_iphone || _ipad || _android || _mobile);
+    },
+    nativeApp: function() {
+      return _populate() || _native;
+    },
+    android: function() {
+      return _populate() || _android;
+    },
+    ipad: function() {
+      return _populate() || _ipad;
+    }
+  };
+  module.exports = UserAgent_DEPRECATED;
+});
+
+// node_modules/normalize-wheel/src/ExecutionEnvironment.js
+var require_ExecutionEnvironment = __commonJS((exports, module) => {
+  var canUseDOM = !!(typeof window !== "undefined" && window.document && window.document.createElement);
+  var ExecutionEnvironment = {
+    canUseDOM,
+    canUseWorkers: typeof Worker !== "undefined",
+    canUseEventListeners: canUseDOM && !!(window.addEventListener || window.attachEvent),
+    canUseViewport: canUseDOM && !!window.screen,
+    isInWorker: !canUseDOM
+  };
+  module.exports = ExecutionEnvironment;
+});
+
+// node_modules/normalize-wheel/src/isEventSupported.js
+var require_isEventSupported = __commonJS((exports, module) => {
+  var ExecutionEnvironment = require_ExecutionEnvironment();
+  var useHasFeature;
+  if (ExecutionEnvironment.canUseDOM) {
+    useHasFeature = document.implementation && document.implementation.hasFeature && document.implementation.hasFeature("", "") !== true;
+  }
+  function isEventSupported(eventNameSuffix, capture) {
+    if (!ExecutionEnvironment.canUseDOM || capture && !("addEventListener" in document)) {
+      return false;
+    }
+    var eventName = "on" + eventNameSuffix;
+    var isSupported = eventName in document;
+    if (!isSupported) {
+      var element = document.createElement("div");
+      element.setAttribute(eventName, "return;");
+      isSupported = typeof element[eventName] === "function";
+    }
+    if (!isSupported && useHasFeature && eventNameSuffix === "wheel") {
+      isSupported = document.implementation.hasFeature("Events.wheel", "3.0");
+    }
+    return isSupported;
+  }
+  module.exports = isEventSupported;
+});
+
+// node_modules/normalize-wheel/src/normalizeWheel.js
+var require_normalizeWheel = __commonJS((exports, module) => {
+  var UserAgent_DEPRECATED = require_UserAgent_DEPRECATED();
+  var isEventSupported = require_isEventSupported();
+  var PIXEL_STEP = 10;
+  var LINE_HEIGHT = 40;
+  var PAGE_HEIGHT = 800;
+  function normalizeWheel(event) {
+    var sX = 0, sY = 0, pX = 0, pY = 0;
+    if ("detail" in event) {
+      sY = event.detail;
+    }
+    if ("wheelDelta" in event) {
+      sY = -event.wheelDelta / 120;
+    }
+    if ("wheelDeltaY" in event) {
+      sY = -event.wheelDeltaY / 120;
+    }
+    if ("wheelDeltaX" in event) {
+      sX = -event.wheelDeltaX / 120;
+    }
+    if ("axis" in event && event.axis === event.HORIZONTAL_AXIS) {
+      sX = sY;
+      sY = 0;
+    }
+    pX = sX * PIXEL_STEP;
+    pY = sY * PIXEL_STEP;
+    if ("deltaY" in event) {
+      pY = event.deltaY;
+    }
+    if ("deltaX" in event) {
+      pX = event.deltaX;
+    }
+    if ((pX || pY) && event.deltaMode) {
+      if (event.deltaMode == 1) {
+        pX *= LINE_HEIGHT;
+        pY *= LINE_HEIGHT;
+      } else {
+        pX *= PAGE_HEIGHT;
+        pY *= PAGE_HEIGHT;
+      }
+    }
+    if (pX && !sX) {
+      sX = pX < 1 ? -1 : 1;
+    }
+    if (pY && !sY) {
+      sY = pY < 1 ? -1 : 1;
+    }
+    return {
+      spinX: sX,
+      spinY: sY,
+      pixelX: pX,
+      pixelY: pY
+    };
+  }
+  normalizeWheel.getEventType = function() {
+    return UserAgent_DEPRECATED.firefox() ? "DOMMouseScroll" : isEventSupported("wheel") ? "wheel" : "mousewheel";
+  };
+  module.exports = normalizeWheel;
+});
+
 // node_modules/scheduler/cjs/scheduler.development.js
 var require_scheduler_development = __commonJS((exports) => {
   (function() {
@@ -1335,9 +2303,9 @@ var require_scheduler = __commonJS((exports, module) => {
 
 // node_modules/react-dom/cjs/react-dom.development.js
 var require_react_dom_development = __commonJS((exports) => {
-  var React = __toESM(require_react());
+  var React3 = __toESM(require_react());
   (function() {
-    function noop() {}
+    function noop2() {}
     function testStringCoercion(value) {
       return "" + value;
     }
@@ -1382,21 +2350,21 @@ See https://react.dev/link/invalid-hook-call for tips about how to debug and fix
     typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ !== "undefined" && typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart === "function" && __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart(Error());
     var Internals = {
       d: {
-        f: noop,
+        f: noop2,
         r: function() {
           throw Error("Invalid form element. requestFormReset must be passed a form that was rendered by React.");
         },
-        D: noop,
-        C: noop,
-        L: noop,
-        m: noop,
-        X: noop,
-        S: noop,
-        M: noop
+        D: noop2,
+        C: noop2,
+        L: noop2,
+        m: noop2,
+        X: noop2,
+        S: noop2,
+        M: noop2
       },
       p: 0,
       findDOMNode: null
-    }, REACT_PORTAL_TYPE = Symbol.for("react.portal"), ReactSharedInternals = React.__CLIENT_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE;
+    }, REACT_PORTAL_TYPE = Symbol.for("react.portal"), ReactSharedInternals = React3.__CLIENT_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE;
     typeof Map === "function" && Map.prototype != null && typeof Map.prototype.forEach === "function" && typeof Set === "function" && Set.prototype != null && typeof Set.prototype.clear === "function" && typeof Set.prototype.forEach === "function" || console.error("React depends on Map and Set built-in types. Make sure that you load a polyfill in older browsers. https://reactjs.org/link/react-polyfills");
     exports.__DOM_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE = Internals;
     exports.createPortal = function(children, container) {
@@ -1505,8 +2473,8 @@ See https://react.dev/link/invalid-hook-call for tips about how to debug and fix
     exports.unstable_batchedUpdates = function(fn, a) {
       return fn(a);
     };
-    exports.useFormState = function(action, initialState, permalink) {
-      return resolveDispatcher().useFormState(action, initialState, permalink);
+    exports.useFormState = function(action, initialState2, permalink) {
+      return resolveDispatcher().useFormState(action, initialState2, permalink);
     };
     exports.useFormStatus = function() {
       return resolveDispatcher().useHostTransitionStatus();
@@ -1527,7 +2495,7 @@ var require_react_dom = __commonJS((exports, module) => {
 // node_modules/react-dom/cjs/react-dom-client.development.js
 var require_react_dom_client_development = __commonJS((exports) => {
   var Scheduler = __toESM(require_scheduler());
-  var React = __toESM(require_react());
+  var React3 = __toESM(require_react());
   var ReactDOM = __toESM(require_react_dom());
   (function() {
     function findHook(fiber, id) {
@@ -1578,7 +2546,7 @@ var require_react_dom_client_development = __commonJS((exports) => {
     function warnInvalidContextAccess() {
       console.error("Context can only be read while React is rendering. In classes, you can read it in the render method or getDerivedStateFromProps. In function components, you can read it directly in the function body, but not inside Hooks like useReducer() or useMemo().");
     }
-    function noop() {}
+    function noop2() {}
     function warnForMissingKey() {}
     function setToSortedString(set) {
       var array = [];
@@ -2815,7 +3783,7 @@ Error generating stack: ` + x.message + `
       type === "number" && getActiveElement(node.ownerDocument) === node || node.defaultValue === "" + value || (node.defaultValue = "" + value);
     }
     function validateOptionProps(element, props) {
-      props.value == null && (typeof props.children === "object" && props.children !== null ? React.Children.forEach(props.children, function(child) {
+      props.value == null && (typeof props.children === "object" && props.children !== null ? React3.Children.forEach(props.children, function(child) {
         child == null || typeof child === "string" || typeof child === "number" || typeof child === "bigint" || didWarnInvalidChild || (didWarnInvalidChild = true, console.error("Cannot infer the option value of complex children. Pass a `value` prop or use a plain string as children to <option>."));
       }) : props.dangerouslySetInnerHTML == null || didWarnInvalidInnerHTML || (didWarnInvalidInnerHTML = true, console.error("Pass a `value` prop if you set dangerouslyInnerHTML so React knows which value should be selected.")));
       props.selected == null || didWarnSelectedSetOnOption || (console.error("Use the `defaultValue` or `value` props on <select> instead of setting `selected` on <option>."), didWarnSelectedSetOnOption = true);
@@ -4430,9 +5398,9 @@ This will cause a hydration error.%s`, parentTag, implicitRootScope);
       this._debugHookTypes = null;
       hasBadMapPolyfill || typeof Object.preventExtensions !== "function" || Object.preventExtensions(this);
     }
-    function shouldConstruct(Component) {
-      Component = Component.prototype;
-      return !(!Component || !Component.isReactComponent);
+    function shouldConstruct(Component2) {
+      Component2 = Component2.prototype;
+      return !(!Component2 || !Component2.isReactComponent);
     }
     function createWorkInProgress(current2, pendingProps) {
       var workInProgress2 = current2.alternate;
@@ -6072,26 +7040,26 @@ Incoming: %s`, currentHookNameInDev, "[" + prevDeps.join(", ") + "]", "[" + next
           return false;
       return true;
     }
-    function renderWithHooks(current2, workInProgress2, Component, props, secondArg, nextRenderLanes) {
+    function renderWithHooks(current2, workInProgress2, Component2, props, secondArg, nextRenderLanes) {
       renderLanes = nextRenderLanes;
       currentlyRenderingFiber = workInProgress2;
       hookTypesDev = current2 !== null ? current2._debugHookTypes : null;
       hookTypesUpdateIndexDev = -1;
       ignorePreviousDependencies = current2 !== null && current2.type !== workInProgress2.type;
-      if (Object.prototype.toString.call(Component) === "[object AsyncFunction]" || Object.prototype.toString.call(Component) === "[object AsyncGeneratorFunction]")
+      if (Object.prototype.toString.call(Component2) === "[object AsyncFunction]" || Object.prototype.toString.call(Component2) === "[object AsyncGeneratorFunction]")
         nextRenderLanes = getComponentNameFromFiber(currentlyRenderingFiber), didWarnAboutAsyncClientComponent.has(nextRenderLanes) || (didWarnAboutAsyncClientComponent.add(nextRenderLanes), console.error("%s is an async Client Component. Only Server Components can be async at the moment. This error is often caused by accidentally adding `'use client'` to a module that was originally written for the server.", nextRenderLanes === null ? "An unknown Component" : "<" + nextRenderLanes + ">"));
       workInProgress2.memoizedState = null;
       workInProgress2.updateQueue = null;
       workInProgress2.lanes = 0;
       ReactSharedInternals.H = current2 !== null && current2.memoizedState !== null ? HooksDispatcherOnUpdateInDEV : hookTypesDev !== null ? HooksDispatcherOnMountWithHookTypesInDEV : HooksDispatcherOnMountInDEV;
       shouldDoubleInvokeUserFnsInHooksDEV = nextRenderLanes = (workInProgress2.mode & StrictLegacyMode) !== NoMode;
-      var children = callComponentInDEV(Component, props, secondArg);
+      var children = callComponentInDEV(Component2, props, secondArg);
       shouldDoubleInvokeUserFnsInHooksDEV = false;
-      didScheduleRenderPhaseUpdateDuringThisPass && (children = renderWithHooksAgain(workInProgress2, Component, props, secondArg));
+      didScheduleRenderPhaseUpdateDuringThisPass && (children = renderWithHooksAgain(workInProgress2, Component2, props, secondArg));
       if (nextRenderLanes) {
         setIsStrictModeForDevtools(true);
         try {
-          children = renderWithHooksAgain(workInProgress2, Component, props, secondArg);
+          children = renderWithHooksAgain(workInProgress2, Component2, props, secondArg);
         } finally {
           setIsStrictModeForDevtools(false);
         }
@@ -6121,7 +7089,7 @@ Incoming: %s`, currentHookNameInDev, "[" + prevDeps.join(", ") + "]", "[" + next
       needsToResetSuspendedThenableDEV ? (needsToResetSuspendedThenableDEV = false, current2 = true) : current2 = false;
       current2 && (workInProgress2 = getComponentNameFromFiber(workInProgress2) || "Unknown", didWarnAboutUseWrappedInTryCatch.has(workInProgress2) || didWarnAboutAsyncClientComponent.has(workInProgress2) || (didWarnAboutUseWrappedInTryCatch.add(workInProgress2), console.error("`use` was called from inside a try/catch block. This is not allowed and can lead to unexpected behavior. To handle errors triggered by `use`, wrap your component in a error boundary.")));
     }
-    function renderWithHooksAgain(workInProgress2, Component, props, secondArg) {
+    function renderWithHooksAgain(workInProgress2, Component2, props, secondArg) {
       currentlyRenderingFiber = workInProgress2;
       var numberOfReRenders = 0;
       do {
@@ -6142,7 +7110,7 @@ Incoming: %s`, currentHookNameInDev, "[" + prevDeps.join(", ") + "]", "[" + next
         }
         hookTypesUpdateIndexDev = -1;
         ReactSharedInternals.H = HooksDispatcherOnRerenderInDEV;
-        children = callComponentInDEV(Component, props, secondArg);
+        children = callComponentInDEV(Component2, props, secondArg);
       } while (didScheduleRenderPhaseUpdateDuringThisPass);
       return children;
     }
@@ -6266,10 +7234,10 @@ Incoming: %s`, currentHookNameInDev, "[" + prevDeps.join(", ") + "]", "[" + next
     function basicStateReducer(state, action) {
       return typeof action === "function" ? action(state) : action;
     }
-    function mountReducer(reducer, initialArg, init) {
+    function mountReducer(reducer2, initialArg, init) {
       var hook = mountWorkInProgressHook();
       if (init !== undefined) {
-        var initialState = init(initialArg);
+        var initialState2 = init(initialArg);
         if (shouldDoubleInvokeUserFnsInHooksDEV) {
           setIsStrictModeForDevtools(true);
           try {
@@ -6279,28 +7247,28 @@ Incoming: %s`, currentHookNameInDev, "[" + prevDeps.join(", ") + "]", "[" + next
           }
         }
       } else
-        initialState = initialArg;
-      hook.memoizedState = hook.baseState = initialState;
-      reducer = {
+        initialState2 = initialArg;
+      hook.memoizedState = hook.baseState = initialState2;
+      reducer2 = {
         pending: null,
         lanes: 0,
         dispatch: null,
-        lastRenderedReducer: reducer,
-        lastRenderedState: initialState
+        lastRenderedReducer: reducer2,
+        lastRenderedState: initialState2
       };
-      hook.queue = reducer;
-      reducer = reducer.dispatch = dispatchReducerAction.bind(null, currentlyRenderingFiber, reducer);
-      return [hook.memoizedState, reducer];
+      hook.queue = reducer2;
+      reducer2 = reducer2.dispatch = dispatchReducerAction.bind(null, currentlyRenderingFiber, reducer2);
+      return [hook.memoizedState, reducer2];
     }
-    function updateReducer(reducer) {
+    function updateReducer(reducer2) {
       var hook = updateWorkInProgressHook();
-      return updateReducerImpl(hook, currentHook, reducer);
+      return updateReducerImpl(hook, currentHook, reducer2);
     }
-    function updateReducerImpl(hook, current2, reducer) {
+    function updateReducerImpl(hook, current2, reducer2) {
       var queue = hook.queue;
       if (queue === null)
         throw Error("Should have a queue. You are likely calling Hooks conditionally, which is not allowed. (https://react.dev/link/invalid-hook-call)");
-      queue.lastRenderedReducer = reducer;
+      queue.lastRenderedReducer = reducer2;
       var baseQueue = hook.baseQueue, pendingQueue = queue.pending;
       if (pendingQueue !== null) {
         if (baseQueue !== null) {
@@ -6347,8 +7315,8 @@ Incoming: %s`, currentHookNameInDev, "[" + prevDeps.join(", ") + "]", "[" + next
                 next: null
               }, newBaseQueueLast === null ? (newBaseQueueFirst = newBaseQueueLast = updateLane, baseFirst = pendingQueue) : newBaseQueueLast = newBaseQueueLast.next = updateLane, currentlyRenderingFiber.lanes |= revertLane, workInProgressRootSkippedLanes |= revertLane;
             updateLane = update.action;
-            shouldDoubleInvokeUserFnsInHooksDEV && reducer(pendingQueue, updateLane);
-            pendingQueue = update.hasEagerState ? update.eagerState : reducer(pendingQueue, updateLane);
+            shouldDoubleInvokeUserFnsInHooksDEV && reducer2(pendingQueue, updateLane);
+            pendingQueue = update.hasEagerState ? update.eagerState : reducer2(pendingQueue, updateLane);
           } else
             revertLane = {
               lane: updateLane,
@@ -6362,8 +7330,8 @@ Incoming: %s`, currentHookNameInDev, "[" + prevDeps.join(", ") + "]", "[" + next
           update = update.next;
         } while (update !== null && update !== current2);
         newBaseQueueLast === null ? baseFirst = pendingQueue : newBaseQueueLast.next = newBaseQueueFirst;
-        if (!objectIs(pendingQueue, hook.memoizedState) && (didReceiveUpdate = true, didReadFromEntangledAsyncAction2 && (reducer = currentEntangledActionThenable, reducer !== null)))
-          throw reducer;
+        if (!objectIs(pendingQueue, hook.memoizedState) && (didReceiveUpdate = true, didReadFromEntangledAsyncAction2 && (reducer2 = currentEntangledActionThenable, reducer2 !== null)))
+          throw reducer2;
         hook.memoizedState = pendingQueue;
         hook.baseState = baseFirst;
         hook.baseQueue = newBaseQueueLast;
@@ -6372,17 +7340,17 @@ Incoming: %s`, currentHookNameInDev, "[" + prevDeps.join(", ") + "]", "[" + next
       baseQueue === null && (queue.lanes = 0);
       return [hook.memoizedState, queue.dispatch];
     }
-    function rerenderReducer(reducer) {
+    function rerenderReducer(reducer2) {
       var hook = updateWorkInProgressHook(), queue = hook.queue;
       if (queue === null)
         throw Error("Should have a queue. You are likely calling Hooks conditionally, which is not allowed. (https://react.dev/link/invalid-hook-call)");
-      queue.lastRenderedReducer = reducer;
+      queue.lastRenderedReducer = reducer2;
       var { dispatch, pending: lastRenderPhaseUpdate } = queue, newState = hook.memoizedState;
       if (lastRenderPhaseUpdate !== null) {
         queue.pending = null;
         var update = lastRenderPhaseUpdate = lastRenderPhaseUpdate.next;
         do
-          newState = reducer(newState, update.action), update = update.next;
+          newState = reducer2(newState, update.action), update = update.next;
         while (update !== lastRenderPhaseUpdate);
         objectIs(newState, hook.memoizedState) || (didReceiveUpdate = true);
         hook.memoizedState = newState;
@@ -6467,11 +7435,11 @@ Incoming: %s`, currentHookNameInDev, "[" + prevDeps.join(", ") + "]", "[" + next
       var root2 = enqueueConcurrentRenderForLane(fiber, 2);
       root2 !== null && scheduleUpdateOnFiber(root2, fiber, 2);
     }
-    function mountStateImpl(initialState) {
+    function mountStateImpl(initialState2) {
       var hook = mountWorkInProgressHook();
-      if (typeof initialState === "function") {
-        var initialStateInitializer = initialState;
-        initialState = initialStateInitializer();
+      if (typeof initialState2 === "function") {
+        var initialStateInitializer = initialState2;
+        initialState2 = initialStateInitializer();
         if (shouldDoubleInvokeUserFnsInHooksDEV) {
           setIsStrictModeForDevtools(true);
           try {
@@ -6481,21 +7449,21 @@ Incoming: %s`, currentHookNameInDev, "[" + prevDeps.join(", ") + "]", "[" + next
           }
         }
       }
-      hook.memoizedState = hook.baseState = initialState;
+      hook.memoizedState = hook.baseState = initialState2;
       hook.queue = {
         pending: null,
         lanes: 0,
         dispatch: null,
         lastRenderedReducer: basicStateReducer,
-        lastRenderedState: initialState
+        lastRenderedState: initialState2
       };
       return hook;
     }
-    function mountState(initialState) {
-      initialState = mountStateImpl(initialState);
-      var queue = initialState.queue, dispatch = dispatchSetState.bind(null, currentlyRenderingFiber, queue);
+    function mountState(initialState2) {
+      initialState2 = mountStateImpl(initialState2);
+      var queue = initialState2.queue, dispatch = dispatchSetState.bind(null, currentlyRenderingFiber, queue);
       queue.dispatch = dispatch;
-      return [initialState.memoizedState, dispatch];
+      return [initialState2.memoizedState, dispatch];
     }
     function mountOptimistic(passthrough) {
       var hook = mountWorkInProgressHook();
@@ -6512,18 +7480,18 @@ Incoming: %s`, currentHookNameInDev, "[" + prevDeps.join(", ") + "]", "[" + next
       queue.dispatch = hook;
       return [passthrough, hook];
     }
-    function updateOptimistic(passthrough, reducer) {
+    function updateOptimistic(passthrough, reducer2) {
       var hook = updateWorkInProgressHook();
-      return updateOptimisticImpl(hook, currentHook, passthrough, reducer);
+      return updateOptimisticImpl(hook, currentHook, passthrough, reducer2);
     }
-    function updateOptimisticImpl(hook, current2, passthrough, reducer) {
+    function updateOptimisticImpl(hook, current2, passthrough, reducer2) {
       hook.baseState = passthrough;
-      return updateReducerImpl(hook, currentHook, typeof reducer === "function" ? reducer : basicStateReducer);
+      return updateReducerImpl(hook, currentHook, typeof reducer2 === "function" ? reducer2 : basicStateReducer);
     }
-    function rerenderOptimistic(passthrough, reducer) {
+    function rerenderOptimistic(passthrough, reducer2) {
       var hook = updateWorkInProgressHook();
       if (currentHook !== null)
-        return updateOptimisticImpl(hook, currentHook, passthrough, reducer);
+        return updateOptimisticImpl(hook, currentHook, passthrough, reducer2);
       hook.baseState = passthrough;
       return [passthrough, hook.queue.dispatch];
     }
@@ -6905,7 +7873,7 @@ Incoming: %s`, currentHookNameInDev, "[" + prevDeps.join(", ") + "]", "[" + next
         throw Error("Expected the form instance to be a HostComponent. This is a bug in React.");
       var queue = ensureFormComponentIsStateful(formFiber).queue;
       startHostActionTimer(formFiber);
-      startTransition(formFiber, queue, pendingState, NotPendingTransition, action === null ? noop : function() {
+      startTransition(formFiber, queue, pendingState, NotPendingTransition, action === null ? noop2 : function() {
         requestFormReset$1(formFiber);
         return action(formData);
       });
@@ -7142,17 +8110,17 @@ Incoming: %s`, currentHookNameInDev, "[" + prevDeps.join(", ") + "]", "[" + next
       typeof instance.UNSAFE_componentWillReceiveProps === "function" && instance.UNSAFE_componentWillReceiveProps(newProps, nextContext);
       instance.state !== oldState && (workInProgress2 = getComponentNameFromFiber(workInProgress2) || "Component", didWarnAboutStateAssignmentForComponent.has(workInProgress2) || (didWarnAboutStateAssignmentForComponent.add(workInProgress2), console.error("%s.componentWillReceiveProps(): Assigning directly to this.state is deprecated (except inside a component's constructor). Use setState instead.", workInProgress2)), classComponentUpdater.enqueueReplaceState(instance, instance.state, null));
     }
-    function resolveClassComponentProps(Component, baseProps) {
+    function resolveClassComponentProps(Component2, baseProps) {
       var newProps = baseProps;
       if ("ref" in baseProps) {
         newProps = {};
         for (var propName in baseProps)
           propName !== "ref" && (newProps[propName] = baseProps[propName]);
       }
-      if (Component = Component.defaultProps) {
+      if (Component2 = Component2.defaultProps) {
         newProps === baseProps && (newProps = assign({}, newProps));
-        for (var _propName in Component)
-          newProps[_propName] === undefined && (newProps[_propName] = Component[_propName]);
+        for (var _propName in Component2)
+          newProps[_propName] === undefined && (newProps[_propName] = Component2[_propName]);
       }
       return newProps;
     }
@@ -7311,8 +8279,8 @@ Visit https://react.dev/link/error-boundaries to learn more about error boundari
     function reconcileChildren(current2, workInProgress2, nextChildren, renderLanes2) {
       workInProgress2.child = current2 === null ? mountChildFibers(workInProgress2, null, nextChildren, renderLanes2) : reconcileChildFibers(workInProgress2, current2.child, nextChildren, renderLanes2);
     }
-    function updateForwardRef(current2, workInProgress2, Component, nextProps, renderLanes2) {
-      Component = Component.render;
+    function updateForwardRef(current2, workInProgress2, Component2, nextProps, renderLanes2) {
+      Component2 = Component2.render;
       var ref = workInProgress2.ref;
       if ("ref" in nextProps) {
         var propsWithoutRef = {};
@@ -7321,7 +8289,7 @@ Visit https://react.dev/link/error-boundaries to learn more about error boundari
       } else
         propsWithoutRef = nextProps;
       prepareToReadContext(workInProgress2);
-      nextProps = renderWithHooks(current2, workInProgress2, Component, propsWithoutRef, ref, renderLanes2);
+      nextProps = renderWithHooks(current2, workInProgress2, Component2, propsWithoutRef, ref, renderLanes2);
       key = checkDidRenderIdHook();
       if (current2 !== null && !didReceiveUpdate)
         return bailoutHooks(current2, workInProgress2, renderLanes2), bailoutOnAlreadyFinishedWork(current2, workInProgress2, renderLanes2);
@@ -7330,12 +8298,12 @@ Visit https://react.dev/link/error-boundaries to learn more about error boundari
       reconcileChildren(current2, workInProgress2, nextProps, renderLanes2);
       return workInProgress2.child;
     }
-    function updateMemoComponent(current2, workInProgress2, Component, nextProps, renderLanes2) {
+    function updateMemoComponent(current2, workInProgress2, Component2, nextProps, renderLanes2) {
       if (current2 === null) {
-        var type = Component.type;
-        if (typeof type === "function" && !shouldConstruct(type) && type.defaultProps === undefined && Component.compare === null)
-          return Component = resolveFunctionForHotReloading(type), workInProgress2.tag = 15, workInProgress2.type = Component, validateFunctionComponentInDev(workInProgress2, type), updateSimpleMemoComponent(current2, workInProgress2, Component, nextProps, renderLanes2);
-        current2 = createFiberFromTypeAndProps(Component.type, null, nextProps, workInProgress2, workInProgress2.mode, renderLanes2);
+        var type = Component2.type;
+        if (typeof type === "function" && !shouldConstruct(type) && type.defaultProps === undefined && Component2.compare === null)
+          return Component2 = resolveFunctionForHotReloading(type), workInProgress2.tag = 15, workInProgress2.type = Component2, validateFunctionComponentInDev(workInProgress2, type), updateSimpleMemoComponent(current2, workInProgress2, Component2, nextProps, renderLanes2);
+        current2 = createFiberFromTypeAndProps(Component2.type, null, nextProps, workInProgress2, workInProgress2.mode, renderLanes2);
         current2.ref = workInProgress2.ref;
         current2.return = workInProgress2;
         return workInProgress2.child = current2;
@@ -7343,9 +8311,9 @@ Visit https://react.dev/link/error-boundaries to learn more about error boundari
       type = current2.child;
       if (!checkScheduledUpdateOrContext(current2, renderLanes2)) {
         var prevProps = type.memoizedProps;
-        Component = Component.compare;
-        Component = Component !== null ? Component : shallowEqual;
-        if (Component(prevProps, nextProps) && current2.ref === workInProgress2.ref)
+        Component2 = Component2.compare;
+        Component2 = Component2 !== null ? Component2 : shallowEqual;
+        if (Component2(prevProps, nextProps) && current2.ref === workInProgress2.ref)
           return bailoutOnAlreadyFinishedWork(current2, workInProgress2, renderLanes2);
       }
       workInProgress2.flags |= 1;
@@ -7354,7 +8322,7 @@ Visit https://react.dev/link/error-boundaries to learn more about error boundari
       current2.return = workInProgress2;
       return workInProgress2.child = current2;
     }
-    function updateSimpleMemoComponent(current2, workInProgress2, Component, nextProps, renderLanes2) {
+    function updateSimpleMemoComponent(current2, workInProgress2, Component2, nextProps, renderLanes2) {
       if (current2 !== null) {
         var prevProps = current2.memoizedProps;
         if (shallowEqual(prevProps, nextProps) && current2.ref === workInProgress2.ref && workInProgress2.type === current2.type)
@@ -7363,7 +8331,7 @@ Visit https://react.dev/link/error-boundaries to learn more about error boundari
           else
             return workInProgress2.lanes = current2.lanes, bailoutOnAlreadyFinishedWork(current2, workInProgress2, renderLanes2);
       }
-      return updateFunctionComponent(current2, workInProgress2, Component, nextProps, renderLanes2);
+      return updateFunctionComponent(current2, workInProgress2, Component2, nextProps, renderLanes2);
     }
     function updateOffscreenComponent(current2, workInProgress2, renderLanes2, nextProps) {
       var nextChildren = nextProps.children, prevState = current2 !== null ? current2.memoizedState : null;
@@ -7501,39 +8469,39 @@ Visit https://react.dev/link/error-boundaries to learn more about error boundari
           workInProgress2.flags |= 4194816;
       }
     }
-    function updateFunctionComponent(current2, workInProgress2, Component, nextProps, renderLanes2) {
-      if (Component.prototype && typeof Component.prototype.render === "function") {
-        var componentName2 = getComponentNameFromType(Component) || "Unknown";
+    function updateFunctionComponent(current2, workInProgress2, Component2, nextProps, renderLanes2) {
+      if (Component2.prototype && typeof Component2.prototype.render === "function") {
+        var componentName2 = getComponentNameFromType(Component2) || "Unknown";
         didWarnAboutBadClass[componentName2] || (console.error("The <%s /> component appears to have a render method, but doesn't extend React.Component. This is likely to cause errors. Change %s to extend React.Component instead.", componentName2, componentName2), didWarnAboutBadClass[componentName2] = true);
       }
       workInProgress2.mode & StrictLegacyMode && ReactStrictModeWarnings.recordLegacyContextWarning(workInProgress2, null);
-      current2 === null && (validateFunctionComponentInDev(workInProgress2, workInProgress2.type), Component.contextTypes && (componentName2 = getComponentNameFromType(Component) || "Unknown", didWarnAboutContextTypes[componentName2] || (didWarnAboutContextTypes[componentName2] = true, console.error("%s uses the legacy contextTypes API which was removed in React 19. Use React.createContext() with React.useContext() instead. (https://react.dev/link/legacy-context)", componentName2))));
+      current2 === null && (validateFunctionComponentInDev(workInProgress2, workInProgress2.type), Component2.contextTypes && (componentName2 = getComponentNameFromType(Component2) || "Unknown", didWarnAboutContextTypes[componentName2] || (didWarnAboutContextTypes[componentName2] = true, console.error("%s uses the legacy contextTypes API which was removed in React 19. Use React.createContext() with React.useContext() instead. (https://react.dev/link/legacy-context)", componentName2))));
       prepareToReadContext(workInProgress2);
-      Component = renderWithHooks(current2, workInProgress2, Component, nextProps, undefined, renderLanes2);
+      Component2 = renderWithHooks(current2, workInProgress2, Component2, nextProps, undefined, renderLanes2);
       nextProps = checkDidRenderIdHook();
       if (current2 !== null && !didReceiveUpdate)
         return bailoutHooks(current2, workInProgress2, renderLanes2), bailoutOnAlreadyFinishedWork(current2, workInProgress2, renderLanes2);
       isHydrating && nextProps && pushMaterializedTreeId(workInProgress2);
       workInProgress2.flags |= 1;
-      reconcileChildren(current2, workInProgress2, Component, renderLanes2);
+      reconcileChildren(current2, workInProgress2, Component2, renderLanes2);
       return workInProgress2.child;
     }
-    function replayFunctionComponent(current2, workInProgress2, nextProps, Component, secondArg, renderLanes2) {
+    function replayFunctionComponent(current2, workInProgress2, nextProps, Component2, secondArg, renderLanes2) {
       prepareToReadContext(workInProgress2);
       hookTypesUpdateIndexDev = -1;
       ignorePreviousDependencies = current2 !== null && current2.type !== workInProgress2.type;
       workInProgress2.updateQueue = null;
-      nextProps = renderWithHooksAgain(workInProgress2, Component, nextProps, secondArg);
+      nextProps = renderWithHooksAgain(workInProgress2, Component2, nextProps, secondArg);
       finishRenderingHooks(current2, workInProgress2);
-      Component = checkDidRenderIdHook();
+      Component2 = checkDidRenderIdHook();
       if (current2 !== null && !didReceiveUpdate)
         return bailoutHooks(current2, workInProgress2, renderLanes2), bailoutOnAlreadyFinishedWork(current2, workInProgress2, renderLanes2);
-      isHydrating && Component && pushMaterializedTreeId(workInProgress2);
+      isHydrating && Component2 && pushMaterializedTreeId(workInProgress2);
       workInProgress2.flags |= 1;
       reconcileChildren(current2, workInProgress2, nextProps, renderLanes2);
       return workInProgress2.child;
     }
-    function updateClassComponent(current2, workInProgress2, Component, nextProps, renderLanes2) {
+    function updateClassComponent(current2, workInProgress2, Component2, nextProps, renderLanes2) {
       switch (shouldErrorImpl(workInProgress2)) {
         case false:
           var _instance = workInProgress2.stateNode, state = new workInProgress2.type(workInProgress2.memoizedProps, _instance.context).state;
@@ -7555,14 +8523,14 @@ Visit https://react.dev/link/error-boundaries to learn more about error boundari
       prepareToReadContext(workInProgress2);
       if (workInProgress2.stateNode === null) {
         state = emptyContextObject;
-        _instance = Component.contextType;
-        "contextType" in Component && _instance !== null && (_instance === undefined || _instance.$$typeof !== REACT_CONTEXT_TYPE) && !didWarnAboutInvalidateContextType.has(Component) && (didWarnAboutInvalidateContextType.add(Component), lane = _instance === undefined ? " However, it is set to undefined. This can be caused by a typo or by mixing up named and default imports. This can also happen due to a circular dependency, so try moving the createContext() call to a separate file." : typeof _instance !== "object" ? " However, it is set to a " + typeof _instance + "." : _instance.$$typeof === REACT_CONSUMER_TYPE ? " Did you accidentally pass the Context.Consumer instead?" : " However, it is set to an object with keys {" + Object.keys(_instance).join(", ") + "}.", console.error("%s defines an invalid contextType. contextType should point to the Context object returned by React.createContext().%s", getComponentNameFromType(Component) || "Component", lane));
+        _instance = Component2.contextType;
+        "contextType" in Component2 && _instance !== null && (_instance === undefined || _instance.$$typeof !== REACT_CONTEXT_TYPE) && !didWarnAboutInvalidateContextType.has(Component2) && (didWarnAboutInvalidateContextType.add(Component2), lane = _instance === undefined ? " However, it is set to undefined. This can be caused by a typo or by mixing up named and default imports. This can also happen due to a circular dependency, so try moving the createContext() call to a separate file." : typeof _instance !== "object" ? " However, it is set to a " + typeof _instance + "." : _instance.$$typeof === REACT_CONSUMER_TYPE ? " Did you accidentally pass the Context.Consumer instead?" : " However, it is set to an object with keys {" + Object.keys(_instance).join(", ") + "}.", console.error("%s defines an invalid contextType. contextType should point to the Context object returned by React.createContext().%s", getComponentNameFromType(Component2) || "Component", lane));
         typeof _instance === "object" && _instance !== null && (state = readContext(_instance));
-        _instance = new Component(nextProps, state);
+        _instance = new Component2(nextProps, state);
         if (workInProgress2.mode & StrictLegacyMode) {
           setIsStrictModeForDevtools(true);
           try {
-            _instance = new Component(nextProps, state);
+            _instance = new Component2(nextProps, state);
           } finally {
             setIsStrictModeForDevtools(false);
           }
@@ -7572,15 +8540,15 @@ Visit https://react.dev/link/error-boundaries to learn more about error boundari
         workInProgress2.stateNode = _instance;
         _instance._reactInternals = workInProgress2;
         _instance._reactInternalInstance = fakeInternalInstance;
-        typeof Component.getDerivedStateFromProps === "function" && state === null && (state = getComponentNameFromType(Component) || "Component", didWarnAboutUninitializedState.has(state) || (didWarnAboutUninitializedState.add(state), console.error("`%s` uses `getDerivedStateFromProps` but its initial state is %s. This is not recommended. Instead, define the initial state by assigning an object to `this.state` in the constructor of `%s`. This ensures that `getDerivedStateFromProps` arguments have a consistent shape.", state, _instance.state === null ? "null" : "undefined", state)));
-        if (typeof Component.getDerivedStateFromProps === "function" || typeof _instance.getSnapshotBeforeUpdate === "function") {
+        typeof Component2.getDerivedStateFromProps === "function" && state === null && (state = getComponentNameFromType(Component2) || "Component", didWarnAboutUninitializedState.has(state) || (didWarnAboutUninitializedState.add(state), console.error("`%s` uses `getDerivedStateFromProps` but its initial state is %s. This is not recommended. Instead, define the initial state by assigning an object to `this.state` in the constructor of `%s`. This ensures that `getDerivedStateFromProps` arguments have a consistent shape.", state, _instance.state === null ? "null" : "undefined", state)));
+        if (typeof Component2.getDerivedStateFromProps === "function" || typeof _instance.getSnapshotBeforeUpdate === "function") {
           var foundWillUpdateName = lane = state = null;
           typeof _instance.componentWillMount === "function" && _instance.componentWillMount.__suppressDeprecationWarning !== true ? state = "componentWillMount" : typeof _instance.UNSAFE_componentWillMount === "function" && (state = "UNSAFE_componentWillMount");
           typeof _instance.componentWillReceiveProps === "function" && _instance.componentWillReceiveProps.__suppressDeprecationWarning !== true ? lane = "componentWillReceiveProps" : typeof _instance.UNSAFE_componentWillReceiveProps === "function" && (lane = "UNSAFE_componentWillReceiveProps");
           typeof _instance.componentWillUpdate === "function" && _instance.componentWillUpdate.__suppressDeprecationWarning !== true ? foundWillUpdateName = "componentWillUpdate" : typeof _instance.UNSAFE_componentWillUpdate === "function" && (foundWillUpdateName = "UNSAFE_componentWillUpdate");
           if (state !== null || lane !== null || foundWillUpdateName !== null) {
-            _instance = getComponentNameFromType(Component) || "Component";
-            var newApiName = typeof Component.getDerivedStateFromProps === "function" ? "getDerivedStateFromProps()" : "getSnapshotBeforeUpdate()";
+            _instance = getComponentNameFromType(Component2) || "Component";
+            var newApiName = typeof Component2.getDerivedStateFromProps === "function" ? "getDerivedStateFromProps()" : "getSnapshotBeforeUpdate()";
             didWarnAboutLegacyLifecyclesAndDerivedState.has(_instance) || (didWarnAboutLegacyLifecyclesAndDerivedState.add(_instance), console.error(`Unsafe legacy lifecycles will not be called for components using new component APIs.
 
 %s uses %s but also contains the following legacy lifecycles:%s%s%s
@@ -7593,15 +8561,15 @@ https://react.dev/link/unsafe-component-lifecycles`, _instance, newApiName, stat
           }
         }
         _instance = workInProgress2.stateNode;
-        state = getComponentNameFromType(Component) || "Component";
-        _instance.render || (Component.prototype && typeof Component.prototype.render === "function" ? console.error("No `render` method found on the %s instance: did you accidentally return an object from the constructor?", state) : console.error("No `render` method found on the %s instance: you may have forgotten to define `render`.", state));
+        state = getComponentNameFromType(Component2) || "Component";
+        _instance.render || (Component2.prototype && typeof Component2.prototype.render === "function" ? console.error("No `render` method found on the %s instance: did you accidentally return an object from the constructor?", state) : console.error("No `render` method found on the %s instance: you may have forgotten to define `render`.", state));
         !_instance.getInitialState || _instance.getInitialState.isReactClassApproved || _instance.state || console.error("getInitialState was defined on %s, a plain JavaScript class. This is only supported for classes created using React.createClass. Did you mean to define a state property instead?", state);
         _instance.getDefaultProps && !_instance.getDefaultProps.isReactClassApproved && console.error("getDefaultProps was defined on %s, a plain JavaScript class. This is only supported for classes created using React.createClass. Use a static property to define defaultProps instead.", state);
         _instance.contextType && console.error("contextType was defined as an instance property on %s. Use a static property to define contextType instead.", state);
-        Component.childContextTypes && !didWarnAboutChildContextTypes.has(Component) && (didWarnAboutChildContextTypes.add(Component), console.error("%s uses the legacy childContextTypes API which was removed in React 19. Use React.createContext() instead. (https://react.dev/link/legacy-context)", state));
-        Component.contextTypes && !didWarnAboutContextTypes$1.has(Component) && (didWarnAboutContextTypes$1.add(Component), console.error("%s uses the legacy contextTypes API which was removed in React 19. Use React.createContext() with static contextType instead. (https://react.dev/link/legacy-context)", state));
+        Component2.childContextTypes && !didWarnAboutChildContextTypes.has(Component2) && (didWarnAboutChildContextTypes.add(Component2), console.error("%s uses the legacy childContextTypes API which was removed in React 19. Use React.createContext() instead. (https://react.dev/link/legacy-context)", state));
+        Component2.contextTypes && !didWarnAboutContextTypes$1.has(Component2) && (didWarnAboutContextTypes$1.add(Component2), console.error("%s uses the legacy contextTypes API which was removed in React 19. Use React.createContext() with static contextType instead. (https://react.dev/link/legacy-context)", state));
         typeof _instance.componentShouldUpdate === "function" && console.error("%s has a method called componentShouldUpdate(). Did you mean shouldComponentUpdate()? The name is phrased as a question because the function is expected to return a value.", state);
-        Component.prototype && Component.prototype.isPureReactComponent && typeof _instance.shouldComponentUpdate !== "undefined" && console.error("%s has a method called shouldComponentUpdate(). shouldComponentUpdate should not be used when extending React.PureComponent. Please extend React.Component if shouldComponentUpdate is used.", getComponentNameFromType(Component) || "A pure component");
+        Component2.prototype && Component2.prototype.isPureReactComponent && typeof _instance.shouldComponentUpdate !== "undefined" && console.error("%s has a method called shouldComponentUpdate(). shouldComponentUpdate should not be used when extending React.PureComponent. Please extend React.Component if shouldComponentUpdate is used.", getComponentNameFromType(Component2) || "A pure component");
         typeof _instance.componentDidUnmount === "function" && console.error("%s has a method called componentDidUnmount(). But there is no such lifecycle method. Did you mean componentWillUnmount()?", state);
         typeof _instance.componentDidReceiveProps === "function" && console.error("%s has a method called componentDidReceiveProps(). But there is no such lifecycle method. If you meant to update the state in response to changing props, use componentWillReceiveProps(). If you meant to fetch data or run side-effects or mutations after React has updated the UI, use componentDidUpdate().", state);
         typeof _instance.componentWillRecieveProps === "function" && console.error("%s has a method called componentWillRecieveProps(). Did you mean componentWillReceiveProps()?", state);
@@ -7609,39 +8577,39 @@ https://react.dev/link/unsafe-component-lifecycles`, _instance, newApiName, stat
         lane = _instance.props !== nextProps;
         _instance.props !== undefined && lane && console.error("When calling super() in `%s`, make sure to pass up the same props that your component's constructor was passed.", state);
         _instance.defaultProps && console.error("Setting defaultProps as an instance property on %s is not supported and will be ignored. Instead, define defaultProps as a static property on %s.", state, state);
-        typeof _instance.getSnapshotBeforeUpdate !== "function" || typeof _instance.componentDidUpdate === "function" || didWarnAboutGetSnapshotBeforeUpdateWithoutDidUpdate.has(Component) || (didWarnAboutGetSnapshotBeforeUpdateWithoutDidUpdate.add(Component), console.error("%s: getSnapshotBeforeUpdate() should be used with componentDidUpdate(). This component defines getSnapshotBeforeUpdate() only.", getComponentNameFromType(Component)));
+        typeof _instance.getSnapshotBeforeUpdate !== "function" || typeof _instance.componentDidUpdate === "function" || didWarnAboutGetSnapshotBeforeUpdateWithoutDidUpdate.has(Component2) || (didWarnAboutGetSnapshotBeforeUpdateWithoutDidUpdate.add(Component2), console.error("%s: getSnapshotBeforeUpdate() should be used with componentDidUpdate(). This component defines getSnapshotBeforeUpdate() only.", getComponentNameFromType(Component2)));
         typeof _instance.getDerivedStateFromProps === "function" && console.error("%s: getDerivedStateFromProps() is defined as an instance method and will be ignored. Instead, declare it as a static method.", state);
         typeof _instance.getDerivedStateFromError === "function" && console.error("%s: getDerivedStateFromError() is defined as an instance method and will be ignored. Instead, declare it as a static method.", state);
-        typeof Component.getSnapshotBeforeUpdate === "function" && console.error("%s: getSnapshotBeforeUpdate() is defined as a static method and will be ignored. Instead, declare it as an instance method.", state);
+        typeof Component2.getSnapshotBeforeUpdate === "function" && console.error("%s: getSnapshotBeforeUpdate() is defined as a static method and will be ignored. Instead, declare it as an instance method.", state);
         (lane = _instance.state) && (typeof lane !== "object" || isArrayImpl(lane)) && console.error("%s.state: must be set to an object or null", state);
-        typeof _instance.getChildContext === "function" && typeof Component.childContextTypes !== "object" && console.error("%s.getChildContext(): childContextTypes must be defined in order to use getChildContext().", state);
+        typeof _instance.getChildContext === "function" && typeof Component2.childContextTypes !== "object" && console.error("%s.getChildContext(): childContextTypes must be defined in order to use getChildContext().", state);
         _instance = workInProgress2.stateNode;
         _instance.props = nextProps;
         _instance.state = workInProgress2.memoizedState;
         _instance.refs = {};
         initializeUpdateQueue(workInProgress2);
-        state = Component.contextType;
+        state = Component2.contextType;
         _instance.context = typeof state === "object" && state !== null ? readContext(state) : emptyContextObject;
-        _instance.state === nextProps && (state = getComponentNameFromType(Component) || "Component", didWarnAboutDirectlyAssigningPropsToState.has(state) || (didWarnAboutDirectlyAssigningPropsToState.add(state), console.error("%s: It is not recommended to assign props directly to state because updates to props won't be reflected in state. In most cases, it is better to use props directly.", state)));
+        _instance.state === nextProps && (state = getComponentNameFromType(Component2) || "Component", didWarnAboutDirectlyAssigningPropsToState.has(state) || (didWarnAboutDirectlyAssigningPropsToState.add(state), console.error("%s: It is not recommended to assign props directly to state because updates to props won't be reflected in state. In most cases, it is better to use props directly.", state)));
         workInProgress2.mode & StrictLegacyMode && ReactStrictModeWarnings.recordLegacyContextWarning(workInProgress2, _instance);
         ReactStrictModeWarnings.recordUnsafeLifecycleWarnings(workInProgress2, _instance);
         _instance.state = workInProgress2.memoizedState;
-        state = Component.getDerivedStateFromProps;
-        typeof state === "function" && (applyDerivedStateFromProps(workInProgress2, Component, state, nextProps), _instance.state = workInProgress2.memoizedState);
-        typeof Component.getDerivedStateFromProps === "function" || typeof _instance.getSnapshotBeforeUpdate === "function" || typeof _instance.UNSAFE_componentWillMount !== "function" && typeof _instance.componentWillMount !== "function" || (state = _instance.state, typeof _instance.componentWillMount === "function" && _instance.componentWillMount(), typeof _instance.UNSAFE_componentWillMount === "function" && _instance.UNSAFE_componentWillMount(), state !== _instance.state && (console.error("%s.componentWillMount(): Assigning directly to this.state is deprecated (except inside a component's constructor). Use setState instead.", getComponentNameFromFiber(workInProgress2) || "Component"), classComponentUpdater.enqueueReplaceState(_instance, _instance.state, null)), processUpdateQueue(workInProgress2, nextProps, _instance, renderLanes2), suspendIfUpdateReadFromEntangledAsyncAction(), _instance.state = workInProgress2.memoizedState);
+        state = Component2.getDerivedStateFromProps;
+        typeof state === "function" && (applyDerivedStateFromProps(workInProgress2, Component2, state, nextProps), _instance.state = workInProgress2.memoizedState);
+        typeof Component2.getDerivedStateFromProps === "function" || typeof _instance.getSnapshotBeforeUpdate === "function" || typeof _instance.UNSAFE_componentWillMount !== "function" && typeof _instance.componentWillMount !== "function" || (state = _instance.state, typeof _instance.componentWillMount === "function" && _instance.componentWillMount(), typeof _instance.UNSAFE_componentWillMount === "function" && _instance.UNSAFE_componentWillMount(), state !== _instance.state && (console.error("%s.componentWillMount(): Assigning directly to this.state is deprecated (except inside a component's constructor). Use setState instead.", getComponentNameFromFiber(workInProgress2) || "Component"), classComponentUpdater.enqueueReplaceState(_instance, _instance.state, null)), processUpdateQueue(workInProgress2, nextProps, _instance, renderLanes2), suspendIfUpdateReadFromEntangledAsyncAction(), _instance.state = workInProgress2.memoizedState);
         typeof _instance.componentDidMount === "function" && (workInProgress2.flags |= 4194308);
         (workInProgress2.mode & StrictEffectsMode) !== NoMode && (workInProgress2.flags |= 134217728);
         _instance = true;
       } else if (current2 === null) {
         _instance = workInProgress2.stateNode;
         var unresolvedOldProps = workInProgress2.memoizedProps;
-        lane = resolveClassComponentProps(Component, unresolvedOldProps);
+        lane = resolveClassComponentProps(Component2, unresolvedOldProps);
         _instance.props = lane;
         var oldContext = _instance.context;
-        foundWillUpdateName = Component.contextType;
+        foundWillUpdateName = Component2.contextType;
         state = emptyContextObject;
         typeof foundWillUpdateName === "object" && foundWillUpdateName !== null && (state = readContext(foundWillUpdateName));
-        newApiName = Component.getDerivedStateFromProps;
+        newApiName = Component2.getDerivedStateFromProps;
         foundWillUpdateName = typeof newApiName === "function" || typeof _instance.getSnapshotBeforeUpdate === "function";
         unresolvedOldProps = workInProgress2.pendingProps !== unresolvedOldProps;
         foundWillUpdateName || typeof _instance.UNSAFE_componentWillReceiveProps !== "function" && typeof _instance.componentWillReceiveProps !== "function" || (unresolvedOldProps || oldContext !== state) && callComponentWillReceiveProps(workInProgress2, _instance, nextProps, state);
@@ -7651,19 +8619,19 @@ https://react.dev/link/unsafe-component-lifecycles`, _instance, newApiName, stat
         processUpdateQueue(workInProgress2, nextProps, _instance, renderLanes2);
         suspendIfUpdateReadFromEntangledAsyncAction();
         oldContext = workInProgress2.memoizedState;
-        unresolvedOldProps || oldState !== oldContext || hasForceUpdate ? (typeof newApiName === "function" && (applyDerivedStateFromProps(workInProgress2, Component, newApiName, nextProps), oldContext = workInProgress2.memoizedState), (lane = hasForceUpdate || checkShouldComponentUpdate(workInProgress2, Component, lane, nextProps, oldState, oldContext, state)) ? (foundWillUpdateName || typeof _instance.UNSAFE_componentWillMount !== "function" && typeof _instance.componentWillMount !== "function" || (typeof _instance.componentWillMount === "function" && _instance.componentWillMount(), typeof _instance.UNSAFE_componentWillMount === "function" && _instance.UNSAFE_componentWillMount()), typeof _instance.componentDidMount === "function" && (workInProgress2.flags |= 4194308), (workInProgress2.mode & StrictEffectsMode) !== NoMode && (workInProgress2.flags |= 134217728)) : (typeof _instance.componentDidMount === "function" && (workInProgress2.flags |= 4194308), (workInProgress2.mode & StrictEffectsMode) !== NoMode && (workInProgress2.flags |= 134217728), workInProgress2.memoizedProps = nextProps, workInProgress2.memoizedState = oldContext), _instance.props = nextProps, _instance.state = oldContext, _instance.context = state, _instance = lane) : (typeof _instance.componentDidMount === "function" && (workInProgress2.flags |= 4194308), (workInProgress2.mode & StrictEffectsMode) !== NoMode && (workInProgress2.flags |= 134217728), _instance = false);
+        unresolvedOldProps || oldState !== oldContext || hasForceUpdate ? (typeof newApiName === "function" && (applyDerivedStateFromProps(workInProgress2, Component2, newApiName, nextProps), oldContext = workInProgress2.memoizedState), (lane = hasForceUpdate || checkShouldComponentUpdate(workInProgress2, Component2, lane, nextProps, oldState, oldContext, state)) ? (foundWillUpdateName || typeof _instance.UNSAFE_componentWillMount !== "function" && typeof _instance.componentWillMount !== "function" || (typeof _instance.componentWillMount === "function" && _instance.componentWillMount(), typeof _instance.UNSAFE_componentWillMount === "function" && _instance.UNSAFE_componentWillMount()), typeof _instance.componentDidMount === "function" && (workInProgress2.flags |= 4194308), (workInProgress2.mode & StrictEffectsMode) !== NoMode && (workInProgress2.flags |= 134217728)) : (typeof _instance.componentDidMount === "function" && (workInProgress2.flags |= 4194308), (workInProgress2.mode & StrictEffectsMode) !== NoMode && (workInProgress2.flags |= 134217728), workInProgress2.memoizedProps = nextProps, workInProgress2.memoizedState = oldContext), _instance.props = nextProps, _instance.state = oldContext, _instance.context = state, _instance = lane) : (typeof _instance.componentDidMount === "function" && (workInProgress2.flags |= 4194308), (workInProgress2.mode & StrictEffectsMode) !== NoMode && (workInProgress2.flags |= 134217728), _instance = false);
       } else {
         _instance = workInProgress2.stateNode;
         cloneUpdateQueue(current2, workInProgress2);
         state = workInProgress2.memoizedProps;
-        foundWillUpdateName = resolveClassComponentProps(Component, state);
+        foundWillUpdateName = resolveClassComponentProps(Component2, state);
         _instance.props = foundWillUpdateName;
         newApiName = workInProgress2.pendingProps;
         oldState = _instance.context;
-        oldContext = Component.contextType;
+        oldContext = Component2.contextType;
         lane = emptyContextObject;
         typeof oldContext === "object" && oldContext !== null && (lane = readContext(oldContext));
-        unresolvedOldProps = Component.getDerivedStateFromProps;
+        unresolvedOldProps = Component2.getDerivedStateFromProps;
         (oldContext = typeof unresolvedOldProps === "function" || typeof _instance.getSnapshotBeforeUpdate === "function") || typeof _instance.UNSAFE_componentWillReceiveProps !== "function" && typeof _instance.componentWillReceiveProps !== "function" || (state !== newApiName || oldState !== lane) && callComponentWillReceiveProps(workInProgress2, _instance, nextProps, lane);
         hasForceUpdate = false;
         oldState = workInProgress2.memoizedState;
@@ -7671,7 +8639,7 @@ https://react.dev/link/unsafe-component-lifecycles`, _instance, newApiName, stat
         processUpdateQueue(workInProgress2, nextProps, _instance, renderLanes2);
         suspendIfUpdateReadFromEntangledAsyncAction();
         var newState = workInProgress2.memoizedState;
-        state !== newApiName || oldState !== newState || hasForceUpdate || current2 !== null && current2.dependencies !== null && checkIfContextChanged(current2.dependencies) ? (typeof unresolvedOldProps === "function" && (applyDerivedStateFromProps(workInProgress2, Component, unresolvedOldProps, nextProps), newState = workInProgress2.memoizedState), (foundWillUpdateName = hasForceUpdate || checkShouldComponentUpdate(workInProgress2, Component, foundWillUpdateName, nextProps, oldState, newState, lane) || current2 !== null && current2.dependencies !== null && checkIfContextChanged(current2.dependencies)) ? (oldContext || typeof _instance.UNSAFE_componentWillUpdate !== "function" && typeof _instance.componentWillUpdate !== "function" || (typeof _instance.componentWillUpdate === "function" && _instance.componentWillUpdate(nextProps, newState, lane), typeof _instance.UNSAFE_componentWillUpdate === "function" && _instance.UNSAFE_componentWillUpdate(nextProps, newState, lane)), typeof _instance.componentDidUpdate === "function" && (workInProgress2.flags |= 4), typeof _instance.getSnapshotBeforeUpdate === "function" && (workInProgress2.flags |= 1024)) : (typeof _instance.componentDidUpdate !== "function" || state === current2.memoizedProps && oldState === current2.memoizedState || (workInProgress2.flags |= 4), typeof _instance.getSnapshotBeforeUpdate !== "function" || state === current2.memoizedProps && oldState === current2.memoizedState || (workInProgress2.flags |= 1024), workInProgress2.memoizedProps = nextProps, workInProgress2.memoizedState = newState), _instance.props = nextProps, _instance.state = newState, _instance.context = lane, _instance = foundWillUpdateName) : (typeof _instance.componentDidUpdate !== "function" || state === current2.memoizedProps && oldState === current2.memoizedState || (workInProgress2.flags |= 4), typeof _instance.getSnapshotBeforeUpdate !== "function" || state === current2.memoizedProps && oldState === current2.memoizedState || (workInProgress2.flags |= 1024), _instance = false);
+        state !== newApiName || oldState !== newState || hasForceUpdate || current2 !== null && current2.dependencies !== null && checkIfContextChanged(current2.dependencies) ? (typeof unresolvedOldProps === "function" && (applyDerivedStateFromProps(workInProgress2, Component2, unresolvedOldProps, nextProps), newState = workInProgress2.memoizedState), (foundWillUpdateName = hasForceUpdate || checkShouldComponentUpdate(workInProgress2, Component2, foundWillUpdateName, nextProps, oldState, newState, lane) || current2 !== null && current2.dependencies !== null && checkIfContextChanged(current2.dependencies)) ? (oldContext || typeof _instance.UNSAFE_componentWillUpdate !== "function" && typeof _instance.componentWillUpdate !== "function" || (typeof _instance.componentWillUpdate === "function" && _instance.componentWillUpdate(nextProps, newState, lane), typeof _instance.UNSAFE_componentWillUpdate === "function" && _instance.UNSAFE_componentWillUpdate(nextProps, newState, lane)), typeof _instance.componentDidUpdate === "function" && (workInProgress2.flags |= 4), typeof _instance.getSnapshotBeforeUpdate === "function" && (workInProgress2.flags |= 1024)) : (typeof _instance.componentDidUpdate !== "function" || state === current2.memoizedProps && oldState === current2.memoizedState || (workInProgress2.flags |= 4), typeof _instance.getSnapshotBeforeUpdate !== "function" || state === current2.memoizedProps && oldState === current2.memoizedState || (workInProgress2.flags |= 1024), workInProgress2.memoizedProps = nextProps, workInProgress2.memoizedState = newState), _instance.props = nextProps, _instance.state = newState, _instance.context = lane, _instance = foundWillUpdateName) : (typeof _instance.componentDidUpdate !== "function" || state === current2.memoizedProps && oldState === current2.memoizedState || (workInProgress2.flags |= 4), typeof _instance.getSnapshotBeforeUpdate !== "function" || state === current2.memoizedProps && oldState === current2.memoizedState || (workInProgress2.flags |= 1024), _instance = false);
       }
       lane = _instance;
       markRef(current2, workInProgress2);
@@ -7679,9 +8647,9 @@ https://react.dev/link/unsafe-component-lifecycles`, _instance, newApiName, stat
       if (lane || state) {
         lane = workInProgress2.stateNode;
         setCurrentFiber(workInProgress2);
-        if (state && typeof Component.getDerivedStateFromError !== "function")
-          Component = null, profilerStartTime = -1;
-        else if (Component = callRenderInDEV(lane), workInProgress2.mode & StrictLegacyMode) {
+        if (state && typeof Component2.getDerivedStateFromError !== "function")
+          Component2 = null, profilerStartTime = -1;
+        else if (Component2 = callRenderInDEV(lane), workInProgress2.mode & StrictLegacyMode) {
           setIsStrictModeForDevtools(true);
           try {
             callRenderInDEV(lane);
@@ -7690,7 +8658,7 @@ https://react.dev/link/unsafe-component-lifecycles`, _instance, newApiName, stat
           }
         }
         workInProgress2.flags |= 1;
-        current2 !== null && state ? (workInProgress2.child = reconcileChildFibers(workInProgress2, current2.child, null, renderLanes2), workInProgress2.child = reconcileChildFibers(workInProgress2, null, Component, renderLanes2)) : reconcileChildren(current2, workInProgress2, Component, renderLanes2);
+        current2 !== null && state ? (workInProgress2.child = reconcileChildFibers(workInProgress2, current2.child, null, renderLanes2), workInProgress2.child = reconcileChildFibers(workInProgress2, null, Component2, renderLanes2)) : reconcileChildren(current2, workInProgress2, Component2, renderLanes2);
         workInProgress2.memoizedState = lane.state;
         current2 = workInProgress2.child;
       } else
@@ -7705,11 +8673,11 @@ https://react.dev/link/unsafe-component-lifecycles`, _instance, newApiName, stat
       reconcileChildren(current2, workInProgress2, nextChildren, renderLanes2);
       return workInProgress2.child;
     }
-    function validateFunctionComponentInDev(workInProgress2, Component) {
-      Component && Component.childContextTypes && console.error(`childContextTypes cannot be defined on a function component.
-  %s.childContextTypes = ...`, Component.displayName || Component.name || "Component");
-      typeof Component.getDerivedStateFromProps === "function" && (workInProgress2 = getComponentNameFromType(Component) || "Unknown", didWarnAboutGetDerivedStateOnFunctionComponent[workInProgress2] || (console.error("%s: Function components do not support getDerivedStateFromProps.", workInProgress2), didWarnAboutGetDerivedStateOnFunctionComponent[workInProgress2] = true));
-      typeof Component.contextType === "object" && Component.contextType !== null && (Component = getComponentNameFromType(Component) || "Unknown", didWarnAboutContextTypeOnFunctionComponent[Component] || (console.error("%s: Function components do not support contextType.", Component), didWarnAboutContextTypeOnFunctionComponent[Component] = true));
+    function validateFunctionComponentInDev(workInProgress2, Component2) {
+      Component2 && Component2.childContextTypes && console.error(`childContextTypes cannot be defined on a function component.
+  %s.childContextTypes = ...`, Component2.displayName || Component2.name || "Component");
+      typeof Component2.getDerivedStateFromProps === "function" && (workInProgress2 = getComponentNameFromType(Component2) || "Unknown", didWarnAboutGetDerivedStateOnFunctionComponent[workInProgress2] || (console.error("%s: Function components do not support getDerivedStateFromProps.", workInProgress2), didWarnAboutGetDerivedStateOnFunctionComponent[workInProgress2] = true));
+      typeof Component2.contextType === "object" && Component2.contextType !== null && (Component2 = getComponentNameFromType(Component2) || "Unknown", didWarnAboutContextTypeOnFunctionComponent[Component2] || (console.error("%s: Function components do not support contextType.", Component2), didWarnAboutContextTypeOnFunctionComponent[Component2] = true));
     }
     function mountSuspenseOffscreenState(renderLanes2) {
       return { baseLanes: renderLanes2, cachePool: getSuspendedCache() };
@@ -14365,7 +15333,7 @@ Check the render method of %s.`, getComponentNameFromFiber(current) || "Unknown"
     Symbol.for("react.tracing_marker");
     var REACT_MEMO_CACHE_SENTINEL = Symbol.for("react.memo_cache_sentinel");
     Symbol.for("react.view_transition");
-    var MAYBE_ITERATOR_SYMBOL = Symbol.iterator, REACT_CLIENT_REFERENCE = Symbol.for("react.client.reference"), isArrayImpl = Array.isArray, ReactSharedInternals = React.__CLIENT_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE, ReactDOMSharedInternals = ReactDOM.__DOM_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE, NotPending = Object.freeze({
+    var MAYBE_ITERATOR_SYMBOL = Symbol.iterator, REACT_CLIENT_REFERENCE = Symbol.for("react.client.reference"), isArrayImpl = Array.isArray, ReactSharedInternals = React3.__CLIENT_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE, ReactDOMSharedInternals = ReactDOM.__DOM_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE, NotPending = Object.freeze({
       pending: false,
       data: null,
       method: null,
@@ -15554,11 +16522,11 @@ Learn more about this warning here: https://react.dev/link/legacy-context`, sort
       pendingLegacyContextWarning = new Map;
     };
     var callComponent = {
-      react_stack_bottom_frame: function(Component, props, secondArg) {
+      react_stack_bottom_frame: function(Component2, props, secondArg) {
         var wasRendering = isRendering;
         isRendering = true;
         try {
-          return Component(props, secondArg);
+          return Component2(props, secondArg);
         } finally {
           isRendering = wasRendering;
         }
@@ -15745,13 +16713,13 @@ Check the top-level render call using <` + componentName2 + ">.");
           ReactSharedInternals.H = prevDispatcher;
         }
       },
-      useReducer: function(reducer, initialArg, init) {
+      useReducer: function(reducer2, initialArg, init) {
         currentHookNameInDev = "useReducer";
         mountHookTypesDev();
         var prevDispatcher = ReactSharedInternals.H;
         ReactSharedInternals.H = InvalidNestedHooksDispatcherOnMountInDEV;
         try {
-          return mountReducer(reducer, initialArg, init);
+          return mountReducer(reducer2, initialArg, init);
         } finally {
           ReactSharedInternals.H = prevDispatcher;
         }
@@ -15761,13 +16729,13 @@ Check the top-level render call using <` + componentName2 + ">.");
         mountHookTypesDev();
         return mountRef(initialValue);
       },
-      useState: function(initialState) {
+      useState: function(initialState2) {
         currentHookNameInDev = "useState";
         mountHookTypesDev();
         var prevDispatcher = ReactSharedInternals.H;
         ReactSharedInternals.H = InvalidNestedHooksDispatcherOnMountInDEV;
         try {
-          return mountState(initialState);
+          return mountState(initialState2);
         } finally {
           ReactSharedInternals.H = prevDispatcher;
         }
@@ -15796,16 +16764,16 @@ Check the top-level render call using <` + componentName2 + ">.");
         mountHookTypesDev();
         return mountId();
       },
-      useFormState: function(action, initialState) {
+      useFormState: function(action, initialState2) {
         currentHookNameInDev = "useFormState";
         mountHookTypesDev();
         warnOnUseFormStateInDev();
-        return mountActionState(action, initialState);
+        return mountActionState(action, initialState2);
       },
-      useActionState: function(action, initialState) {
+      useActionState: function(action, initialState2) {
         currentHookNameInDev = "useActionState";
         mountHookTypesDev();
-        return mountActionState(action, initialState);
+        return mountActionState(action, initialState2);
       },
       useOptimistic: function(passthrough) {
         currentHookNameInDev = "useOptimistic";
@@ -15871,13 +16839,13 @@ Check the top-level render call using <` + componentName2 + ">.");
           ReactSharedInternals.H = prevDispatcher;
         }
       },
-      useReducer: function(reducer, initialArg, init) {
+      useReducer: function(reducer2, initialArg, init) {
         currentHookNameInDev = "useReducer";
         updateHookTypesDev();
         var prevDispatcher = ReactSharedInternals.H;
         ReactSharedInternals.H = InvalidNestedHooksDispatcherOnMountInDEV;
         try {
-          return mountReducer(reducer, initialArg, init);
+          return mountReducer(reducer2, initialArg, init);
         } finally {
           ReactSharedInternals.H = prevDispatcher;
         }
@@ -15887,13 +16855,13 @@ Check the top-level render call using <` + componentName2 + ">.");
         updateHookTypesDev();
         return mountRef(initialValue);
       },
-      useState: function(initialState) {
+      useState: function(initialState2) {
         currentHookNameInDev = "useState";
         updateHookTypesDev();
         var prevDispatcher = ReactSharedInternals.H;
         ReactSharedInternals.H = InvalidNestedHooksDispatcherOnMountInDEV;
         try {
-          return mountState(initialState);
+          return mountState(initialState2);
         } finally {
           ReactSharedInternals.H = prevDispatcher;
         }
@@ -15922,16 +16890,16 @@ Check the top-level render call using <` + componentName2 + ">.");
         updateHookTypesDev();
         return mountId();
       },
-      useActionState: function(action, initialState) {
+      useActionState: function(action, initialState2) {
         currentHookNameInDev = "useActionState";
         updateHookTypesDev();
-        return mountActionState(action, initialState);
+        return mountActionState(action, initialState2);
       },
-      useFormState: function(action, initialState) {
+      useFormState: function(action, initialState2) {
         currentHookNameInDev = "useFormState";
         updateHookTypesDev();
         warnOnUseFormStateInDev();
-        return mountActionState(action, initialState);
+        return mountActionState(action, initialState2);
       },
       useOptimistic: function(passthrough) {
         currentHookNameInDev = "useOptimistic";
@@ -15997,13 +16965,13 @@ Check the top-level render call using <` + componentName2 + ">.");
           ReactSharedInternals.H = prevDispatcher;
         }
       },
-      useReducer: function(reducer, initialArg, init) {
+      useReducer: function(reducer2, initialArg, init) {
         currentHookNameInDev = "useReducer";
         updateHookTypesDev();
         var prevDispatcher = ReactSharedInternals.H;
         ReactSharedInternals.H = InvalidNestedHooksDispatcherOnUpdateInDEV;
         try {
-          return updateReducer(reducer, initialArg, init);
+          return updateReducer(reducer2, initialArg, init);
         } finally {
           ReactSharedInternals.H = prevDispatcher;
         }
@@ -16059,10 +17027,10 @@ Check the top-level render call using <` + componentName2 + ">.");
         updateHookTypesDev();
         return updateActionState(action);
       },
-      useOptimistic: function(passthrough, reducer) {
+      useOptimistic: function(passthrough, reducer2) {
         currentHookNameInDev = "useOptimistic";
         updateHookTypesDev();
-        return updateOptimistic(passthrough, reducer);
+        return updateOptimistic(passthrough, reducer2);
       },
       useHostTransitionStatus,
       useMemoCache,
@@ -16123,13 +17091,13 @@ Check the top-level render call using <` + componentName2 + ">.");
           ReactSharedInternals.H = prevDispatcher;
         }
       },
-      useReducer: function(reducer, initialArg, init) {
+      useReducer: function(reducer2, initialArg, init) {
         currentHookNameInDev = "useReducer";
         updateHookTypesDev();
         var prevDispatcher = ReactSharedInternals.H;
         ReactSharedInternals.H = InvalidNestedHooksDispatcherOnRerenderInDEV;
         try {
-          return rerenderReducer(reducer, initialArg, init);
+          return rerenderReducer(reducer2, initialArg, init);
         } finally {
           ReactSharedInternals.H = prevDispatcher;
         }
@@ -16185,10 +17153,10 @@ Check the top-level render call using <` + componentName2 + ">.");
         updateHookTypesDev();
         return rerenderActionState(action);
       },
-      useOptimistic: function(passthrough, reducer) {
+      useOptimistic: function(passthrough, reducer2) {
         currentHookNameInDev = "useOptimistic";
         updateHookTypesDev();
-        return rerenderOptimistic(passthrough, reducer);
+        return rerenderOptimistic(passthrough, reducer2);
       },
       useHostTransitionStatus,
       useMemoCache,
@@ -16260,14 +17228,14 @@ Check the top-level render call using <` + componentName2 + ">.");
           ReactSharedInternals.H = prevDispatcher;
         }
       },
-      useReducer: function(reducer, initialArg, init) {
+      useReducer: function(reducer2, initialArg, init) {
         currentHookNameInDev = "useReducer";
         warnInvalidHookAccess();
         mountHookTypesDev();
         var prevDispatcher = ReactSharedInternals.H;
         ReactSharedInternals.H = InvalidNestedHooksDispatcherOnMountInDEV;
         try {
-          return mountReducer(reducer, initialArg, init);
+          return mountReducer(reducer2, initialArg, init);
         } finally {
           ReactSharedInternals.H = prevDispatcher;
         }
@@ -16278,14 +17246,14 @@ Check the top-level render call using <` + componentName2 + ">.");
         mountHookTypesDev();
         return mountRef(initialValue);
       },
-      useState: function(initialState) {
+      useState: function(initialState2) {
         currentHookNameInDev = "useState";
         warnInvalidHookAccess();
         mountHookTypesDev();
         var prevDispatcher = ReactSharedInternals.H;
         ReactSharedInternals.H = InvalidNestedHooksDispatcherOnMountInDEV;
         try {
-          return mountState(initialState);
+          return mountState(initialState2);
         } finally {
           ReactSharedInternals.H = prevDispatcher;
         }
@@ -16319,17 +17287,17 @@ Check the top-level render call using <` + componentName2 + ">.");
         mountHookTypesDev();
         return mountId();
       },
-      useFormState: function(action, initialState) {
+      useFormState: function(action, initialState2) {
         currentHookNameInDev = "useFormState";
         warnInvalidHookAccess();
         mountHookTypesDev();
-        return mountActionState(action, initialState);
+        return mountActionState(action, initialState2);
       },
-      useActionState: function(action, initialState) {
+      useActionState: function(action, initialState2) {
         currentHookNameInDev = "useActionState";
         warnInvalidHookAccess();
         mountHookTypesDev();
-        return mountActionState(action, initialState);
+        return mountActionState(action, initialState2);
       },
       useOptimistic: function(passthrough) {
         currentHookNameInDev = "useOptimistic";
@@ -16411,14 +17379,14 @@ Check the top-level render call using <` + componentName2 + ">.");
           ReactSharedInternals.H = prevDispatcher;
         }
       },
-      useReducer: function(reducer, initialArg, init) {
+      useReducer: function(reducer2, initialArg, init) {
         currentHookNameInDev = "useReducer";
         warnInvalidHookAccess();
         updateHookTypesDev();
         var prevDispatcher = ReactSharedInternals.H;
         ReactSharedInternals.H = InvalidNestedHooksDispatcherOnUpdateInDEV;
         try {
-          return updateReducer(reducer, initialArg, init);
+          return updateReducer(reducer2, initialArg, init);
         } finally {
           ReactSharedInternals.H = prevDispatcher;
         }
@@ -16482,11 +17450,11 @@ Check the top-level render call using <` + componentName2 + ">.");
         updateHookTypesDev();
         return updateActionState(action);
       },
-      useOptimistic: function(passthrough, reducer) {
+      useOptimistic: function(passthrough, reducer2) {
         currentHookNameInDev = "useOptimistic";
         warnInvalidHookAccess();
         updateHookTypesDev();
-        return updateOptimistic(passthrough, reducer);
+        return updateOptimistic(passthrough, reducer2);
       },
       useMemoCache: function(size) {
         warnInvalidHookAccess();
@@ -16562,14 +17530,14 @@ Check the top-level render call using <` + componentName2 + ">.");
           ReactSharedInternals.H = prevDispatcher;
         }
       },
-      useReducer: function(reducer, initialArg, init) {
+      useReducer: function(reducer2, initialArg, init) {
         currentHookNameInDev = "useReducer";
         warnInvalidHookAccess();
         updateHookTypesDev();
         var prevDispatcher = ReactSharedInternals.H;
         ReactSharedInternals.H = InvalidNestedHooksDispatcherOnUpdateInDEV;
         try {
-          return rerenderReducer(reducer, initialArg, init);
+          return rerenderReducer(reducer2, initialArg, init);
         } finally {
           ReactSharedInternals.H = prevDispatcher;
         }
@@ -16633,11 +17601,11 @@ Check the top-level render call using <` + componentName2 + ">.");
         updateHookTypesDev();
         return rerenderActionState(action);
       },
-      useOptimistic: function(passthrough, reducer) {
+      useOptimistic: function(passthrough, reducer2) {
         currentHookNameInDev = "useOptimistic";
         warnInvalidHookAccess();
         updateHookTypesDev();
-        return rerenderOptimistic(passthrough, reducer);
+        return rerenderOptimistic(passthrough, reducer2);
       },
       useMemoCache: function(size) {
         warnInvalidHookAccess();
@@ -17000,7 +17968,7 @@ Check the top-level render call using <` + componentName2 + ">.");
       }
     };
     (function() {
-      var isomorphicReactPackageVersion = React.version;
+      var isomorphicReactPackageVersion = React3.version;
       if (isomorphicReactPackageVersion !== "19.2.4")
         throw Error(`Incompatible React versions: The "react" and "react-dom" packages must have the exact same version. Instead got:
   - react:      ` + (isomorphicReactPackageVersion + `
@@ -17099,11 +18067,40 @@ var require_client = __commonJS((exports, module) => {
     module.exports = react_dom_client_development;
   }
 });
+
+// src/mainview/modules/mainbg.tsx
+var import_react2 = __toESM(require_react(), 1);
+
+// src/shared/shared-context.ts
+var import_react = __toESM(require_react(), 1);
+var appContextDefaults = {
+  setOutputFolderSize: () => {},
+  outputFolderSize: 0,
+  setInputFolderSize: () => {},
+  inputFolderSize: 0,
+  setImages: () => {},
+  images: [],
+  setActiveImage: () => {},
+  activeImage: {
+    output: "",
+    input: "",
+    inputSizeBytes: 0,
+    outputSizeBytes: 0
+  },
+  settings: {
+    defaultEffort: 4,
+    defaultQuality: 75,
+    theme: "auto"
+  }
+};
+var sharedContext = import_react.createContext(appContextDefaults);
+
 // src/mainview/modules/mainbg.tsx
 var jsx_dev_runtime = __toESM(require_jsx_dev_runtime(), 1);
 function MainBG() {
+  const appContext = import_react2.useContext(sharedContext);
   return /* @__PURE__ */ jsx_dev_runtime.jsxDEV("div", {
-    className: "mainbg",
+    className: "mainbg " + (Object.keys(appContext.images).length ? " hide" : ""),
     children: /* @__PURE__ */ jsx_dev_runtime.jsxDEV("div", {
       className: "mainbg-svgcontainer",
       children: /* @__PURE__ */ jsx_dev_runtime.jsxDEV("svg", {
@@ -17239,6 +18236,2482 @@ function MainBG() {
       }, undefined, true, undefined, this)
     }, undefined, false, undefined, this)
   }, undefined, false, undefined, this);
+}
+
+// src/mainview/modules/dragdrop.tsx
+var import_react4 = __toESM(require_react(), 1);
+
+// node_modules/react-dropzone/dist/es/index.js
+var import_react3 = __toESM(require_react(), 1);
+var import_prop_types = __toESM(require_prop_types(), 1);
+
+// node_modules/tslib/tslib.es6.mjs
+var extendStatics = function(d, b) {
+  extendStatics = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function(d2, b2) {
+    d2.__proto__ = b2;
+  } || function(d2, b2) {
+    for (var p in b2)
+      if (Object.prototype.hasOwnProperty.call(b2, p))
+        d2[p] = b2[p];
+  };
+  return extendStatics(d, b);
+};
+function __extends(d, b) {
+  if (typeof b !== "function" && b !== null)
+    throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
+  extendStatics(d, b);
+  function __() {
+    this.constructor = d;
+  }
+  d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __);
+}
+var __assign = function() {
+  __assign = Object.assign || function __assign2(t) {
+    for (var s, i = 1, n = arguments.length;i < n; i++) {
+      s = arguments[i];
+      for (var p in s)
+        if (Object.prototype.hasOwnProperty.call(s, p))
+          t[p] = s[p];
+    }
+    return t;
+  };
+  return __assign.apply(this, arguments);
+};
+function __awaiter(thisArg, _arguments, P, generator) {
+  function adopt(value) {
+    return value instanceof P ? value : new P(function(resolve) {
+      resolve(value);
+    });
+  }
+  return new (P || (P = Promise))(function(resolve, reject) {
+    function fulfilled(value) {
+      try {
+        step(generator.next(value));
+      } catch (e) {
+        reject(e);
+      }
+    }
+    function rejected(value) {
+      try {
+        step(generator["throw"](value));
+      } catch (e) {
+        reject(e);
+      }
+    }
+    function step(result) {
+      result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected);
+    }
+    step((generator = generator.apply(thisArg, _arguments || [])).next());
+  });
+}
+
+// node_modules/file-selector/dist/es2015/file.js
+var COMMON_MIME_TYPES = new Map([
+  ["1km", "application/vnd.1000minds.decision-model+xml"],
+  ["3dml", "text/vnd.in3d.3dml"],
+  ["3ds", "image/x-3ds"],
+  ["3g2", "video/3gpp2"],
+  ["3gp", "video/3gp"],
+  ["3gpp", "video/3gpp"],
+  ["3mf", "model/3mf"],
+  ["7z", "application/x-7z-compressed"],
+  ["7zip", "application/x-7z-compressed"],
+  ["123", "application/vnd.lotus-1-2-3"],
+  ["aab", "application/x-authorware-bin"],
+  ["aac", "audio/x-acc"],
+  ["aam", "application/x-authorware-map"],
+  ["aas", "application/x-authorware-seg"],
+  ["abw", "application/x-abiword"],
+  ["ac", "application/vnd.nokia.n-gage.ac+xml"],
+  ["ac3", "audio/ac3"],
+  ["acc", "application/vnd.americandynamics.acc"],
+  ["ace", "application/x-ace-compressed"],
+  ["acu", "application/vnd.acucobol"],
+  ["acutc", "application/vnd.acucorp"],
+  ["adp", "audio/adpcm"],
+  ["aep", "application/vnd.audiograph"],
+  ["afm", "application/x-font-type1"],
+  ["afp", "application/vnd.ibm.modcap"],
+  ["ahead", "application/vnd.ahead.space"],
+  ["ai", "application/pdf"],
+  ["aif", "audio/x-aiff"],
+  ["aifc", "audio/x-aiff"],
+  ["aiff", "audio/x-aiff"],
+  ["air", "application/vnd.adobe.air-application-installer-package+zip"],
+  ["ait", "application/vnd.dvb.ait"],
+  ["ami", "application/vnd.amiga.ami"],
+  ["amr", "audio/amr"],
+  ["apk", "application/vnd.android.package-archive"],
+  ["apng", "image/apng"],
+  ["appcache", "text/cache-manifest"],
+  ["application", "application/x-ms-application"],
+  ["apr", "application/vnd.lotus-approach"],
+  ["arc", "application/x-freearc"],
+  ["arj", "application/x-arj"],
+  ["asc", "application/pgp-signature"],
+  ["asf", "video/x-ms-asf"],
+  ["asm", "text/x-asm"],
+  ["aso", "application/vnd.accpac.simply.aso"],
+  ["asx", "video/x-ms-asf"],
+  ["atc", "application/vnd.acucorp"],
+  ["atom", "application/atom+xml"],
+  ["atomcat", "application/atomcat+xml"],
+  ["atomdeleted", "application/atomdeleted+xml"],
+  ["atomsvc", "application/atomsvc+xml"],
+  ["atx", "application/vnd.antix.game-component"],
+  ["au", "audio/x-au"],
+  ["avi", "video/x-msvideo"],
+  ["avif", "image/avif"],
+  ["aw", "application/applixware"],
+  ["azf", "application/vnd.airzip.filesecure.azf"],
+  ["azs", "application/vnd.airzip.filesecure.azs"],
+  ["azv", "image/vnd.airzip.accelerator.azv"],
+  ["azw", "application/vnd.amazon.ebook"],
+  ["b16", "image/vnd.pco.b16"],
+  ["bat", "application/x-msdownload"],
+  ["bcpio", "application/x-bcpio"],
+  ["bdf", "application/x-font-bdf"],
+  ["bdm", "application/vnd.syncml.dm+wbxml"],
+  ["bdoc", "application/x-bdoc"],
+  ["bed", "application/vnd.realvnc.bed"],
+  ["bh2", "application/vnd.fujitsu.oasysprs"],
+  ["bin", "application/octet-stream"],
+  ["blb", "application/x-blorb"],
+  ["blorb", "application/x-blorb"],
+  ["bmi", "application/vnd.bmi"],
+  ["bmml", "application/vnd.balsamiq.bmml+xml"],
+  ["bmp", "image/bmp"],
+  ["book", "application/vnd.framemaker"],
+  ["box", "application/vnd.previewsystems.box"],
+  ["boz", "application/x-bzip2"],
+  ["bpk", "application/octet-stream"],
+  ["bpmn", "application/octet-stream"],
+  ["bsp", "model/vnd.valve.source.compiled-map"],
+  ["btif", "image/prs.btif"],
+  ["buffer", "application/octet-stream"],
+  ["bz", "application/x-bzip"],
+  ["bz2", "application/x-bzip2"],
+  ["c", "text/x-c"],
+  ["c4d", "application/vnd.clonk.c4group"],
+  ["c4f", "application/vnd.clonk.c4group"],
+  ["c4g", "application/vnd.clonk.c4group"],
+  ["c4p", "application/vnd.clonk.c4group"],
+  ["c4u", "application/vnd.clonk.c4group"],
+  ["c11amc", "application/vnd.cluetrust.cartomobile-config"],
+  ["c11amz", "application/vnd.cluetrust.cartomobile-config-pkg"],
+  ["cab", "application/vnd.ms-cab-compressed"],
+  ["caf", "audio/x-caf"],
+  ["cap", "application/vnd.tcpdump.pcap"],
+  ["car", "application/vnd.curl.car"],
+  ["cat", "application/vnd.ms-pki.seccat"],
+  ["cb7", "application/x-cbr"],
+  ["cba", "application/x-cbr"],
+  ["cbr", "application/x-cbr"],
+  ["cbt", "application/x-cbr"],
+  ["cbz", "application/x-cbr"],
+  ["cc", "text/x-c"],
+  ["cco", "application/x-cocoa"],
+  ["cct", "application/x-director"],
+  ["ccxml", "application/ccxml+xml"],
+  ["cdbcmsg", "application/vnd.contact.cmsg"],
+  ["cda", "application/x-cdf"],
+  ["cdf", "application/x-netcdf"],
+  ["cdfx", "application/cdfx+xml"],
+  ["cdkey", "application/vnd.mediastation.cdkey"],
+  ["cdmia", "application/cdmi-capability"],
+  ["cdmic", "application/cdmi-container"],
+  ["cdmid", "application/cdmi-domain"],
+  ["cdmio", "application/cdmi-object"],
+  ["cdmiq", "application/cdmi-queue"],
+  ["cdr", "application/cdr"],
+  ["cdx", "chemical/x-cdx"],
+  ["cdxml", "application/vnd.chemdraw+xml"],
+  ["cdy", "application/vnd.cinderella"],
+  ["cer", "application/pkix-cert"],
+  ["cfs", "application/x-cfs-compressed"],
+  ["cgm", "image/cgm"],
+  ["chat", "application/x-chat"],
+  ["chm", "application/vnd.ms-htmlhelp"],
+  ["chrt", "application/vnd.kde.kchart"],
+  ["cif", "chemical/x-cif"],
+  ["cii", "application/vnd.anser-web-certificate-issue-initiation"],
+  ["cil", "application/vnd.ms-artgalry"],
+  ["cjs", "application/node"],
+  ["cla", "application/vnd.claymore"],
+  ["class", "application/octet-stream"],
+  ["clkk", "application/vnd.crick.clicker.keyboard"],
+  ["clkp", "application/vnd.crick.clicker.palette"],
+  ["clkt", "application/vnd.crick.clicker.template"],
+  ["clkw", "application/vnd.crick.clicker.wordbank"],
+  ["clkx", "application/vnd.crick.clicker"],
+  ["clp", "application/x-msclip"],
+  ["cmc", "application/vnd.cosmocaller"],
+  ["cmdf", "chemical/x-cmdf"],
+  ["cml", "chemical/x-cml"],
+  ["cmp", "application/vnd.yellowriver-custom-menu"],
+  ["cmx", "image/x-cmx"],
+  ["cod", "application/vnd.rim.cod"],
+  ["coffee", "text/coffeescript"],
+  ["com", "application/x-msdownload"],
+  ["conf", "text/plain"],
+  ["cpio", "application/x-cpio"],
+  ["cpp", "text/x-c"],
+  ["cpt", "application/mac-compactpro"],
+  ["crd", "application/x-mscardfile"],
+  ["crl", "application/pkix-crl"],
+  ["crt", "application/x-x509-ca-cert"],
+  ["crx", "application/x-chrome-extension"],
+  ["cryptonote", "application/vnd.rig.cryptonote"],
+  ["csh", "application/x-csh"],
+  ["csl", "application/vnd.citationstyles.style+xml"],
+  ["csml", "chemical/x-csml"],
+  ["csp", "application/vnd.commonspace"],
+  ["csr", "application/octet-stream"],
+  ["css", "text/css"],
+  ["cst", "application/x-director"],
+  ["csv", "text/csv"],
+  ["cu", "application/cu-seeme"],
+  ["curl", "text/vnd.curl"],
+  ["cww", "application/prs.cww"],
+  ["cxt", "application/x-director"],
+  ["cxx", "text/x-c"],
+  ["dae", "model/vnd.collada+xml"],
+  ["daf", "application/vnd.mobius.daf"],
+  ["dart", "application/vnd.dart"],
+  ["dataless", "application/vnd.fdsn.seed"],
+  ["davmount", "application/davmount+xml"],
+  ["dbf", "application/vnd.dbf"],
+  ["dbk", "application/docbook+xml"],
+  ["dcr", "application/x-director"],
+  ["dcurl", "text/vnd.curl.dcurl"],
+  ["dd2", "application/vnd.oma.dd2+xml"],
+  ["ddd", "application/vnd.fujixerox.ddd"],
+  ["ddf", "application/vnd.syncml.dmddf+xml"],
+  ["dds", "image/vnd.ms-dds"],
+  ["deb", "application/x-debian-package"],
+  ["def", "text/plain"],
+  ["deploy", "application/octet-stream"],
+  ["der", "application/x-x509-ca-cert"],
+  ["dfac", "application/vnd.dreamfactory"],
+  ["dgc", "application/x-dgc-compressed"],
+  ["dic", "text/x-c"],
+  ["dir", "application/x-director"],
+  ["dis", "application/vnd.mobius.dis"],
+  ["disposition-notification", "message/disposition-notification"],
+  ["dist", "application/octet-stream"],
+  ["distz", "application/octet-stream"],
+  ["djv", "image/vnd.djvu"],
+  ["djvu", "image/vnd.djvu"],
+  ["dll", "application/octet-stream"],
+  ["dmg", "application/x-apple-diskimage"],
+  ["dmn", "application/octet-stream"],
+  ["dmp", "application/vnd.tcpdump.pcap"],
+  ["dms", "application/octet-stream"],
+  ["dna", "application/vnd.dna"],
+  ["doc", "application/msword"],
+  ["docm", "application/vnd.ms-word.template.macroEnabled.12"],
+  ["docx", "application/vnd.openxmlformats-officedocument.wordprocessingml.document"],
+  ["dot", "application/msword"],
+  ["dotm", "application/vnd.ms-word.template.macroEnabled.12"],
+  ["dotx", "application/vnd.openxmlformats-officedocument.wordprocessingml.template"],
+  ["dp", "application/vnd.osgi.dp"],
+  ["dpg", "application/vnd.dpgraph"],
+  ["dra", "audio/vnd.dra"],
+  ["drle", "image/dicom-rle"],
+  ["dsc", "text/prs.lines.tag"],
+  ["dssc", "application/dssc+der"],
+  ["dtb", "application/x-dtbook+xml"],
+  ["dtd", "application/xml-dtd"],
+  ["dts", "audio/vnd.dts"],
+  ["dtshd", "audio/vnd.dts.hd"],
+  ["dump", "application/octet-stream"],
+  ["dvb", "video/vnd.dvb.file"],
+  ["dvi", "application/x-dvi"],
+  ["dwd", "application/atsc-dwd+xml"],
+  ["dwf", "model/vnd.dwf"],
+  ["dwg", "image/vnd.dwg"],
+  ["dxf", "image/vnd.dxf"],
+  ["dxp", "application/vnd.spotfire.dxp"],
+  ["dxr", "application/x-director"],
+  ["ear", "application/java-archive"],
+  ["ecelp4800", "audio/vnd.nuera.ecelp4800"],
+  ["ecelp7470", "audio/vnd.nuera.ecelp7470"],
+  ["ecelp9600", "audio/vnd.nuera.ecelp9600"],
+  ["ecma", "application/ecmascript"],
+  ["edm", "application/vnd.novadigm.edm"],
+  ["edx", "application/vnd.novadigm.edx"],
+  ["efif", "application/vnd.picsel"],
+  ["ei6", "application/vnd.pg.osasli"],
+  ["elc", "application/octet-stream"],
+  ["emf", "image/emf"],
+  ["eml", "message/rfc822"],
+  ["emma", "application/emma+xml"],
+  ["emotionml", "application/emotionml+xml"],
+  ["emz", "application/x-msmetafile"],
+  ["eol", "audio/vnd.digital-winds"],
+  ["eot", "application/vnd.ms-fontobject"],
+  ["eps", "application/postscript"],
+  ["epub", "application/epub+zip"],
+  ["es", "application/ecmascript"],
+  ["es3", "application/vnd.eszigno3+xml"],
+  ["esa", "application/vnd.osgi.subsystem"],
+  ["esf", "application/vnd.epson.esf"],
+  ["et3", "application/vnd.eszigno3+xml"],
+  ["etx", "text/x-setext"],
+  ["eva", "application/x-eva"],
+  ["evy", "application/x-envoy"],
+  ["exe", "application/octet-stream"],
+  ["exi", "application/exi"],
+  ["exp", "application/express"],
+  ["exr", "image/aces"],
+  ["ext", "application/vnd.novadigm.ext"],
+  ["ez", "application/andrew-inset"],
+  ["ez2", "application/vnd.ezpix-album"],
+  ["ez3", "application/vnd.ezpix-package"],
+  ["f", "text/x-fortran"],
+  ["f4v", "video/mp4"],
+  ["f77", "text/x-fortran"],
+  ["f90", "text/x-fortran"],
+  ["fbs", "image/vnd.fastbidsheet"],
+  ["fcdt", "application/vnd.adobe.formscentral.fcdt"],
+  ["fcs", "application/vnd.isac.fcs"],
+  ["fdf", "application/vnd.fdf"],
+  ["fdt", "application/fdt+xml"],
+  ["fe_launch", "application/vnd.denovo.fcselayout-link"],
+  ["fg5", "application/vnd.fujitsu.oasysgp"],
+  ["fgd", "application/x-director"],
+  ["fh", "image/x-freehand"],
+  ["fh4", "image/x-freehand"],
+  ["fh5", "image/x-freehand"],
+  ["fh7", "image/x-freehand"],
+  ["fhc", "image/x-freehand"],
+  ["fig", "application/x-xfig"],
+  ["fits", "image/fits"],
+  ["flac", "audio/x-flac"],
+  ["fli", "video/x-fli"],
+  ["flo", "application/vnd.micrografx.flo"],
+  ["flv", "video/x-flv"],
+  ["flw", "application/vnd.kde.kivio"],
+  ["flx", "text/vnd.fmi.flexstor"],
+  ["fly", "text/vnd.fly"],
+  ["fm", "application/vnd.framemaker"],
+  ["fnc", "application/vnd.frogans.fnc"],
+  ["fo", "application/vnd.software602.filler.form+xml"],
+  ["for", "text/x-fortran"],
+  ["fpx", "image/vnd.fpx"],
+  ["frame", "application/vnd.framemaker"],
+  ["fsc", "application/vnd.fsc.weblaunch"],
+  ["fst", "image/vnd.fst"],
+  ["ftc", "application/vnd.fluxtime.clip"],
+  ["fti", "application/vnd.anser-web-funds-transfer-initiation"],
+  ["fvt", "video/vnd.fvt"],
+  ["fxp", "application/vnd.adobe.fxp"],
+  ["fxpl", "application/vnd.adobe.fxp"],
+  ["fzs", "application/vnd.fuzzysheet"],
+  ["g2w", "application/vnd.geoplan"],
+  ["g3", "image/g3fax"],
+  ["g3w", "application/vnd.geospace"],
+  ["gac", "application/vnd.groove-account"],
+  ["gam", "application/x-tads"],
+  ["gbr", "application/rpki-ghostbusters"],
+  ["gca", "application/x-gca-compressed"],
+  ["gdl", "model/vnd.gdl"],
+  ["gdoc", "application/vnd.google-apps.document"],
+  ["geo", "application/vnd.dynageo"],
+  ["geojson", "application/geo+json"],
+  ["gex", "application/vnd.geometry-explorer"],
+  ["ggb", "application/vnd.geogebra.file"],
+  ["ggt", "application/vnd.geogebra.tool"],
+  ["ghf", "application/vnd.groove-help"],
+  ["gif", "image/gif"],
+  ["gim", "application/vnd.groove-identity-message"],
+  ["glb", "model/gltf-binary"],
+  ["gltf", "model/gltf+json"],
+  ["gml", "application/gml+xml"],
+  ["gmx", "application/vnd.gmx"],
+  ["gnumeric", "application/x-gnumeric"],
+  ["gpg", "application/gpg-keys"],
+  ["gph", "application/vnd.flographit"],
+  ["gpx", "application/gpx+xml"],
+  ["gqf", "application/vnd.grafeq"],
+  ["gqs", "application/vnd.grafeq"],
+  ["gram", "application/srgs"],
+  ["gramps", "application/x-gramps-xml"],
+  ["gre", "application/vnd.geometry-explorer"],
+  ["grv", "application/vnd.groove-injector"],
+  ["grxml", "application/srgs+xml"],
+  ["gsf", "application/x-font-ghostscript"],
+  ["gsheet", "application/vnd.google-apps.spreadsheet"],
+  ["gslides", "application/vnd.google-apps.presentation"],
+  ["gtar", "application/x-gtar"],
+  ["gtm", "application/vnd.groove-tool-message"],
+  ["gtw", "model/vnd.gtw"],
+  ["gv", "text/vnd.graphviz"],
+  ["gxf", "application/gxf"],
+  ["gxt", "application/vnd.geonext"],
+  ["gz", "application/gzip"],
+  ["gzip", "application/gzip"],
+  ["h", "text/x-c"],
+  ["h261", "video/h261"],
+  ["h263", "video/h263"],
+  ["h264", "video/h264"],
+  ["hal", "application/vnd.hal+xml"],
+  ["hbci", "application/vnd.hbci"],
+  ["hbs", "text/x-handlebars-template"],
+  ["hdd", "application/x-virtualbox-hdd"],
+  ["hdf", "application/x-hdf"],
+  ["heic", "image/heic"],
+  ["heics", "image/heic-sequence"],
+  ["heif", "image/heif"],
+  ["heifs", "image/heif-sequence"],
+  ["hej2", "image/hej2k"],
+  ["held", "application/atsc-held+xml"],
+  ["hh", "text/x-c"],
+  ["hjson", "application/hjson"],
+  ["hlp", "application/winhlp"],
+  ["hpgl", "application/vnd.hp-hpgl"],
+  ["hpid", "application/vnd.hp-hpid"],
+  ["hps", "application/vnd.hp-hps"],
+  ["hqx", "application/mac-binhex40"],
+  ["hsj2", "image/hsj2"],
+  ["htc", "text/x-component"],
+  ["htke", "application/vnd.kenameaapp"],
+  ["htm", "text/html"],
+  ["html", "text/html"],
+  ["hvd", "application/vnd.yamaha.hv-dic"],
+  ["hvp", "application/vnd.yamaha.hv-voice"],
+  ["hvs", "application/vnd.yamaha.hv-script"],
+  ["i2g", "application/vnd.intergeo"],
+  ["icc", "application/vnd.iccprofile"],
+  ["ice", "x-conference/x-cooltalk"],
+  ["icm", "application/vnd.iccprofile"],
+  ["ico", "image/x-icon"],
+  ["ics", "text/calendar"],
+  ["ief", "image/ief"],
+  ["ifb", "text/calendar"],
+  ["ifm", "application/vnd.shana.informed.formdata"],
+  ["iges", "model/iges"],
+  ["igl", "application/vnd.igloader"],
+  ["igm", "application/vnd.insors.igm"],
+  ["igs", "model/iges"],
+  ["igx", "application/vnd.micrografx.igx"],
+  ["iif", "application/vnd.shana.informed.interchange"],
+  ["img", "application/octet-stream"],
+  ["imp", "application/vnd.accpac.simply.imp"],
+  ["ims", "application/vnd.ms-ims"],
+  ["in", "text/plain"],
+  ["ini", "text/plain"],
+  ["ink", "application/inkml+xml"],
+  ["inkml", "application/inkml+xml"],
+  ["install", "application/x-install-instructions"],
+  ["iota", "application/vnd.astraea-software.iota"],
+  ["ipfix", "application/ipfix"],
+  ["ipk", "application/vnd.shana.informed.package"],
+  ["irm", "application/vnd.ibm.rights-management"],
+  ["irp", "application/vnd.irepository.package+xml"],
+  ["iso", "application/x-iso9660-image"],
+  ["itp", "application/vnd.shana.informed.formtemplate"],
+  ["its", "application/its+xml"],
+  ["ivp", "application/vnd.immervision-ivp"],
+  ["ivu", "application/vnd.immervision-ivu"],
+  ["jad", "text/vnd.sun.j2me.app-descriptor"],
+  ["jade", "text/jade"],
+  ["jam", "application/vnd.jam"],
+  ["jar", "application/java-archive"],
+  ["jardiff", "application/x-java-archive-diff"],
+  ["java", "text/x-java-source"],
+  ["jhc", "image/jphc"],
+  ["jisp", "application/vnd.jisp"],
+  ["jls", "image/jls"],
+  ["jlt", "application/vnd.hp-jlyt"],
+  ["jng", "image/x-jng"],
+  ["jnlp", "application/x-java-jnlp-file"],
+  ["joda", "application/vnd.joost.joda-archive"],
+  ["jp2", "image/jp2"],
+  ["jpe", "image/jpeg"],
+  ["jpeg", "image/jpeg"],
+  ["jpf", "image/jpx"],
+  ["jpg", "image/jpeg"],
+  ["jpg2", "image/jp2"],
+  ["jpgm", "video/jpm"],
+  ["jpgv", "video/jpeg"],
+  ["jph", "image/jph"],
+  ["jpm", "video/jpm"],
+  ["jpx", "image/jpx"],
+  ["js", "application/javascript"],
+  ["json", "application/json"],
+  ["json5", "application/json5"],
+  ["jsonld", "application/ld+json"],
+  ["jsonl", "application/jsonl"],
+  ["jsonml", "application/jsonml+json"],
+  ["jsx", "text/jsx"],
+  ["jxr", "image/jxr"],
+  ["jxra", "image/jxra"],
+  ["jxrs", "image/jxrs"],
+  ["jxs", "image/jxs"],
+  ["jxsc", "image/jxsc"],
+  ["jxsi", "image/jxsi"],
+  ["jxss", "image/jxss"],
+  ["kar", "audio/midi"],
+  ["karbon", "application/vnd.kde.karbon"],
+  ["kdb", "application/octet-stream"],
+  ["kdbx", "application/x-keepass2"],
+  ["key", "application/x-iwork-keynote-sffkey"],
+  ["kfo", "application/vnd.kde.kformula"],
+  ["kia", "application/vnd.kidspiration"],
+  ["kml", "application/vnd.google-earth.kml+xml"],
+  ["kmz", "application/vnd.google-earth.kmz"],
+  ["kne", "application/vnd.kinar"],
+  ["knp", "application/vnd.kinar"],
+  ["kon", "application/vnd.kde.kontour"],
+  ["kpr", "application/vnd.kde.kpresenter"],
+  ["kpt", "application/vnd.kde.kpresenter"],
+  ["kpxx", "application/vnd.ds-keypoint"],
+  ["ksp", "application/vnd.kde.kspread"],
+  ["ktr", "application/vnd.kahootz"],
+  ["ktx", "image/ktx"],
+  ["ktx2", "image/ktx2"],
+  ["ktz", "application/vnd.kahootz"],
+  ["kwd", "application/vnd.kde.kword"],
+  ["kwt", "application/vnd.kde.kword"],
+  ["lasxml", "application/vnd.las.las+xml"],
+  ["latex", "application/x-latex"],
+  ["lbd", "application/vnd.llamagraphics.life-balance.desktop"],
+  ["lbe", "application/vnd.llamagraphics.life-balance.exchange+xml"],
+  ["les", "application/vnd.hhe.lesson-player"],
+  ["less", "text/less"],
+  ["lgr", "application/lgr+xml"],
+  ["lha", "application/octet-stream"],
+  ["link66", "application/vnd.route66.link66+xml"],
+  ["list", "text/plain"],
+  ["list3820", "application/vnd.ibm.modcap"],
+  ["listafp", "application/vnd.ibm.modcap"],
+  ["litcoffee", "text/coffeescript"],
+  ["lnk", "application/x-ms-shortcut"],
+  ["log", "text/plain"],
+  ["lostxml", "application/lost+xml"],
+  ["lrf", "application/octet-stream"],
+  ["lrm", "application/vnd.ms-lrm"],
+  ["ltf", "application/vnd.frogans.ltf"],
+  ["lua", "text/x-lua"],
+  ["luac", "application/x-lua-bytecode"],
+  ["lvp", "audio/vnd.lucent.voice"],
+  ["lwp", "application/vnd.lotus-wordpro"],
+  ["lzh", "application/octet-stream"],
+  ["m1v", "video/mpeg"],
+  ["m2a", "audio/mpeg"],
+  ["m2v", "video/mpeg"],
+  ["m3a", "audio/mpeg"],
+  ["m3u", "text/plain"],
+  ["m3u8", "application/vnd.apple.mpegurl"],
+  ["m4a", "audio/x-m4a"],
+  ["m4p", "application/mp4"],
+  ["m4s", "video/iso.segment"],
+  ["m4u", "application/vnd.mpegurl"],
+  ["m4v", "video/x-m4v"],
+  ["m13", "application/x-msmediaview"],
+  ["m14", "application/x-msmediaview"],
+  ["m21", "application/mp21"],
+  ["ma", "application/mathematica"],
+  ["mads", "application/mads+xml"],
+  ["maei", "application/mmt-aei+xml"],
+  ["mag", "application/vnd.ecowin.chart"],
+  ["maker", "application/vnd.framemaker"],
+  ["man", "text/troff"],
+  ["manifest", "text/cache-manifest"],
+  ["map", "application/json"],
+  ["mar", "application/octet-stream"],
+  ["markdown", "text/markdown"],
+  ["mathml", "application/mathml+xml"],
+  ["mb", "application/mathematica"],
+  ["mbk", "application/vnd.mobius.mbk"],
+  ["mbox", "application/mbox"],
+  ["mc1", "application/vnd.medcalcdata"],
+  ["mcd", "application/vnd.mcd"],
+  ["mcurl", "text/vnd.curl.mcurl"],
+  ["md", "text/markdown"],
+  ["mdb", "application/x-msaccess"],
+  ["mdi", "image/vnd.ms-modi"],
+  ["mdx", "text/mdx"],
+  ["me", "text/troff"],
+  ["mesh", "model/mesh"],
+  ["meta4", "application/metalink4+xml"],
+  ["metalink", "application/metalink+xml"],
+  ["mets", "application/mets+xml"],
+  ["mfm", "application/vnd.mfmp"],
+  ["mft", "application/rpki-manifest"],
+  ["mgp", "application/vnd.osgeo.mapguide.package"],
+  ["mgz", "application/vnd.proteus.magazine"],
+  ["mid", "audio/midi"],
+  ["midi", "audio/midi"],
+  ["mie", "application/x-mie"],
+  ["mif", "application/vnd.mif"],
+  ["mime", "message/rfc822"],
+  ["mj2", "video/mj2"],
+  ["mjp2", "video/mj2"],
+  ["mjs", "application/javascript"],
+  ["mk3d", "video/x-matroska"],
+  ["mka", "audio/x-matroska"],
+  ["mkd", "text/x-markdown"],
+  ["mks", "video/x-matroska"],
+  ["mkv", "video/x-matroska"],
+  ["mlp", "application/vnd.dolby.mlp"],
+  ["mmd", "application/vnd.chipnuts.karaoke-mmd"],
+  ["mmf", "application/vnd.smaf"],
+  ["mml", "text/mathml"],
+  ["mmr", "image/vnd.fujixerox.edmics-mmr"],
+  ["mng", "video/x-mng"],
+  ["mny", "application/x-msmoney"],
+  ["mobi", "application/x-mobipocket-ebook"],
+  ["mods", "application/mods+xml"],
+  ["mov", "video/quicktime"],
+  ["movie", "video/x-sgi-movie"],
+  ["mp2", "audio/mpeg"],
+  ["mp2a", "audio/mpeg"],
+  ["mp3", "audio/mpeg"],
+  ["mp4", "video/mp4"],
+  ["mp4a", "audio/mp4"],
+  ["mp4s", "application/mp4"],
+  ["mp4v", "video/mp4"],
+  ["mp21", "application/mp21"],
+  ["mpc", "application/vnd.mophun.certificate"],
+  ["mpd", "application/dash+xml"],
+  ["mpe", "video/mpeg"],
+  ["mpeg", "video/mpeg"],
+  ["mpg", "video/mpeg"],
+  ["mpg4", "video/mp4"],
+  ["mpga", "audio/mpeg"],
+  ["mpkg", "application/vnd.apple.installer+xml"],
+  ["mpm", "application/vnd.blueice.multipass"],
+  ["mpn", "application/vnd.mophun.application"],
+  ["mpp", "application/vnd.ms-project"],
+  ["mpt", "application/vnd.ms-project"],
+  ["mpy", "application/vnd.ibm.minipay"],
+  ["mqy", "application/vnd.mobius.mqy"],
+  ["mrc", "application/marc"],
+  ["mrcx", "application/marcxml+xml"],
+  ["ms", "text/troff"],
+  ["mscml", "application/mediaservercontrol+xml"],
+  ["mseed", "application/vnd.fdsn.mseed"],
+  ["mseq", "application/vnd.mseq"],
+  ["msf", "application/vnd.epson.msf"],
+  ["msg", "application/vnd.ms-outlook"],
+  ["msh", "model/mesh"],
+  ["msi", "application/x-msdownload"],
+  ["msl", "application/vnd.mobius.msl"],
+  ["msm", "application/octet-stream"],
+  ["msp", "application/octet-stream"],
+  ["msty", "application/vnd.muvee.style"],
+  ["mtl", "model/mtl"],
+  ["mts", "model/vnd.mts"],
+  ["mus", "application/vnd.musician"],
+  ["musd", "application/mmt-usd+xml"],
+  ["musicxml", "application/vnd.recordare.musicxml+xml"],
+  ["mvb", "application/x-msmediaview"],
+  ["mvt", "application/vnd.mapbox-vector-tile"],
+  ["mwf", "application/vnd.mfer"],
+  ["mxf", "application/mxf"],
+  ["mxl", "application/vnd.recordare.musicxml"],
+  ["mxmf", "audio/mobile-xmf"],
+  ["mxml", "application/xv+xml"],
+  ["mxs", "application/vnd.triscape.mxs"],
+  ["mxu", "video/vnd.mpegurl"],
+  ["n-gage", "application/vnd.nokia.n-gage.symbian.install"],
+  ["n3", "text/n3"],
+  ["nb", "application/mathematica"],
+  ["nbp", "application/vnd.wolfram.player"],
+  ["nc", "application/x-netcdf"],
+  ["ncx", "application/x-dtbncx+xml"],
+  ["nfo", "text/x-nfo"],
+  ["ngdat", "application/vnd.nokia.n-gage.data"],
+  ["nitf", "application/vnd.nitf"],
+  ["nlu", "application/vnd.neurolanguage.nlu"],
+  ["nml", "application/vnd.enliven"],
+  ["nnd", "application/vnd.noblenet-directory"],
+  ["nns", "application/vnd.noblenet-sealer"],
+  ["nnw", "application/vnd.noblenet-web"],
+  ["npx", "image/vnd.net-fpx"],
+  ["nq", "application/n-quads"],
+  ["nsc", "application/x-conference"],
+  ["nsf", "application/vnd.lotus-notes"],
+  ["nt", "application/n-triples"],
+  ["ntf", "application/vnd.nitf"],
+  ["numbers", "application/x-iwork-numbers-sffnumbers"],
+  ["nzb", "application/x-nzb"],
+  ["oa2", "application/vnd.fujitsu.oasys2"],
+  ["oa3", "application/vnd.fujitsu.oasys3"],
+  ["oas", "application/vnd.fujitsu.oasys"],
+  ["obd", "application/x-msbinder"],
+  ["obgx", "application/vnd.openblox.game+xml"],
+  ["obj", "model/obj"],
+  ["oda", "application/oda"],
+  ["odb", "application/vnd.oasis.opendocument.database"],
+  ["odc", "application/vnd.oasis.opendocument.chart"],
+  ["odf", "application/vnd.oasis.opendocument.formula"],
+  ["odft", "application/vnd.oasis.opendocument.formula-template"],
+  ["odg", "application/vnd.oasis.opendocument.graphics"],
+  ["odi", "application/vnd.oasis.opendocument.image"],
+  ["odm", "application/vnd.oasis.opendocument.text-master"],
+  ["odp", "application/vnd.oasis.opendocument.presentation"],
+  ["ods", "application/vnd.oasis.opendocument.spreadsheet"],
+  ["odt", "application/vnd.oasis.opendocument.text"],
+  ["oga", "audio/ogg"],
+  ["ogex", "model/vnd.opengex"],
+  ["ogg", "audio/ogg"],
+  ["ogv", "video/ogg"],
+  ["ogx", "application/ogg"],
+  ["omdoc", "application/omdoc+xml"],
+  ["onepkg", "application/onenote"],
+  ["onetmp", "application/onenote"],
+  ["onetoc", "application/onenote"],
+  ["onetoc2", "application/onenote"],
+  ["opf", "application/oebps-package+xml"],
+  ["opml", "text/x-opml"],
+  ["oprc", "application/vnd.palm"],
+  ["opus", "audio/ogg"],
+  ["org", "text/x-org"],
+  ["osf", "application/vnd.yamaha.openscoreformat"],
+  ["osfpvg", "application/vnd.yamaha.openscoreformat.osfpvg+xml"],
+  ["osm", "application/vnd.openstreetmap.data+xml"],
+  ["otc", "application/vnd.oasis.opendocument.chart-template"],
+  ["otf", "font/otf"],
+  ["otg", "application/vnd.oasis.opendocument.graphics-template"],
+  ["oth", "application/vnd.oasis.opendocument.text-web"],
+  ["oti", "application/vnd.oasis.opendocument.image-template"],
+  ["otp", "application/vnd.oasis.opendocument.presentation-template"],
+  ["ots", "application/vnd.oasis.opendocument.spreadsheet-template"],
+  ["ott", "application/vnd.oasis.opendocument.text-template"],
+  ["ova", "application/x-virtualbox-ova"],
+  ["ovf", "application/x-virtualbox-ovf"],
+  ["owl", "application/rdf+xml"],
+  ["oxps", "application/oxps"],
+  ["oxt", "application/vnd.openofficeorg.extension"],
+  ["p", "text/x-pascal"],
+  ["p7a", "application/x-pkcs7-signature"],
+  ["p7b", "application/x-pkcs7-certificates"],
+  ["p7c", "application/pkcs7-mime"],
+  ["p7m", "application/pkcs7-mime"],
+  ["p7r", "application/x-pkcs7-certreqresp"],
+  ["p7s", "application/pkcs7-signature"],
+  ["p8", "application/pkcs8"],
+  ["p10", "application/x-pkcs10"],
+  ["p12", "application/x-pkcs12"],
+  ["pac", "application/x-ns-proxy-autoconfig"],
+  ["pages", "application/x-iwork-pages-sffpages"],
+  ["pas", "text/x-pascal"],
+  ["paw", "application/vnd.pawaafile"],
+  ["pbd", "application/vnd.powerbuilder6"],
+  ["pbm", "image/x-portable-bitmap"],
+  ["pcap", "application/vnd.tcpdump.pcap"],
+  ["pcf", "application/x-font-pcf"],
+  ["pcl", "application/vnd.hp-pcl"],
+  ["pclxl", "application/vnd.hp-pclxl"],
+  ["pct", "image/x-pict"],
+  ["pcurl", "application/vnd.curl.pcurl"],
+  ["pcx", "image/x-pcx"],
+  ["pdb", "application/x-pilot"],
+  ["pde", "text/x-processing"],
+  ["pdf", "application/pdf"],
+  ["pem", "application/x-x509-user-cert"],
+  ["pfa", "application/x-font-type1"],
+  ["pfb", "application/x-font-type1"],
+  ["pfm", "application/x-font-type1"],
+  ["pfr", "application/font-tdpfr"],
+  ["pfx", "application/x-pkcs12"],
+  ["pgm", "image/x-portable-graymap"],
+  ["pgn", "application/x-chess-pgn"],
+  ["pgp", "application/pgp"],
+  ["php", "application/x-httpd-php"],
+  ["php3", "application/x-httpd-php"],
+  ["php4", "application/x-httpd-php"],
+  ["phps", "application/x-httpd-php-source"],
+  ["phtml", "application/x-httpd-php"],
+  ["pic", "image/x-pict"],
+  ["pkg", "application/octet-stream"],
+  ["pki", "application/pkixcmp"],
+  ["pkipath", "application/pkix-pkipath"],
+  ["pkpass", "application/vnd.apple.pkpass"],
+  ["pl", "application/x-perl"],
+  ["plb", "application/vnd.3gpp.pic-bw-large"],
+  ["plc", "application/vnd.mobius.plc"],
+  ["plf", "application/vnd.pocketlearn"],
+  ["pls", "application/pls+xml"],
+  ["pm", "application/x-perl"],
+  ["pml", "application/vnd.ctc-posml"],
+  ["png", "image/png"],
+  ["pnm", "image/x-portable-anymap"],
+  ["portpkg", "application/vnd.macports.portpkg"],
+  ["pot", "application/vnd.ms-powerpoint"],
+  ["potm", "application/vnd.ms-powerpoint.presentation.macroEnabled.12"],
+  ["potx", "application/vnd.openxmlformats-officedocument.presentationml.template"],
+  ["ppa", "application/vnd.ms-powerpoint"],
+  ["ppam", "application/vnd.ms-powerpoint.addin.macroEnabled.12"],
+  ["ppd", "application/vnd.cups-ppd"],
+  ["ppm", "image/x-portable-pixmap"],
+  ["pps", "application/vnd.ms-powerpoint"],
+  ["ppsm", "application/vnd.ms-powerpoint.slideshow.macroEnabled.12"],
+  ["ppsx", "application/vnd.openxmlformats-officedocument.presentationml.slideshow"],
+  ["ppt", "application/powerpoint"],
+  ["pptm", "application/vnd.ms-powerpoint.presentation.macroEnabled.12"],
+  ["pptx", "application/vnd.openxmlformats-officedocument.presentationml.presentation"],
+  ["pqa", "application/vnd.palm"],
+  ["prc", "application/x-pilot"],
+  ["pre", "application/vnd.lotus-freelance"],
+  ["prf", "application/pics-rules"],
+  ["provx", "application/provenance+xml"],
+  ["ps", "application/postscript"],
+  ["psb", "application/vnd.3gpp.pic-bw-small"],
+  ["psd", "application/x-photoshop"],
+  ["psf", "application/x-font-linux-psf"],
+  ["pskcxml", "application/pskc+xml"],
+  ["pti", "image/prs.pti"],
+  ["ptid", "application/vnd.pvi.ptid1"],
+  ["pub", "application/x-mspublisher"],
+  ["pvb", "application/vnd.3gpp.pic-bw-var"],
+  ["pwn", "application/vnd.3m.post-it-notes"],
+  ["pya", "audio/vnd.ms-playready.media.pya"],
+  ["pyv", "video/vnd.ms-playready.media.pyv"],
+  ["qam", "application/vnd.epson.quickanime"],
+  ["qbo", "application/vnd.intu.qbo"],
+  ["qfx", "application/vnd.intu.qfx"],
+  ["qps", "application/vnd.publishare-delta-tree"],
+  ["qt", "video/quicktime"],
+  ["qwd", "application/vnd.quark.quarkxpress"],
+  ["qwt", "application/vnd.quark.quarkxpress"],
+  ["qxb", "application/vnd.quark.quarkxpress"],
+  ["qxd", "application/vnd.quark.quarkxpress"],
+  ["qxl", "application/vnd.quark.quarkxpress"],
+  ["qxt", "application/vnd.quark.quarkxpress"],
+  ["ra", "audio/x-realaudio"],
+  ["ram", "audio/x-pn-realaudio"],
+  ["raml", "application/raml+yaml"],
+  ["rapd", "application/route-apd+xml"],
+  ["rar", "application/x-rar"],
+  ["ras", "image/x-cmu-raster"],
+  ["rcprofile", "application/vnd.ipunplugged.rcprofile"],
+  ["rdf", "application/rdf+xml"],
+  ["rdz", "application/vnd.data-vision.rdz"],
+  ["relo", "application/p2p-overlay+xml"],
+  ["rep", "application/vnd.businessobjects"],
+  ["res", "application/x-dtbresource+xml"],
+  ["rgb", "image/x-rgb"],
+  ["rif", "application/reginfo+xml"],
+  ["rip", "audio/vnd.rip"],
+  ["ris", "application/x-research-info-systems"],
+  ["rl", "application/resource-lists+xml"],
+  ["rlc", "image/vnd.fujixerox.edmics-rlc"],
+  ["rld", "application/resource-lists-diff+xml"],
+  ["rm", "audio/x-pn-realaudio"],
+  ["rmi", "audio/midi"],
+  ["rmp", "audio/x-pn-realaudio-plugin"],
+  ["rms", "application/vnd.jcp.javame.midlet-rms"],
+  ["rmvb", "application/vnd.rn-realmedia-vbr"],
+  ["rnc", "application/relax-ng-compact-syntax"],
+  ["rng", "application/xml"],
+  ["roa", "application/rpki-roa"],
+  ["roff", "text/troff"],
+  ["rp9", "application/vnd.cloanto.rp9"],
+  ["rpm", "audio/x-pn-realaudio-plugin"],
+  ["rpss", "application/vnd.nokia.radio-presets"],
+  ["rpst", "application/vnd.nokia.radio-preset"],
+  ["rq", "application/sparql-query"],
+  ["rs", "application/rls-services+xml"],
+  ["rsa", "application/x-pkcs7"],
+  ["rsat", "application/atsc-rsat+xml"],
+  ["rsd", "application/rsd+xml"],
+  ["rsheet", "application/urc-ressheet+xml"],
+  ["rss", "application/rss+xml"],
+  ["rtf", "text/rtf"],
+  ["rtx", "text/richtext"],
+  ["run", "application/x-makeself"],
+  ["rusd", "application/route-usd+xml"],
+  ["rv", "video/vnd.rn-realvideo"],
+  ["s", "text/x-asm"],
+  ["s3m", "audio/s3m"],
+  ["saf", "application/vnd.yamaha.smaf-audio"],
+  ["sass", "text/x-sass"],
+  ["sbml", "application/sbml+xml"],
+  ["sc", "application/vnd.ibm.secure-container"],
+  ["scd", "application/x-msschedule"],
+  ["scm", "application/vnd.lotus-screencam"],
+  ["scq", "application/scvp-cv-request"],
+  ["scs", "application/scvp-cv-response"],
+  ["scss", "text/x-scss"],
+  ["scurl", "text/vnd.curl.scurl"],
+  ["sda", "application/vnd.stardivision.draw"],
+  ["sdc", "application/vnd.stardivision.calc"],
+  ["sdd", "application/vnd.stardivision.impress"],
+  ["sdkd", "application/vnd.solent.sdkm+xml"],
+  ["sdkm", "application/vnd.solent.sdkm+xml"],
+  ["sdp", "application/sdp"],
+  ["sdw", "application/vnd.stardivision.writer"],
+  ["sea", "application/octet-stream"],
+  ["see", "application/vnd.seemail"],
+  ["seed", "application/vnd.fdsn.seed"],
+  ["sema", "application/vnd.sema"],
+  ["semd", "application/vnd.semd"],
+  ["semf", "application/vnd.semf"],
+  ["senmlx", "application/senml+xml"],
+  ["sensmlx", "application/sensml+xml"],
+  ["ser", "application/java-serialized-object"],
+  ["setpay", "application/set-payment-initiation"],
+  ["setreg", "application/set-registration-initiation"],
+  ["sfd-hdstx", "application/vnd.hydrostatix.sof-data"],
+  ["sfs", "application/vnd.spotfire.sfs"],
+  ["sfv", "text/x-sfv"],
+  ["sgi", "image/sgi"],
+  ["sgl", "application/vnd.stardivision.writer-global"],
+  ["sgm", "text/sgml"],
+  ["sgml", "text/sgml"],
+  ["sh", "application/x-sh"],
+  ["shar", "application/x-shar"],
+  ["shex", "text/shex"],
+  ["shf", "application/shf+xml"],
+  ["shtml", "text/html"],
+  ["sid", "image/x-mrsid-image"],
+  ["sieve", "application/sieve"],
+  ["sig", "application/pgp-signature"],
+  ["sil", "audio/silk"],
+  ["silo", "model/mesh"],
+  ["sis", "application/vnd.symbian.install"],
+  ["sisx", "application/vnd.symbian.install"],
+  ["sit", "application/x-stuffit"],
+  ["sitx", "application/x-stuffitx"],
+  ["siv", "application/sieve"],
+  ["skd", "application/vnd.koan"],
+  ["skm", "application/vnd.koan"],
+  ["skp", "application/vnd.koan"],
+  ["skt", "application/vnd.koan"],
+  ["sldm", "application/vnd.ms-powerpoint.slide.macroenabled.12"],
+  ["sldx", "application/vnd.openxmlformats-officedocument.presentationml.slide"],
+  ["slim", "text/slim"],
+  ["slm", "text/slim"],
+  ["sls", "application/route-s-tsid+xml"],
+  ["slt", "application/vnd.epson.salt"],
+  ["sm", "application/vnd.stepmania.stepchart"],
+  ["smf", "application/vnd.stardivision.math"],
+  ["smi", "application/smil"],
+  ["smil", "application/smil"],
+  ["smv", "video/x-smv"],
+  ["smzip", "application/vnd.stepmania.package"],
+  ["snd", "audio/basic"],
+  ["snf", "application/x-font-snf"],
+  ["so", "application/octet-stream"],
+  ["spc", "application/x-pkcs7-certificates"],
+  ["spdx", "text/spdx"],
+  ["spf", "application/vnd.yamaha.smaf-phrase"],
+  ["spl", "application/x-futuresplash"],
+  ["spot", "text/vnd.in3d.spot"],
+  ["spp", "application/scvp-vp-response"],
+  ["spq", "application/scvp-vp-request"],
+  ["spx", "audio/ogg"],
+  ["sql", "application/x-sql"],
+  ["src", "application/x-wais-source"],
+  ["srt", "application/x-subrip"],
+  ["sru", "application/sru+xml"],
+  ["srx", "application/sparql-results+xml"],
+  ["ssdl", "application/ssdl+xml"],
+  ["sse", "application/vnd.kodak-descriptor"],
+  ["ssf", "application/vnd.epson.ssf"],
+  ["ssml", "application/ssml+xml"],
+  ["sst", "application/octet-stream"],
+  ["st", "application/vnd.sailingtracker.track"],
+  ["stc", "application/vnd.sun.xml.calc.template"],
+  ["std", "application/vnd.sun.xml.draw.template"],
+  ["stf", "application/vnd.wt.stf"],
+  ["sti", "application/vnd.sun.xml.impress.template"],
+  ["stk", "application/hyperstudio"],
+  ["stl", "model/stl"],
+  ["stpx", "model/step+xml"],
+  ["stpxz", "model/step-xml+zip"],
+  ["stpz", "model/step+zip"],
+  ["str", "application/vnd.pg.format"],
+  ["stw", "application/vnd.sun.xml.writer.template"],
+  ["styl", "text/stylus"],
+  ["stylus", "text/stylus"],
+  ["sub", "text/vnd.dvb.subtitle"],
+  ["sus", "application/vnd.sus-calendar"],
+  ["susp", "application/vnd.sus-calendar"],
+  ["sv4cpio", "application/x-sv4cpio"],
+  ["sv4crc", "application/x-sv4crc"],
+  ["svc", "application/vnd.dvb.service"],
+  ["svd", "application/vnd.svd"],
+  ["svg", "image/svg+xml"],
+  ["svgz", "image/svg+xml"],
+  ["swa", "application/x-director"],
+  ["swf", "application/x-shockwave-flash"],
+  ["swi", "application/vnd.aristanetworks.swi"],
+  ["swidtag", "application/swid+xml"],
+  ["sxc", "application/vnd.sun.xml.calc"],
+  ["sxd", "application/vnd.sun.xml.draw"],
+  ["sxg", "application/vnd.sun.xml.writer.global"],
+  ["sxi", "application/vnd.sun.xml.impress"],
+  ["sxm", "application/vnd.sun.xml.math"],
+  ["sxw", "application/vnd.sun.xml.writer"],
+  ["t", "text/troff"],
+  ["t3", "application/x-t3vm-image"],
+  ["t38", "image/t38"],
+  ["taglet", "application/vnd.mynfc"],
+  ["tao", "application/vnd.tao.intent-module-archive"],
+  ["tap", "image/vnd.tencent.tap"],
+  ["tar", "application/x-tar"],
+  ["tcap", "application/vnd.3gpp2.tcap"],
+  ["tcl", "application/x-tcl"],
+  ["td", "application/urc-targetdesc+xml"],
+  ["teacher", "application/vnd.smart.teacher"],
+  ["tei", "application/tei+xml"],
+  ["teicorpus", "application/tei+xml"],
+  ["tex", "application/x-tex"],
+  ["texi", "application/x-texinfo"],
+  ["texinfo", "application/x-texinfo"],
+  ["text", "text/plain"],
+  ["tfi", "application/thraud+xml"],
+  ["tfm", "application/x-tex-tfm"],
+  ["tfx", "image/tiff-fx"],
+  ["tga", "image/x-tga"],
+  ["tgz", "application/x-tar"],
+  ["thmx", "application/vnd.ms-officetheme"],
+  ["tif", "image/tiff"],
+  ["tiff", "image/tiff"],
+  ["tk", "application/x-tcl"],
+  ["tmo", "application/vnd.tmobile-livetv"],
+  ["toml", "application/toml"],
+  ["torrent", "application/x-bittorrent"],
+  ["tpl", "application/vnd.groove-tool-template"],
+  ["tpt", "application/vnd.trid.tpt"],
+  ["tr", "text/troff"],
+  ["tra", "application/vnd.trueapp"],
+  ["trig", "application/trig"],
+  ["trm", "application/x-msterminal"],
+  ["ts", "video/mp2t"],
+  ["tsd", "application/timestamped-data"],
+  ["tsv", "text/tab-separated-values"],
+  ["ttc", "font/collection"],
+  ["ttf", "font/ttf"],
+  ["ttl", "text/turtle"],
+  ["ttml", "application/ttml+xml"],
+  ["twd", "application/vnd.simtech-mindmapper"],
+  ["twds", "application/vnd.simtech-mindmapper"],
+  ["txd", "application/vnd.genomatix.tuxedo"],
+  ["txf", "application/vnd.mobius.txf"],
+  ["txt", "text/plain"],
+  ["u8dsn", "message/global-delivery-status"],
+  ["u8hdr", "message/global-headers"],
+  ["u8mdn", "message/global-disposition-notification"],
+  ["u8msg", "message/global"],
+  ["u32", "application/x-authorware-bin"],
+  ["ubj", "application/ubjson"],
+  ["udeb", "application/x-debian-package"],
+  ["ufd", "application/vnd.ufdl"],
+  ["ufdl", "application/vnd.ufdl"],
+  ["ulx", "application/x-glulx"],
+  ["umj", "application/vnd.umajin"],
+  ["unityweb", "application/vnd.unity"],
+  ["uoml", "application/vnd.uoml+xml"],
+  ["uri", "text/uri-list"],
+  ["uris", "text/uri-list"],
+  ["urls", "text/uri-list"],
+  ["usdz", "model/vnd.usdz+zip"],
+  ["ustar", "application/x-ustar"],
+  ["utz", "application/vnd.uiq.theme"],
+  ["uu", "text/x-uuencode"],
+  ["uva", "audio/vnd.dece.audio"],
+  ["uvd", "application/vnd.dece.data"],
+  ["uvf", "application/vnd.dece.data"],
+  ["uvg", "image/vnd.dece.graphic"],
+  ["uvh", "video/vnd.dece.hd"],
+  ["uvi", "image/vnd.dece.graphic"],
+  ["uvm", "video/vnd.dece.mobile"],
+  ["uvp", "video/vnd.dece.pd"],
+  ["uvs", "video/vnd.dece.sd"],
+  ["uvt", "application/vnd.dece.ttml+xml"],
+  ["uvu", "video/vnd.uvvu.mp4"],
+  ["uvv", "video/vnd.dece.video"],
+  ["uvva", "audio/vnd.dece.audio"],
+  ["uvvd", "application/vnd.dece.data"],
+  ["uvvf", "application/vnd.dece.data"],
+  ["uvvg", "image/vnd.dece.graphic"],
+  ["uvvh", "video/vnd.dece.hd"],
+  ["uvvi", "image/vnd.dece.graphic"],
+  ["uvvm", "video/vnd.dece.mobile"],
+  ["uvvp", "video/vnd.dece.pd"],
+  ["uvvs", "video/vnd.dece.sd"],
+  ["uvvt", "application/vnd.dece.ttml+xml"],
+  ["uvvu", "video/vnd.uvvu.mp4"],
+  ["uvvv", "video/vnd.dece.video"],
+  ["uvvx", "application/vnd.dece.unspecified"],
+  ["uvvz", "application/vnd.dece.zip"],
+  ["uvx", "application/vnd.dece.unspecified"],
+  ["uvz", "application/vnd.dece.zip"],
+  ["vbox", "application/x-virtualbox-vbox"],
+  ["vbox-extpack", "application/x-virtualbox-vbox-extpack"],
+  ["vcard", "text/vcard"],
+  ["vcd", "application/x-cdlink"],
+  ["vcf", "text/x-vcard"],
+  ["vcg", "application/vnd.groove-vcard"],
+  ["vcs", "text/x-vcalendar"],
+  ["vcx", "application/vnd.vcx"],
+  ["vdi", "application/x-virtualbox-vdi"],
+  ["vds", "model/vnd.sap.vds"],
+  ["vhd", "application/x-virtualbox-vhd"],
+  ["vis", "application/vnd.visionary"],
+  ["viv", "video/vnd.vivo"],
+  ["vlc", "application/videolan"],
+  ["vmdk", "application/x-virtualbox-vmdk"],
+  ["vob", "video/x-ms-vob"],
+  ["vor", "application/vnd.stardivision.writer"],
+  ["vox", "application/x-authorware-bin"],
+  ["vrml", "model/vrml"],
+  ["vsd", "application/vnd.visio"],
+  ["vsf", "application/vnd.vsf"],
+  ["vss", "application/vnd.visio"],
+  ["vst", "application/vnd.visio"],
+  ["vsw", "application/vnd.visio"],
+  ["vtf", "image/vnd.valve.source.texture"],
+  ["vtt", "text/vtt"],
+  ["vtu", "model/vnd.vtu"],
+  ["vxml", "application/voicexml+xml"],
+  ["w3d", "application/x-director"],
+  ["wad", "application/x-doom"],
+  ["wadl", "application/vnd.sun.wadl+xml"],
+  ["war", "application/java-archive"],
+  ["wasm", "application/wasm"],
+  ["wav", "audio/x-wav"],
+  ["wax", "audio/x-ms-wax"],
+  ["wbmp", "image/vnd.wap.wbmp"],
+  ["wbs", "application/vnd.criticaltools.wbs+xml"],
+  ["wbxml", "application/wbxml"],
+  ["wcm", "application/vnd.ms-works"],
+  ["wdb", "application/vnd.ms-works"],
+  ["wdp", "image/vnd.ms-photo"],
+  ["weba", "audio/webm"],
+  ["webapp", "application/x-web-app-manifest+json"],
+  ["webm", "video/webm"],
+  ["webmanifest", "application/manifest+json"],
+  ["webp", "image/webp"],
+  ["wg", "application/vnd.pmi.widget"],
+  ["wgt", "application/widget"],
+  ["wks", "application/vnd.ms-works"],
+  ["wm", "video/x-ms-wm"],
+  ["wma", "audio/x-ms-wma"],
+  ["wmd", "application/x-ms-wmd"],
+  ["wmf", "image/wmf"],
+  ["wml", "text/vnd.wap.wml"],
+  ["wmlc", "application/wmlc"],
+  ["wmls", "text/vnd.wap.wmlscript"],
+  ["wmlsc", "application/vnd.wap.wmlscriptc"],
+  ["wmv", "video/x-ms-wmv"],
+  ["wmx", "video/x-ms-wmx"],
+  ["wmz", "application/x-msmetafile"],
+  ["woff", "font/woff"],
+  ["woff2", "font/woff2"],
+  ["word", "application/msword"],
+  ["wpd", "application/vnd.wordperfect"],
+  ["wpl", "application/vnd.ms-wpl"],
+  ["wps", "application/vnd.ms-works"],
+  ["wqd", "application/vnd.wqd"],
+  ["wri", "application/x-mswrite"],
+  ["wrl", "model/vrml"],
+  ["wsc", "message/vnd.wfa.wsc"],
+  ["wsdl", "application/wsdl+xml"],
+  ["wspolicy", "application/wspolicy+xml"],
+  ["wtb", "application/vnd.webturbo"],
+  ["wvx", "video/x-ms-wvx"],
+  ["x3d", "model/x3d+xml"],
+  ["x3db", "model/x3d+fastinfoset"],
+  ["x3dbz", "model/x3d+binary"],
+  ["x3dv", "model/x3d-vrml"],
+  ["x3dvz", "model/x3d+vrml"],
+  ["x3dz", "model/x3d+xml"],
+  ["x32", "application/x-authorware-bin"],
+  ["x_b", "model/vnd.parasolid.transmit.binary"],
+  ["x_t", "model/vnd.parasolid.transmit.text"],
+  ["xaml", "application/xaml+xml"],
+  ["xap", "application/x-silverlight-app"],
+  ["xar", "application/vnd.xara"],
+  ["xav", "application/xcap-att+xml"],
+  ["xbap", "application/x-ms-xbap"],
+  ["xbd", "application/vnd.fujixerox.docuworks.binder"],
+  ["xbm", "image/x-xbitmap"],
+  ["xca", "application/xcap-caps+xml"],
+  ["xcs", "application/calendar+xml"],
+  ["xdf", "application/xcap-diff+xml"],
+  ["xdm", "application/vnd.syncml.dm+xml"],
+  ["xdp", "application/vnd.adobe.xdp+xml"],
+  ["xdssc", "application/dssc+xml"],
+  ["xdw", "application/vnd.fujixerox.docuworks"],
+  ["xel", "application/xcap-el+xml"],
+  ["xenc", "application/xenc+xml"],
+  ["xer", "application/patch-ops-error+xml"],
+  ["xfdf", "application/vnd.adobe.xfdf"],
+  ["xfdl", "application/vnd.xfdl"],
+  ["xht", "application/xhtml+xml"],
+  ["xhtml", "application/xhtml+xml"],
+  ["xhvml", "application/xv+xml"],
+  ["xif", "image/vnd.xiff"],
+  ["xl", "application/excel"],
+  ["xla", "application/vnd.ms-excel"],
+  ["xlam", "application/vnd.ms-excel.addin.macroEnabled.12"],
+  ["xlc", "application/vnd.ms-excel"],
+  ["xlf", "application/xliff+xml"],
+  ["xlm", "application/vnd.ms-excel"],
+  ["xls", "application/vnd.ms-excel"],
+  ["xlsb", "application/vnd.ms-excel.sheet.binary.macroEnabled.12"],
+  ["xlsm", "application/vnd.ms-excel.sheet.macroEnabled.12"],
+  ["xlsx", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"],
+  ["xlt", "application/vnd.ms-excel"],
+  ["xltm", "application/vnd.ms-excel.template.macroEnabled.12"],
+  ["xltx", "application/vnd.openxmlformats-officedocument.spreadsheetml.template"],
+  ["xlw", "application/vnd.ms-excel"],
+  ["xm", "audio/xm"],
+  ["xml", "application/xml"],
+  ["xns", "application/xcap-ns+xml"],
+  ["xo", "application/vnd.olpc-sugar"],
+  ["xop", "application/xop+xml"],
+  ["xpi", "application/x-xpinstall"],
+  ["xpl", "application/xproc+xml"],
+  ["xpm", "image/x-xpixmap"],
+  ["xpr", "application/vnd.is-xpr"],
+  ["xps", "application/vnd.ms-xpsdocument"],
+  ["xpw", "application/vnd.intercon.formnet"],
+  ["xpx", "application/vnd.intercon.formnet"],
+  ["xsd", "application/xml"],
+  ["xsl", "application/xml"],
+  ["xslt", "application/xslt+xml"],
+  ["xsm", "application/vnd.syncml+xml"],
+  ["xspf", "application/xspf+xml"],
+  ["xul", "application/vnd.mozilla.xul+xml"],
+  ["xvm", "application/xv+xml"],
+  ["xvml", "application/xv+xml"],
+  ["xwd", "image/x-xwindowdump"],
+  ["xyz", "chemical/x-xyz"],
+  ["xz", "application/x-xz"],
+  ["yaml", "text/yaml"],
+  ["yang", "application/yang"],
+  ["yin", "application/yin+xml"],
+  ["yml", "text/yaml"],
+  ["ymp", "text/x-suse-ymp"],
+  ["z", "application/x-compress"],
+  ["z1", "application/x-zmachine"],
+  ["z2", "application/x-zmachine"],
+  ["z3", "application/x-zmachine"],
+  ["z4", "application/x-zmachine"],
+  ["z5", "application/x-zmachine"],
+  ["z6", "application/x-zmachine"],
+  ["z7", "application/x-zmachine"],
+  ["z8", "application/x-zmachine"],
+  ["zaz", "application/vnd.zzazz.deck+xml"],
+  ["zip", "application/zip"],
+  ["zir", "application/vnd.zul"],
+  ["zirz", "application/vnd.zul"],
+  ["zmm", "application/vnd.handheld-entertainment+xml"],
+  ["zsh", "text/x-scriptzsh"]
+]);
+function toFileWithPath(file, path, h) {
+  const f = withMimeType(file);
+  const { webkitRelativePath } = file;
+  const p = typeof path === "string" ? path : typeof webkitRelativePath === "string" && webkitRelativePath.length > 0 ? webkitRelativePath : `./${file.name}`;
+  if (typeof f.path !== "string") {
+    setObjProp(f, "path", p);
+  }
+  if (h !== undefined) {
+    Object.defineProperty(f, "handle", {
+      value: h,
+      writable: false,
+      configurable: false,
+      enumerable: true
+    });
+  }
+  setObjProp(f, "relativePath", p);
+  return f;
+}
+function withMimeType(file) {
+  const { name } = file;
+  const hasExtension = name && name.lastIndexOf(".") !== -1;
+  if (hasExtension && !file.type) {
+    const ext = name.split(".").pop().toLowerCase();
+    const type = COMMON_MIME_TYPES.get(ext);
+    if (type) {
+      Object.defineProperty(file, "type", {
+        value: type,
+        writable: false,
+        configurable: false,
+        enumerable: true
+      });
+    }
+  }
+  return file;
+}
+function setObjProp(f, key, value) {
+  Object.defineProperty(f, key, {
+    value,
+    writable: false,
+    configurable: false,
+    enumerable: true
+  });
+}
+
+// node_modules/file-selector/dist/es2015/file-selector.js
+var FILES_TO_IGNORE = [
+  ".DS_Store",
+  "Thumbs.db"
+];
+function fromEvent(evt) {
+  return __awaiter(this, undefined, undefined, function* () {
+    if (isObject(evt) && isDataTransfer(evt.dataTransfer)) {
+      return getDataTransferFiles(evt.dataTransfer, evt.type);
+    } else if (isChangeEvt(evt)) {
+      return getInputFiles(evt);
+    } else if (Array.isArray(evt) && evt.every((item) => ("getFile" in item) && typeof item.getFile === "function")) {
+      return getFsHandleFiles(evt);
+    }
+    return [];
+  });
+}
+function isDataTransfer(value) {
+  return isObject(value);
+}
+function isChangeEvt(value) {
+  return isObject(value) && isObject(value.target);
+}
+function isObject(v) {
+  return typeof v === "object" && v !== null;
+}
+function getInputFiles(evt) {
+  return fromList(evt.target.files).map((file) => toFileWithPath(file));
+}
+function getFsHandleFiles(handles) {
+  return __awaiter(this, undefined, undefined, function* () {
+    const files = yield Promise.all(handles.map((h) => h.getFile()));
+    return files.map((file) => toFileWithPath(file));
+  });
+}
+function getDataTransferFiles(dt, type) {
+  return __awaiter(this, undefined, undefined, function* () {
+    if (dt.items) {
+      const items = fromList(dt.items).filter((item) => item.kind === "file");
+      if (type !== "drop") {
+        return items;
+      }
+      const files = yield Promise.all(items.map(toFilePromises));
+      return noIgnoredFiles(flatten(files));
+    }
+    return noIgnoredFiles(fromList(dt.files).map((file) => toFileWithPath(file)));
+  });
+}
+function noIgnoredFiles(files) {
+  return files.filter((file) => FILES_TO_IGNORE.indexOf(file.name) === -1);
+}
+function fromList(items) {
+  if (items === null) {
+    return [];
+  }
+  const files = [];
+  for (let i = 0;i < items.length; i++) {
+    const file = items[i];
+    files.push(file);
+  }
+  return files;
+}
+function toFilePromises(item) {
+  if (typeof item.webkitGetAsEntry !== "function") {
+    return fromDataTransferItem(item);
+  }
+  const entry = item.webkitGetAsEntry();
+  if (entry && entry.isDirectory) {
+    return fromDirEntry(entry);
+  }
+  return fromDataTransferItem(item, entry);
+}
+function flatten(items) {
+  return items.reduce((acc, files) => [
+    ...acc,
+    ...Array.isArray(files) ? flatten(files) : [files]
+  ], []);
+}
+function fromDataTransferItem(item, entry) {
+  return __awaiter(this, undefined, undefined, function* () {
+    var _a;
+    if (globalThis.isSecureContext && typeof item.getAsFileSystemHandle === "function") {
+      const h = yield item.getAsFileSystemHandle();
+      if (h === null) {
+        throw new Error(`${item} is not a File`);
+      }
+      if (h !== undefined) {
+        const file2 = yield h.getFile();
+        file2.handle = h;
+        return toFileWithPath(file2);
+      }
+    }
+    const file = item.getAsFile();
+    if (!file) {
+      throw new Error(`${item} is not a File`);
+    }
+    const fwp = toFileWithPath(file, (_a = entry === null || entry === undefined ? undefined : entry.fullPath) !== null && _a !== undefined ? _a : undefined);
+    return fwp;
+  });
+}
+function fromEntry(entry) {
+  return __awaiter(this, undefined, undefined, function* () {
+    return entry.isDirectory ? fromDirEntry(entry) : fromFileEntry(entry);
+  });
+}
+function fromDirEntry(entry) {
+  const reader = entry.createReader();
+  return new Promise((resolve, reject) => {
+    const entries = [];
+    function readEntries() {
+      reader.readEntries((batch) => __awaiter(this, undefined, undefined, function* () {
+        if (!batch.length) {
+          try {
+            const files = yield Promise.all(entries);
+            resolve(files);
+          } catch (err) {
+            reject(err);
+          }
+        } else {
+          const items = Promise.all(batch.map(fromEntry));
+          entries.push(items);
+          readEntries();
+        }
+      }), (err) => {
+        reject(err);
+      });
+    }
+    readEntries();
+  });
+}
+function fromFileEntry(entry) {
+  return __awaiter(this, undefined, undefined, function* () {
+    return new Promise((resolve, reject) => {
+      entry.file((file) => {
+        const fwp = toFileWithPath(file, entry.fullPath);
+        resolve(fwp);
+      }, (err) => {
+        reject(err);
+      });
+    });
+  });
+}
+// node_modules/react-dropzone/dist/es/utils/index.js
+var import_attr_accept = __toESM(require_es(), 1);
+function _toConsumableArray(arr) {
+  return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread();
+}
+function _nonIterableSpread() {
+  throw new TypeError(`Invalid attempt to spread non-iterable instance.
+In order to be iterable, non-array objects must have a [Symbol.iterator]() method.`);
+}
+function _iterableToArray(iter) {
+  if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null)
+    return Array.from(iter);
+}
+function _arrayWithoutHoles(arr) {
+  if (Array.isArray(arr))
+    return _arrayLikeToArray(arr);
+}
+function ownKeys(object, enumerableOnly) {
+  var keys = Object.keys(object);
+  if (Object.getOwnPropertySymbols) {
+    var symbols = Object.getOwnPropertySymbols(object);
+    enumerableOnly && (symbols = symbols.filter(function(sym) {
+      return Object.getOwnPropertyDescriptor(object, sym).enumerable;
+    })), keys.push.apply(keys, symbols);
+  }
+  return keys;
+}
+function _objectSpread(target) {
+  for (var i = 1;i < arguments.length; i++) {
+    var source = arguments[i] != null ? arguments[i] : {};
+    i % 2 ? ownKeys(Object(source), true).forEach(function(key) {
+      _defineProperty(target, key, source[key]);
+    }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function(key) {
+      Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));
+    });
+  }
+  return target;
+}
+function _defineProperty(obj, key, value) {
+  if (key in obj) {
+    Object.defineProperty(obj, key, { value, enumerable: true, configurable: true, writable: true });
+  } else {
+    obj[key] = value;
+  }
+  return obj;
+}
+function _slicedToArray(arr, i) {
+  return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest();
+}
+function _nonIterableRest() {
+  throw new TypeError(`Invalid attempt to destructure non-iterable instance.
+In order to be iterable, non-array objects must have a [Symbol.iterator]() method.`);
+}
+function _unsupportedIterableToArray(o, minLen) {
+  if (!o)
+    return;
+  if (typeof o === "string")
+    return _arrayLikeToArray(o, minLen);
+  var n = Object.prototype.toString.call(o).slice(8, -1);
+  if (n === "Object" && o.constructor)
+    n = o.constructor.name;
+  if (n === "Map" || n === "Set")
+    return Array.from(o);
+  if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n))
+    return _arrayLikeToArray(o, minLen);
+}
+function _arrayLikeToArray(arr, len) {
+  if (len == null || len > arr.length)
+    len = arr.length;
+  for (var i = 0, arr2 = new Array(len);i < len; i++) {
+    arr2[i] = arr[i];
+  }
+  return arr2;
+}
+function _iterableToArrayLimit(arr, i) {
+  var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"];
+  if (_i == null)
+    return;
+  var _arr = [];
+  var _n = true;
+  var _d = false;
+  var _s, _e;
+  try {
+    for (_i = _i.call(arr);!(_n = (_s = _i.next()).done); _n = true) {
+      _arr.push(_s.value);
+      if (i && _arr.length === i)
+        break;
+    }
+  } catch (err) {
+    _d = true;
+    _e = err;
+  } finally {
+    try {
+      if (!_n && _i["return"] != null)
+        _i["return"]();
+    } finally {
+      if (_d)
+        throw _e;
+    }
+  }
+  return _arr;
+}
+function _arrayWithHoles(arr) {
+  if (Array.isArray(arr))
+    return arr;
+}
+var accepts = typeof import_attr_accept.default === "function" ? import_attr_accept.default : import_attr_accept.default.default;
+var FILE_INVALID_TYPE = "file-invalid-type";
+var FILE_TOO_LARGE = "file-too-large";
+var FILE_TOO_SMALL = "file-too-small";
+var TOO_MANY_FILES = "too-many-files";
+var getInvalidTypeRejectionErr = function getInvalidTypeRejectionErr2() {
+  var accept = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "";
+  var acceptArr = accept.split(",");
+  var msg = acceptArr.length > 1 ? "one of ".concat(acceptArr.join(", ")) : acceptArr[0];
+  return {
+    code: FILE_INVALID_TYPE,
+    message: "File type must be ".concat(msg)
+  };
+};
+var getTooLargeRejectionErr = function getTooLargeRejectionErr2(maxSize) {
+  return {
+    code: FILE_TOO_LARGE,
+    message: "File is larger than ".concat(maxSize, " ").concat(maxSize === 1 ? "byte" : "bytes")
+  };
+};
+var getTooSmallRejectionErr = function getTooSmallRejectionErr2(minSize) {
+  return {
+    code: FILE_TOO_SMALL,
+    message: "File is smaller than ".concat(minSize, " ").concat(minSize === 1 ? "byte" : "bytes")
+  };
+};
+var TOO_MANY_FILES_REJECTION = {
+  code: TOO_MANY_FILES,
+  message: "Too many files"
+};
+function isDataTransferItemWithEmptyType(file) {
+  return file.type === "" && typeof file.getAsFile === "function";
+}
+function fileAccepted(file, accept) {
+  var isAcceptable = file.type === "application/x-moz-file" || accepts(file, accept) || isDataTransferItemWithEmptyType(file);
+  return [isAcceptable, isAcceptable ? null : getInvalidTypeRejectionErr(accept)];
+}
+function fileMatchSize(file, minSize, maxSize) {
+  if (isDefined(file.size)) {
+    if (isDefined(minSize) && isDefined(maxSize)) {
+      if (file.size > maxSize)
+        return [false, getTooLargeRejectionErr(maxSize)];
+      if (file.size < minSize)
+        return [false, getTooSmallRejectionErr(minSize)];
+    } else if (isDefined(minSize) && file.size < minSize)
+      return [false, getTooSmallRejectionErr(minSize)];
+    else if (isDefined(maxSize) && file.size > maxSize)
+      return [false, getTooLargeRejectionErr(maxSize)];
+  }
+  return [true, null];
+}
+function isDefined(value) {
+  return value !== undefined && value !== null;
+}
+function allFilesAccepted(_ref) {
+  var { files, accept, minSize, maxSize, multiple, maxFiles, validator } = _ref;
+  if (!multiple && files.length > 1 || multiple && maxFiles >= 1 && files.length > maxFiles) {
+    return false;
+  }
+  return files.every(function(file) {
+    var _fileAccepted = fileAccepted(file, accept), _fileAccepted2 = _slicedToArray(_fileAccepted, 1), accepted = _fileAccepted2[0];
+    var _fileMatchSize = fileMatchSize(file, minSize, maxSize), _fileMatchSize2 = _slicedToArray(_fileMatchSize, 1), sizeMatch = _fileMatchSize2[0];
+    var customErrors = validator ? validator(file) : null;
+    return accepted && sizeMatch && !customErrors;
+  });
+}
+function isPropagationStopped(event) {
+  if (typeof event.isPropagationStopped === "function") {
+    return event.isPropagationStopped();
+  } else if (typeof event.cancelBubble !== "undefined") {
+    return event.cancelBubble;
+  }
+  return false;
+}
+function isEvtWithFiles(event) {
+  if (!event.dataTransfer) {
+    return !!event.target && !!event.target.files;
+  }
+  return Array.prototype.some.call(event.dataTransfer.types, function(type) {
+    return type === "Files" || type === "application/x-moz-file";
+  });
+}
+function onDocumentDragOver(event) {
+  event.preventDefault();
+}
+function isIe(userAgent) {
+  return userAgent.indexOf("MSIE") !== -1 || userAgent.indexOf("Trident/") !== -1;
+}
+function isEdge(userAgent) {
+  return userAgent.indexOf("Edge/") !== -1;
+}
+function isIeOrEdge() {
+  var userAgent = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : window.navigator.userAgent;
+  return isIe(userAgent) || isEdge(userAgent);
+}
+function composeEventHandlers() {
+  for (var _len = arguments.length, fns = new Array(_len), _key = 0;_key < _len; _key++) {
+    fns[_key] = arguments[_key];
+  }
+  return function(event) {
+    for (var _len2 = arguments.length, args = new Array(_len2 > 1 ? _len2 - 1 : 0), _key2 = 1;_key2 < _len2; _key2++) {
+      args[_key2 - 1] = arguments[_key2];
+    }
+    return fns.some(function(fn) {
+      if (!isPropagationStopped(event) && fn) {
+        fn.apply(undefined, [event].concat(args));
+      }
+      return isPropagationStopped(event);
+    });
+  };
+}
+function canUseFileSystemAccessAPI() {
+  return "showOpenFilePicker" in window;
+}
+function pickerOptionsFromAccept(accept) {
+  if (isDefined(accept)) {
+    var acceptForPicker = Object.entries(accept).filter(function(_ref2) {
+      var _ref3 = _slicedToArray(_ref2, 2), mimeType = _ref3[0], ext = _ref3[1];
+      var ok = true;
+      if (!isMIMEType(mimeType)) {
+        console.warn('Skipped "'.concat(mimeType, '" because it is not a valid MIME type. Check https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Common_types for a list of valid MIME types.'));
+        ok = false;
+      }
+      if (!Array.isArray(ext) || !ext.every(isExt)) {
+        console.warn('Skipped "'.concat(mimeType, '" because an invalid file extension was provided.'));
+        ok = false;
+      }
+      return ok;
+    }).reduce(function(agg, _ref4) {
+      var _ref5 = _slicedToArray(_ref4, 2), mimeType = _ref5[0], ext = _ref5[1];
+      return _objectSpread(_objectSpread({}, agg), {}, _defineProperty({}, mimeType, ext));
+    }, {});
+    return [{
+      description: "Files",
+      accept: acceptForPicker
+    }];
+  }
+  return accept;
+}
+function acceptPropAsAcceptAttr(accept) {
+  if (isDefined(accept)) {
+    return Object.entries(accept).reduce(function(a, _ref6) {
+      var _ref7 = _slicedToArray(_ref6, 2), mimeType = _ref7[0], ext = _ref7[1];
+      return [].concat(_toConsumableArray(a), [mimeType], _toConsumableArray(ext));
+    }, []).filter(function(v) {
+      return isMIMEType(v) || isExt(v);
+    }).join(",");
+  }
+  return;
+}
+function isAbort(v) {
+  return v instanceof DOMException && (v.name === "AbortError" || v.code === v.ABORT_ERR);
+}
+function isSecurityError(v) {
+  return v instanceof DOMException && (v.name === "SecurityError" || v.code === v.SECURITY_ERR);
+}
+function isMIMEType(v) {
+  return v === "audio/*" || v === "video/*" || v === "image/*" || v === "text/*" || v === "application/*" || /\w+\/[-+.\w]+/g.test(v);
+}
+function isExt(v) {
+  return /^.*\.[\w]+$/.test(v);
+}
+
+// node_modules/react-dropzone/dist/es/index.js
+var _excluded = ["children"];
+var _excluded2 = ["open"];
+var _excluded3 = ["refKey", "role", "onKeyDown", "onFocus", "onBlur", "onClick", "onDragEnter", "onDragOver", "onDragLeave", "onDrop"];
+var _excluded4 = ["refKey", "onChange", "onClick"];
+function _toConsumableArray2(arr) {
+  return _arrayWithoutHoles2(arr) || _iterableToArray2(arr) || _unsupportedIterableToArray2(arr) || _nonIterableSpread2();
+}
+function _nonIterableSpread2() {
+  throw new TypeError(`Invalid attempt to spread non-iterable instance.
+In order to be iterable, non-array objects must have a [Symbol.iterator]() method.`);
+}
+function _iterableToArray2(iter) {
+  if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null)
+    return Array.from(iter);
+}
+function _arrayWithoutHoles2(arr) {
+  if (Array.isArray(arr))
+    return _arrayLikeToArray2(arr);
+}
+function _slicedToArray2(arr, i) {
+  return _arrayWithHoles2(arr) || _iterableToArrayLimit2(arr, i) || _unsupportedIterableToArray2(arr, i) || _nonIterableRest2();
+}
+function _nonIterableRest2() {
+  throw new TypeError(`Invalid attempt to destructure non-iterable instance.
+In order to be iterable, non-array objects must have a [Symbol.iterator]() method.`);
+}
+function _unsupportedIterableToArray2(o, minLen) {
+  if (!o)
+    return;
+  if (typeof o === "string")
+    return _arrayLikeToArray2(o, minLen);
+  var n = Object.prototype.toString.call(o).slice(8, -1);
+  if (n === "Object" && o.constructor)
+    n = o.constructor.name;
+  if (n === "Map" || n === "Set")
+    return Array.from(o);
+  if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n))
+    return _arrayLikeToArray2(o, minLen);
+}
+function _arrayLikeToArray2(arr, len) {
+  if (len == null || len > arr.length)
+    len = arr.length;
+  for (var i = 0, arr2 = new Array(len);i < len; i++) {
+    arr2[i] = arr[i];
+  }
+  return arr2;
+}
+function _iterableToArrayLimit2(arr, i) {
+  var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"];
+  if (_i == null)
+    return;
+  var _arr = [];
+  var _n = true;
+  var _d = false;
+  var _s, _e;
+  try {
+    for (_i = _i.call(arr);!(_n = (_s = _i.next()).done); _n = true) {
+      _arr.push(_s.value);
+      if (i && _arr.length === i)
+        break;
+    }
+  } catch (err) {
+    _d = true;
+    _e = err;
+  } finally {
+    try {
+      if (!_n && _i["return"] != null)
+        _i["return"]();
+    } finally {
+      if (_d)
+        throw _e;
+    }
+  }
+  return _arr;
+}
+function _arrayWithHoles2(arr) {
+  if (Array.isArray(arr))
+    return arr;
+}
+function ownKeys2(object, enumerableOnly) {
+  var keys = Object.keys(object);
+  if (Object.getOwnPropertySymbols) {
+    var symbols = Object.getOwnPropertySymbols(object);
+    enumerableOnly && (symbols = symbols.filter(function(sym) {
+      return Object.getOwnPropertyDescriptor(object, sym).enumerable;
+    })), keys.push.apply(keys, symbols);
+  }
+  return keys;
+}
+function _objectSpread2(target) {
+  for (var i = 1;i < arguments.length; i++) {
+    var source = arguments[i] != null ? arguments[i] : {};
+    i % 2 ? ownKeys2(Object(source), true).forEach(function(key) {
+      _defineProperty2(target, key, source[key]);
+    }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys2(Object(source)).forEach(function(key) {
+      Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));
+    });
+  }
+  return target;
+}
+function _defineProperty2(obj, key, value) {
+  if (key in obj) {
+    Object.defineProperty(obj, key, { value, enumerable: true, configurable: true, writable: true });
+  } else {
+    obj[key] = value;
+  }
+  return obj;
+}
+function _objectWithoutProperties(source, excluded) {
+  if (source == null)
+    return {};
+  var target = _objectWithoutPropertiesLoose(source, excluded);
+  var key, i;
+  if (Object.getOwnPropertySymbols) {
+    var sourceSymbolKeys = Object.getOwnPropertySymbols(source);
+    for (i = 0;i < sourceSymbolKeys.length; i++) {
+      key = sourceSymbolKeys[i];
+      if (excluded.indexOf(key) >= 0)
+        continue;
+      if (!Object.prototype.propertyIsEnumerable.call(source, key))
+        continue;
+      target[key] = source[key];
+    }
+  }
+  return target;
+}
+function _objectWithoutPropertiesLoose(source, excluded) {
+  if (source == null)
+    return {};
+  var target = {};
+  var sourceKeys = Object.keys(source);
+  var key, i;
+  for (i = 0;i < sourceKeys.length; i++) {
+    key = sourceKeys[i];
+    if (excluded.indexOf(key) >= 0)
+      continue;
+    target[key] = source[key];
+  }
+  return target;
+}
+var Dropzone = /* @__PURE__ */ import_react3.forwardRef(function(_ref, ref) {
+  var children = _ref.children, params = _objectWithoutProperties(_ref, _excluded);
+  var _useDropzone = useDropzone(params), open = _useDropzone.open, props = _objectWithoutProperties(_useDropzone, _excluded2);
+  import_react3.useImperativeHandle(ref, function() {
+    return {
+      open
+    };
+  }, [open]);
+  return /* @__PURE__ */ import_react3.default.createElement(import_react3.Fragment, null, children(_objectSpread2(_objectSpread2({}, props), {}, {
+    open
+  })));
+});
+Dropzone.displayName = "Dropzone";
+var defaultProps = {
+  disabled: false,
+  getFilesFromEvent: fromEvent,
+  maxSize: Infinity,
+  minSize: 0,
+  multiple: true,
+  maxFiles: 0,
+  preventDropOnDocument: true,
+  noClick: false,
+  noKeyboard: false,
+  noDrag: false,
+  noDragEventsBubbling: false,
+  validator: null,
+  useFsAccessApi: false,
+  autoFocus: false
+};
+Dropzone.defaultProps = defaultProps;
+Dropzone.propTypes = {
+  children: import_prop_types.default.func,
+  accept: import_prop_types.default.objectOf(import_prop_types.default.arrayOf(import_prop_types.default.string)),
+  multiple: import_prop_types.default.bool,
+  preventDropOnDocument: import_prop_types.default.bool,
+  noClick: import_prop_types.default.bool,
+  noKeyboard: import_prop_types.default.bool,
+  noDrag: import_prop_types.default.bool,
+  noDragEventsBubbling: import_prop_types.default.bool,
+  minSize: import_prop_types.default.number,
+  maxSize: import_prop_types.default.number,
+  maxFiles: import_prop_types.default.number,
+  disabled: import_prop_types.default.bool,
+  getFilesFromEvent: import_prop_types.default.func,
+  onFileDialogCancel: import_prop_types.default.func,
+  onFileDialogOpen: import_prop_types.default.func,
+  useFsAccessApi: import_prop_types.default.bool,
+  autoFocus: import_prop_types.default.bool,
+  onDragEnter: import_prop_types.default.func,
+  onDragLeave: import_prop_types.default.func,
+  onDragOver: import_prop_types.default.func,
+  onDrop: import_prop_types.default.func,
+  onDropAccepted: import_prop_types.default.func,
+  onDropRejected: import_prop_types.default.func,
+  onError: import_prop_types.default.func,
+  validator: import_prop_types.default.func
+};
+var initialState = {
+  isFocused: false,
+  isFileDialogActive: false,
+  isDragActive: false,
+  isDragAccept: false,
+  isDragReject: false,
+  isDragGlobal: false,
+  acceptedFiles: [],
+  fileRejections: []
+};
+function useDropzone() {
+  var props = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var _defaultProps$props = _objectSpread2(_objectSpread2({}, defaultProps), props), accept = _defaultProps$props.accept, disabled = _defaultProps$props.disabled, getFilesFromEvent = _defaultProps$props.getFilesFromEvent, maxSize = _defaultProps$props.maxSize, minSize = _defaultProps$props.minSize, multiple = _defaultProps$props.multiple, maxFiles = _defaultProps$props.maxFiles, onDragEnter = _defaultProps$props.onDragEnter, onDragLeave = _defaultProps$props.onDragLeave, onDragOver = _defaultProps$props.onDragOver, onDrop = _defaultProps$props.onDrop, onDropAccepted = _defaultProps$props.onDropAccepted, onDropRejected = _defaultProps$props.onDropRejected, onFileDialogCancel = _defaultProps$props.onFileDialogCancel, onFileDialogOpen = _defaultProps$props.onFileDialogOpen, useFsAccessApi = _defaultProps$props.useFsAccessApi, autoFocus = _defaultProps$props.autoFocus, preventDropOnDocument = _defaultProps$props.preventDropOnDocument, noClick = _defaultProps$props.noClick, noKeyboard = _defaultProps$props.noKeyboard, noDrag = _defaultProps$props.noDrag, noDragEventsBubbling = _defaultProps$props.noDragEventsBubbling, onError = _defaultProps$props.onError, validator = _defaultProps$props.validator;
+  var acceptAttr = import_react3.useMemo(function() {
+    return acceptPropAsAcceptAttr(accept);
+  }, [accept]);
+  var pickerTypes = import_react3.useMemo(function() {
+    return pickerOptionsFromAccept(accept);
+  }, [accept]);
+  var onFileDialogOpenCb = import_react3.useMemo(function() {
+    return typeof onFileDialogOpen === "function" ? onFileDialogOpen : noop;
+  }, [onFileDialogOpen]);
+  var onFileDialogCancelCb = import_react3.useMemo(function() {
+    return typeof onFileDialogCancel === "function" ? onFileDialogCancel : noop;
+  }, [onFileDialogCancel]);
+  var rootRef = import_react3.useRef(null);
+  var inputRef = import_react3.useRef(null);
+  var _useReducer = import_react3.useReducer(reducer, initialState), _useReducer2 = _slicedToArray2(_useReducer, 2), state = _useReducer2[0], dispatch = _useReducer2[1];
+  var { isFocused, isFileDialogActive } = state;
+  var fsAccessApiWorksRef = import_react3.useRef(typeof window !== "undefined" && window.isSecureContext && useFsAccessApi && canUseFileSystemAccessAPI());
+  var onWindowFocus = function onWindowFocus2() {
+    if (!fsAccessApiWorksRef.current && isFileDialogActive) {
+      setTimeout(function() {
+        if (inputRef.current) {
+          var files = inputRef.current.files;
+          if (!files.length) {
+            dispatch({
+              type: "closeDialog"
+            });
+            onFileDialogCancelCb();
+          }
+        }
+      }, 300);
+    }
+  };
+  import_react3.useEffect(function() {
+    window.addEventListener("focus", onWindowFocus, false);
+    return function() {
+      window.removeEventListener("focus", onWindowFocus, false);
+    };
+  }, [inputRef, isFileDialogActive, onFileDialogCancelCb, fsAccessApiWorksRef]);
+  var dragTargetsRef = import_react3.useRef([]);
+  var globalDragTargetsRef = import_react3.useRef([]);
+  var onDocumentDrop = function onDocumentDrop2(event) {
+    if (rootRef.current && rootRef.current.contains(event.target)) {
+      return;
+    }
+    event.preventDefault();
+    dragTargetsRef.current = [];
+  };
+  import_react3.useEffect(function() {
+    if (preventDropOnDocument) {
+      document.addEventListener("dragover", onDocumentDragOver, false);
+      document.addEventListener("drop", onDocumentDrop, false);
+    }
+    return function() {
+      if (preventDropOnDocument) {
+        document.removeEventListener("dragover", onDocumentDragOver);
+        document.removeEventListener("drop", onDocumentDrop);
+      }
+    };
+  }, [rootRef, preventDropOnDocument]);
+  import_react3.useEffect(function() {
+    var onDocumentDragEnter = function onDocumentDragEnter2(event) {
+      globalDragTargetsRef.current = [].concat(_toConsumableArray2(globalDragTargetsRef.current), [event.target]);
+      if (isEvtWithFiles(event)) {
+        dispatch({
+          isDragGlobal: true,
+          type: "setDragGlobal"
+        });
+      }
+    };
+    var onDocumentDragLeave = function onDocumentDragLeave2(event) {
+      globalDragTargetsRef.current = globalDragTargetsRef.current.filter(function(el) {
+        return el !== event.target && el !== null;
+      });
+      if (globalDragTargetsRef.current.length > 0) {
+        return;
+      }
+      dispatch({
+        isDragGlobal: false,
+        type: "setDragGlobal"
+      });
+    };
+    var onDocumentDragEnd = function onDocumentDragEnd2() {
+      globalDragTargetsRef.current = [];
+      dispatch({
+        isDragGlobal: false,
+        type: "setDragGlobal"
+      });
+    };
+    var onDocumentDropGlobal = function onDocumentDropGlobal2() {
+      globalDragTargetsRef.current = [];
+      dispatch({
+        isDragGlobal: false,
+        type: "setDragGlobal"
+      });
+    };
+    document.addEventListener("dragenter", onDocumentDragEnter, false);
+    document.addEventListener("dragleave", onDocumentDragLeave, false);
+    document.addEventListener("dragend", onDocumentDragEnd, false);
+    document.addEventListener("drop", onDocumentDropGlobal, false);
+    return function() {
+      document.removeEventListener("dragenter", onDocumentDragEnter);
+      document.removeEventListener("dragleave", onDocumentDragLeave);
+      document.removeEventListener("dragend", onDocumentDragEnd);
+      document.removeEventListener("drop", onDocumentDropGlobal);
+    };
+  }, [rootRef]);
+  import_react3.useEffect(function() {
+    if (!disabled && autoFocus && rootRef.current) {
+      rootRef.current.focus();
+    }
+    return function() {};
+  }, [rootRef, autoFocus, disabled]);
+  var onErrCb = import_react3.useCallback(function(e) {
+    if (onError) {
+      onError(e);
+    } else {
+      console.error(e);
+    }
+  }, [onError]);
+  var onDragEnterCb = import_react3.useCallback(function(event) {
+    event.preventDefault();
+    event.persist();
+    stopPropagation(event);
+    dragTargetsRef.current = [].concat(_toConsumableArray2(dragTargetsRef.current), [event.target]);
+    if (isEvtWithFiles(event)) {
+      Promise.resolve(getFilesFromEvent(event)).then(function(files) {
+        if (isPropagationStopped(event) && !noDragEventsBubbling) {
+          return;
+        }
+        var fileCount = files.length;
+        var isDragAccept = fileCount > 0 && allFilesAccepted({
+          files,
+          accept: acceptAttr,
+          minSize,
+          maxSize,
+          multiple,
+          maxFiles,
+          validator
+        });
+        var isDragReject = fileCount > 0 && !isDragAccept;
+        dispatch({
+          isDragAccept,
+          isDragReject,
+          isDragActive: true,
+          type: "setDraggedFiles"
+        });
+        if (onDragEnter) {
+          onDragEnter(event);
+        }
+      }).catch(function(e) {
+        return onErrCb(e);
+      });
+    }
+  }, [getFilesFromEvent, onDragEnter, onErrCb, noDragEventsBubbling, acceptAttr, minSize, maxSize, multiple, maxFiles, validator]);
+  var onDragOverCb = import_react3.useCallback(function(event) {
+    event.preventDefault();
+    event.persist();
+    stopPropagation(event);
+    var hasFiles = isEvtWithFiles(event);
+    if (hasFiles && event.dataTransfer) {
+      try {
+        event.dataTransfer.dropEffect = "copy";
+      } catch (_unused) {}
+    }
+    if (hasFiles && onDragOver) {
+      onDragOver(event);
+    }
+    return false;
+  }, [onDragOver, noDragEventsBubbling]);
+  var onDragLeaveCb = import_react3.useCallback(function(event) {
+    event.preventDefault();
+    event.persist();
+    stopPropagation(event);
+    var targets = dragTargetsRef.current.filter(function(target) {
+      return rootRef.current && rootRef.current.contains(target);
+    });
+    var targetIdx = targets.indexOf(event.target);
+    if (targetIdx !== -1) {
+      targets.splice(targetIdx, 1);
+    }
+    dragTargetsRef.current = targets;
+    if (targets.length > 0) {
+      return;
+    }
+    dispatch({
+      type: "setDraggedFiles",
+      isDragActive: false,
+      isDragAccept: false,
+      isDragReject: false
+    });
+    if (isEvtWithFiles(event) && onDragLeave) {
+      onDragLeave(event);
+    }
+  }, [rootRef, onDragLeave, noDragEventsBubbling]);
+  var setFiles = import_react3.useCallback(function(files, event) {
+    var acceptedFiles = [];
+    var fileRejections = [];
+    files.forEach(function(file) {
+      var _fileAccepted = fileAccepted(file, acceptAttr), _fileAccepted2 = _slicedToArray2(_fileAccepted, 2), accepted = _fileAccepted2[0], acceptError = _fileAccepted2[1];
+      var _fileMatchSize = fileMatchSize(file, minSize, maxSize), _fileMatchSize2 = _slicedToArray2(_fileMatchSize, 2), sizeMatch = _fileMatchSize2[0], sizeError = _fileMatchSize2[1];
+      var customErrors = validator ? validator(file) : null;
+      if (accepted && sizeMatch && !customErrors) {
+        acceptedFiles.push(file);
+      } else {
+        var errors = [acceptError, sizeError];
+        if (customErrors) {
+          errors = errors.concat(customErrors);
+        }
+        fileRejections.push({
+          file,
+          errors: errors.filter(function(e) {
+            return e;
+          })
+        });
+      }
+    });
+    if (!multiple && acceptedFiles.length > 1 || multiple && maxFiles >= 1 && acceptedFiles.length > maxFiles) {
+      acceptedFiles.forEach(function(file) {
+        fileRejections.push({
+          file,
+          errors: [TOO_MANY_FILES_REJECTION]
+        });
+      });
+      acceptedFiles.splice(0);
+    }
+    dispatch({
+      acceptedFiles,
+      fileRejections,
+      type: "setFiles"
+    });
+    if (onDrop) {
+      onDrop(acceptedFiles, fileRejections, event);
+    }
+    if (fileRejections.length > 0 && onDropRejected) {
+      onDropRejected(fileRejections, event);
+    }
+    if (acceptedFiles.length > 0 && onDropAccepted) {
+      onDropAccepted(acceptedFiles, event);
+    }
+  }, [dispatch, multiple, acceptAttr, minSize, maxSize, maxFiles, onDrop, onDropAccepted, onDropRejected, validator]);
+  var onDropCb = import_react3.useCallback(function(event) {
+    event.preventDefault();
+    event.persist();
+    stopPropagation(event);
+    dragTargetsRef.current = [];
+    if (isEvtWithFiles(event)) {
+      Promise.resolve(getFilesFromEvent(event)).then(function(files) {
+        if (isPropagationStopped(event) && !noDragEventsBubbling) {
+          return;
+        }
+        setFiles(files, event);
+      }).catch(function(e) {
+        return onErrCb(e);
+      });
+    }
+    dispatch({
+      type: "reset"
+    });
+  }, [getFilesFromEvent, setFiles, onErrCb, noDragEventsBubbling]);
+  var openFileDialog = import_react3.useCallback(function() {
+    if (fsAccessApiWorksRef.current) {
+      dispatch({
+        type: "openDialog"
+      });
+      onFileDialogOpenCb();
+      var opts = {
+        multiple,
+        types: pickerTypes
+      };
+      window.showOpenFilePicker(opts).then(function(handles) {
+        return getFilesFromEvent(handles);
+      }).then(function(files) {
+        setFiles(files, null);
+        dispatch({
+          type: "closeDialog"
+        });
+      }).catch(function(e) {
+        if (isAbort(e)) {
+          onFileDialogCancelCb(e);
+          dispatch({
+            type: "closeDialog"
+          });
+        } else if (isSecurityError(e)) {
+          fsAccessApiWorksRef.current = false;
+          if (inputRef.current) {
+            inputRef.current.value = null;
+            inputRef.current.click();
+          } else {
+            onErrCb(new Error("Cannot open the file picker because the https://developer.mozilla.org/en-US/docs/Web/API/File_System_Access_API is not supported and no <input> was provided."));
+          }
+        } else {
+          onErrCb(e);
+        }
+      });
+      return;
+    }
+    if (inputRef.current) {
+      dispatch({
+        type: "openDialog"
+      });
+      onFileDialogOpenCb();
+      inputRef.current.value = null;
+      inputRef.current.click();
+    }
+  }, [dispatch, onFileDialogOpenCb, onFileDialogCancelCb, useFsAccessApi, setFiles, onErrCb, pickerTypes, multiple]);
+  var onKeyDownCb = import_react3.useCallback(function(event) {
+    if (!rootRef.current || !rootRef.current.isEqualNode(event.target)) {
+      return;
+    }
+    if (event.key === " " || event.key === "Enter" || event.keyCode === 32 || event.keyCode === 13) {
+      event.preventDefault();
+      openFileDialog();
+    }
+  }, [rootRef, openFileDialog]);
+  var onFocusCb = import_react3.useCallback(function() {
+    dispatch({
+      type: "focus"
+    });
+  }, []);
+  var onBlurCb = import_react3.useCallback(function() {
+    dispatch({
+      type: "blur"
+    });
+  }, []);
+  var onClickCb = import_react3.useCallback(function() {
+    if (noClick) {
+      return;
+    }
+    if (isIeOrEdge()) {
+      setTimeout(openFileDialog, 0);
+    } else {
+      openFileDialog();
+    }
+  }, [noClick, openFileDialog]);
+  var composeHandler = function composeHandler2(fn) {
+    return disabled ? null : fn;
+  };
+  var composeKeyboardHandler = function composeKeyboardHandler2(fn) {
+    return noKeyboard ? null : composeHandler(fn);
+  };
+  var composeDragHandler = function composeDragHandler2(fn) {
+    return noDrag ? null : composeHandler(fn);
+  };
+  var stopPropagation = function stopPropagation2(event) {
+    if (noDragEventsBubbling) {
+      event.stopPropagation();
+    }
+  };
+  var getRootProps = import_react3.useMemo(function() {
+    return function() {
+      var _ref2 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {}, _ref2$refKey = _ref2.refKey, refKey = _ref2$refKey === undefined ? "ref" : _ref2$refKey, role = _ref2.role, onKeyDown = _ref2.onKeyDown, onFocus = _ref2.onFocus, onBlur = _ref2.onBlur, onClick = _ref2.onClick, onDragEnter2 = _ref2.onDragEnter, onDragOver2 = _ref2.onDragOver, onDragLeave2 = _ref2.onDragLeave, onDrop2 = _ref2.onDrop, rest = _objectWithoutProperties(_ref2, _excluded3);
+      return _objectSpread2(_objectSpread2(_defineProperty2({
+        onKeyDown: composeKeyboardHandler(composeEventHandlers(onKeyDown, onKeyDownCb)),
+        onFocus: composeKeyboardHandler(composeEventHandlers(onFocus, onFocusCb)),
+        onBlur: composeKeyboardHandler(composeEventHandlers(onBlur, onBlurCb)),
+        onClick: composeHandler(composeEventHandlers(onClick, onClickCb)),
+        onDragEnter: composeDragHandler(composeEventHandlers(onDragEnter2, onDragEnterCb)),
+        onDragOver: composeDragHandler(composeEventHandlers(onDragOver2, onDragOverCb)),
+        onDragLeave: composeDragHandler(composeEventHandlers(onDragLeave2, onDragLeaveCb)),
+        onDrop: composeDragHandler(composeEventHandlers(onDrop2, onDropCb)),
+        role: typeof role === "string" && role !== "" ? role : "presentation"
+      }, refKey, rootRef), !disabled && !noKeyboard ? {
+        tabIndex: 0
+      } : {}), rest);
+    };
+  }, [rootRef, onKeyDownCb, onFocusCb, onBlurCb, onClickCb, onDragEnterCb, onDragOverCb, onDragLeaveCb, onDropCb, noKeyboard, noDrag, disabled]);
+  var onInputElementClick = import_react3.useCallback(function(event) {
+    event.stopPropagation();
+  }, []);
+  var getInputProps = import_react3.useMemo(function() {
+    return function() {
+      var _ref3 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {}, _ref3$refKey = _ref3.refKey, refKey = _ref3$refKey === undefined ? "ref" : _ref3$refKey, onChange = _ref3.onChange, onClick = _ref3.onClick, rest = _objectWithoutProperties(_ref3, _excluded4);
+      var inputProps = _defineProperty2({
+        accept: acceptAttr,
+        multiple,
+        type: "file",
+        style: {
+          border: 0,
+          clip: "rect(0, 0, 0, 0)",
+          clipPath: "inset(50%)",
+          height: "1px",
+          margin: "0 -1px -1px 0",
+          overflow: "hidden",
+          padding: 0,
+          position: "absolute",
+          width: "1px",
+          whiteSpace: "nowrap"
+        },
+        onChange: composeHandler(composeEventHandlers(onChange, onDropCb)),
+        onClick: composeHandler(composeEventHandlers(onClick, onInputElementClick)),
+        tabIndex: -1
+      }, refKey, inputRef);
+      return _objectSpread2(_objectSpread2({}, inputProps), rest);
+    };
+  }, [inputRef, accept, multiple, onDropCb, disabled]);
+  return _objectSpread2(_objectSpread2({}, state), {}, {
+    isFocused: isFocused && !disabled,
+    getRootProps,
+    getInputProps,
+    rootRef,
+    inputRef,
+    open: composeHandler(openFileDialog)
+  });
+}
+function reducer(state, action) {
+  switch (action.type) {
+    case "focus":
+      return _objectSpread2(_objectSpread2({}, state), {}, {
+        isFocused: true
+      });
+    case "blur":
+      return _objectSpread2(_objectSpread2({}, state), {}, {
+        isFocused: false
+      });
+    case "openDialog":
+      return _objectSpread2(_objectSpread2({}, initialState), {}, {
+        isFileDialogActive: true
+      });
+    case "closeDialog":
+      return _objectSpread2(_objectSpread2({}, state), {}, {
+        isFileDialogActive: false
+      });
+    case "setDraggedFiles":
+      return _objectSpread2(_objectSpread2({}, state), {}, {
+        isDragActive: action.isDragActive,
+        isDragAccept: action.isDragAccept,
+        isDragReject: action.isDragReject
+      });
+    case "setFiles":
+      return _objectSpread2(_objectSpread2({}, state), {}, {
+        acceptedFiles: action.acceptedFiles,
+        fileRejections: action.fileRejections,
+        isDragReject: false
+      });
+    case "setDragGlobal":
+      return _objectSpread2(_objectSpread2({}, state), {}, {
+        isDragGlobal: action.isDragGlobal
+      });
+    case "reset":
+      return _objectSpread2({}, initialState);
+    default:
+      return state;
+  }
+}
+function noop() {}
+
+// src/mainview/modules/dragdrop.tsx
+var jsx_dev_runtime2 = __toESM(require_jsx_dev_runtime(), 1);
+function DragDrop() {
+  const appContext = import_react4.useContext(sharedContext);
+  const onDrop = async (acceptedFiles) => {
+    const dateNow = Date.now();
+    let firstPromiseResolved = false;
+    const promises = acceptedFiles.map(async (droppedFile) => {
+      try {
+        const formData = new FormData;
+        formData.append("image", droppedFile);
+        const res = await fetch("http://127.0.0.1:3000/upload", {
+          method: "POST",
+          body: formData
+        });
+        const resJson = await res.json();
+        if (Object.keys(resJson.data.images).length) {
+          appContext.setImages((currentImages) => [
+            ...currentImages,
+            ...resJson.data.images
+          ]);
+          appContext.setInputFolderSize(resJson.data.inputFolderSize);
+          appContext.setOutputFolderSize(resJson.data.outputFolderSize);
+        }
+        return resJson;
+      } catch (error) {
+        console.error("Upload failed:", error);
+        return null;
+      }
+    });
+    promises.forEach((p) => {
+      p.then((val) => {
+        if (!firstPromiseResolved) {
+          firstPromiseResolved = true;
+          appContext.setActiveImage(val.data.images[0]);
+        }
+      });
+    });
+    const responses = await Promise.all(promises);
+    console.log(`Upload complete in ${(Date.now() - dateNow) / 1000}s`, responses);
+  };
+  const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop, noClick: true });
+  return /* @__PURE__ */ jsx_dev_runtime2.jsxDEV("div", {
+    className: "dragdrop" + (isDragActive ? " highlight" : ""),
+    ...getRootProps(),
+    children: /* @__PURE__ */ jsx_dev_runtime2.jsxDEV("input", {
+      ...getInputProps()
+    }, undefined, false, undefined, this)
+  }, undefined, false, undefined, this);
+}
+
+// src/mainview/modules/imagesEditor.tsx
+var import_react8 = __toESM(require_react(), 1);
+
+// src/mainview/modules/imagesList.tsx
+var import_react6 = __toESM(require_react(), 1);
+
+// src/mainview/modules/imagesListItem.tsx
+var import_react5 = __toESM(require_react(), 1);
+var jsx_dev_runtime3 = __toESM(require_jsx_dev_runtime(), 1);
+function ImagesListItem(props) {
+  const appContext = import_react5.useContext(sharedContext);
+  function imageClickHandler(e) {
+    e.preventDefault();
+    if (e.target instanceof HTMLElement) {
+      document.querySelectorAll(".imageslist-list-item")?.forEach((el) => {
+        el.classList.remove("active");
+      });
+      const parent = e.target.closest(".imageslist-list-item");
+      if (parent instanceof HTMLElement) {
+        parent.classList.add("active");
+        const elIndex = props.index;
+        appContext.setActiveImage(appContext.images[elIndex]);
+      }
+    }
+  }
+  return /* @__PURE__ */ jsx_dev_runtime3.jsxDEV("div", {
+    className: "imageslist-list-item" + (props.index === 0 ? " active" : ""),
+    children: [
+      /* @__PURE__ */ jsx_dev_runtime3.jsxDEV("a", {
+        href: "#",
+        className: "imageslist-list-item-close",
+        children: "×"
+      }, undefined, false, undefined, this),
+      /* @__PURE__ */ jsx_dev_runtime3.jsxDEV("a", {
+        href: "#",
+        onClick: imageClickHandler,
+        className: "imageslist-list-item-image",
+        style: { backgroundImage: "url('" + props.output + "')" },
+        children: " "
+      }, undefined, false, undefined, this)
+    ]
+  }, undefined, true, undefined, this);
 }
 
 // node_modules/electrobun/dist/api/shared/rpc.ts
@@ -17568,8 +21041,18 @@ class Electroview {
   }
 }
 
-// src/mainview/modules/dragdrop.tsx
-var jsx_dev_runtime2 = __toESM(require_jsx_dev_runtime(), 1);
+// src/shared/shared-snippets.ts
+function formatBytes(bytes) {
+  if (bytes === 0)
+    return "0 B";
+  const units = ["B", "KB", "MB", "GB", "TB"];
+  const i = Math.floor(Math.log(bytes) / Math.log(1000));
+  const value = bytes / 1000 ** i;
+  return `${value.toFixed(2)} ${units[i]}`;
+}
+
+// src/mainview/modules/imagesList.tsx
+var jsx_dev_runtime4 = __toESM(require_jsx_dev_runtime(), 1);
 var rpc = Electroview.defineRPC({
   handlers: {
     requests: {},
@@ -17577,172 +21060,1172 @@ var rpc = Electroview.defineRPC({
   }
 });
 var electroview = new Electroview({ rpc });
-async function readDroppedFile(file, path) {
-  const buffer = await file.arrayBuffer();
+function ImagesList() {
+  const appContext = import_react6.useContext(sharedContext);
+  async function revealClickHandler(e) {
+    e.preventDefault();
+    await electroview.rpc?.request.revealInFileManager();
+  }
+  return /* @__PURE__ */ jsx_dev_runtime4.jsxDEV("div", {
+    className: "imageslist",
+    children: [
+      /* @__PURE__ */ jsx_dev_runtime4.jsxDEV("div", {
+        className: "imageslist-header",
+        children: [
+          /* @__PURE__ */ jsx_dev_runtime4.jsxDEV("span", {
+            className: "imageslist-header-item",
+            children: [
+              Object.keys(appContext.images).length,
+              " images at ",
+              formatBytes(appContext.inputFolderSize),
+              " to ",
+              formatBytes(appContext.outputFolderSize)
+            ]
+          }, undefined, true, undefined, this),
+          /* @__PURE__ */ jsx_dev_runtime4.jsxDEV("span", {
+            className: "imageslist-header-subitem",
+            children: [
+              (100 * (1 - appContext.outputFolderSize / appContext.inputFolderSize)).toFixed(2),
+              "% reduction"
+            ]
+          }, undefined, true, undefined, this)
+        ]
+      }, undefined, true, undefined, this),
+      /* @__PURE__ */ jsx_dev_runtime4.jsxDEV("div", {
+        className: "imageslist-list",
+        children: [
+          appContext.images.map((image, index) => /* @__PURE__ */ jsx_dev_runtime4.jsxDEV(ImagesListItem, {
+            index,
+            input: image.input,
+            output: image.output
+          }, index, false, undefined, this)),
+          /* @__PURE__ */ jsx_dev_runtime4.jsxDEV("div", {
+            className: "imageslist-list-loading"
+          }, undefined, false, undefined, this)
+        ]
+      }, undefined, true, undefined, this),
+      /* @__PURE__ */ jsx_dev_runtime4.jsxDEV("a", {
+        href: "#",
+        onClick: revealClickHandler,
+        className: "imageslist-revealbutton",
+        children: "Reveal in file manager"
+      }, undefined, false, undefined, this)
+    ]
+  }, undefined, true, undefined, this);
+}
+
+// src/mainview/modules/imagesCanvas.tsx
+var import_react7 = __toESM(require_react(), 1);
+
+// node_modules/react-easy-crop/index.module.mjs
+var React2 = __toESM(require_react(), 1);
+var import_normalize_wheel = __toESM(require_normalizeWheel(), 1);
+function getCropSize(mediaWidth, mediaHeight, containerWidth, containerHeight, aspect, rotation) {
+  if (rotation === undefined) {
+    rotation = 0;
+  }
+  var _a = rotateSize(mediaWidth, mediaHeight, rotation), width = _a.width, height = _a.height;
+  var fittingWidth = Math.min(width, containerWidth);
+  var fittingHeight = Math.min(height, containerHeight);
+  if (fittingWidth > fittingHeight * aspect) {
+    return {
+      width: fittingHeight * aspect,
+      height: fittingHeight
+    };
+  }
   return {
-    path,
-    file,
-    bytes: new Uint8Array(buffer)
+    width: fittingWidth,
+    height: fittingWidth / aspect
   };
 }
-async function collectFromHandle(handle, currentPath = handle.name) {
-  if (handle.kind === "file") {
-    const file = await handle.getFile();
-    return [await readDroppedFile(file, currentPath)];
-  }
-  const files = [];
-  for await (const [name, child] of handle.entries()) {
-    files.push(...await collectFromHandle(child, `${currentPath}/${name}`));
-  }
-  return files;
+function getMediaZoom(mediaSize) {
+  return mediaSize.width > mediaSize.height ? mediaSize.width / mediaSize.naturalWidth : mediaSize.height / mediaSize.naturalHeight;
 }
-function getFileFromWebkitEntry(entry) {
-  return new Promise((resolve, reject) => {
-    if (!entry.file) {
-      reject(new Error(`Entry ${entry.fullPath} is not a file`));
-      return;
-    }
-    entry.file(resolve);
+function restrictPosition(position, mediaSize, cropSize, zoom, rotation) {
+  if (rotation === undefined) {
+    rotation = 0;
+  }
+  var _a = rotateSize(mediaSize.width, mediaSize.height, rotation), width = _a.width, height = _a.height;
+  return {
+    x: restrictPositionCoord(position.x, width, cropSize.width, zoom),
+    y: restrictPositionCoord(position.y, height, cropSize.height, zoom)
+  };
+}
+function restrictPositionCoord(position, mediaSize, cropSize, zoom) {
+  var maxPosition = Math.abs(mediaSize * zoom / 2 - cropSize / 2);
+  return clamp(position, -maxPosition, maxPosition);
+}
+function getDistanceBetweenPoints(pointA, pointB) {
+  return Math.sqrt(Math.pow(pointA.y - pointB.y, 2) + Math.pow(pointA.x - pointB.x, 2));
+}
+function getRotationBetweenPoints(pointA, pointB) {
+  return Math.atan2(pointB.y - pointA.y, pointB.x - pointA.x) * 180 / Math.PI;
+}
+function computeCroppedArea(crop, mediaSize, cropSize, aspect, zoom, rotation, restrictPosition2) {
+  if (rotation === undefined) {
+    rotation = 0;
+  }
+  if (restrictPosition2 === undefined) {
+    restrictPosition2 = true;
+  }
+  var limitAreaFn = restrictPosition2 ? limitArea : noOp;
+  var mediaBBoxSize = rotateSize(mediaSize.width, mediaSize.height, rotation);
+  var mediaNaturalBBoxSize = rotateSize(mediaSize.naturalWidth, mediaSize.naturalHeight, rotation);
+  var croppedAreaPercentages = {
+    x: limitAreaFn(100, ((mediaBBoxSize.width - cropSize.width / zoom) / 2 - crop.x / zoom) / mediaBBoxSize.width * 100),
+    y: limitAreaFn(100, ((mediaBBoxSize.height - cropSize.height / zoom) / 2 - crop.y / zoom) / mediaBBoxSize.height * 100),
+    width: limitAreaFn(100, cropSize.width / mediaBBoxSize.width * 100 / zoom),
+    height: limitAreaFn(100, cropSize.height / mediaBBoxSize.height * 100 / zoom)
+  };
+  var widthInPixels = Math.round(limitAreaFn(mediaNaturalBBoxSize.width, croppedAreaPercentages.width * mediaNaturalBBoxSize.width / 100));
+  var heightInPixels = Math.round(limitAreaFn(mediaNaturalBBoxSize.height, croppedAreaPercentages.height * mediaNaturalBBoxSize.height / 100));
+  var isImgWiderThanHigh = mediaNaturalBBoxSize.width >= mediaNaturalBBoxSize.height * aspect;
+  var sizePixels = isImgWiderThanHigh ? {
+    width: Math.round(heightInPixels * aspect),
+    height: heightInPixels
+  } : {
+    width: widthInPixels,
+    height: Math.round(widthInPixels / aspect)
+  };
+  var croppedAreaPixels = __assign(__assign({}, sizePixels), {
+    x: Math.round(limitAreaFn(mediaNaturalBBoxSize.width - sizePixels.width, croppedAreaPercentages.x * mediaNaturalBBoxSize.width / 100)),
+    y: Math.round(limitAreaFn(mediaNaturalBBoxSize.height - sizePixels.height, croppedAreaPercentages.y * mediaNaturalBBoxSize.height / 100))
   });
+  return {
+    croppedAreaPercentages,
+    croppedAreaPixels
+  };
 }
-function readWebkitDirectoryEntries(entry) {
-  return new Promise((resolve, reject) => {
-    const reader = entry.createReader?.();
-    if (!reader) {
-      reject(new Error(`Entry ${entry.fullPath} is not a directory`));
-      return;
+function limitArea(max, value) {
+  return Math.min(max, Math.max(0, value));
+}
+function noOp(_max, value) {
+  return value;
+}
+function getInitialCropFromCroppedAreaPercentages(croppedAreaPercentages, mediaSize, rotation, cropSize, minZoom, maxZoom) {
+  var mediaBBoxSize = rotateSize(mediaSize.width, mediaSize.height, rotation);
+  var zoom = clamp(cropSize.width / mediaBBoxSize.width * (100 / croppedAreaPercentages.width), minZoom, maxZoom);
+  var crop = {
+    x: zoom * mediaBBoxSize.width / 2 - cropSize.width / 2 - mediaBBoxSize.width * zoom * (croppedAreaPercentages.x / 100),
+    y: zoom * mediaBBoxSize.height / 2 - cropSize.height / 2 - mediaBBoxSize.height * zoom * (croppedAreaPercentages.y / 100)
+  };
+  return {
+    crop,
+    zoom
+  };
+}
+function getZoomFromCroppedAreaPixels(croppedAreaPixels, mediaSize, cropSize) {
+  var mediaZoom = getMediaZoom(mediaSize);
+  return cropSize.height > cropSize.width ? cropSize.height / (croppedAreaPixels.height * mediaZoom) : cropSize.width / (croppedAreaPixels.width * mediaZoom);
+}
+function getInitialCropFromCroppedAreaPixels(croppedAreaPixels, mediaSize, rotation, cropSize, minZoom, maxZoom) {
+  if (rotation === undefined) {
+    rotation = 0;
+  }
+  var mediaNaturalBBoxSize = rotateSize(mediaSize.naturalWidth, mediaSize.naturalHeight, rotation);
+  var zoom = clamp(getZoomFromCroppedAreaPixels(croppedAreaPixels, mediaSize, cropSize), minZoom, maxZoom);
+  var cropZoom = cropSize.height > cropSize.width ? cropSize.height / croppedAreaPixels.height : cropSize.width / croppedAreaPixels.width;
+  var crop = {
+    x: ((mediaNaturalBBoxSize.width - croppedAreaPixels.width) / 2 - croppedAreaPixels.x) * cropZoom,
+    y: ((mediaNaturalBBoxSize.height - croppedAreaPixels.height) / 2 - croppedAreaPixels.y) * cropZoom
+  };
+  return {
+    crop,
+    zoom
+  };
+}
+function getCenter(a, b) {
+  return {
+    x: (b.x + a.x) / 2,
+    y: (b.y + a.y) / 2
+  };
+}
+function getRadianAngle(degreeValue) {
+  return degreeValue * Math.PI / 180;
+}
+function rotateSize(width, height, rotation) {
+  var rotRad = getRadianAngle(rotation);
+  return {
+    width: Math.abs(Math.cos(rotRad) * width) + Math.abs(Math.sin(rotRad) * height),
+    height: Math.abs(Math.sin(rotRad) * width) + Math.abs(Math.cos(rotRad) * height)
+  };
+}
+function clamp(value, min, max) {
+  return Math.min(Math.max(value, min), max);
+}
+function classNames() {
+  var args = [];
+  for (var _i = 0;_i < arguments.length; _i++) {
+    args[_i] = arguments[_i];
+  }
+  return args.filter(function(value) {
+    if (typeof value === "string" && value.length > 0) {
+      return true;
     }
-    const allEntries = [];
-    const pump = () => {
-      reader.readEntries((batch) => {
-        if (batch.length === 0) {
-          resolve(allEntries);
+    return false;
+  }).join(" ").trim();
+}
+var css_248z = `.reactEasyCrop_Container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
+  user-select: none;
+  touch-action: none;
+  cursor: move;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.reactEasyCrop_Image,
+.reactEasyCrop_Video {
+  will-change: transform; /* this improves performances and prevent painting issues on iOS Chrome */
+}
+
+.reactEasyCrop_Contain {
+  max-width: 100%;
+  max-height: 100%;
+  margin: auto;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+.reactEasyCrop_Cover_Horizontal {
+  width: 100%;
+  height: auto;
+}
+.reactEasyCrop_Cover_Vertical {
+  width: auto;
+  height: 100%;
+}
+
+.reactEasyCrop_CropArea {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  box-sizing: border-box;
+  box-shadow: 0 0 0 9999em;
+  color: rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+}
+
+.reactEasyCrop_CropAreaRound {
+  border-radius: 50%;
+}
+
+.reactEasyCrop_CropAreaGrid::before {
+  content: ' ';
+  box-sizing: border-box;
+  position: absolute;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  top: 0;
+  bottom: 0;
+  left: 33.33%;
+  right: 33.33%;
+  border-top: 0;
+  border-bottom: 0;
+}
+
+.reactEasyCrop_CropAreaGrid::after {
+  content: ' ';
+  box-sizing: border-box;
+  position: absolute;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  top: 33.33%;
+  bottom: 33.33%;
+  left: 0;
+  right: 0;
+  border-left: 0;
+  border-right: 0;
+}
+`;
+var MIN_ZOOM = 1;
+var MAX_ZOOM = 3;
+var KEYBOARD_STEP = 1;
+var Cropper = function(_super) {
+  __extends(Cropper2, _super);
+  function Cropper2() {
+    var _this = _super !== null && _super.apply(this, arguments) || this;
+    _this.cropperRef = React2.createRef();
+    _this.imageRef = React2.createRef();
+    _this.videoRef = React2.createRef();
+    _this.containerPosition = {
+      x: 0,
+      y: 0
+    };
+    _this.containerRef = null;
+    _this.styleRef = null;
+    _this.containerRect = null;
+    _this.mediaSize = {
+      width: 0,
+      height: 0,
+      naturalWidth: 0,
+      naturalHeight: 0
+    };
+    _this.dragStartPosition = {
+      x: 0,
+      y: 0
+    };
+    _this.dragStartCrop = {
+      x: 0,
+      y: 0
+    };
+    _this.gestureZoomStart = 0;
+    _this.gestureRotationStart = 0;
+    _this.isTouching = false;
+    _this.lastPinchDistance = 0;
+    _this.lastPinchRotation = 0;
+    _this.rafDragTimeout = null;
+    _this.rafPinchTimeout = null;
+    _this.wheelTimer = null;
+    _this.currentDoc = typeof document !== "undefined" ? document : null;
+    _this.currentWindow = typeof window !== "undefined" ? window : null;
+    _this.resizeObserver = null;
+    _this.previousCropSize = null;
+    _this.isInitialized = false;
+    _this.state = {
+      cropSize: null,
+      hasWheelJustStarted: false,
+      mediaObjectFit: undefined
+    };
+    _this.initResizeObserver = function() {
+      if (typeof window.ResizeObserver === "undefined" || !_this.containerRef) {
+        return;
+      }
+      var isFirstResize = true;
+      _this.resizeObserver = new window.ResizeObserver(function(entries) {
+        if (isFirstResize) {
+          isFirstResize = false;
           return;
         }
-        allEntries.push(...batch);
-        pump();
+        _this.computeSizes();
+      });
+      _this.resizeObserver.observe(_this.containerRef);
+    };
+    _this.preventZoomSafari = function(e) {
+      return e.preventDefault();
+    };
+    _this.cleanEvents = function() {
+      if (!_this.currentDoc)
+        return;
+      _this.currentDoc.removeEventListener("mousemove", _this.onMouseMove);
+      _this.currentDoc.removeEventListener("mouseup", _this.onDragStopped);
+      _this.currentDoc.removeEventListener("touchmove", _this.onTouchMove);
+      _this.currentDoc.removeEventListener("touchend", _this.onDragStopped);
+      _this.currentDoc.removeEventListener("gesturechange", _this.onGestureChange);
+      _this.currentDoc.removeEventListener("gestureend", _this.onGestureEnd);
+      _this.currentDoc.removeEventListener("scroll", _this.onScroll);
+    };
+    _this.clearScrollEvent = function() {
+      if (_this.containerRef)
+        _this.containerRef.removeEventListener("wheel", _this.onWheel);
+      if (_this.wheelTimer) {
+        clearTimeout(_this.wheelTimer);
+      }
+    };
+    _this.onMediaLoad = function() {
+      var cropSize = _this.computeSizes();
+      if (cropSize) {
+        _this.previousCropSize = cropSize;
+        _this.emitCropData();
+        _this.setInitialCrop(cropSize);
+        _this.isInitialized = true;
+      }
+      if (_this.props.onMediaLoaded) {
+        _this.props.onMediaLoaded(_this.mediaSize);
+      }
+    };
+    _this.setInitialCrop = function(cropSize) {
+      if (_this.props.initialCroppedAreaPercentages) {
+        var _a = getInitialCropFromCroppedAreaPercentages(_this.props.initialCroppedAreaPercentages, _this.mediaSize, _this.props.rotation, cropSize, _this.props.minZoom, _this.props.maxZoom), crop = _a.crop, zoom = _a.zoom;
+        _this.props.onCropChange(crop);
+        _this.props.onZoomChange && _this.props.onZoomChange(zoom);
+      } else if (_this.props.initialCroppedAreaPixels) {
+        var _b = getInitialCropFromCroppedAreaPixels(_this.props.initialCroppedAreaPixels, _this.mediaSize, _this.props.rotation, cropSize, _this.props.minZoom, _this.props.maxZoom), crop = _b.crop, zoom = _b.zoom;
+        _this.props.onCropChange(crop);
+        _this.props.onZoomChange && _this.props.onZoomChange(zoom);
+      }
+    };
+    _this.computeSizes = function() {
+      var _a, _b, _c, _d, _e, _f;
+      var mediaRef = _this.imageRef.current || _this.videoRef.current;
+      if (mediaRef && _this.containerRef) {
+        _this.containerRect = _this.containerRef.getBoundingClientRect();
+        _this.saveContainerPosition();
+        var containerAspect = _this.containerRect.width / _this.containerRect.height;
+        var naturalWidth = ((_a = _this.imageRef.current) === null || _a === undefined ? undefined : _a.naturalWidth) || ((_b = _this.videoRef.current) === null || _b === undefined ? undefined : _b.videoWidth) || 0;
+        var naturalHeight = ((_c = _this.imageRef.current) === null || _c === undefined ? undefined : _c.naturalHeight) || ((_d = _this.videoRef.current) === null || _d === undefined ? undefined : _d.videoHeight) || 0;
+        var isMediaScaledDown = mediaRef.offsetWidth < naturalWidth || mediaRef.offsetHeight < naturalHeight;
+        var mediaAspect = naturalWidth / naturalHeight;
+        var renderedMediaSize = undefined;
+        if (isMediaScaledDown) {
+          switch (_this.state.mediaObjectFit) {
+            default:
+            case "contain":
+              renderedMediaSize = containerAspect > mediaAspect ? {
+                width: _this.containerRect.height * mediaAspect,
+                height: _this.containerRect.height
+              } : {
+                width: _this.containerRect.width,
+                height: _this.containerRect.width / mediaAspect
+              };
+              break;
+            case "horizontal-cover":
+              renderedMediaSize = {
+                width: _this.containerRect.width,
+                height: _this.containerRect.width / mediaAspect
+              };
+              break;
+            case "vertical-cover":
+              renderedMediaSize = {
+                width: _this.containerRect.height * mediaAspect,
+                height: _this.containerRect.height
+              };
+              break;
+          }
+        } else {
+          renderedMediaSize = {
+            width: mediaRef.offsetWidth,
+            height: mediaRef.offsetHeight
+          };
+        }
+        _this.mediaSize = __assign(__assign({}, renderedMediaSize), {
+          naturalWidth,
+          naturalHeight
+        });
+        if (_this.props.setMediaSize) {
+          _this.props.setMediaSize(_this.mediaSize);
+        }
+        var cropSize = _this.props.cropSize ? _this.props.cropSize : getCropSize(_this.mediaSize.width, _this.mediaSize.height, _this.containerRect.width, _this.containerRect.height, _this.props.aspect, _this.props.rotation);
+        if (((_e = _this.state.cropSize) === null || _e === undefined ? undefined : _e.height) !== cropSize.height || ((_f = _this.state.cropSize) === null || _f === undefined ? undefined : _f.width) !== cropSize.width) {
+          _this.props.onCropSizeChange && _this.props.onCropSizeChange(cropSize);
+        }
+        _this.setState({
+          cropSize
+        }, _this.recomputeCropPosition);
+        if (_this.props.setCropSize) {
+          _this.props.setCropSize(cropSize);
+        }
+        return cropSize;
+      }
+    };
+    _this.saveContainerPosition = function() {
+      if (_this.containerRef) {
+        var bounds = _this.containerRef.getBoundingClientRect();
+        _this.containerPosition = {
+          x: bounds.left,
+          y: bounds.top
+        };
+      }
+    };
+    _this.onMouseDown = function(e) {
+      if (!_this.currentDoc)
+        return;
+      e.preventDefault();
+      _this.currentDoc.addEventListener("mousemove", _this.onMouseMove);
+      _this.currentDoc.addEventListener("mouseup", _this.onDragStopped);
+      _this.saveContainerPosition();
+      _this.onDragStart(Cropper2.getMousePoint(e));
+    };
+    _this.onMouseMove = function(e) {
+      return _this.onDrag(Cropper2.getMousePoint(e));
+    };
+    _this.onScroll = function(e) {
+      if (!_this.currentDoc)
+        return;
+      e.preventDefault();
+      _this.saveContainerPosition();
+    };
+    _this.onTouchStart = function(e) {
+      if (!_this.currentDoc)
+        return;
+      _this.isTouching = true;
+      if (_this.props.onTouchRequest && !_this.props.onTouchRequest(e)) {
+        return;
+      }
+      _this.currentDoc.addEventListener("touchmove", _this.onTouchMove, {
+        passive: false
+      });
+      _this.currentDoc.addEventListener("touchend", _this.onDragStopped);
+      _this.saveContainerPosition();
+      if (e.touches.length === 2) {
+        _this.onPinchStart(e);
+      } else if (e.touches.length === 1) {
+        _this.onDragStart(Cropper2.getTouchPoint(e.touches[0]));
+      }
+    };
+    _this.onTouchMove = function(e) {
+      e.preventDefault();
+      if (e.touches.length === 2) {
+        _this.onPinchMove(e);
+      } else if (e.touches.length === 1) {
+        _this.onDrag(Cropper2.getTouchPoint(e.touches[0]));
+      }
+    };
+    _this.onGestureStart = function(e) {
+      if (!_this.currentDoc)
+        return;
+      e.preventDefault();
+      _this.currentDoc.addEventListener("gesturechange", _this.onGestureChange);
+      _this.currentDoc.addEventListener("gestureend", _this.onGestureEnd);
+      _this.gestureZoomStart = _this.props.zoom;
+      _this.gestureRotationStart = _this.props.rotation;
+    };
+    _this.onGestureChange = function(e) {
+      e.preventDefault();
+      if (_this.isTouching) {
+        return;
+      }
+      var point = Cropper2.getMousePoint(e);
+      var newZoom = _this.gestureZoomStart - 1 + e.scale;
+      _this.setNewZoom(newZoom, point, {
+        shouldUpdatePosition: true
+      });
+      if (_this.props.onRotationChange) {
+        var newRotation = _this.gestureRotationStart + e.rotation;
+        _this.props.onRotationChange(newRotation);
+      }
+    };
+    _this.onGestureEnd = function(e) {
+      _this.cleanEvents();
+    };
+    _this.onDragStart = function(_a) {
+      var _b, _c;
+      var { x, y } = _a;
+      _this.dragStartPosition = {
+        x,
+        y
+      };
+      _this.dragStartCrop = __assign({}, _this.props.crop);
+      (_c = (_b = _this.props).onInteractionStart) === null || _c === undefined || _c.call(_b);
+    };
+    _this.onDrag = function(_a) {
+      var { x, y } = _a;
+      if (!_this.currentWindow)
+        return;
+      if (_this.rafDragTimeout)
+        _this.currentWindow.cancelAnimationFrame(_this.rafDragTimeout);
+      _this.rafDragTimeout = _this.currentWindow.requestAnimationFrame(function() {
+        if (!_this.state.cropSize)
+          return;
+        if (x === undefined || y === undefined)
+          return;
+        var offsetX = x - _this.dragStartPosition.x;
+        var offsetY = y - _this.dragStartPosition.y;
+        var requestedPosition = {
+          x: _this.dragStartCrop.x + offsetX,
+          y: _this.dragStartCrop.y + offsetY
+        };
+        var newPosition = _this.props.restrictPosition ? restrictPosition(requestedPosition, _this.mediaSize, _this.state.cropSize, _this.props.zoom, _this.props.rotation) : requestedPosition;
+        _this.props.onCropChange(newPosition);
       });
     };
-    pump();
-  });
-}
-async function collectFromWebkitEntry(entry, currentPath = entry.fullPath || entry.name) {
-  if (entry.isFile) {
-    const file = await getFileFromWebkitEntry(entry);
-    return [await readDroppedFile(file, currentPath)];
-  }
-  const children = await readWebkitDirectoryEntries(entry);
-  const files = [];
-  for (const child of children) {
-    files.push(...await collectFromWebkitEntry(child, `${currentPath}/${child.name}`));
-  }
-  return files;
-}
-function DragDrop() {
-  function highlight(e) {
-    e.preventDefault();
-    e.currentTarget.classList.add("highlight");
-  }
-  function unhighlight(e) {
-    e.preventDefault();
-    e.currentTarget.classList.remove("highlight");
-  }
-  async function handleDrop(e) {
-    e.preventDefault();
-    e.currentTarget.classList.remove("highlight");
-    const droppedFiles = [];
-    const seenPaths = new Set;
-    const items = [...e.dataTransfer.items];
-    const hasDirectoryDrop = items.some((item) => {
-      try {
-        return item.webkitGetAsEntry?.()?.isDirectory === true;
-      } catch {
-        return false;
+    _this.onDragStopped = function() {
+      var _a, _b;
+      _this.isTouching = false;
+      _this.cleanEvents();
+      _this.emitCropData();
+      (_b = (_a = _this.props).onInteractionEnd) === null || _b === undefined || _b.call(_a);
+    };
+    _this.onWheel = function(e) {
+      if (!_this.currentWindow)
+        return;
+      if (_this.props.onWheelRequest && !_this.props.onWheelRequest(e)) {
+        return;
       }
-    });
-    if (!hasDirectoryDrop) {
-      for (const file of e.dataTransfer.files) {
-        const droppedFile = await readDroppedFile(file, file.name);
-        droppedFiles.push(droppedFile);
-        seenPaths.add(droppedFile.path);
-      }
-    }
-    for (const item of items) {
-      if (item.kind !== "file") {
-        continue;
-      }
-      try {
-        const entry = item.webkitGetAsEntry?.();
-        if (entry?.isDirectory) {
-          for (const droppedFile of await collectFromWebkitEntry(entry)) {
-            if (seenPaths.has(droppedFile.path))
-              continue;
-            droppedFiles.push(droppedFile);
-            seenPaths.add(droppedFile.path);
-          }
-          continue;
-        }
-        if (item.getAsFileSystemHandle) {
-          const handle = await item.getAsFileSystemHandle();
-          if (handle.kind === "directory") {
-            for (const droppedFile of await collectFromHandle(handle)) {
-              if (seenPaths.has(droppedFile.path))
-                continue;
-              droppedFiles.push(droppedFile);
-              seenPaths.add(droppedFile.path);
-            }
-          }
-          continue;
-        }
-      } catch (error) {
-        console.warn("failed to read dropped directory item", error);
-      }
-    }
-    const imagesToUpload = [];
-    console.log(droppedFiles);
-    for (const droppedFile of droppedFiles) {
-      imagesToUpload.push({
-        path: droppedFile.path,
-        name: droppedFile.file.name,
-        size: droppedFile.file.size,
-        type: droppedFile.file.type,
-        bytes: droppedFile.bytes
+      e.preventDefault();
+      var point = Cropper2.getMousePoint(e);
+      var pixelY = import_normalize_wheel.default(e).pixelY;
+      var newZoom = _this.props.zoom - pixelY * _this.props.zoomSpeed / 200;
+      _this.setNewZoom(newZoom, point, {
+        shouldUpdatePosition: true
       });
-    }
-    console.log("imagestoupload", imagesToUpload);
-    try {
-      const res = await electroview.rpc?.request.uploadImages(imagesToUpload);
-      console.log("response from bun: ", res);
-    } catch (error) {
-      console.log(error);
-    }
+      if (!_this.state.hasWheelJustStarted) {
+        _this.setState({
+          hasWheelJustStarted: true
+        }, function() {
+          var _a, _b;
+          return (_b = (_a = _this.props).onInteractionStart) === null || _b === undefined ? undefined : _b.call(_a);
+        });
+      }
+      if (_this.wheelTimer) {
+        clearTimeout(_this.wheelTimer);
+      }
+      _this.wheelTimer = _this.currentWindow.setTimeout(function() {
+        return _this.setState({
+          hasWheelJustStarted: false
+        }, function() {
+          var _a, _b;
+          return (_b = (_a = _this.props).onInteractionEnd) === null || _b === undefined ? undefined : _b.call(_a);
+        });
+      }, 250);
+    };
+    _this.getPointOnContainer = function(_a, containerTopLeft) {
+      var { x, y } = _a;
+      if (!_this.containerRect) {
+        throw new Error("The Cropper is not mounted");
+      }
+      return {
+        x: _this.containerRect.width / 2 - (x - containerTopLeft.x),
+        y: _this.containerRect.height / 2 - (y - containerTopLeft.y)
+      };
+    };
+    _this.getPointOnMedia = function(_a) {
+      var { x, y } = _a;
+      var _b = _this.props, crop = _b.crop, zoom = _b.zoom;
+      return {
+        x: (x + crop.x) / zoom,
+        y: (y + crop.y) / zoom
+      };
+    };
+    _this.setNewZoom = function(zoom, point, _a) {
+      var _b = _a === undefined ? {} : _a, _c = _b.shouldUpdatePosition, shouldUpdatePosition = _c === undefined ? true : _c;
+      if (!_this.state.cropSize || !_this.props.onZoomChange)
+        return;
+      var newZoom = clamp(zoom, _this.props.minZoom, _this.props.maxZoom);
+      if (shouldUpdatePosition) {
+        var zoomPoint = _this.getPointOnContainer(point, _this.containerPosition);
+        var zoomTarget = _this.getPointOnMedia(zoomPoint);
+        var requestedPosition = {
+          x: zoomTarget.x * newZoom - zoomPoint.x,
+          y: zoomTarget.y * newZoom - zoomPoint.y
+        };
+        var newPosition = _this.props.restrictPosition ? restrictPosition(requestedPosition, _this.mediaSize, _this.state.cropSize, newZoom, _this.props.rotation) : requestedPosition;
+        _this.props.onCropChange(newPosition);
+      }
+      _this.props.onZoomChange(newZoom);
+    };
+    _this.getCropData = function() {
+      if (!_this.state.cropSize) {
+        return null;
+      }
+      var restrictedPosition = _this.props.restrictPosition ? restrictPosition(_this.props.crop, _this.mediaSize, _this.state.cropSize, _this.props.zoom, _this.props.rotation) : _this.props.crop;
+      return computeCroppedArea(restrictedPosition, _this.mediaSize, _this.state.cropSize, _this.getAspect(), _this.props.zoom, _this.props.rotation, _this.props.restrictPosition);
+    };
+    _this.emitCropData = function() {
+      var cropData = _this.getCropData();
+      if (!cropData)
+        return;
+      var { croppedAreaPercentages, croppedAreaPixels } = cropData;
+      if (_this.props.onCropComplete) {
+        _this.props.onCropComplete(croppedAreaPercentages, croppedAreaPixels);
+      }
+      if (_this.props.onCropAreaChange) {
+        _this.props.onCropAreaChange(croppedAreaPercentages, croppedAreaPixels);
+      }
+    };
+    _this.emitCropAreaChange = function() {
+      var cropData = _this.getCropData();
+      if (!cropData)
+        return;
+      var { croppedAreaPercentages, croppedAreaPixels } = cropData;
+      if (_this.props.onCropAreaChange) {
+        _this.props.onCropAreaChange(croppedAreaPercentages, croppedAreaPixels);
+      }
+    };
+    _this.recomputeCropPosition = function() {
+      var _a, _b;
+      if (!_this.state.cropSize)
+        return;
+      var adjustedCrop = _this.props.crop;
+      if (_this.isInitialized && ((_a = _this.previousCropSize) === null || _a === undefined ? undefined : _a.width) && ((_b = _this.previousCropSize) === null || _b === undefined ? undefined : _b.height)) {
+        var sizeChanged = Math.abs(_this.previousCropSize.width - _this.state.cropSize.width) > 0.000001 || Math.abs(_this.previousCropSize.height - _this.state.cropSize.height) > 0.000001;
+        if (sizeChanged) {
+          var scaleX = _this.state.cropSize.width / _this.previousCropSize.width;
+          var scaleY = _this.state.cropSize.height / _this.previousCropSize.height;
+          adjustedCrop = {
+            x: _this.props.crop.x * scaleX,
+            y: _this.props.crop.y * scaleY
+          };
+        }
+      }
+      var newPosition = _this.props.restrictPosition ? restrictPosition(adjustedCrop, _this.mediaSize, _this.state.cropSize, _this.props.zoom, _this.props.rotation) : adjustedCrop;
+      _this.previousCropSize = _this.state.cropSize;
+      _this.props.onCropChange(newPosition);
+      _this.emitCropData();
+    };
+    _this.onKeyDown = function(event) {
+      var _a, _b;
+      var _c = _this.props, crop = _c.crop, onCropChange = _c.onCropChange, keyboardStep = _c.keyboardStep, zoom = _c.zoom, rotation = _c.rotation;
+      var step = keyboardStep;
+      if (!_this.state.cropSize)
+        return;
+      if (event.shiftKey) {
+        step *= 0.2;
+      }
+      var newCrop = __assign({}, crop);
+      switch (event.key) {
+        case "ArrowUp":
+          newCrop.y -= step;
+          event.preventDefault();
+          break;
+        case "ArrowDown":
+          newCrop.y += step;
+          event.preventDefault();
+          break;
+        case "ArrowLeft":
+          newCrop.x -= step;
+          event.preventDefault();
+          break;
+        case "ArrowRight":
+          newCrop.x += step;
+          event.preventDefault();
+          break;
+        default:
+          return;
+      }
+      if (_this.props.restrictPosition) {
+        newCrop = restrictPosition(newCrop, _this.mediaSize, _this.state.cropSize, zoom, rotation);
+      }
+      if (!event.repeat) {
+        (_b = (_a = _this.props).onInteractionStart) === null || _b === undefined || _b.call(_a);
+      }
+      onCropChange(newCrop);
+    };
+    _this.onKeyUp = function(event) {
+      var _a, _b;
+      switch (event.key) {
+        case "ArrowUp":
+        case "ArrowDown":
+        case "ArrowLeft":
+        case "ArrowRight":
+          event.preventDefault();
+          break;
+        default:
+          return;
+      }
+      _this.emitCropData();
+      (_b = (_a = _this.props).onInteractionEnd) === null || _b === undefined || _b.call(_a);
+    };
+    return _this;
   }
-  return /* @__PURE__ */ jsx_dev_runtime2.jsxDEV("div", {
-    className: "dragdrop",
-    onDragEnter: highlight,
-    onDragOver: highlight,
-    onDragLeave: unhighlight,
-    onDrop: handleDrop
-  }, undefined, false, undefined, this);
+  Cropper2.prototype.componentDidMount = function() {
+    if (!this.currentDoc || !this.currentWindow)
+      return;
+    if (this.containerRef) {
+      if (this.containerRef.ownerDocument) {
+        this.currentDoc = this.containerRef.ownerDocument;
+      }
+      if (this.currentDoc.defaultView) {
+        this.currentWindow = this.currentDoc.defaultView;
+      }
+      this.initResizeObserver();
+      if (typeof window.ResizeObserver === "undefined") {
+        this.currentWindow.addEventListener("resize", this.computeSizes);
+      }
+      this.props.zoomWithScroll && this.containerRef.addEventListener("wheel", this.onWheel, {
+        passive: false
+      });
+      this.containerRef.addEventListener("gesturestart", this.onGestureStart);
+    }
+    this.currentDoc.addEventListener("scroll", this.onScroll);
+    if (!this.props.disableAutomaticStylesInjection) {
+      this.styleRef = this.currentDoc.createElement("style");
+      this.styleRef.setAttribute("type", "text/css");
+      if (this.props.nonce) {
+        this.styleRef.setAttribute("nonce", this.props.nonce);
+      }
+      this.styleRef.innerHTML = css_248z;
+      this.currentDoc.head.appendChild(this.styleRef);
+    }
+    if (this.imageRef.current && this.imageRef.current.complete) {
+      this.onMediaLoad();
+    }
+    if (this.props.setImageRef) {
+      this.props.setImageRef(this.imageRef);
+    }
+    if (this.props.setVideoRef) {
+      this.props.setVideoRef(this.videoRef);
+    }
+    if (this.props.setCropperRef) {
+      this.props.setCropperRef(this.cropperRef);
+    }
+  };
+  Cropper2.prototype.componentWillUnmount = function() {
+    var _a, _b;
+    if (!this.currentDoc || !this.currentWindow)
+      return;
+    if (typeof window.ResizeObserver === "undefined") {
+      this.currentWindow.removeEventListener("resize", this.computeSizes);
+    }
+    (_a = this.resizeObserver) === null || _a === undefined || _a.disconnect();
+    if (this.containerRef) {
+      this.containerRef.removeEventListener("gesturestart", this.preventZoomSafari);
+    }
+    if (this.styleRef) {
+      (_b = this.styleRef.parentNode) === null || _b === undefined || _b.removeChild(this.styleRef);
+    }
+    this.cleanEvents();
+    this.props.zoomWithScroll && this.clearScrollEvent();
+  };
+  Cropper2.prototype.componentDidUpdate = function(prevProps) {
+    var _a, _b, _c, _d, _e, _f, _g, _h, _j;
+    if (prevProps.rotation !== this.props.rotation) {
+      this.computeSizes();
+      this.recomputeCropPosition();
+    } else if (prevProps.aspect !== this.props.aspect) {
+      this.computeSizes();
+    } else if (prevProps.objectFit !== this.props.objectFit) {
+      this.computeSizes();
+    } else if (prevProps.zoom !== this.props.zoom) {
+      this.recomputeCropPosition();
+    } else if (((_a = prevProps.cropSize) === null || _a === undefined ? undefined : _a.height) !== ((_b = this.props.cropSize) === null || _b === undefined ? undefined : _b.height) || ((_c = prevProps.cropSize) === null || _c === undefined ? undefined : _c.width) !== ((_d = this.props.cropSize) === null || _d === undefined ? undefined : _d.width)) {
+      this.computeSizes();
+    } else if (((_e = prevProps.crop) === null || _e === undefined ? undefined : _e.x) !== ((_f = this.props.crop) === null || _f === undefined ? undefined : _f.x) || ((_g = prevProps.crop) === null || _g === undefined ? undefined : _g.y) !== ((_h = this.props.crop) === null || _h === undefined ? undefined : _h.y)) {
+      this.emitCropAreaChange();
+    }
+    if (prevProps.zoomWithScroll !== this.props.zoomWithScroll && this.containerRef) {
+      this.props.zoomWithScroll ? this.containerRef.addEventListener("wheel", this.onWheel, {
+        passive: false
+      }) : this.clearScrollEvent();
+    }
+    if (prevProps.video !== this.props.video) {
+      (_j = this.videoRef.current) === null || _j === undefined || _j.load();
+    }
+    var objectFit = this.getObjectFit();
+    if (objectFit !== this.state.mediaObjectFit) {
+      this.setState({
+        mediaObjectFit: objectFit
+      }, this.computeSizes);
+    }
+  };
+  Cropper2.prototype.getAspect = function() {
+    var _a = this.props, cropSize = _a.cropSize, aspect = _a.aspect;
+    if (cropSize) {
+      return cropSize.width / cropSize.height;
+    }
+    return aspect;
+  };
+  Cropper2.prototype.getObjectFit = function() {
+    var _a, _b, _c, _d;
+    if (this.props.objectFit === "cover") {
+      var mediaRef = this.imageRef.current || this.videoRef.current;
+      if (mediaRef && this.containerRef) {
+        this.containerRect = this.containerRef.getBoundingClientRect();
+        var containerAspect = this.containerRect.width / this.containerRect.height;
+        var naturalWidth = ((_a = this.imageRef.current) === null || _a === undefined ? undefined : _a.naturalWidth) || ((_b = this.videoRef.current) === null || _b === undefined ? undefined : _b.videoWidth) || 0;
+        var naturalHeight = ((_c = this.imageRef.current) === null || _c === undefined ? undefined : _c.naturalHeight) || ((_d = this.videoRef.current) === null || _d === undefined ? undefined : _d.videoHeight) || 0;
+        var mediaAspect = naturalWidth / naturalHeight;
+        return mediaAspect < containerAspect ? "horizontal-cover" : "vertical-cover";
+      }
+      return "horizontal-cover";
+    }
+    return this.props.objectFit;
+  };
+  Cropper2.prototype.onPinchStart = function(e) {
+    var pointA = Cropper2.getTouchPoint(e.touches[0]);
+    var pointB = Cropper2.getTouchPoint(e.touches[1]);
+    this.lastPinchDistance = getDistanceBetweenPoints(pointA, pointB);
+    this.lastPinchRotation = getRotationBetweenPoints(pointA, pointB);
+    this.onDragStart(getCenter(pointA, pointB));
+  };
+  Cropper2.prototype.onPinchMove = function(e) {
+    var _this = this;
+    if (!this.currentDoc || !this.currentWindow)
+      return;
+    var pointA = Cropper2.getTouchPoint(e.touches[0]);
+    var pointB = Cropper2.getTouchPoint(e.touches[1]);
+    var center = getCenter(pointA, pointB);
+    this.onDrag(center);
+    if (this.rafPinchTimeout)
+      this.currentWindow.cancelAnimationFrame(this.rafPinchTimeout);
+    this.rafPinchTimeout = this.currentWindow.requestAnimationFrame(function() {
+      var distance = getDistanceBetweenPoints(pointA, pointB);
+      var newZoom = _this.props.zoom * (distance / _this.lastPinchDistance);
+      _this.setNewZoom(newZoom, center, {
+        shouldUpdatePosition: false
+      });
+      _this.lastPinchDistance = distance;
+      var rotation = getRotationBetweenPoints(pointA, pointB);
+      var newRotation = _this.props.rotation + (rotation - _this.lastPinchRotation);
+      _this.props.onRotationChange && _this.props.onRotationChange(newRotation);
+      _this.lastPinchRotation = rotation;
+    });
+  };
+  Cropper2.prototype.render = function() {
+    var _this = this;
+    var _a;
+    var _b = this.props, image = _b.image, video = _b.video, mediaProps = _b.mediaProps, cropperProps = _b.cropperProps, transform = _b.transform, _c = _b.crop, x = _c.x, y = _c.y, rotation = _b.rotation, zoom = _b.zoom, cropShape = _b.cropShape, showGrid = _b.showGrid, roundCropAreaPixels = _b.roundCropAreaPixels, _d = _b.style, containerStyle = _d.containerStyle, cropAreaStyle = _d.cropAreaStyle, mediaStyle = _d.mediaStyle, _e = _b.classes, containerClassName = _e.containerClassName, cropAreaClassName = _e.cropAreaClassName, mediaClassName = _e.mediaClassName;
+    var objectFit = (_a = this.state.mediaObjectFit) !== null && _a !== undefined ? _a : this.getObjectFit();
+    return React2.createElement("div", {
+      onMouseDown: this.onMouseDown,
+      onTouchStart: this.onTouchStart,
+      ref: function ref(el) {
+        return _this.containerRef = el;
+      },
+      "data-testid": "container",
+      style: containerStyle,
+      className: classNames("reactEasyCrop_Container", containerClassName)
+    }, image ? React2.createElement("img", __assign({
+      alt: "",
+      className: classNames("reactEasyCrop_Image", objectFit === "contain" && "reactEasyCrop_Contain", objectFit === "horizontal-cover" && "reactEasyCrop_Cover_Horizontal", objectFit === "vertical-cover" && "reactEasyCrop_Cover_Vertical", mediaClassName)
+    }, mediaProps, {
+      src: image,
+      ref: this.imageRef,
+      style: __assign(__assign({}, mediaStyle), {
+        transform: transform || "translate(".concat(x, "px, ").concat(y, "px) rotate(").concat(rotation, "deg) scale(").concat(zoom, ")")
+      }),
+      onLoad: this.onMediaLoad
+    })) : video && React2.createElement("video", __assign({
+      autoPlay: true,
+      playsInline: true,
+      loop: true,
+      muted: true,
+      className: classNames("reactEasyCrop_Video", objectFit === "contain" && "reactEasyCrop_Contain", objectFit === "horizontal-cover" && "reactEasyCrop_Cover_Horizontal", objectFit === "vertical-cover" && "reactEasyCrop_Cover_Vertical", mediaClassName)
+    }, mediaProps, {
+      ref: this.videoRef,
+      onLoadedMetadata: this.onMediaLoad,
+      style: __assign(__assign({}, mediaStyle), {
+        transform: transform || "translate(".concat(x, "px, ").concat(y, "px) rotate(").concat(rotation, "deg) scale(").concat(zoom, ")")
+      }),
+      controls: false
+    }), (Array.isArray(video) ? video : [{
+      src: video
+    }]).map(function(item) {
+      return React2.createElement("source", __assign({
+        key: item.src
+      }, item));
+    })), this.state.cropSize && React2.createElement("div", __assign({
+      ref: this.cropperRef,
+      style: __assign(__assign({}, cropAreaStyle), {
+        width: roundCropAreaPixels ? Math.round(this.state.cropSize.width) : this.state.cropSize.width,
+        height: roundCropAreaPixels ? Math.round(this.state.cropSize.height) : this.state.cropSize.height
+      }),
+      tabIndex: 0,
+      onKeyDown: this.onKeyDown,
+      onKeyUp: this.onKeyUp,
+      "data-testid": "cropper",
+      className: classNames("reactEasyCrop_CropArea", cropShape === "round" && "reactEasyCrop_CropAreaRound", showGrid && "reactEasyCrop_CropAreaGrid", cropAreaClassName)
+    }, cropperProps)));
+  };
+  Cropper2.defaultProps = {
+    zoom: 1,
+    rotation: 0,
+    aspect: 4 / 3,
+    maxZoom: MAX_ZOOM,
+    minZoom: MIN_ZOOM,
+    cropShape: "rect",
+    objectFit: "contain",
+    showGrid: true,
+    style: {},
+    classes: {},
+    mediaProps: {},
+    cropperProps: {},
+    zoomSpeed: 1,
+    restrictPosition: true,
+    zoomWithScroll: true,
+    keyboardStep: KEYBOARD_STEP
+  };
+  Cropper2.getMousePoint = function(e) {
+    return {
+      x: Number(e.clientX),
+      y: Number(e.clientY)
+    };
+  };
+  Cropper2.getTouchPoint = function(touch) {
+    return {
+      x: Number(touch.clientX),
+      y: Number(touch.clientY)
+    };
+  };
+  return Cropper2;
+}(React2.Component);
+
+// src/mainview/modules/imagesCanvas.tsx
+var jsx_dev_runtime5 = __toESM(require_jsx_dev_runtime(), 1);
+function ImagesCanvas() {
+  const appContext = import_react7.useContext(sharedContext);
+  const [crop, setCrop] = import_react7.useState({ x: 0, y: 0 });
+  const [zoom, setZoom] = import_react7.useState(1);
+  import_react7.useEffect(() => {
+    setCrop({ x: 0, y: 0 });
+    setZoom(1);
+  }, [appContext.activeImage.input, appContext.activeImage.output]);
+  const inputHandler = (e) => {
+    if (e.target instanceof HTMLInputElement && e.target.nextElementSibling instanceof HTMLElement) {
+      e.target.nextElementSibling.innerHTML = e.target.value;
+    }
+  };
+  const mouseUpHandler = (e) => {
+    console.log(e);
+  };
+  return /* @__PURE__ */ jsx_dev_runtime5.jsxDEV("div", {
+    className: "imagescanvas",
+    children: [
+      /* @__PURE__ */ jsx_dev_runtime5.jsxDEV("div", {
+        className: "imagescanvas-col",
+        children: [
+          /* @__PURE__ */ jsx_dev_runtime5.jsxDEV("div", {
+            className: "imagescanvas-col-header",
+            children: "Input"
+          }, undefined, false, undefined, this),
+          /* @__PURE__ */ jsx_dev_runtime5.jsxDEV("div", {
+            className: "imagescanvas-col-bg",
+            children: /* @__PURE__ */ jsx_dev_runtime5.jsxDEV(Cropper, {
+              image: appContext.activeImage.input,
+              crop,
+              zoom,
+              maxZoom: 10,
+              onCropChange: setCrop,
+              onZoomChange: setZoom
+            }, undefined, false, undefined, this)
+          }, undefined, false, undefined, this),
+          /* @__PURE__ */ jsx_dev_runtime5.jsxDEV("div", {
+            className: "imagescanvas-col-footer",
+            children: formatBytes(appContext.activeImage.inputSizeBytes)
+          }, undefined, false, undefined, this)
+        ]
+      }, undefined, true, undefined, this),
+      /* @__PURE__ */ jsx_dev_runtime5.jsxDEV("div", {
+        className: "imagescanvas-col",
+        children: [
+          /* @__PURE__ */ jsx_dev_runtime5.jsxDEV("div", {
+            className: "imagescanvas-col-header",
+            children: "Output"
+          }, undefined, false, undefined, this),
+          /* @__PURE__ */ jsx_dev_runtime5.jsxDEV("div", {
+            className: "imagescanvas-col-bg",
+            children: /* @__PURE__ */ jsx_dev_runtime5.jsxDEV(Cropper, {
+              image: appContext.activeImage.output,
+              crop,
+              zoom,
+              maxZoom: 10,
+              onCropChange: setCrop,
+              onZoomChange: setZoom
+            }, undefined, false, undefined, this)
+          }, undefined, false, undefined, this),
+          /* @__PURE__ */ jsx_dev_runtime5.jsxDEV("div", {
+            className: "imagescanvas-col-footer",
+            children: formatBytes(appContext.activeImage.outputSizeBytes)
+          }, undefined, false, undefined, this)
+        ]
+      }, undefined, true, undefined, this),
+      /* @__PURE__ */ jsx_dev_runtime5.jsxDEV("div", {
+        className: "imagescanvas-sliders",
+        children: [
+          /* @__PURE__ */ jsx_dev_runtime5.jsxDEV("label", {
+            className: "imagescanvas-sliders-slider",
+            children: [
+              /* @__PURE__ */ jsx_dev_runtime5.jsxDEV("span", {
+                className: "imagescanvas-sliders-slider-label",
+                children: "Quality"
+              }, undefined, false, undefined, this),
+              /* @__PURE__ */ jsx_dev_runtime5.jsxDEV("input", {
+                onInput: inputHandler,
+                onMouseUp: mouseUpHandler,
+                className: "imagescanvas-sliders-slider-input",
+                type: "range",
+                min: "0",
+                max: "100",
+                defaultValue: "75"
+              }, undefined, false, undefined, this),
+              /* @__PURE__ */ jsx_dev_runtime5.jsxDEV("div", {
+                className: "imagescanvas-sliders-slider-inputvalue",
+                children: "75"
+              }, undefined, false, undefined, this)
+            ]
+          }, undefined, true, undefined, this),
+          /* @__PURE__ */ jsx_dev_runtime5.jsxDEV("label", {
+            className: "imagescanvas-sliders-slider",
+            children: [
+              /* @__PURE__ */ jsx_dev_runtime5.jsxDEV("span", {
+                className: "imagescanvas-sliders-slider-label",
+                children: "Effort"
+              }, undefined, false, undefined, this),
+              /* @__PURE__ */ jsx_dev_runtime5.jsxDEV("input", {
+                onInput: inputHandler,
+                onMouseUp: mouseUpHandler,
+                className: "imagescanvas-sliders-slider-input",
+                type: "range",
+                min: "0",
+                max: "6",
+                defaultValue: "3"
+              }, undefined, false, undefined, this),
+              /* @__PURE__ */ jsx_dev_runtime5.jsxDEV("div", {
+                className: "imagescanvas-sliders-slider-inputvalue",
+                children: "3"
+              }, undefined, false, undefined, this)
+            ]
+          }, undefined, true, undefined, this)
+        ]
+      }, undefined, true, undefined, this)
+    ]
+  }, undefined, true, undefined, this);
+}
+
+// src/mainview/modules/imagesEditor.tsx
+var jsx_dev_runtime6 = __toESM(require_jsx_dev_runtime(), 1);
+function ImagesEditor() {
+  const appContext = import_react8.useContext(sharedContext);
+  if (Object.keys(appContext.images).length > 0) {
+    return /* @__PURE__ */ jsx_dev_runtime6.jsxDEV("div", {
+      className: "imageseditor",
+      children: [
+        /* @__PURE__ */ jsx_dev_runtime6.jsxDEV(ImagesList, {}, undefined, false, undefined, this),
+        /* @__PURE__ */ jsx_dev_runtime6.jsxDEV(ImagesCanvas, {}, undefined, false, undefined, this)
+      ]
+    }, undefined, true, undefined, this);
+  }
 }
 
 // src/mainview/app.tsx
-var jsx_dev_runtime3 = __toESM(require_jsx_dev_runtime(), 1);
+var import_react9 = __toESM(require_react(), 1);
+var jsx_dev_runtime7 = __toESM(require_jsx_dev_runtime(), 1);
 function Moop() {
-  return /* @__PURE__ */ jsx_dev_runtime3.jsxDEV(jsx_dev_runtime3.Fragment, {
+  const [images, setImages] = import_react9.useState([]);
+  const [activeImage, setActiveImage] = import_react9.useState({
+    input: "",
+    output: "",
+    inputSizeBytes: 0,
+    outputSizeBytes: 0
+  });
+  const [outputFolderSize, setOutputFolderSize] = import_react9.useState(0);
+  const [inputFolderSize, setInputFolderSize] = import_react9.useState(0);
+  return /* @__PURE__ */ jsx_dev_runtime7.jsxDEV(sharedContext.Provider, {
+    value: {
+      ...appContextDefaults,
+      images,
+      activeImage,
+      setActiveImage,
+      setImages,
+      outputFolderSize,
+      setOutputFolderSize,
+      inputFolderSize,
+      setInputFolderSize
+    },
     children: [
-      /* @__PURE__ */ jsx_dev_runtime3.jsxDEV(DragDrop, {}, undefined, false, undefined, this),
-      /* @__PURE__ */ jsx_dev_runtime3.jsxDEV(MainBG, {}, undefined, false, undefined, this)
+      /* @__PURE__ */ jsx_dev_runtime7.jsxDEV(DragDrop, {}, undefined, false, undefined, this),
+      /* @__PURE__ */ jsx_dev_runtime7.jsxDEV(ImagesEditor, {}, undefined, false, undefined, this),
+      /* @__PURE__ */ jsx_dev_runtime7.jsxDEV(MainBG, {}, undefined, false, undefined, this)
     ]
   }, undefined, true, undefined, this);
 }
 
 // src/mainview/index.tsx
 var import_client = __toESM(require_client(), 1);
-var jsx_dev_runtime4 = __toESM(require_jsx_dev_runtime(), 1);
+var jsx_dev_runtime8 = __toESM(require_jsx_dev_runtime(), 1);
 var rootEl = document.querySelector("body");
 if (rootEl instanceof HTMLElement) {
   const reactRoot = import_client.createRoot(rootEl);
-  reactRoot.render(/* @__PURE__ */ jsx_dev_runtime4.jsxDEV(Moop, {}, undefined, false, undefined, this));
-  console.log("Hello Electrobun view loaded!");
+  reactRoot.render(/* @__PURE__ */ jsx_dev_runtime8.jsxDEV(Moop, {}, undefined, false, undefined, this));
+  console.log("Hello Electrobun Moop view loaded!");
+  window.ondragenter = () => {
+    const dragDrop = document.querySelector(".dragdrop");
+    if (dragDrop instanceof HTMLElement) {
+      dragDrop.classList.add("over");
+    }
+  };
+  window.ondragend = () => {
+    const dragDrop = document.querySelector(".dragdrop");
+    if (dragDrop instanceof HTMLElement) {
+      dragDrop.classList.remove("over");
+    }
+  };
 }

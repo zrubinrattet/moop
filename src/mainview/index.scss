@@ -6,14 +6,6 @@
 // modules
 @use "scss/modules/mainbg";
 @use "scss/modules/dragdrop";
-
-.dragdrop{
-	position: absolute;
-	top: 0;
-	left: 0;
-	bottom: 0;
-	right: 0;
-	width: 100%;
-	height: 100%;
-	z-index: 500;
-}
+@use "scss/modules/imagesList";
+@use "scss/modules/imagesEditor";
+@use "scss/modules/imagesCanvas";
