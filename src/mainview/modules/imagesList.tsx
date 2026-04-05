@@ -18,11 +18,18 @@ const electroview = new Electroview({ rpc });
 export default function ImagesList() {
 	const appContext = useContext(sharedContext);
 
-	async function revealClickHandler(e:React.MouseEvent) {
+	async function revealClickHandler(e: React.MouseEvent) {
 		e.preventDefault();
 		await electroview.rpc?.request.revealInFileManager();
 	}
-	
+
+	function clearAllClickHandler(e: React.MouseEvent) {
+		e.preventDefault();
+
+		// show confirmation modal
+		console.log('Show confirmation modal!');
+	}
+
 	return (
 		<div className="imageslist">
 			<div className="imageslist-header">
@@ -38,8 +45,8 @@ export default function ImagesList() {
 						output={image.output}
 					/>
 				))}
-				<div className="imageslist-list-loading"></div>
-				
+				<div className={'imageslist-list-loading' + (appContext.imagesLoading ? ' active' : '')}></div>
+				{Object.keys(appContext.images).length > 0 ? <a onClick={clearAllClickHandler} href="#" className="imageslist-list-clearall">Clear all</a> : ''}
 			</div>
 			<a href="#" onClick={revealClickHandler} className="imageslist-revealbutton">Reveal in file manager</a>
 		</div>

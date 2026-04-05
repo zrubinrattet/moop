@@ -124,7 +124,7 @@ Bun.serve({
 				const outputPath = join(outputDirectory, `${path.parse(image.name).name}.webp`);
 
 				if (await Bun.file(outputPath).exists()) {
-					ret.message = `Successfully processed image.`
+					ret.message = `Successfully processed image.`;
 					const image: Image = {
 						input: convertImageURL({ url: inputPath, type: 'absolutetolocal' }),
 						inputSizeBytes: statSync(inputPath).size,

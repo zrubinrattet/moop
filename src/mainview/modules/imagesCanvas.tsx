@@ -1,19 +1,11 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import { sharedContext } from "../../shared/shared-context";
 import { formatBytes } from "../../shared/shared-snippets";
 import Cropper from 'react-easy-crop'
 
 export default function ImagesCanvas() {
 	const appContext = useContext(sharedContext);
-	const [crop, setCrop] = useState({ x: 0, y: 0 })
-	const [zoom, setZoom] = useState(1)
-
-	useEffect(() => {
-		// eslint-disable-next-line
-		setCrop({ x: 0, y: 0 });
-		setZoom(1);
-	}, [appContext.activeImage.input, appContext.activeImage.output]);
-
+	
 	const inputHandler = (e: React.InputEvent) => {
 		if (e.target instanceof HTMLInputElement && e.target.nextElementSibling instanceof HTMLElement) {
 			e.target.nextElementSibling.innerHTML = e.target.value;
@@ -31,11 +23,11 @@ export default function ImagesCanvas() {
 				<div className="imagescanvas-col-bg">
 					<Cropper
 						image={appContext.activeImage.input}
-						crop={crop}
-						zoom={zoom}
+						crop={appContext.crop}
+						zoom={appContext.zoom}
 						maxZoom={10}
-						onCropChange={setCrop}
-						onZoomChange={setZoom}
+						onCropChange={appContext.setCrop}
+						onZoomChange={appContext.setZoom}
 					/>
 				</div>
 				<div className="imagescanvas-col-footer">{formatBytes(appContext.activeImage.inputSizeBytes)}</div>
@@ -45,11 +37,11 @@ export default function ImagesCanvas() {
 				<div className="imagescanvas-col-bg">
 					<Cropper
 						image={appContext.activeImage.output}
-						crop={crop}
-						zoom={zoom}
+						crop={appContext.crop}
+						zoom={appContext.zoom}
 						maxZoom={10}
-						onCropChange={setCrop}
-						onZoomChange={setZoom}
+						onCropChange={appContext.setCrop}
+						onZoomChange={appContext.setZoom}
 					/>
 				</div>
 				<div className="imagescanvas-col-footer">{formatBytes(appContext.activeImage.outputSizeBytes)}</div>

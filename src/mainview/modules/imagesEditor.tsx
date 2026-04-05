@@ -5,12 +5,12 @@ import ImagesCanvas from "./imagesCanvas";
 
 export default function ImagesEditor(){
 	const appContext = useContext(sharedContext);
-	if( Object.keys(appContext.images).length > 0 ){
-		return (
-			<div className="imageseditor">
-				<ImagesList />
-				<ImagesCanvas />
-			</div>
-		);
-	}
+	
+	return (
+		<div className={'imageseditor' + (appContext.imagesLoading || Object.keys(appContext.images).length > 0 ? ' active' : '')}>
+			<ImagesList />
+			<ImagesCanvas />
+		</div>
+	);
+	
 }

@@ -77,11 +77,11 @@
 		bottom: 0px;
 		transform: translateX(-50%);
 		z-index: 20;
+		background-color: var(--imagecanvas-sliders-bg);
 	}
 
 	.imagescanvas-sliders-slider {
 		display: flex;
-		background-color: var(--imagecanvas-sliders-bg);
 		padding: 8px 11px;
 		flex-wrap: wrap;
 		justify-content: space-between;

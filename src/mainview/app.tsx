@@ -3,18 +3,16 @@ import DragDrop from './modules/dragdrop';
 import ImagesEditor from './modules/imagesEditor';
 import { sharedContext, appContextDefaults } from '../shared/shared-context';
 import { useState } from 'react';
-import { Image } from '../shared/shared-types';
 
 export default function Moop() {
-	const [images, setImages] = useState<Image[]>([]);
-	const [activeImage, setActiveImage] = useState({
-		input: '',
-		output: '',
-		inputSizeBytes: 0,
-		outputSizeBytes: 0,
-	});
-	const [outputFolderSize, setOutputFolderSize] = useState(0);
-	const [inputFolderSize, setInputFolderSize] = useState(0);
+	const [images, setImages] = useState(appContextDefaults.images);
+	const [activeImage, setActiveImage] = useState(appContextDefaults.activeImage);
+	const [outputFolderSize, setOutputFolderSize] = useState(appContextDefaults.outputFolderSize);
+	const [inputFolderSize, setInputFolderSize] = useState(appContextDefaults.inputFolderSize);
+	const [imagesLoading, setImagesLoading] = useState(appContextDefaults.imagesLoading);
+	const [crop, setCrop] = useState(appContextDefaults.crop);
+	const [zoom, setZoom] = useState(appContextDefaults.zoom);
+
 	return (
 		<sharedContext.Provider value={{
 			...appContextDefaults,
@@ -25,7 +23,13 @@ export default function Moop() {
 			outputFolderSize: outputFolderSize,
 			setOutputFolderSize: setOutputFolderSize,
 			inputFolderSize: inputFolderSize,
-			setInputFolderSize: setInputFolderSize
+			setInputFolderSize: setInputFolderSize,
+			imagesLoading: imagesLoading,
+			setImagesLoading: setImagesLoading,
+			crop: crop,
+			setCrop: setCrop,
+			zoom: zoom,
+			setZoom: setZoom,
 		}}>
 			<DragDrop />
 			<ImagesEditor />

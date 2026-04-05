@@ -4,7 +4,7 @@ import { sharedContext } from "../../shared/shared-context";
 export default function MainBG() {
 	const appContext = useContext(sharedContext);
 	return (
-		<div className={'mainbg ' + (Object.keys(appContext.images).length ? ' hide' : '') }>
+		<div className={'mainbg ' + (appContext.imagesLoading || Object.keys(appContext.images).length ? ' hide' : '') }>
 			<div className="mainbg-svgcontainer">
 				<svg className="mainbg-svgcontainer-svg" width="732" height="565" viewBox="-100 0 732 565" fill="none" xmlns="http://www.w3.org/2000/svg">
 					<g>

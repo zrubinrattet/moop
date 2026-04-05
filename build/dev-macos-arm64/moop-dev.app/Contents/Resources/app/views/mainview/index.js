@@ -18081,12 +18081,22 @@ var appContextDefaults = {
   setImages: () => {},
   images: [],
   setActiveImage: () => {},
+  imagesLoading: false,
+  setImagesLoading: () => {},
   activeImage: {
     output: "",
     input: "",
     inputSizeBytes: 0,
     outputSizeBytes: 0
   },
+  zoom: 1,
+  setZoom: () => {},
+  crop: {
+    x: 0,
+    y: 0
+  },
+  setCrop: () => {},
+  setSettings: () => {},
   settings: {
     defaultEffort: 4,
     defaultQuality: 75,
@@ -18100,7 +18110,7 @@ var jsx_dev_runtime = __toESM(require_jsx_dev_runtime(), 1);
 function MainBG() {
   const appContext = import_react2.useContext(sharedContext);
   return /* @__PURE__ */ jsx_dev_runtime.jsxDEV("div", {
-    className: "mainbg " + (Object.keys(appContext.images).length ? " hide" : ""),
+    className: "mainbg " + (appContext.imagesLoading || Object.keys(appContext.images).length ? " hide" : ""),
     children: /* @__PURE__ */ jsx_dev_runtime.jsxDEV("div", {
       className: "mainbg-svgcontainer",
       children: /* @__PURE__ */ jsx_dev_runtime.jsxDEV("svg", {
@@ -20623,9 +20633,9 @@ function noop() {}
 var jsx_dev_runtime2 = __toESM(require_jsx_dev_runtime(), 1);
 function DragDrop() {
   const appContext = import_react4.useContext(sharedContext);
-  const onDrop = async (acceptedFiles) => {
+  const dropHandler = async (acceptedFiles) => {
+    appContext.setImagesLoading(true);
     const dateNow = Date.now();
-    let firstPromiseResolved = false;
     const promises = acceptedFiles.map(async (droppedFile) => {
       try {
         const formData = new FormData;
@@ -20649,18 +20659,22 @@ function DragDrop() {
         return null;
       }
     });
+    let firstPromiseResolved = false;
     promises.forEach((p) => {
       p.then((val) => {
         if (!firstPromiseResolved) {
           firstPromiseResolved = true;
           appContext.setActiveImage(val.data.images[0]);
+          appContext.setZoom(appContextDefaults.zoom);
+          appContext.setCrop(appContextDefaults.crop);
         }
       });
     });
     const responses = await Promise.all(promises);
     console.log(`Upload complete in ${(Date.now() - dateNow) / 1000}s`, responses);
+    appContext.setImagesLoading(false);
   };
-  const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop, noClick: true });
+  const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop: dropHandler, noClick: true });
   return /* @__PURE__ */ jsx_dev_runtime2.jsxDEV("div", {
     className: "dragdrop" + (isDragActive ? " highlight" : ""),
     ...getRootProps(),
@@ -20692,14 +20706,21 @@ function ImagesListItem(props) {
         parent.classList.add("active");
         const elIndex = props.index;
         appContext.setActiveImage(appContext.images[elIndex]);
+        appContext.setZoom(appContextDefaults.zoom);
+        appContext.setCrop(appContextDefaults.crop);
       }
     }
+  }
+  function itemDeleteClickHandler(e) {
+    e.preventDefault();
+    console.log("Open the modal!");
   }
   return /* @__PURE__ */ jsx_dev_runtime3.jsxDEV("div", {
     className: "imageslist-list-item" + (props.index === 0 ? " active" : ""),
     children: [
       /* @__PURE__ */ jsx_dev_runtime3.jsxDEV("a", {
         href: "#",
+        onClick: itemDeleteClickHandler,
         className: "imageslist-list-item-close",
         children: "×"
       }, undefined, false, undefined, this),
@@ -21066,6 +21087,10 @@ function ImagesList() {
     e.preventDefault();
     await electroview.rpc?.request.revealInFileManager();
   }
+  function clearAllClickHandler(e) {
+    e.preventDefault();
+    console.log("Show confirmation modal!");
+  }
   return /* @__PURE__ */ jsx_dev_runtime4.jsxDEV("div", {
     className: "imageslist",
     children: [
@@ -21100,8 +21125,14 @@ function ImagesList() {
             output: image.output
           }, index, false, undefined, this)),
           /* @__PURE__ */ jsx_dev_runtime4.jsxDEV("div", {
-            className: "imageslist-list-loading"
-          }, undefined, false, undefined, this)
+            className: "imageslist-list-loading" + (appContext.imagesLoading ? " active" : "")
+          }, undefined, false, undefined, this),
+          Object.keys(appContext.images).length > 0 ? /* @__PURE__ */ jsx_dev_runtime4.jsxDEV("a", {
+            onClick: clearAllClickHandler,
+            href: "#",
+            className: "imageslist-list-clearall",
+            children: "Clear all"
+          }, undefined, false, undefined, this) : ""
         ]
       }, undefined, true, undefined, this),
       /* @__PURE__ */ jsx_dev_runtime4.jsxDEV("a", {
@@ -22042,12 +22073,6 @@ var Cropper = function(_super) {
 var jsx_dev_runtime5 = __toESM(require_jsx_dev_runtime(), 1);
 function ImagesCanvas() {
   const appContext = import_react7.useContext(sharedContext);
-  const [crop, setCrop] = import_react7.useState({ x: 0, y: 0 });
-  const [zoom, setZoom] = import_react7.useState(1);
-  import_react7.useEffect(() => {
-    setCrop({ x: 0, y: 0 });
-    setZoom(1);
-  }, [appContext.activeImage.input, appContext.activeImage.output]);
   const inputHandler = (e) => {
     if (e.target instanceof HTMLInputElement && e.target.nextElementSibling instanceof HTMLElement) {
       e.target.nextElementSibling.innerHTML = e.target.value;
@@ -22070,11 +22095,11 @@ function ImagesCanvas() {
             className: "imagescanvas-col-bg",
             children: /* @__PURE__ */ jsx_dev_runtime5.jsxDEV(Cropper, {
               image: appContext.activeImage.input,
-              crop,
-              zoom,
+              crop: appContext.crop,
+              zoom: appContext.zoom,
               maxZoom: 10,
-              onCropChange: setCrop,
-              onZoomChange: setZoom
+              onCropChange: appContext.setCrop,
+              onZoomChange: appContext.setZoom
             }, undefined, false, undefined, this)
           }, undefined, false, undefined, this),
           /* @__PURE__ */ jsx_dev_runtime5.jsxDEV("div", {
@@ -22094,11 +22119,11 @@ function ImagesCanvas() {
             className: "imagescanvas-col-bg",
             children: /* @__PURE__ */ jsx_dev_runtime5.jsxDEV(Cropper, {
               image: appContext.activeImage.output,
-              crop,
-              zoom,
+              crop: appContext.crop,
+              zoom: appContext.zoom,
               maxZoom: 10,
-              onCropChange: setCrop,
-              onZoomChange: setZoom
+              onCropChange: appContext.setCrop,
+              onZoomChange: appContext.setZoom
             }, undefined, false, undefined, this)
           }, undefined, false, undefined, this),
           /* @__PURE__ */ jsx_dev_runtime5.jsxDEV("div", {
@@ -22164,30 +22189,26 @@ function ImagesCanvas() {
 var jsx_dev_runtime6 = __toESM(require_jsx_dev_runtime(), 1);
 function ImagesEditor() {
   const appContext = import_react8.useContext(sharedContext);
-  if (Object.keys(appContext.images).length > 0) {
-    return /* @__PURE__ */ jsx_dev_runtime6.jsxDEV("div", {
-      className: "imageseditor",
-      children: [
-        /* @__PURE__ */ jsx_dev_runtime6.jsxDEV(ImagesList, {}, undefined, false, undefined, this),
-        /* @__PURE__ */ jsx_dev_runtime6.jsxDEV(ImagesCanvas, {}, undefined, false, undefined, this)
-      ]
-    }, undefined, true, undefined, this);
-  }
+  return /* @__PURE__ */ jsx_dev_runtime6.jsxDEV("div", {
+    className: "imageseditor" + (appContext.imagesLoading || Object.keys(appContext.images).length > 0 ? " active" : ""),
+    children: [
+      /* @__PURE__ */ jsx_dev_runtime6.jsxDEV(ImagesList, {}, undefined, false, undefined, this),
+      /* @__PURE__ */ jsx_dev_runtime6.jsxDEV(ImagesCanvas, {}, undefined, false, undefined, this)
+    ]
+  }, undefined, true, undefined, this);
 }
 
 // src/mainview/app.tsx
 var import_react9 = __toESM(require_react(), 1);
 var jsx_dev_runtime7 = __toESM(require_jsx_dev_runtime(), 1);
 function Moop() {
-  const [images, setImages] = import_react9.useState([]);
-  const [activeImage, setActiveImage] = import_react9.useState({
-    input: "",
-    output: "",
-    inputSizeBytes: 0,
-    outputSizeBytes: 0
-  });
-  const [outputFolderSize, setOutputFolderSize] = import_react9.useState(0);
-  const [inputFolderSize, setInputFolderSize] = import_react9.useState(0);
+  const [images, setImages] = import_react9.useState(appContextDefaults.images);
+  const [activeImage, setActiveImage] = import_react9.useState(appContextDefaults.activeImage);
+  const [outputFolderSize, setOutputFolderSize] = import_react9.useState(appContextDefaults.outputFolderSize);
+  const [inputFolderSize, setInputFolderSize] = import_react9.useState(appContextDefaults.inputFolderSize);
+  const [imagesLoading, setImagesLoading] = import_react9.useState(appContextDefaults.imagesLoading);
+  const [crop, setCrop] = import_react9.useState(appContextDefaults.crop);
+  const [zoom, setZoom] = import_react9.useState(appContextDefaults.zoom);
   return /* @__PURE__ */ jsx_dev_runtime7.jsxDEV(sharedContext.Provider, {
     value: {
       ...appContextDefaults,
@@ -22198,7 +22219,13 @@ function Moop() {
       outputFolderSize,
       setOutputFolderSize,
       inputFolderSize,
-      setInputFolderSize
+      setInputFolderSize,
+      imagesLoading,
+      setImagesLoading,
+      crop,
+      setCrop,
+      zoom,
+      setZoom
     },
     children: [
       /* @__PURE__ */ jsx_dev_runtime7.jsxDEV(DragDrop, {}, undefined, false, undefined, this),
