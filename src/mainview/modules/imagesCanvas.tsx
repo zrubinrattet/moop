@@ -23,14 +23,11 @@ export default function ImagesCanvas() {
 
 	const inputHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
 		if (e.target instanceof HTMLInputElement && e.target.nextElementSibling instanceof HTMLElement) {
-			// e.target.nextElementSibling.innerHTML = e.target.value;
 			if (e.target.previousElementSibling?.innerHTML === 'Quality') {
 				appContext.setQuality(Number(e.target.value))
-				// e.target.nextElementSibling.innerHTML = e.target.value;
 			}
 			else if (e.target.previousElementSibling?.innerHTML === 'Effort') {
 				appContext.setEffort(Number(e.target.value))
-				// effort = Number(e.target.value);
 			}
 		}
 	}
@@ -50,11 +47,13 @@ export default function ImagesCanvas() {
 			if (typeof res !== 'undefined') {
 				console.log(res)
 				appContext.setImages((images) =>
-					images.map((image) =>
-						image.input === activeImage.input
-							? { ...res.image, isActive: true }
-							: { ...image, isActive: false }
-					)
+					images.map((image) => {
+						if (image.input === activeImage.input) {
+							return { ...res.image, isActive: true };
+						} else {
+							return { ...image, isActive: false };
+						}
+					})
 				);
 			}
 		} catch (error) {
@@ -89,6 +88,7 @@ export default function ImagesCanvas() {
 					<div className="imagescanvas-col-header">Output</div>
 					<div className="imagescanvas-col-bg">
 						<Cropper
+							key={activeImage.output}
 							image={activeImage.output}
 							crop={appContext.crop}
 							zoom={appContext.zoom}

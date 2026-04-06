@@ -81,7 +81,7 @@ Bun.serve({
 								width: inputResolution.width,
 								height: inputResolution.height,
 							},
-							output: convertImageURL({ url: outputPath, type: 'absolutetolocal' }),
+							output: `${convertImageURL({ url: outputPath, type: 'absolutetolocal' })}?v=${statSync(outputPath).mtimeMs}`,
 							outputSizeBytes: statSync(outputPath).size,
 							outputResolution: {
 								width: outputResolution.width,
@@ -269,7 +269,7 @@ const rpc = BrowserView.defineRPC<AppRPCSchema>({
 							width: inputResolution.width,
 							height: inputResolution.height,
 						},
-						output: convertImageURL({ url: outputPath, type: 'absolutetolocal' }),
+						output: `${convertImageURL({ url: outputPath, type: 'absolutetolocal' })}?v=${statSync(outputPath).mtimeMs}`,
 						outputSizeBytes: statSync(outputPath).size,
 						outputResolution: {
 							width: outputResolution.width,

@@ -21,7 +21,8 @@ export function convertImageURL(props: convertImageURLProps) {
 		}
 
 		case 'localtoabsolute': {
-			const base = props.url.split(/\/images\/(.*)/);
+			const sanitizedURL = props.url.split(/[?#]/)[0];
+			const base = sanitizedURL.split(/\/images\/(.*)/);
 			ret = join(imageDirectory, base[1]);
 			break;
 		}

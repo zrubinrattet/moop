@@ -22108,7 +22108,13 @@ function ImagesCanvas() {
       const res = await electroview2.rpc?.request.updateImage(updateImageProps);
       if (typeof res !== "undefined") {
         console.log(res);
-        appContext.setImages((images) => images.map((image) => image.input === activeImage.input ? { ...res.image, isActive: true } : { ...image, isActive: false }));
+        appContext.setImages((images) => images.map((image) => {
+          if (image.input === activeImage.input) {
+            return { ...res.image, isActive: true };
+          } else {
+            return { ...image, isActive: false };
+          }
+        }));
       }
     } catch (error) {
       console.log(error);
@@ -22167,7 +22173,7 @@ function ImagesCanvas() {
                 maxZoom: 10,
                 onCropChange: appContext.setCrop,
                 onZoomChange: appContext.setZoom
-              }, undefined, false, undefined, this)
+              }, activeImage.output, false, undefined, this)
             }, undefined, false, undefined, this),
             /* @__PURE__ */ jsx_dev_runtime5.jsxDEV("div", {
               className: "imagescanvas-col-footer",
