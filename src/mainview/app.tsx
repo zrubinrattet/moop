@@ -6,19 +6,18 @@ import { useState } from 'react';
 
 export default function Moop() {
 	const [images, setImages] = useState(appContextDefaults.images);
-	const [activeImage, setActiveImage] = useState(appContextDefaults.activeImage);
 	const [outputFolderSize, setOutputFolderSize] = useState(appContextDefaults.outputFolderSize);
 	const [inputFolderSize, setInputFolderSize] = useState(appContextDefaults.inputFolderSize);
 	const [imagesLoading, setImagesLoading] = useState(appContextDefaults.imagesLoading);
 	const [crop, setCrop] = useState(appContextDefaults.crop);
 	const [zoom, setZoom] = useState(appContextDefaults.zoom);
+	const [quality, setQuality] = useState(appContextDefaults.quality);
+	const [effort, setEffort] = useState(appContextDefaults.effort);
 
 	return (
 		<sharedContext.Provider value={{
 			...appContextDefaults,
 			images: images,
-			activeImage: activeImage,
-			setActiveImage: setActiveImage,
 			setImages: setImages,
 			outputFolderSize: outputFolderSize,
 			setOutputFolderSize: setOutputFolderSize,
@@ -30,6 +29,10 @@ export default function Moop() {
 			setCrop: setCrop,
 			zoom: zoom,
 			setZoom: setZoom,
+			quality: quality,
+			setQuality: setQuality,
+			effort: effort,
+			setEffort: setEffort,
 		}}>
 			<DragDrop />
 			<ImagesEditor />

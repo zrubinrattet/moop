@@ -48,13 +48,22 @@
 		background-color: var(--imagecanvas-footer-bg);
 		color: var(--imagecanvas-header-font-color);
 		font-family: var(--font-body);
-		font-size: 16px;
 		text-align: center;
 		padding: 11px;
 		left: 50%;
 		transform: translateX(-50%);
 		display: inline-block;
 		bottom: 0px;
+	}
+	
+	.imagescanvas-col-footer-bytes{
+		font-size: 16px;
+		margin-bottom: 6px;
+	}
+	
+	.imagescanvas-col-footer-size{
+		font-size: 12px;
+		opacity: 0.5;
 	}
 
 	.imagescanvas-col-bg {

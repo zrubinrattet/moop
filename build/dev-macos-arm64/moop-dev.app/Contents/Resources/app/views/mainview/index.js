@@ -18080,17 +18080,14 @@ var appContextDefaults = {
   inputFolderSize: 0,
   setImages: () => {},
   images: [],
-  setActiveImage: () => {},
   imagesLoading: false,
   setImagesLoading: () => {},
-  activeImage: {
-    output: "",
-    input: "",
-    inputSizeBytes: 0,
-    outputSizeBytes: 0
-  },
   zoom: 1,
   setZoom: () => {},
+  quality: 80,
+  setQuality: () => {},
+  effort: 4,
+  setEffort: () => {},
   crop: {
     x: 0,
     y: 0
@@ -18098,8 +18095,8 @@ var appContextDefaults = {
   setCrop: () => {},
   setSettings: () => {},
   settings: {
-    defaultEffort: 4,
-    defaultQuality: 75,
+    effort: 4,
+    quality: 80,
     theme: "auto"
   }
 };
@@ -20640,7 +20637,7 @@ function DragDrop() {
       try {
         const formData = new FormData;
         formData.append("image", droppedFile);
-        const res = await fetch("http://127.0.0.1:3000/upload", {
+        const res = await fetch("http://127.0.0.1:3000/images", {
           method: "POST",
           body: formData
         });
@@ -20664,7 +20661,12 @@ function DragDrop() {
       p.then((val) => {
         if (!firstPromiseResolved) {
           firstPromiseResolved = true;
-          appContext.setActiveImage(val.data.images[0]);
+          appContext.setImages((images) => {
+            const temp = val.data.images[0];
+            temp.isActive = true;
+            images[images.indexOf(val.data.images[0])] = temp;
+            return images;
+          });
           appContext.setZoom(appContextDefaults.zoom);
           appContext.setCrop(appContextDefaults.crop);
         }
@@ -20695,20 +20697,20 @@ var import_react5 = __toESM(require_react(), 1);
 var jsx_dev_runtime3 = __toESM(require_jsx_dev_runtime(), 1);
 function ImagesListItem(props) {
   const appContext = import_react5.useContext(sharedContext);
+  const activeImage = appContext.images.find((image) => image.isActive);
   function imageClickHandler(e) {
     e.preventDefault();
     if (e.target instanceof HTMLElement) {
-      document.querySelectorAll(".imageslist-list-item")?.forEach((el) => {
-        el.classList.remove("active");
+      appContext.setImages((images) => {
+        return images.map((image) => ({
+          ...image,
+          isActive: image === appContext.images[props.index]
+        }));
       });
-      const parent = e.target.closest(".imageslist-list-item");
-      if (parent instanceof HTMLElement) {
-        parent.classList.add("active");
-        const elIndex = props.index;
-        appContext.setActiveImage(appContext.images[elIndex]);
-        appContext.setZoom(appContextDefaults.zoom);
-        appContext.setCrop(appContextDefaults.crop);
-      }
+      appContext.setZoom(appContextDefaults.zoom);
+      appContext.setCrop(appContextDefaults.crop);
+      appContext.setQuality(appContext.images[props.index].quality);
+      appContext.setEffort(appContext.images[props.index].effort);
     }
   }
   function itemDeleteClickHandler(e) {
@@ -20716,7 +20718,7 @@ function ImagesListItem(props) {
     console.log("Open the modal!");
   }
   return /* @__PURE__ */ jsx_dev_runtime3.jsxDEV("div", {
-    className: "imageslist-list-item" + (props.index === 0 ? " active" : ""),
+    className: "imageslist-list-item" + (activeImage?.input === props.input ? " active" : ""),
     children: [
       /* @__PURE__ */ jsx_dev_runtime3.jsxDEV("a", {
         href: "#",
@@ -22071,118 +22073,169 @@ var Cropper = function(_super) {
 
 // src/mainview/modules/imagesCanvas.tsx
 var jsx_dev_runtime5 = __toESM(require_jsx_dev_runtime(), 1);
+var rpc2 = Electroview.defineRPC({
+  maxRequestTime: 30000,
+  handlers: {
+    requests: {},
+    messages: {}
+  }
+});
+var electroview2 = new Electroview({ rpc: rpc2 });
 function ImagesCanvas() {
   const appContext = import_react7.useContext(sharedContext);
+  const activeImage = appContext.images.find((image) => image.isActive);
+  console.log("activeimage:", activeImage);
   const inputHandler = (e) => {
     if (e.target instanceof HTMLInputElement && e.target.nextElementSibling instanceof HTMLElement) {
-      e.target.nextElementSibling.innerHTML = e.target.value;
+      if (e.target.previousElementSibling?.innerHTML === "Quality") {
+        appContext.setQuality(Number(e.target.value));
+      } else if (e.target.previousElementSibling?.innerHTML === "Effort") {
+        appContext.setEffort(Number(e.target.value));
+      }
     }
   };
-  const mouseUpHandler = (e) => {
-    console.log(e);
+  const mouseUpHandler = async () => {
+    try {
+      if (typeof activeImage === "undefined") {
+        return;
+      }
+      const updateImageProps = {
+        path: activeImage.input,
+        quality: appContext.quality,
+        effort: appContext.effort
+      };
+      console.log("updateImageProps: ", updateImageProps);
+      const res = await electroview2.rpc?.request.updateImage(updateImageProps);
+      if (typeof res !== "undefined") {
+        console.log(res);
+        appContext.setImages((images) => images.map((image) => image.input === activeImage.input ? { ...res.image, isActive: true } : { ...image, isActive: false }));
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
-  return /* @__PURE__ */ jsx_dev_runtime5.jsxDEV("div", {
-    className: "imagescanvas",
-    children: [
-      /* @__PURE__ */ jsx_dev_runtime5.jsxDEV("div", {
-        className: "imagescanvas-col",
-        children: [
-          /* @__PURE__ */ jsx_dev_runtime5.jsxDEV("div", {
-            className: "imagescanvas-col-header",
-            children: "Input"
-          }, undefined, false, undefined, this),
-          /* @__PURE__ */ jsx_dev_runtime5.jsxDEV("div", {
-            className: "imagescanvas-col-bg",
-            children: /* @__PURE__ */ jsx_dev_runtime5.jsxDEV(Cropper, {
-              image: appContext.activeImage.input,
-              crop: appContext.crop,
-              zoom: appContext.zoom,
-              maxZoom: 10,
-              onCropChange: appContext.setCrop,
-              onZoomChange: appContext.setZoom
-            }, undefined, false, undefined, this)
-          }, undefined, false, undefined, this),
-          /* @__PURE__ */ jsx_dev_runtime5.jsxDEV("div", {
-            className: "imagescanvas-col-footer",
-            children: formatBytes(appContext.activeImage.inputSizeBytes)
-          }, undefined, false, undefined, this)
-        ]
-      }, undefined, true, undefined, this),
-      /* @__PURE__ */ jsx_dev_runtime5.jsxDEV("div", {
-        className: "imagescanvas-col",
-        children: [
-          /* @__PURE__ */ jsx_dev_runtime5.jsxDEV("div", {
-            className: "imagescanvas-col-header",
-            children: "Output"
-          }, undefined, false, undefined, this),
-          /* @__PURE__ */ jsx_dev_runtime5.jsxDEV("div", {
-            className: "imagescanvas-col-bg",
-            children: /* @__PURE__ */ jsx_dev_runtime5.jsxDEV(Cropper, {
-              image: appContext.activeImage.output,
-              crop: appContext.crop,
-              zoom: appContext.zoom,
-              maxZoom: 10,
-              onCropChange: appContext.setCrop,
-              onZoomChange: appContext.setZoom
-            }, undefined, false, undefined, this)
-          }, undefined, false, undefined, this),
-          /* @__PURE__ */ jsx_dev_runtime5.jsxDEV("div", {
-            className: "imagescanvas-col-footer",
-            children: formatBytes(appContext.activeImage.outputSizeBytes)
-          }, undefined, false, undefined, this)
-        ]
-      }, undefined, true, undefined, this),
-      /* @__PURE__ */ jsx_dev_runtime5.jsxDEV("div", {
-        className: "imagescanvas-sliders",
-        children: [
-          /* @__PURE__ */ jsx_dev_runtime5.jsxDEV("label", {
-            className: "imagescanvas-sliders-slider",
-            children: [
-              /* @__PURE__ */ jsx_dev_runtime5.jsxDEV("span", {
-                className: "imagescanvas-sliders-slider-label",
-                children: "Quality"
-              }, undefined, false, undefined, this),
-              /* @__PURE__ */ jsx_dev_runtime5.jsxDEV("input", {
-                onInput: inputHandler,
-                onMouseUp: mouseUpHandler,
-                className: "imagescanvas-sliders-slider-input",
-                type: "range",
-                min: "0",
-                max: "100",
-                defaultValue: "75"
-              }, undefined, false, undefined, this),
-              /* @__PURE__ */ jsx_dev_runtime5.jsxDEV("div", {
-                className: "imagescanvas-sliders-slider-inputvalue",
-                children: "75"
+  if (activeImage) {
+    return /* @__PURE__ */ jsx_dev_runtime5.jsxDEV("div", {
+      className: "imagescanvas",
+      children: [
+        /* @__PURE__ */ jsx_dev_runtime5.jsxDEV("div", {
+          className: "imagescanvas-col",
+          children: [
+            /* @__PURE__ */ jsx_dev_runtime5.jsxDEV("div", {
+              className: "imagescanvas-col-header",
+              children: "Input"
+            }, undefined, false, undefined, this),
+            /* @__PURE__ */ jsx_dev_runtime5.jsxDEV("div", {
+              className: "imagescanvas-col-bg",
+              children: /* @__PURE__ */ jsx_dev_runtime5.jsxDEV(Cropper, {
+                image: activeImage.input,
+                crop: appContext.crop,
+                zoom: appContext.zoom,
+                maxZoom: 10,
+                onCropChange: appContext.setCrop,
+                onZoomChange: appContext.setZoom
               }, undefined, false, undefined, this)
-            ]
-          }, undefined, true, undefined, this),
-          /* @__PURE__ */ jsx_dev_runtime5.jsxDEV("label", {
-            className: "imagescanvas-sliders-slider",
-            children: [
-              /* @__PURE__ */ jsx_dev_runtime5.jsxDEV("span", {
-                className: "imagescanvas-sliders-slider-label",
-                children: "Effort"
-              }, undefined, false, undefined, this),
-              /* @__PURE__ */ jsx_dev_runtime5.jsxDEV("input", {
-                onInput: inputHandler,
-                onMouseUp: mouseUpHandler,
-                className: "imagescanvas-sliders-slider-input",
-                type: "range",
-                min: "0",
-                max: "6",
-                defaultValue: "3"
-              }, undefined, false, undefined, this),
-              /* @__PURE__ */ jsx_dev_runtime5.jsxDEV("div", {
-                className: "imagescanvas-sliders-slider-inputvalue",
-                children: "3"
+            }, undefined, false, undefined, this),
+            /* @__PURE__ */ jsx_dev_runtime5.jsxDEV("div", {
+              className: "imagescanvas-col-footer",
+              children: [
+                /* @__PURE__ */ jsx_dev_runtime5.jsxDEV("div", {
+                  className: "imagescanvas-col-footer-bytes",
+                  children: formatBytes(activeImage.inputSizeBytes)
+                }, undefined, false, undefined, this),
+                /* @__PURE__ */ jsx_dev_runtime5.jsxDEV("div", {
+                  className: "imagescanvas-col-footer-size",
+                  children: activeImage.inputResolution.width + "px x " + activeImage.inputResolution.height + "px"
+                }, undefined, false, undefined, this)
+              ]
+            }, undefined, true, undefined, this)
+          ]
+        }, undefined, true, undefined, this),
+        /* @__PURE__ */ jsx_dev_runtime5.jsxDEV("div", {
+          className: "imagescanvas-col",
+          children: [
+            /* @__PURE__ */ jsx_dev_runtime5.jsxDEV("div", {
+              className: "imagescanvas-col-header",
+              children: "Output"
+            }, undefined, false, undefined, this),
+            /* @__PURE__ */ jsx_dev_runtime5.jsxDEV("div", {
+              className: "imagescanvas-col-bg",
+              children: /* @__PURE__ */ jsx_dev_runtime5.jsxDEV(Cropper, {
+                image: activeImage.output,
+                crop: appContext.crop,
+                zoom: appContext.zoom,
+                maxZoom: 10,
+                onCropChange: appContext.setCrop,
+                onZoomChange: appContext.setZoom
               }, undefined, false, undefined, this)
-            ]
-          }, undefined, true, undefined, this)
-        ]
-      }, undefined, true, undefined, this)
-    ]
-  }, undefined, true, undefined, this);
+            }, undefined, false, undefined, this),
+            /* @__PURE__ */ jsx_dev_runtime5.jsxDEV("div", {
+              className: "imagescanvas-col-footer",
+              children: [
+                /* @__PURE__ */ jsx_dev_runtime5.jsxDEV("div", {
+                  className: "imagescanvas-col-footer-bytes",
+                  children: formatBytes(activeImage.outputSizeBytes)
+                }, undefined, false, undefined, this),
+                /* @__PURE__ */ jsx_dev_runtime5.jsxDEV("div", {
+                  className: "imagescanvas-col-footer-size",
+                  children: activeImage.outputResolution.width + "px x " + activeImage.outputResolution.height + "px"
+                }, undefined, false, undefined, this)
+              ]
+            }, undefined, true, undefined, this)
+          ]
+        }, undefined, true, undefined, this),
+        /* @__PURE__ */ jsx_dev_runtime5.jsxDEV("div", {
+          className: "imagescanvas-sliders",
+          children: [
+            /* @__PURE__ */ jsx_dev_runtime5.jsxDEV("label", {
+              className: "imagescanvas-sliders-slider",
+              children: [
+                /* @__PURE__ */ jsx_dev_runtime5.jsxDEV("span", {
+                  className: "imagescanvas-sliders-slider-label",
+                  children: "Quality"
+                }, undefined, false, undefined, this),
+                /* @__PURE__ */ jsx_dev_runtime5.jsxDEV("input", {
+                  onChange: inputHandler,
+                  onMouseUp: mouseUpHandler,
+                  className: "imagescanvas-sliders-slider-input",
+                  type: "range",
+                  min: "1",
+                  max: "100",
+                  value: appContext.quality
+                }, undefined, false, undefined, this),
+                /* @__PURE__ */ jsx_dev_runtime5.jsxDEV("div", {
+                  className: "imagescanvas-sliders-slider-inputvalue",
+                  children: appContext.quality
+                }, undefined, false, undefined, this)
+              ]
+            }, undefined, true, undefined, this),
+            /* @__PURE__ */ jsx_dev_runtime5.jsxDEV("label", {
+              className: "imagescanvas-sliders-slider",
+              children: [
+                /* @__PURE__ */ jsx_dev_runtime5.jsxDEV("span", {
+                  className: "imagescanvas-sliders-slider-label",
+                  children: "Effort"
+                }, undefined, false, undefined, this),
+                /* @__PURE__ */ jsx_dev_runtime5.jsxDEV("input", {
+                  onChange: inputHandler,
+                  onMouseUp: mouseUpHandler,
+                  className: "imagescanvas-sliders-slider-input",
+                  type: "range",
+                  min: "0",
+                  max: "6",
+                  value: appContext.effort
+                }, undefined, false, undefined, this),
+                /* @__PURE__ */ jsx_dev_runtime5.jsxDEV("div", {
+                  className: "imagescanvas-sliders-slider-inputvalue",
+                  children: appContext.effort
+                }, undefined, false, undefined, this)
+              ]
+            }, undefined, true, undefined, this)
+          ]
+        }, undefined, true, undefined, this)
+      ]
+    }, undefined, true, undefined, this);
+  }
 }
 
 // src/mainview/modules/imagesEditor.tsx
@@ -22203,18 +22256,17 @@ var import_react9 = __toESM(require_react(), 1);
 var jsx_dev_runtime7 = __toESM(require_jsx_dev_runtime(), 1);
 function Moop() {
   const [images, setImages] = import_react9.useState(appContextDefaults.images);
-  const [activeImage, setActiveImage] = import_react9.useState(appContextDefaults.activeImage);
   const [outputFolderSize, setOutputFolderSize] = import_react9.useState(appContextDefaults.outputFolderSize);
   const [inputFolderSize, setInputFolderSize] = import_react9.useState(appContextDefaults.inputFolderSize);
   const [imagesLoading, setImagesLoading] = import_react9.useState(appContextDefaults.imagesLoading);
   const [crop, setCrop] = import_react9.useState(appContextDefaults.crop);
   const [zoom, setZoom] = import_react9.useState(appContextDefaults.zoom);
+  const [quality, setQuality] = import_react9.useState(appContextDefaults.quality);
+  const [effort, setEffort] = import_react9.useState(appContextDefaults.effort);
   return /* @__PURE__ */ jsx_dev_runtime7.jsxDEV(sharedContext.Provider, {
     value: {
       ...appContextDefaults,
       images,
-      activeImage,
-      setActiveImage,
       setImages,
       outputFolderSize,
       setOutputFolderSize,
@@ -22225,7 +22277,11 @@ function Moop() {
       crop,
       setCrop,
       zoom,
-      setZoom
+      setZoom,
+      quality,
+      setQuality,
+      effort,
+      setEffort
     },
     children: [
       /* @__PURE__ */ jsx_dev_runtime7.jsxDEV(DragDrop, {}, undefined, false, undefined, this),

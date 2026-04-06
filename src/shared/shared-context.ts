@@ -2,8 +2,8 @@ import { createContext, Dispatch, SetStateAction } from "react";
 import { Image } from "./shared-types";
 type ApplicationSettings = {
 	theme: 'auto' | 'light' | 'dark',
-	defaultQuality: number,
-	defaultEffort: number,
+	quality: number,
+	effort: number,
 }
 type Crop = {
 	x : number,
@@ -14,8 +14,6 @@ type ApplicationState = {
 	setSettings: Dispatch<SetStateAction<ApplicationSettings>>,
 	images: Array<Image>,
 	setImages: Dispatch<SetStateAction<Array<Image>>>,
-	activeImage: Image,
-	setActiveImage: Dispatch<SetStateAction<Image>>,
 	inputFolderSize: number,
 	setInputFolderSize: Dispatch<SetStateAction<number>>,
 	outputFolderSize: number,
@@ -26,6 +24,10 @@ type ApplicationState = {
 	setCrop: Dispatch<SetStateAction<Crop>>
 	zoom: number,
 	setZoom: Dispatch<SetStateAction<number>>
+	quality: number,
+	setQuality: Dispatch<SetStateAction<number>>
+	effort: number,
+	setEffort: Dispatch<SetStateAction<number>>
 };
 
 export const appContextDefaults: ApplicationState = {
@@ -35,17 +37,14 @@ export const appContextDefaults: ApplicationState = {
 	inputFolderSize: 0,
 	setImages: () => { },
 	images: [],
-	setActiveImage: () => { },
 	imagesLoading: false,
 	setImagesLoading: () => { },
-	activeImage: {
-		output: '',
-		input: '',
-		inputSizeBytes: 0,
-		outputSizeBytes: 0,
-	},
 	zoom: 1,
 	setZoom: () => {},
+	quality: 80,
+	setQuality: () => {},
+	effort: 4,
+	setEffort: () => {},
 	crop: {
 		x: 0,
 		y : 0,
@@ -53,8 +52,8 @@ export const appContextDefaults: ApplicationState = {
 	setCrop: () => {},
 	setSettings: () => { },
 	settings: {
-		defaultEffort: 4,
-		defaultQuality: 75,
+		effort: 4,
+		quality: 80,
 		theme: 'auto'
 	}
 };

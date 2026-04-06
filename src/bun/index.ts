@@ -7,13 +7,14 @@ import type { queueAsPromised } from "fastq";
 import { availableParallelism } from "node:os";
 import path from "node:path";
 import sharp from "sharp";
-// import { Glob } from "bun";
 
-import type { APIResponseType, BaseResponseType, AppRPCSchema, Image } from '../shared/shared-types';
+import type { APIResponseType, BaseResponseType, AppRPCSchema, Image, UpdateImageResponseType, ProcessImageTask } from '../shared/shared-types';
 import { BaseResponse, APIResponse } from '../shared/shared-objects';
 import { getImageDirectories } from '../shared/shared-directories';
 import { convertImageURL } from '../shared/shared-funcs';
 import { statSync } from "node:fs";
+import { imageSizeFromFile } from "image-size/fromFile";
+import { appContextDefaults } from "../shared/shared-context";
 
 const { imageDirectory, inputDirectory, outputDirectory } = getImageDirectories();
 
@@ -22,6 +23,7 @@ const corsHeaders = {
 	"Access-Control-Allow-Methods": "GET, POST, OPTIONS",
 	"Access-Control-Allow-Headers": "Content-Type",
 };
+
 
 const dirSize = async (directory: string) => {
 	const files = await readdir(directory);
@@ -33,6 +35,90 @@ const dirSize = async (directory: string) => {
 Bun.serve({
 	port: 3000,
 	routes: {
+		// rest api to upload images
+		'/images': {
+			POST: async (req) => {
+				const ret: APIResponseType = APIResponse;
+
+				const form = await req.formData();
+				const image = form.get('image');
+
+				if (!(image instanceof File)) {
+					return new Response('Missing file', {
+						status: 400,
+						headers: corsHeaders,
+					});
+				}
+
+				try {
+
+					// make the dirs
+					await mkdir(imageDirectory, { recursive: true });
+					await mkdir(inputDirectory, { recursive: true });
+					await mkdir(outputDirectory, { recursive: true });
+
+					// add the file to the queue for processing
+					const inputPath = join(inputDirectory, image.name);
+					const bytes = await image.bytes();
+					await Bun.write(inputPath, bytes);
+					await queue.push({ path: inputPath }).catch((err) => {
+						console.error(err)
+					})
+
+					// check if the output file got made
+					const outputPath = join(outputDirectory, `${path.parse(image.name).name}.webp`);
+
+					if (await Bun.file(outputPath).exists()) {
+						ret.message = `Successfully processed image.`;
+
+						const inputResolution = await imageSizeFromFile(inputPath);
+						const outputResolution = await imageSizeFromFile(outputPath);
+
+						const image: Image = {
+							input: convertImageURL({ url: inputPath, type: 'absolutetolocal' }),
+							inputSizeBytes: statSync(inputPath).size,
+							inputResolution: {
+								width: inputResolution.width,
+								height: inputResolution.height,
+							},
+							output: convertImageURL({ url: outputPath, type: 'absolutetolocal' }),
+							outputSizeBytes: statSync(outputPath).size,
+							outputResolution: {
+								width: outputResolution.width,
+								height: outputResolution.height,
+							},
+							isActive: false,
+							effort: appContextDefaults.settings.effort,
+							quality: appContextDefaults.settings.quality,
+						};
+
+						ret.images = [image];
+						ret.inputFolderSize = await dirSize(inputDirectory);
+						ret.outputFolderSize = await dirSize(outputDirectory);
+					}
+					else {
+						ret.message = `Could not process image.`;
+						ret.severity = 'ERROR';
+					}
+
+				} catch (error) {
+					if (error instanceof Error) {
+						ret.message = error.message;
+					}
+					else {
+						ret.message = 'Unknown error occurred.';
+					}
+
+					ret.severity = 'ERROR';
+				}
+
+				return Response.json(
+					{ ok: true, data: ret },
+					{ headers: corsHeaders }
+				);
+			},
+		},
+		// rest api that serves filesystem images via URL
 		'/images/*': req => {
 			const url = new URL(req.url);
 			const basename = decodeURIComponent(url.pathname.slice("/images/".length));
@@ -71,122 +157,15 @@ Bun.serve({
 					headers: corsHeaders,
 				});
 			}
-
 		},
 	},
 	async fetch(req) {
-
-		// console.log(req)
-
-		const ret: APIResponseType = APIResponse;
-
-		const url = new URL(req.url);
-
-		// console.log(url)
-
 		if (req.method === "OPTIONS") {
 			return new Response(null, {
 				status: 204,
 				headers: corsHeaders,
 			});
 		}
-
-		if (req.method === "POST" && url.pathname === "/upload") {
-
-			const form = await req.formData();
-			const image = form.get('image');
-
-			if (!(image instanceof File)) {
-				return new Response('Missing file', {
-					status: 400,
-					headers: corsHeaders,
-				});
-			}
-
-
-
-			try {
-
-				// make the dirs
-				await mkdir(imageDirectory, { recursive: true });
-				await mkdir(inputDirectory, { recursive: true });
-				await mkdir(outputDirectory, { recursive: true });
-
-				// add the file to the queue for processing
-				const inputPath = join(inputDirectory, image.name);
-				const bytes = await image.bytes();
-				await Bun.write(inputPath, bytes);
-				await queue.push({ path: inputPath }).catch((err) => {
-					console.error(err)
-				})
-
-				// check if the output file got made
-				const outputPath = join(outputDirectory, `${path.parse(image.name).name}.webp`);
-
-				if (await Bun.file(outputPath).exists()) {
-					ret.message = `Successfully processed image.`;
-					const image: Image = {
-						input: convertImageURL({ url: inputPath, type: 'absolutetolocal' }),
-						inputSizeBytes: statSync(inputPath).size,
-						output: convertImageURL({ url: outputPath, type: 'absolutetolocal' }),
-						outputSizeBytes: statSync(outputPath).size,
-					};
-
-					ret.images = [image];
-					ret.inputFolderSize = await dirSize(inputDirectory);
-					ret.outputFolderSize = await dirSize(outputDirectory);
-				}
-				else {
-					ret.message = `Could not process image.`;
-					ret.severity = 'ERROR';
-				}
-
-			} catch (error) {
-				if (error instanceof Error) {
-					ret.message = error.message;
-				}
-				else {
-					ret.message = 'Unknown error occurred.';
-				}
-
-				ret.severity = 'ERROR';
-			}
-
-			return Response.json(
-				{ ok: true, data: ret },
-				{ headers: corsHeaders }
-			);
-		}
-
-		// if (req.method === 'GET' && url.pathname === '/images') {
-		// 	// do a dirscan for the affected files
-		// 	const glob = new Glob('*/**');
-
-		// 	const inputs: Record<string, string> = {};
-		// 	const outputs: Record<string, string> = {};
-
-		// 	for await (const file of glob.scan(imageDirectory)) {
-		// 		const parsed = path.parse(file);
-
-		// 		if (file.startsWith("input/")) {
-		// 			inputs[parsed.name] = file;
-		// 		}
-
-		// 		if (file.startsWith("output/")) {
-		// 			outputs[parsed.name] = file;
-		// 		}
-		// 	}
-
-
-		// 	for (const name of Object.keys(inputs)) {
-		// 		const inputFile = join(imageDirectory, inputs[name]);
-		// 		const outputFile = join(imageDirectory, outputs[name]);
-
-		// 		if (!inputFile || !outputFile) continue;
-		// 		ret.images[inputFile] = outputFile;
-		// 	}
-		// }
-
 		return new Response('Not found', {
 			status: 404,
 			headers: corsHeaders,
@@ -196,19 +175,17 @@ Bun.serve({
 
 const concurrency = availableParallelism();
 
-type ProcessImageTask = {
-	path: string
-}
+
 
 const queue: queueAsPromised<ProcessImageTask> = fastq.promise(processImage, concurrency);
 
 
 async function processImage(arg: ProcessImageTask): Promise<void> {
 	// No need for a try-catch block, fastq handles errors automatically
-	// console.log('fastq worker: ', arg.path)
 	const parsed = path.parse(arg.path);
 	const outputPath = join(outputDirectory, `${parsed.name}.webp`);
 
+	// webp's quality/effort defaults are 80/4
 	await sharp(arg.path, {
 		density: 72,
 		animated: true,
@@ -216,9 +193,9 @@ async function processImage(arg: ProcessImageTask): Promise<void> {
 		width: 2400,
 		withoutEnlargement: true
 	}).webp({
-		quality: 75,
+		quality:  arg.quality || appContextDefaults.settings.quality,
+		effort: arg.effort || appContextDefaults.settings.effort,
 	}).toFile(outputPath);
-
 }
 
 
@@ -228,9 +205,9 @@ const rpc = BrowserView.defineRPC<AppRPCSchema>({
 	handlers: {
 		requests: {
 			revealInFileManager: async () => {
-				console.log('revealInFileManager');
 				// init response
 				const ret: BaseResponseType = BaseResponse;
+
 				try {
 					Utils.showItemInFolder(imageDirectory);
 					ret.message = 'Opened images folder';
@@ -245,7 +222,71 @@ const rpc = BrowserView.defineRPC<AppRPCSchema>({
 					ret.severity = 'ERROR';
 				}
 				return ret;
-			}
+			},
+			updateImage: async (params) => {
+				const ret: UpdateImageResponseType = {
+					...BaseResponse, image: {
+						input: '',
+						output: '',
+						inputSizeBytes: 0,
+						outputSizeBytes: 0,
+						inputResolution: {
+							width: 0,
+							height: 0,
+						},
+						outputResolution: {
+							width: 0,
+							height: 0,
+						},
+						isActive: false,
+						effort: appContextDefaults.settings.effort,
+						quality: appContextDefaults.settings.quality,
+					}
+				};
+
+				const inputPath = convertImageURL({
+					url: params.path,
+					type: 'localtoabsolute',
+				});
+
+				const { quality, effort } = params;
+
+				await queue.push({
+					path: inputPath,
+					quality: quality,
+					effort: effort,
+				}).then(async () => {
+					ret.message = `Successfully processed image.`;
+
+					const outputPath = join(outputDirectory, `${path.parse(inputPath).name}.webp`);
+					const inputResolution = await imageSizeFromFile(inputPath);
+					const outputResolution = await imageSizeFromFile(outputPath);
+
+					ret.image = {
+						input: convertImageURL({ url: inputPath, type: 'absolutetolocal' }),
+						inputSizeBytes: statSync(inputPath).size,
+						inputResolution: {
+							width: inputResolution.width,
+							height: inputResolution.height,
+						},
+						output: convertImageURL({ url: outputPath, type: 'absolutetolocal' }),
+						outputSizeBytes: statSync(outputPath).size,
+						outputResolution: {
+							width: outputResolution.width,
+							height: outputResolution.height,
+						},
+						isActive: true,
+						effort: effort || appContextDefaults.settings.effort,
+						quality: quality || appContextDefaults.settings.quality,
+					};
+				}).catch((err) => {
+					console.error(err)
+					ret.message = 'Error processing image';
+					ret.severity = 'ERROR';
+				})
+
+				return ret;
+			},
 		},
 	},
 });

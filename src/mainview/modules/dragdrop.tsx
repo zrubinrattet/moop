@@ -1,7 +1,7 @@
 import { sharedContext, appContextDefaults } from "../../shared/shared-context";
 import { useContext } from "react";
 import { useDropzone } from "react-dropzone";
-
+import { Image } from "../../shared/shared-types";
 
 export default function DragDrop() {
 	
@@ -19,7 +19,7 @@ export default function DragDrop() {
 			try {
 				const formData = new FormData();
 				formData.append("image", droppedFile);
-				const res = await fetch("http://127.0.0.1:3000/upload", {
+				const res = await fetch("http://127.0.0.1:3000/images", {
 					method: "POST",
 					body: formData,
 				});
@@ -46,7 +46,12 @@ export default function DragDrop() {
 			p.then(val => {
 				if (!firstPromiseResolved) {
 					firstPromiseResolved = true;
-					appContext.setActiveImage(val.data.images[0]);
+					appContext.setImages((images) => {
+						const temp:Image = val.data.images[0];
+						temp.isActive = true;
+						images[images.indexOf(val.data.images[0])] = temp;
+						return images;
+					});
 					appContext.setZoom(appContextDefaults.zoom);
 					appContext.setCrop(appContextDefaults.crop);
 				}
