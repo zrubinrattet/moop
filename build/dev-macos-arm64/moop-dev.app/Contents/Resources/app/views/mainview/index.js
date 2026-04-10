@@ -22978,10 +22978,19 @@ function ImagesListItem(props) {
     e2.preventDefault();
     console.log("Open the modal!");
     const res = await electroview.rpc?.request.deleteImage({ path: props.input });
-    if (typeof res !== "undefined" && "image" in res && "input" in res.image) {
+    if (res && "image" in res && "input" in res.image) {
       appContext.setImages((images) => {
-        return images.filter((image) => {
+        let prevIndex = 0;
+        return images.filter((image, index) => {
+          if (image.input === res.image.input) {
+            prevIndex = index - 1 || 0;
+          }
           return image.input !== res.image.input;
+        }).map((image) => {
+          if (res.image.isActive && image.input === images[prevIndex].input) {
+            image.isActive = true;
+          }
+          return image;
         });
       });
     }

@@ -258,7 +258,7 @@ const rpc = BrowserView.defineRPC<AppRPCSchema>({
 				const ret: BaseResponseType = BaseResponse;
 
 				try {
-					Utils.showItemInFolder( typeof props?.path === 'undefined' ? imageDirectory : convertImageURL({
+					Utils.showItemInFolder(typeof props?.path === 'undefined' ? imageDirectory : convertImageURL({
 						url: props.path,
 						type: 'localtoabsolute'
 					}));
@@ -465,6 +465,22 @@ const mainWindow: BrowserWindow = new BrowserWindow({
 	rpc: rpc
 });
 
+// prevent too small screen
+const MIN_WIDTH = 1200;
+const MIN_HEIGHT = 800;
+
+mainWindow.on("resize", () => {
+	const { width, height } = mainWindow.getSize();
+
+	if (width < MIN_WIDTH || height < MIN_HEIGHT) {
+		mainWindow.setSize(
+			Math.max(width, MIN_WIDTH),
+			Math.max(height, MIN_HEIGHT)
+		);
+	}
+});
+
+// crack open dev tools
 mainWindow.webview.openDevTools();
 
 // mainWindow.webview.on("will-navigate", (event) => {
