@@ -1,17 +1,13 @@
 import { createContext, Dispatch, SetStateAction } from "react";
-import { Image } from "./shared-types";
-type ApplicationSettings = {
-	theme: 'auto' | 'light' | 'dark',
-	quality: number,
-	effort: number,
-}
+import { Image, ApplicationSettingsType } from "./shared-types";
+
 type Crop = {
 	x : number,
 	y: number,
 }
 type ApplicationState = {
-	settings: ApplicationSettings,
-	setSettings: Dispatch<SetStateAction<ApplicationSettings>>,
+	settings: ApplicationSettingsType,
+	setSettings: Dispatch<SetStateAction<ApplicationSettingsType>>,
 	images: Array<Image>,
 	setImages: Dispatch<SetStateAction<Array<Image>>>,
 	inputFolderSize: number,
@@ -41,9 +37,10 @@ export const appContextDefaults: ApplicationState = {
 	setImagesLoading: () => { },
 	zoom: 1,
 	setZoom: () => {},
+	// quality & effort are used for the UI, not an app-settings representation
 	quality: 80,
-	setQuality: () => {},
 	effort: 4,
+	setQuality: () => {},
 	setEffort: () => {},
 	crop: {
 		x: 0,
@@ -54,7 +51,11 @@ export const appContextDefaults: ApplicationState = {
 	settings: {
 		effort: 4,
 		quality: 80,
-		theme: 'auto'
+		theme: 'auto',
+		// if 0, no resizing.
+		maxWidth: 2400,
+		outputFolder: '',
+		language: 'English'
 	}
 };
 

@@ -5,7 +5,7 @@
     <key>CFBundleExecutable</key>
     <string>launcher</string>
     <key>CFBundleIdentifier</key>
-    <string>moop.electrobun.dev</string>
+    <string>com.moop.moop</string>
     <key>CFBundleName</key>
     <string>moop-dev</string>
     <key>CFBundleVersion</key>

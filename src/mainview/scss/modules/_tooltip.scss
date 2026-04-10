@@ -1,0 +1,8 @@
+@media only screen {
+	div.tooltip[role="tooltip"]{
+		font-family: var(--font-body);
+		letter-spacing: 0.5px;
+		font-size: 10px;
+		z-index: 50;
+	}
+}

@@ -1133,7 +1133,7 @@ var require_react_is_development = __commonJS((exports) => {
       var ConcurrentMode = REACT_CONCURRENT_MODE_TYPE;
       var ContextConsumer = REACT_CONTEXT_TYPE;
       var ContextProvider = REACT_PROVIDER_TYPE;
-      var Element = REACT_ELEMENT_TYPE;
+      var Element2 = REACT_ELEMENT_TYPE;
       var ForwardRef = REACT_FORWARD_REF_TYPE;
       var Fragment = REACT_FRAGMENT_TYPE;
       var Lazy = REACT_LAZY_TYPE;
@@ -1192,7 +1192,7 @@ var require_react_is_development = __commonJS((exports) => {
       exports.ConcurrentMode = ConcurrentMode;
       exports.ContextConsumer = ContextConsumer;
       exports.ContextProvider = ContextProvider;
-      exports.Element = Element;
+      exports.Element = Element2;
       exports.ForwardRef = ForwardRef;
       exports.Fragment = Fragment;
       exports.Lazy = Lazy;
@@ -1821,6 +1821,68 @@ var require_es = __commonJS((exports) => {
   };
 });
 
+// node_modules/classnames/index.js
+var require_classnames = __commonJS((exports, module) => {
+  /*!
+  	Copyright (c) 2018 Jed Watson.
+  	Licensed under the MIT License (MIT), see
+  	http://jedwatson.github.io/classnames
+  */
+  (function() {
+    var hasOwn = {}.hasOwnProperty;
+    function classNames() {
+      var classes = "";
+      for (var i = 0;i < arguments.length; i++) {
+        var arg = arguments[i];
+        if (arg) {
+          classes = appendClass(classes, parseValue(arg));
+        }
+      }
+      return classes;
+    }
+    function parseValue(arg) {
+      if (typeof arg === "string" || typeof arg === "number") {
+        return arg;
+      }
+      if (typeof arg !== "object") {
+        return "";
+      }
+      if (Array.isArray(arg)) {
+        return classNames.apply(null, arg);
+      }
+      if (arg.toString !== Object.prototype.toString && !arg.toString.toString().includes("[native code]")) {
+        return arg.toString();
+      }
+      var classes = "";
+      for (var key in arg) {
+        if (hasOwn.call(arg, key) && arg[key]) {
+          classes = appendClass(classes, key);
+        }
+      }
+      return classes;
+    }
+    function appendClass(value, newClass) {
+      if (!newClass) {
+        return value;
+      }
+      if (value) {
+        return value + " " + newClass;
+      }
+      return value + newClass;
+    }
+    if (typeof module !== "undefined" && module.exports) {
+      classNames.default = classNames;
+      module.exports = classNames;
+    } else if (typeof define === "function" && typeof define.amd === "object" && define.amd) {
+      define("classnames", [], function() {
+        return classNames;
+      });
+    } else {
+      window.classNames = classNames;
+    }
+  })();
+});
+
 // node_modules/normalize-wheel/src/UserAgent_DEPRECATED.js
 var require_UserAgent_DEPRECATED = __commonJS((exports, module) => {
   var _populated = false;
@@ -2128,9 +2190,9 @@ var require_scheduler_development = __commonJS((exports) => {
       }
       return first;
     }
-    function compare(a, b) {
-      var diff = a.sortIndex - b.sortIndex;
-      return diff !== 0 ? diff : a.id - b.id;
+    function compare(a2, b2) {
+      var diff = a2.sortIndex - b2.sortIndex;
+      return diff !== 0 ? diff : a2.id - b2.id;
     }
     function advanceTimers(currentTime) {
       for (var timer = peek(timerQueue);timer !== null; ) {
@@ -2314,7 +2376,7 @@ var require_react_dom_development = __commonJS((exports) => {
       try {
         testStringCoercion(key);
         var JSCompiler_inline_result = false;
-      } catch (e) {
+      } catch (e2) {
         JSCompiler_inline_result = true;
       }
       JSCompiler_inline_result && (console.error("The provided key is an unsupported type %s. This value must be coerced to a string before using it here.", typeof Symbol === "function" && Symbol.toStringTag && key[Symbol.toStringTag] || key.constructor.name || "Object"), testStringCoercion(key));
@@ -2470,8 +2532,8 @@ See https://react.dev/link/invalid-hook-call for tips about how to debug and fix
     exports.requestFormReset = function(form) {
       Internals.d.r(form);
     };
-    exports.unstable_batchedUpdates = function(fn, a) {
-      return fn(a);
+    exports.unstable_batchedUpdates = function(fn, a2) {
+      return fn(a2);
     };
     exports.useFormState = function(action, initialState2, permalink) {
       return resolveDispatcher().useFormState(action, initialState2, permalink);
@@ -2514,8 +2576,8 @@ var require_react_dom_client_development = __commonJS((exports) => {
       if (oldPath.length !== newPath.length)
         console.warn("copyWithRename() expects paths of the same length");
       else {
-        for (var i = 0;i < newPath.length - 1; i++)
-          if (oldPath[i] !== newPath[i]) {
+        for (var i2 = 0;i2 < newPath.length - 1; i2++)
+          if (oldPath[i2] !== newPath[i2]) {
             console.warn("copyWithRename() expects paths to be the same except for the deepest key");
             return;
           }
@@ -2619,59 +2681,59 @@ var require_react_dom_client_development = __commonJS((exports) => {
           throw Error("Unable to find node on an unmounted component.");
         return alternate !== fiber ? null : fiber;
       }
-      for (var a = fiber, b = alternate;; ) {
-        var parentA = a.return;
+      for (var a2 = fiber, b2 = alternate;; ) {
+        var parentA = a2.return;
         if (parentA === null)
           break;
         var parentB = parentA.alternate;
         if (parentB === null) {
-          b = parentA.return;
-          if (b !== null) {
-            a = b;
+          b2 = parentA.return;
+          if (b2 !== null) {
+            a2 = b2;
             continue;
           }
           break;
         }
         if (parentA.child === parentB.child) {
           for (parentB = parentA.child;parentB; ) {
-            if (parentB === a)
+            if (parentB === a2)
               return assertIsMounted(parentA), fiber;
-            if (parentB === b)
+            if (parentB === b2)
               return assertIsMounted(parentA), alternate;
             parentB = parentB.sibling;
           }
           throw Error("Unable to find node on an unmounted component.");
         }
-        if (a.return !== b.return)
-          a = parentA, b = parentB;
+        if (a2.return !== b2.return)
+          a2 = parentA, b2 = parentB;
         else {
           for (var didFindChild = false, _child = parentA.child;_child; ) {
-            if (_child === a) {
+            if (_child === a2) {
               didFindChild = true;
-              a = parentA;
-              b = parentB;
+              a2 = parentA;
+              b2 = parentB;
               break;
             }
-            if (_child === b) {
+            if (_child === b2) {
               didFindChild = true;
-              b = parentA;
-              a = parentB;
+              b2 = parentA;
+              a2 = parentB;
               break;
             }
             _child = _child.sibling;
           }
           if (!didFindChild) {
             for (_child = parentB.child;_child; ) {
-              if (_child === a) {
+              if (_child === a2) {
                 didFindChild = true;
-                a = parentB;
-                b = parentA;
+                a2 = parentB;
+                b2 = parentA;
                 break;
               }
-              if (_child === b) {
+              if (_child === b2) {
                 didFindChild = true;
-                b = parentB;
-                a = parentA;
+                b2 = parentB;
+                a2 = parentA;
                 break;
               }
               _child = _child.sibling;
@@ -2680,12 +2742,12 @@ var require_react_dom_client_development = __commonJS((exports) => {
               throw Error("Child was not found in either parent set. This indicates a bug in React related to the return pointer. Please file an issue.");
           }
         }
-        if (a.alternate !== b)
+        if (a2.alternate !== b2)
           throw Error("Return fibers should always be each others' alternates. This error is likely caused by a bug in React. Please file an issue.");
       }
-      if (a.tag !== 3)
+      if (a2.tag !== 3)
         throw Error("Unable to find node on an unmounted component.");
-      return a.stateNode.current === a ? fiber : alternate;
+      return a2.stateNode.current === a2 ? fiber : alternate;
     }
     function findCurrentHostFiberImpl(node) {
       var tag = node.tag;
@@ -2746,7 +2808,7 @@ var require_react_dom_client_development = __commonJS((exports) => {
             type = type._init;
             try {
               return getComponentNameFromType(type(innerType));
-            } catch (x) {}
+            } catch (x2) {}
         }
       return null;
     }
@@ -2808,9 +2870,9 @@ var require_react_dom_client_development = __commonJS((exports) => {
         case 29:
           type = fiber._debugInfo;
           if (type != null) {
-            for (var i = type.length - 1;0 <= i; i--)
-              if (typeof type[i].name === "string")
-                return type[i].name;
+            for (var i2 = type.length - 1;0 <= i2; i2--)
+              if (typeof type[i2].name === "string")
+                return type[i2].name;
           }
           if (fiber.return !== null)
             return getComponentNameFromFiber(fiber.return);
@@ -2829,9 +2891,9 @@ var require_react_dom_client_development = __commonJS((exports) => {
       fiberStack[index$jscomp$0] = fiber;
       cursor.current = value;
     }
-    function requiredContext(c) {
-      c === null && console.error("Expected host context to exist. This error is likely caused by a bug in React. Please file an issue.");
-      return c;
+    function requiredContext(c2) {
+      c2 === null && console.error("Expected host context to exist. This error is likely caused by a bug in React. Please file an issue.");
+      return c2;
     }
     function pushHostContainer(fiber, nextRootInstance) {
       push(rootInstanceStackCursor, nextRootInstance, fiber);
@@ -2956,11 +3018,11 @@ var require_react_dom_client_development = __commonJS((exports) => {
       if (prefix === undefined)
         try {
           throw Error();
-        } catch (x) {
-          var match = x.stack.trim().match(/\n( *(at )?)/);
+        } catch (x2) {
+          var match = x2.stack.trim().match(/\n( *(at )?)/);
           prefix = match && match[1] || "";
-          suffix = -1 < x.stack.indexOf(`
-    at`) ? " (<anonymous>)" : -1 < x.stack.indexOf("@") ? "@unknown:0:0" : "";
+          suffix = -1 < x2.stack.indexOf(`
+    at`) ? " (<anonymous>)" : -1 < x2.stack.indexOf("@") ? "@unknown:0:0" : "";
         }
       return `
 ` + prefix + name + suffix;
@@ -2994,8 +3056,8 @@ var require_react_dom_client_development = __commonJS((exports) => {
                 if (typeof Reflect === "object" && Reflect.construct) {
                   try {
                     Reflect.construct(Fake, []);
-                  } catch (x) {
-                    var control = x;
+                  } catch (x2) {
+                    var control = x2;
                   }
                   Reflect.construct(fn, [], Fake);
                 } else {
@@ -3091,8 +3153,8 @@ var require_react_dom_client_development = __commonJS((exports) => {
           info += describeFiber(workInProgress2, previous);
           var debugInfo = workInProgress2._debugInfo;
           if (debugInfo)
-            for (var i = debugInfo.length - 1;0 <= i; i--) {
-              var entry = debugInfo[i];
+            for (var i2 = debugInfo.length - 1;0 <= i2; i2--) {
+              var entry = debugInfo[i2];
               if (typeof entry.name === "string") {
                 var JSCompiler_temp_const = info;
                 a: {
@@ -3115,10 +3177,10 @@ var require_react_dom_client_development = __commonJS((exports) => {
           workInProgress2 = workInProgress2.return;
         } while (workInProgress2);
         return info;
-      } catch (x) {
+      } catch (x2) {
         return `
-Error generating stack: ` + x.message + `
-` + x.stack;
+Error generating stack: ` + x2.message + `
+` + x2.stack;
       }
     }
     function describeFunctionComponentFrameWithoutLineNumber(fn) {
@@ -3178,10 +3240,10 @@ Error generating stack: ` + x.message + `
           } else
             break;
         var JSCompiler_inline_result = info;
-      } catch (x) {
+      } catch (x2) {
         JSCompiler_inline_result = `
-Error generating stack: ` + x.message + `
-` + x.stack;
+Error generating stack: ` + x2.message + `
+` + x2.stack;
       }
       return JSCompiler_inline_result;
     }
@@ -3206,7 +3268,7 @@ Error generating stack: ` + x.message + `
     function willCoercionThrow(value) {
       try {
         return testStringCoercion(value), false;
-      } catch (e) {
+      } catch (e2) {
         return true;
       }
     }
@@ -3249,9 +3311,9 @@ Error generating stack: ` + x.message + `
           hasLoggedError || (hasLoggedError = true, console.error("React instrumentation encountered an error: %o", err));
         }
     }
-    function clz32Fallback(x) {
-      x >>>= 0;
-      return x === 0 ? 32 : 31 - (log2(x) / LN2 | 0) | 0;
+    function clz32Fallback(x2) {
+      x2 >>>= 0;
+      return x2 === 0 ? 32 : 31 - (log2(x2) / LN2 | 0) | 0;
     }
     function getHighestPriorityLanes(lanes) {
       var pendingSyncLanes = lanes & 42;
@@ -3370,7 +3432,7 @@ Error generating stack: ` + x.message + `
       return lane;
     }
     function createLaneMap(initial) {
-      for (var laneMap = [], i = 0;31 > i; i++)
+      for (var laneMap = [], i2 = 0;31 > i2; i2++)
         laneMap.push(initial);
       return laneMap;
     }
@@ -3731,7 +3793,7 @@ Error generating stack: ` + x.message + `
         return null;
       try {
         return doc.activeElement || doc.body;
-      } catch (e) {
+      } catch (e2) {
         return doc.body;
       }
     }
@@ -3798,20 +3860,20 @@ Check the render method of \`` + ownerName + "`." : "";
       node = node.options;
       if (multiple) {
         multiple = {};
-        for (var i = 0;i < propValue.length; i++)
-          multiple["$" + propValue[i]] = true;
+        for (var i2 = 0;i2 < propValue.length; i2++)
+          multiple["$" + propValue[i2]] = true;
         for (propValue = 0;propValue < node.length; propValue++)
-          i = multiple.hasOwnProperty("$" + node[propValue].value), node[propValue].selected !== i && (node[propValue].selected = i), i && setDefaultSelected && (node[propValue].defaultSelected = true);
+          i2 = multiple.hasOwnProperty("$" + node[propValue].value), node[propValue].selected !== i2 && (node[propValue].selected = i2), i2 && setDefaultSelected && (node[propValue].defaultSelected = true);
       } else {
         propValue = "" + getToStringValue(propValue);
         multiple = null;
-        for (i = 0;i < node.length; i++) {
-          if (node[i].value === propValue) {
-            node[i].selected = true;
-            setDefaultSelected && (node[i].defaultSelected = true);
+        for (i2 = 0;i2 < node.length; i2++) {
+          if (node[i2].value === propValue) {
+            node[i2].selected = true;
+            setDefaultSelected && (node[i2].defaultSelected = true);
             return;
           }
-          multiple !== null || node[i].disabled || (multiple = node[i]);
+          multiple !== null || node[i2].disabled || (multiple = node[i2]);
         }
         multiple !== null && (multiple.selected = true);
       }
@@ -4058,22 +4120,22 @@ Check the render method of \`` + ownerName + "`." : "";
       skipToNode = "";
       var debugInfo = node.fiber._debugInfo;
       if (debugInfo)
-        for (var i = 0;i < debugInfo.length; i++) {
-          var serverComponentName = debugInfo[i].name;
+        for (var i2 = 0;i2 < debugInfo.length; i2++) {
+          var serverComponentName = debugInfo[i2].name;
           typeof serverComponentName === "string" && (skipToNode += indentation(indent) + "<" + serverComponentName + `>
 `, indent++);
         }
       debugInfo = "";
-      i = node.fiber.pendingProps;
+      i2 = node.fiber.pendingProps;
       if (node.fiber.tag === 6)
-        debugInfo = describeTextDiff(i, node.serverProps, indent), indent++;
+        debugInfo = describeTextDiff(i2, node.serverProps, indent), indent++;
       else if (serverComponentName = describeFiberType(node.fiber), serverComponentName !== null)
         if (node.serverProps === undefined) {
           debugInfo = indent;
           var maxLength = 120 - 2 * debugInfo - serverComponentName.length - 2, content = "";
-          for (propName in i)
-            if (i.hasOwnProperty(propName) && propName !== "children") {
-              var propValue = describePropValue(i[propName], 15);
+          for (propName in i2)
+            if (i2.hasOwnProperty(propName) && propName !== "children") {
+              var propValue = describePropValue(i2[propName], 15);
               maxLength -= propName.length + propValue.length + 2;
               if (0 > maxLength) {
                 content += " ...";
@@ -4085,17 +4147,17 @@ Check the render method of \`` + ownerName + "`." : "";
 `;
           indent++;
         } else
-          node.serverProps === null ? (debugInfo = describeExpandedElement(serverComponentName, i, added(indent)), indent++) : typeof node.serverProps === "string" ? console.error("Should not have matched a non HostText fiber to a Text node. This is a bug in React.") : (debugInfo = describeElementDiff(serverComponentName, i, node.serverProps, indent), indent++);
+          node.serverProps === null ? (debugInfo = describeExpandedElement(serverComponentName, i2, added(indent)), indent++) : typeof node.serverProps === "string" ? console.error("Should not have matched a non HostText fiber to a Text node. This is a bug in React.") : (debugInfo = describeElementDiff(serverComponentName, i2, node.serverProps, indent), indent++);
       var propName = "";
-      i = node.fiber.child;
-      for (serverComponentName = 0;i && serverComponentName < node.children.length; )
-        maxLength = node.children[serverComponentName], maxLength.fiber === i ? (propName += describeNode(maxLength, indent), serverComponentName++) : propName += describeSiblingFiber(i, indent), i = i.sibling;
-      i && 0 < node.children.length && (propName += indentation(indent) + `...
+      i2 = node.fiber.child;
+      for (serverComponentName = 0;i2 && serverComponentName < node.children.length; )
+        maxLength = node.children[serverComponentName], maxLength.fiber === i2 ? (propName += describeNode(maxLength, indent), serverComponentName++) : propName += describeSiblingFiber(i2, indent), i2 = i2.sibling;
+      i2 && 0 < node.children.length && (propName += indentation(indent) + `...
 `);
-      i = node.serverTail;
+      i2 = node.serverTail;
       node.serverProps === null && indent--;
-      for (node = 0;node < i.length; node++)
-        serverComponentName = i[node], propName = typeof serverComponentName === "string" ? propName + (removed(indent) + describeTextNode(serverComponentName, 120 - 2 * indent) + `
+      for (node = 0;node < i2.length; node++)
+        serverComponentName = i2[node], propName = typeof serverComponentName === "string" ? propName + (removed(indent) + describeTextNode(serverComponentName, 120 - 2 * indent) + `
 `) : propName + describeExpandedElement(serverComponentName.type, serverComponentName.props, removed(indent));
       return skipToNode + debugInfo + propName;
     }
@@ -4104,7 +4166,7 @@ Check the render method of \`` + ownerName + "`." : "";
         return `
 
 ` + describeNode(rootNode, 0);
-      } catch (x) {
+      } catch (x2) {
         return "";
       }
     }
@@ -4313,7 +4375,7 @@ This will cause a hydration error.%s`, parentTag, implicitRootScope);
       node.textContent = text;
     }
     function camelize(string) {
-      return string.replace(hyphenPattern, function(_, character) {
+      return string.replace(hyphenPattern, function(_2, character) {
         return character.toUpperCase();
       });
     }
@@ -4333,8 +4395,8 @@ This will cause a hydration error.%s`, parentTag, implicitRootScope);
           if (prevStyles) {
             for (var key in prevStyles)
               if (prevStyles.hasOwnProperty(key) && !styles.hasOwnProperty(key))
-                for (var longhands = shorthandToLonghand[key] || [key], i = 0;i < longhands.length; i++)
-                  expandedUpdates[longhands[i]] = key;
+                for (var longhands = shorthandToLonghand[key] || [key], i2 = 0;i2 < longhands.length; i2++)
+                  expandedUpdates[longhands[i2]] = key;
           }
           for (var _key in styles)
             if (styles.hasOwnProperty(_key) && (!prevStyles || prevStyles[_key] !== styles[_key]))
@@ -4346,11 +4408,11 @@ This will cause a hydration error.%s`, parentTag, implicitRootScope);
               _key[key[longhands]] = key$jscomp$0;
           key$jscomp$0 = {};
           for (var _key2 in expandedUpdates)
-            if (key = expandedUpdates[_key2], (longhands = _key[_key2]) && key !== longhands && (i = key + "," + longhands, !key$jscomp$0[i])) {
-              key$jscomp$0[i] = true;
-              i = console;
+            if (key = expandedUpdates[_key2], (longhands = _key[_key2]) && key !== longhands && (i2 = key + "," + longhands, !key$jscomp$0[i2])) {
+              key$jscomp$0[i2] = true;
+              i2 = console;
               var value = styles[key];
-              i.error.call(i, "%s a style property during rerender (%s) when a conflicting property is set (%s) can lead to styling bugs. To avoid this, don't mix shorthand and non-shorthand properties for the same value; instead, replace the shorthand with separate values.", value == null || typeof value === "boolean" || value === "" ? "Removing" : "Updating", key, longhands);
+              i2.error.call(i2, "%s a style property during rerender (%s) when a conflicting property is set (%s) can lead to styling bugs. To avoid this, don't mix shorthand and non-shorthand properties for the same value; instead, replace the shorthand with separate values.", value == null || typeof value === "boolean" || value === "" ? "Removing" : "Updating", key, longhands);
             }
         }
         for (var styleName in prevStyles)
@@ -4604,18 +4666,18 @@ This will cause a hydration error.%s`, parentTag, implicitRootScope);
           }
       }
     }
-    function batchedUpdates$1(fn, a, b) {
+    function batchedUpdates$1(fn, a2, b2) {
       if (isInsideEventHandler)
-        return fn(a, b);
+        return fn(a2, b2);
       isInsideEventHandler = true;
       try {
-        var JSCompiler_inline_result = fn(a);
+        var JSCompiler_inline_result = fn(a2);
         return JSCompiler_inline_result;
       } finally {
         if (isInsideEventHandler = false, restoreTarget !== null || restoreQueue !== null) {
-          if (flushSyncWork$1(), restoreTarget && (a = restoreTarget, fn = restoreQueue, restoreQueue = restoreTarget = null, restoreStateOfTarget(a), fn))
-            for (a = 0;a < fn.length; a++)
-              restoreStateOfTarget(fn[a]);
+          if (flushSyncWork$1(), restoreTarget && (a2 = restoreTarget, fn = restoreQueue, restoreQueue = restoreTarget = null, restoreStateOfTarget(a2), fn))
+            for (a2 = 0;a2 < fn.length; a2++)
+              restoreStateOfTarget(fn[a2]);
         }
       }
     }
@@ -4818,8 +4880,8 @@ This will cause a hydration error.%s`, parentTag, implicitRootScope);
       if (domEventName === "input" || domEventName === "change")
         return getInstIfValueChanged(targetInst);
     }
-    function is(x, y) {
-      return x === y && (x !== 0 || 1 / x === 1 / y) || x !== x && y !== y;
+    function is(x2, y2) {
+      return x2 === y2 && (x2 !== 0 || 1 / x2 === 1 / y2) || x2 !== x2 && y2 !== y2;
     }
     function shallowEqual(objA, objB) {
       if (objectIs(objA, objB))
@@ -4841,14 +4903,14 @@ This will cause a hydration error.%s`, parentTag, implicitRootScope);
         node = node.firstChild;
       return node;
     }
-    function getNodeForCharacterOffset(root2, offset) {
+    function getNodeForCharacterOffset(root2, offset3) {
       var node = getLeafNode(root2);
       root2 = 0;
       for (var nodeEnd;node; ) {
         if (node.nodeType === 3) {
           nodeEnd = root2 + node.textContent.length;
-          if (root2 <= offset && nodeEnd >= offset)
-            return { node, offset: offset - root2 };
+          if (root2 <= offset3 && nodeEnd >= offset3)
+            return { node, offset: offset3 - root2 };
           root2 = nodeEnd;
         }
         a: {
@@ -4919,8 +4981,8 @@ This will cause a hydration error.%s`, parentTag, implicitRootScope);
       registerTwoPhaseEvent(reactName, [domEventName]);
     }
     function getArrayKind(array) {
-      for (var kind = EMPTY_ARRAY, i = 0;i < array.length; i++) {
-        var value = array[i];
+      for (var kind = EMPTY_ARRAY, i2 = 0;i2 < array.length; i2++) {
+        var value = array[i2];
         if (typeof value === "object" && value !== null)
           if (isArrayImpl(value) && value.length === 2 && typeof value[0] === "string") {
             if (kind !== EMPTY_ARRAY && kind !== ENTRIES_ARRAY)
@@ -5121,8 +5183,8 @@ This will cause a hydration error.%s`, parentTag, implicitRootScope);
       if (supportsUserTiming) {
         var name = getComponentNameFromFiber(fiber);
         if (name !== null) {
-          for (var debugTask = null, properties = [], i = 0;i < errors.length; i++) {
-            var capturedValue = errors[i];
+          for (var debugTask = null, properties = [], i2 = 0;i2 < errors.length; i2++) {
+            var capturedValue = errors[i2];
             debugTask == null && capturedValue.source !== null && (debugTask = capturedValue.source._debugTask);
             capturedValue = capturedValue.value;
             properties.push([
@@ -5155,8 +5217,8 @@ This will cause a hydration error.%s`, parentTag, implicitRootScope);
           var name = getComponentNameFromFiber(fiber);
           if (name !== null) {
             selfTime = [];
-            for (var i = 0;i < errors.length; i++) {
-              var error = errors[i].value;
+            for (var i2 = 0;i2 < errors.length; i2++) {
+              var error = errors[i2].value;
               selfTime.push([
                 "Error",
                 typeof error === "object" && error !== null && typeof error.message === "string" ? String(error.message) : String(error)
@@ -5198,8 +5260,8 @@ This will cause a hydration error.%s`, parentTag, implicitRootScope);
     function logRecoveredRenderPhase(startTime, endTime, lanes, recoverableErrors, hydrationFailed, debugTask) {
       if (supportsUserTiming && !(endTime <= startTime)) {
         lanes = [];
-        for (var i = 0;i < recoverableErrors.length; i++) {
-          var error = recoverableErrors[i].value;
+        for (var i2 = 0;i2 < recoverableErrors.length; i2++) {
+          var error = recoverableErrors[i2].value;
           lanes.push([
             "Recoverable Error",
             typeof error === "object" && error !== null && typeof error.message === "string" ? String(error.message) : String(error)
@@ -5229,8 +5291,8 @@ This will cause a hydration error.%s`, parentTag, implicitRootScope);
     }
     function logCommitErrored(startTime, endTime, errors, passive, debugTask) {
       if (supportsUserTiming && !(endTime <= startTime)) {
-        for (var properties = [], i = 0;i < errors.length; i++) {
-          var error = errors[i].value;
+        for (var properties = [], i2 = 0;i2 < errors.length; i2++) {
+          var error = errors[i2].value;
           properties.push([
             "Error",
             typeof error === "object" && error !== null && typeof error.message === "string" ? String(error.message) : String(error)
@@ -5256,15 +5318,15 @@ This will cause a hydration error.%s`, parentTag, implicitRootScope);
       !supportsUserTiming || endTime <= startTime || (debugTask ? debugTask.run(console.timeStamp.bind(console, "Animating", startTime, endTime, currentTrack, LANES_TRACK_GROUP, "secondary-dark")) : console.timeStamp("Animating", startTime, endTime, currentTrack, LANES_TRACK_GROUP, "secondary-dark"));
     }
     function finishQueueingConcurrentUpdates() {
-      for (var endIndex = concurrentQueuesIndex, i = concurrentlyUpdatedLanes = concurrentQueuesIndex = 0;i < endIndex; ) {
-        var fiber = concurrentQueues[i];
-        concurrentQueues[i++] = null;
-        var queue = concurrentQueues[i];
-        concurrentQueues[i++] = null;
-        var update = concurrentQueues[i];
-        concurrentQueues[i++] = null;
-        var lane = concurrentQueues[i];
-        concurrentQueues[i++] = null;
+      for (var endIndex = concurrentQueuesIndex, i2 = concurrentlyUpdatedLanes = concurrentQueuesIndex = 0;i2 < endIndex; ) {
+        var fiber = concurrentQueues[i2];
+        concurrentQueues[i2++] = null;
+        var queue = concurrentQueues[i2];
+        concurrentQueues[i2++] = null;
+        var update = concurrentQueues[i2];
+        concurrentQueues[i2++] = null;
+        var lane = concurrentQueues[i2];
+        concurrentQueues[i2++] = null;
         if (queue !== null && update !== null) {
           var pending = queue.pending;
           pending === null ? update.next = update : (update.next = pending.next, pending.next = update);
@@ -5849,8 +5911,8 @@ It can also happen if the client has a browser extension installed which messes 
             for (;list !== null; ) {
               var dependency = list;
               list = fiber;
-              for (var i = 0;i < contexts.length; i++)
-                if (dependency.context === contexts[i]) {
+              for (var i2 = 0;i2 < contexts.length; i2++)
+                if (dependency.context === contexts[i2]) {
                   list.lanes |= renderLanes2;
                   dependency = list.alternate;
                   dependency !== null && (dependency.lanes |= renderLanes2);
@@ -6117,8 +6179,8 @@ It can also happen if the client has a browser extension installed which messes 
         currentEntangledListeners = null;
         currentEntangledLane = 0;
         currentEntangledActionThenable = null;
-        for (var i = 0;i < listeners.length; i++)
-          (0, listeners[i])();
+        for (var i2 = 0;i2 < listeners.length; i2++)
+          (0, listeners[i2])();
       }
     }
     function chainThenableValue(thenable, result) {
@@ -6133,8 +6195,8 @@ It can also happen if the client has a browser extension installed which messes 
       thenable.then(function() {
         thenableWithOverride.status = "fulfilled";
         thenableWithOverride.value = result;
-        for (var i = 0;i < listeners.length; i++)
-          (0, listeners[i])(result);
+        for (var i2 = 0;i2 < listeners.length; i2++)
+          (0, listeners[i2])(result);
       }, function(error) {
         thenableWithOverride.status = "rejected";
         thenableWithOverride.reason = error;
@@ -6222,10 +6284,10 @@ It can also happen if the client has a browser extension installed which messes 
     function resolveLazy(lazyType) {
       try {
         return callLazyInitInDEV(lazyType);
-      } catch (x) {
-        if (x !== null && typeof x === "object" && typeof x.then === "function")
-          throw suspendedThenable = x, needsToResetSuspendedThenableDEV = true, SuspenseException;
-        throw x;
+      } catch (x2) {
+        if (x2 !== null && typeof x2 === "object" && typeof x2.then === "function")
+          throw suspendedThenable = x2, needsToResetSuspendedThenableDEV = true, SuspenseException;
+        throw x2;
       }
     }
     function getSuspendedThenable() {
@@ -6248,9 +6310,9 @@ It can also happen if the client has a browser extension installed which messes 
     function getCurrentDebugTask() {
       var debugInfo = currentDebugInfo;
       if (debugInfo != null) {
-        for (var i = debugInfo.length - 1;0 <= i; i--)
-          if (debugInfo[i].name != null) {
-            var debugTask = debugInfo[i].debugTask;
+        for (var i2 = debugInfo.length - 1;0 <= i2; i2--)
+          if (debugInfo[i2].name != null) {
+            var debugTask = debugInfo[i2].debugTask;
             if (debugTask != null)
               return debugTask;
           }
@@ -6258,8 +6320,8 @@ It can also happen if the client has a browser extension installed which messes 
       return null;
     }
     function validateFragmentProps(element, fiber, returnFiber) {
-      for (var keys = Object.keys(element.props), i = 0;i < keys.length; i++) {
-        var key = keys[i];
+      for (var keys = Object.keys(element.props), i2 = 0;i2 < keys.length; i2++) {
+        var key = keys[i2];
         if (key !== "children" && key !== "key") {
           fiber === null && (fiber = createFiberFromElement(element, returnFiber.mode, 0), fiber._debugInfo = currentDebugInfo, fiber.return = returnFiber);
           runWithFiberInDEV(fiber, function(erroredKey) {
@@ -6672,20 +6734,20 @@ It can also happen if the client has a browser extension installed which messes 
           var firstChildFiber = reconcileChildFibersImpl(returnFiber, currentFirstChild, newChild, lanes);
           thenableState$1 = null;
           return firstChildFiber;
-        } catch (x) {
-          if (x === SuspenseException || x === SuspenseActionException)
-            throw x;
-          var fiber = createFiber(29, x, null, returnFiber.mode);
+        } catch (x2) {
+          if (x2 === SuspenseException || x2 === SuspenseActionException)
+            throw x2;
+          var fiber = createFiber(29, x2, null, returnFiber.mode);
           fiber.lanes = lanes;
           fiber.return = returnFiber;
           var debugInfo = fiber._debugInfo = currentDebugInfo;
           fiber._debugOwner = returnFiber._debugOwner;
           fiber._debugTask = returnFiber._debugTask;
           if (debugInfo != null) {
-            for (var i = debugInfo.length - 1;0 <= i; i--)
-              if (typeof debugInfo[i].stack === "string") {
-                fiber._debugOwner = debugInfo[i];
-                fiber._debugTask = debugInfo[i].debugTask;
+            for (var i2 = debugInfo.length - 1;0 <= i2; i2--)
+              if (typeof debugInfo[i2].stack === "string") {
+                fiber._debugOwner = debugInfo[i2];
+                fiber._debugTask = debugInfo[i2].debugTask;
                 break;
               }
           }
@@ -6995,9 +7057,9 @@ Please update the following component: %s`, componentName2);
       if (hookTypesDev !== null && (hookTypesUpdateIndexDev++, hookTypesDev[hookTypesUpdateIndexDev] !== hookName)) {
         var componentName2 = getComponentNameFromFiber(currentlyRenderingFiber);
         if (!didWarnAboutMismatchedHooksForComponent.has(componentName2) && (didWarnAboutMismatchedHooksForComponent.add(componentName2), hookTypesDev !== null)) {
-          for (var table = "", i = 0;i <= hookTypesUpdateIndexDev; i++) {
-            var oldHookName = hookTypesDev[i], newHookName = i === hookTypesUpdateIndexDev ? hookName : oldHookName;
-            for (oldHookName = i + 1 + ". " + oldHookName;30 > oldHookName.length; )
+          for (var table = "", i2 = 0;i2 <= hookTypesUpdateIndexDev; i2++) {
+            var oldHookName = hookTypesDev[i2], newHookName = i2 === hookTypesUpdateIndexDev ? hookName : oldHookName;
+            for (oldHookName = i2 + 1 + ". " + oldHookName;30 > oldHookName.length; )
               oldHookName += " ";
             oldHookName += newHookName + `
 `;
@@ -7035,8 +7097,8 @@ See https://react.dev/link/invalid-hook-call for tips about how to debug and fix
 
 Previous: %s
 Incoming: %s`, currentHookNameInDev, "[" + prevDeps.join(", ") + "]", "[" + nextDeps.join(", ") + "]");
-      for (var i = 0;i < prevDeps.length && i < nextDeps.length; i++)
-        if (!objectIs(nextDeps[i], prevDeps[i]))
+      for (var i2 = 0;i2 < prevDeps.length && i2 < nextDeps.length; i2++)
+        if (!objectIs(nextDeps[i2], prevDeps[i2]))
           return false;
       return true;
     }
@@ -7207,7 +7269,7 @@ Incoming: %s`, currentHookNameInDev, "[" + prevDeps.join(", ") + "]", "[" + next
       }
       throw Error("An unsupported type was passed to use(): " + String(usable));
     }
-    function useMemoCache(size) {
+    function useMemoCache(size2) {
       var memoCache = null, updateQueue = currentlyRenderingFiber.updateQueue;
       updateQueue !== null && (memoCache = updateQueue.memoCache);
       if (memoCache == null) {
@@ -7224,10 +7286,10 @@ Incoming: %s`, currentHookNameInDev, "[" + prevDeps.join(", ") + "]", "[" + next
       updateQueue.memoCache = memoCache;
       updateQueue = memoCache.data[memoCache.index];
       if (updateQueue === undefined || ignorePreviousDependencies)
-        for (updateQueue = memoCache.data[memoCache.index] = Array(size), current2 = 0;current2 < size; current2++)
+        for (updateQueue = memoCache.data[memoCache.index] = Array(size2), current2 = 0;current2 < size2; current2++)
           updateQueue[current2] = REACT_MEMO_CACHE_SENTINEL;
       else
-        updateQueue.length !== size && console.error("Expected a constant size argument for each invocation of useMemoCache. The previous cache was allocated with size %s but size %s was requested.", updateQueue.length, size);
+        updateQueue.length !== size2 && console.error("Expected a constant size argument for each invocation of useMemoCache. The previous cache was allocated with size %s but size %s was requested.", updateQueue.length, size2);
       memoCache.index++;
       return updateQueue;
     }
@@ -7569,8 +7631,8 @@ Incoming: %s`, currentHookNameInDev, "[" + prevDeps.join(", ") + "]", "[" + next
     }
     function notifyActionListeners(actionNode) {
       actionNode = actionNode.listeners;
-      for (var i = 0;i < actionNode.length; i++)
-        (0, actionNode[i])();
+      for (var i2 = 0;i2 < actionNode.length; i2++)
+        (0, actionNode[i2])();
     }
     function actionStateReducer(oldState, newState) {
       return newState;
@@ -7649,10 +7711,10 @@ Incoming: %s`, currentHookNameInDev, "[" + prevDeps.join(", ") + "]", "[" + next
       if (typeof currentStateHook === "object" && currentStateHook !== null && typeof currentStateHook.then === "function")
         try {
           var state = useThenable(currentStateHook);
-        } catch (x) {
-          if (x === SuspenseException)
+        } catch (x2) {
+          if (x2 === SuspenseException)
             throw SuspenseActionException;
-          throw x;
+          throw x2;
         }
       else
         state = currentStateHook;
@@ -9710,8 +9772,8 @@ It looks like you wrote ` + hookName + `(async () => ...) or returned a Promise.
 }, [someId]); // Or [] if effect doesn't need props or state
 
 Learn more about data fetching with Hooks: https://react.dev/link/hooks-data-fetching` : " You returned: " + lastEffect;
-              runWithFiberInDEV(finishedWork, function(n, a) {
-                console.error("%s must not return anything besides a function, which is used for clean-up.%s", n, a);
+              runWithFiberInDEV(finishedWork, function(n2, a2) {
+                console.error("%s must not return anything besides a function, which is used for clean-up.%s", n2, a2);
               }, hookName, addendum);
             }
             updateQueue = updateQueue.next;
@@ -10352,8 +10414,8 @@ Learn more about data fetching with Hooks: https://react.dev/link/hooks-data-fet
     function recursivelyTraverseMutationEffects(root$jscomp$0, parentFiber) {
       var deletions = parentFiber.deletions;
       if (deletions !== null)
-        for (var i = 0;i < deletions.length; i++) {
-          var root2 = root$jscomp$0, returnFiber = parentFiber, deletedFiber = deletions[i], prevEffectStart = pushComponentEffectStart(), parent = returnFiber;
+        for (var i2 = 0;i2 < deletions.length; i2++) {
+          var root2 = root$jscomp$0, returnFiber = parentFiber, deletedFiber = deletions[i2], prevEffectStart = pushComponentEffectStart(), parent = returnFiber;
           a:
             for (;parent !== null; ) {
               switch (parent.tag) {
@@ -10441,9 +10503,9 @@ Learn more about data fetching with Hooks: https://react.dev/link/hooks-data-fet
                         case "link":
                           var maybeNodes = getHydratableHoistableCache("link", "href", existingHiddenCallbacks).get(flags + (current2.href || ""));
                           if (maybeNodes) {
-                            for (var i = 0;i < maybeNodes.length; i++)
-                              if (currentResource = maybeNodes[i], currentResource.getAttribute("href") === (current2.href == null || current2.href === "" ? null : current2.href) && currentResource.getAttribute("rel") === (current2.rel == null ? null : current2.rel) && currentResource.getAttribute("title") === (current2.title == null ? null : current2.title) && currentResource.getAttribute("crossorigin") === (current2.crossOrigin == null ? null : current2.crossOrigin)) {
-                                maybeNodes.splice(i, 1);
+                            for (var i2 = 0;i2 < maybeNodes.length; i2++)
+                              if (currentResource = maybeNodes[i2], currentResource.getAttribute("href") === (current2.href == null || current2.href === "" ? null : current2.href) && currentResource.getAttribute("rel") === (current2.rel == null ? null : current2.rel) && currentResource.getAttribute("title") === (current2.title == null ? null : current2.title) && currentResource.getAttribute("crossorigin") === (current2.crossOrigin == null ? null : current2.crossOrigin)) {
+                                maybeNodes.splice(i2, 1);
                                 break b;
                               }
                           }
@@ -10453,9 +10515,9 @@ Learn more about data fetching with Hooks: https://react.dev/link/hooks-data-fet
                           break;
                         case "meta":
                           if (maybeNodes = getHydratableHoistableCache("meta", "content", existingHiddenCallbacks).get(flags + (current2.content || ""))) {
-                            for (i = 0;i < maybeNodes.length; i++)
-                              if (currentResource = maybeNodes[i], checkAttributeStringCoercion(current2.content, "content"), currentResource.getAttribute("content") === (current2.content == null ? null : "" + current2.content) && currentResource.getAttribute("name") === (current2.name == null ? null : current2.name) && currentResource.getAttribute("property") === (current2.property == null ? null : current2.property) && currentResource.getAttribute("http-equiv") === (current2.httpEquiv == null ? null : current2.httpEquiv) && currentResource.getAttribute("charset") === (current2.charSet == null ? null : current2.charSet)) {
-                                maybeNodes.splice(i, 1);
+                            for (i2 = 0;i2 < maybeNodes.length; i2++)
+                              if (currentResource = maybeNodes[i2], checkAttributeStringCoercion(current2.content, "content"), currentResource.getAttribute("content") === (current2.content == null ? null : "" + current2.content) && currentResource.getAttribute("name") === (current2.name == null ? null : current2.name) && currentResource.getAttribute("property") === (current2.property == null ? null : current2.property) && currentResource.getAttribute("http-equiv") === (current2.httpEquiv == null ? null : current2.httpEquiv) && currentResource.getAttribute("charset") === (current2.charSet == null ? null : current2.charSet)) {
+                                maybeNodes.splice(i2, 1);
                                 break b;
                               }
                           }
@@ -10592,7 +10654,7 @@ Learn more about data fetching with Hooks: https://react.dev/link/hooks-data-fet
                   if (current2 === null) {
                     wasHidden = root2;
                     try {
-                      i = wasHidden.stateNode, existingHiddenCallbacks ? runWithFiberInDEV(wasHidden, hideDehydratedBoundary, i) : runWithFiberInDEV(wasHidden, unhideDehydratedBoundary, wasHidden.stateNode);
+                      i2 = wasHidden.stateNode, existingHiddenCallbacks ? runWithFiberInDEV(wasHidden, hideDehydratedBoundary, i2) : runWithFiberInDEV(wasHidden, unhideDehydratedBoundary, wasHidden.stateNode);
                     } catch (error) {
                       captureCommitPhaseError(wasHidden, wasHidden.return, error);
                     }
@@ -10980,8 +11042,8 @@ Learn more about data fetching with Hooks: https://react.dev/link/hooks-data-fet
       var deletions = parentFiber.deletions;
       if ((parentFiber.flags & 16) !== 0) {
         if (deletions !== null)
-          for (var i = 0;i < deletions.length; i++) {
-            var childToDelete = deletions[i], prevEffectStart = pushComponentEffectStart();
+          for (var i2 = 0;i2 < deletions.length; i2++) {
+            var childToDelete = deletions[i2], prevEffectStart = pushComponentEffectStart();
             nextEffect = childToDelete;
             commitPassiveUnmountEffectsInsideOfDeletedTree_begin(childToDelete, parentFiber);
             (childToDelete.mode & ProfileMode) !== NoMode && 0 <= componentEffectStartTime && 0 <= componentEffectEndTime && 0.05 < componentEffectEndTime - componentEffectStartTime && logComponentTrigger(childToDelete, componentEffectStartTime, componentEffectEndTime, "Unmount");
@@ -11029,8 +11091,8 @@ Learn more about data fetching with Hooks: https://react.dev/link/hooks-data-fet
       var deletions = parentFiber.deletions;
       if ((parentFiber.flags & 16) !== 0) {
         if (deletions !== null)
-          for (var i = 0;i < deletions.length; i++) {
-            var childToDelete = deletions[i], prevEffectStart = pushComponentEffectStart();
+          for (var i2 = 0;i2 < deletions.length; i2++) {
+            var childToDelete = deletions[i2], prevEffectStart = pushComponentEffectStart();
             nextEffect = childToDelete;
             commitPassiveUnmountEffectsInsideOfDeletedTree_begin(childToDelete, parentFiber);
             (childToDelete.mode & ProfileMode) !== NoMode && 0 <= componentEffectStartTime && 0 <= componentEffectEndTime && 0.05 < componentEffectEndTime - componentEffectStartTime && logComponentTrigger(childToDelete, componentEffectStartTime, componentEffectEndTime, "Unmount");
@@ -11315,8 +11377,8 @@ Learn more about data fetching with Hooks: https://react.dev/link/hooks-data-fet
       for (var node = finishedWork;; ) {
         var tag = node.tag;
         if ((tag === 0 || tag === 11 || tag === 15) && node.flags & 16384 && (tag = node.updateQueue, tag !== null && (tag = tag.stores, tag !== null)))
-          for (var i = 0;i < tag.length; i++) {
-            var check = tag[i], getSnapshot = check.getSnapshot;
+          for (var i2 = 0;i2 < tag.length; i2++) {
+            var check = tag[i2], getSnapshot = check.getSnapshot;
             check = check.value;
             try {
               if (!objectIs(getSnapshot(), check))
@@ -12475,8 +12537,8 @@ This ensures that you're testing the behavior the user would see in the browser.
     }
     function processDispatchQueue(dispatchQueue, eventSystemFlags) {
       eventSystemFlags = (eventSystemFlags & 4) !== 0;
-      for (var i = 0;i < dispatchQueue.length; i++) {
-        var _dispatchQueue$i = dispatchQueue[i];
+      for (var i2 = 0;i2 < dispatchQueue.length; i2++) {
+        var _dispatchQueue$i = dispatchQueue[i2];
         a: {
           var previousInstance = undefined, event = _dispatchQueue$i.event;
           _dispatchQueue$i = _dispatchQueue$i.listeners;
@@ -13547,8 +13609,8 @@ This ensures that you're testing the behavior the user would see in the browser.
     function getStylesObjectFromElement(domElement) {
       var serverValueInObjectForm = {};
       domElement = domElement.style;
-      for (var i = 0;i < domElement.length; i++) {
-        var styleName = domElement[i];
+      for (var i2 = 0;i2 < domElement.length; i2++) {
+        var styleName = domElement[i2];
         serverValueInObjectForm[styleName] = domElement.getPropertyValue(styleName);
       }
       return serverValueInObjectForm;
@@ -13685,8 +13747,8 @@ This ensures that you're testing the behavior the user would see in the browser.
       warnForPropDifference(propKey, domElement, value, serverDifferences);
     }
     function diffHydratedProperties(domElement, tag, props, hostContext) {
-      for (var serverDifferences = {}, extraAttributes = new Set, attributes = domElement.attributes, i = 0;i < attributes.length; i++)
-        switch (attributes[i].name.toLowerCase()) {
+      for (var serverDifferences = {}, extraAttributes = new Set, attributes = domElement.attributes, i2 = 0;i2 < attributes.length; i2++)
+        switch (attributes[i2].name.toLowerCase()) {
           case "value":
             break;
           case "checked":
@@ -13694,7 +13756,7 @@ This ensures that you're testing the behavior the user would see in the browser.
           case "selected":
             break;
           default:
-            extraAttributes.add(attributes[i].name);
+            extraAttributes.add(attributes[i2].name);
         }
       if (isCustomElement(tag))
         for (var propKey in props) {
@@ -13865,11 +13927,11 @@ This ensures that you're testing the behavior the user would see in the browser.
                 case "capture":
                 case "download":
                   a: {
-                    i = domElement;
+                    i2 = domElement;
                     var attributeName = attributes = value, serverDifferences$jscomp$0 = serverDifferences;
                     extraAttributes.delete(attributeName);
-                    i = i.getAttribute(attributeName);
-                    if (i === null)
+                    i2 = i2.getAttribute(attributeName);
+                    if (i2 === null)
                       switch (typeof propKey) {
                         case "undefined":
                         case "function":
@@ -13885,14 +13947,14 @@ This ensures that you're testing the behavior the user would see in the browser.
                         case "symbol":
                           break;
                         case "boolean":
-                          if (propKey === true && i === "")
+                          if (propKey === true && i2 === "")
                             break a;
                           break;
                         default:
-                          if (checkAttributeStringCoercion(propKey, attributes), i === "" + propKey)
+                          if (checkAttributeStringCoercion(propKey, attributes), i2 === "" + propKey)
                             break a;
                       }
-                    warnForPropDifference(attributes, i, propKey, serverDifferences$jscomp$0);
+                    warnForPropDifference(attributes, i2, propKey, serverDifferences$jscomp$0);
                   }
                   continue;
                 case "cols":
@@ -13900,12 +13962,12 @@ This ensures that you're testing the behavior the user would see in the browser.
                 case "size":
                 case "span":
                   a: {
-                    i = domElement;
+                    i2 = domElement;
                     attributeName = attributes = value;
                     serverDifferences$jscomp$0 = serverDifferences;
                     extraAttributes.delete(attributeName);
-                    i = i.getAttribute(attributeName);
-                    if (i === null)
+                    i2 = i2.getAttribute(attributeName);
+                    if (i2 === null)
                       switch (typeof propKey) {
                         case "undefined":
                         case "function":
@@ -13923,10 +13985,10 @@ This ensures that you're testing the behavior the user would see in the browser.
                         case "boolean":
                           break;
                         default:
-                          if (!(isNaN(propKey) || 1 > propKey) && (checkAttributeStringCoercion(propKey, attributes), i === "" + propKey))
+                          if (!(isNaN(propKey) || 1 > propKey) && (checkAttributeStringCoercion(propKey, attributes), i2 === "" + propKey))
                             break a;
                       }
-                    warnForPropDifference(attributes, i, propKey, serverDifferences$jscomp$0);
+                    warnForPropDifference(attributes, i2, propKey, serverDifferences$jscomp$0);
                   }
                   continue;
                 case "rowSpan":
@@ -13971,15 +14033,15 @@ This ensures that you're testing the behavior the user would see in the browser.
                   continue;
                 default:
                   if (!(2 < value.length) || value[0] !== "o" && value[0] !== "O" || value[1] !== "n" && value[1] !== "N") {
-                    i = getAttributeAlias(value);
+                    i2 = getAttributeAlias(value);
                     attributes = false;
-                    hostContext.context === HostContextNamespaceNone && tag !== "svg" && tag !== "math" ? extraAttributes.delete(i.toLowerCase()) : (attributeName = value.toLowerCase(), attributeName = possibleStandardNames.hasOwnProperty(attributeName) ? possibleStandardNames[attributeName] || null : null, attributeName !== null && attributeName !== value && (attributes = true, extraAttributes.delete(attributeName)), extraAttributes.delete(i));
+                    hostContext.context === HostContextNamespaceNone && tag !== "svg" && tag !== "math" ? extraAttributes.delete(i2.toLowerCase()) : (attributeName = value.toLowerCase(), attributeName = possibleStandardNames.hasOwnProperty(attributeName) ? possibleStandardNames[attributeName] || null : null, attributeName !== null && attributeName !== value && (attributes = true, extraAttributes.delete(attributeName)), extraAttributes.delete(i2));
                     a:
-                      if (attributeName = domElement, serverDifferences$jscomp$0 = i, i = propKey, isAttributeNameSafe(serverDifferences$jscomp$0))
+                      if (attributeName = domElement, serverDifferences$jscomp$0 = i2, i2 = propKey, isAttributeNameSafe(serverDifferences$jscomp$0))
                         if (attributeName.hasAttribute(serverDifferences$jscomp$0))
-                          attributeName = attributeName.getAttribute(serverDifferences$jscomp$0), checkAttributeStringCoercion(i, serverDifferences$jscomp$0), i = attributeName === "" + i ? i : attributeName;
+                          attributeName = attributeName.getAttribute(serverDifferences$jscomp$0), checkAttributeStringCoercion(i2, serverDifferences$jscomp$0), i2 = attributeName === "" + i2 ? i2 : attributeName;
                         else {
-                          switch (typeof i) {
+                          switch (typeof i2) {
                             case "function":
                             case "symbol":
                               break a;
@@ -13987,11 +14049,11 @@ This ensures that you're testing the behavior the user would see in the browser.
                               if (attributeName = serverDifferences$jscomp$0.toLowerCase().slice(0, 5), attributeName !== "data-" && attributeName !== "aria-")
                                 break a;
                           }
-                          i = i === undefined ? undefined : null;
+                          i2 = i2 === undefined ? undefined : null;
                         }
                       else
-                        i = undefined;
-                    attributes || warnForPropDifference(value, i, propKey, serverDifferences);
+                        i2 = undefined;
+                    attributes || warnForPropDifference(value, i2, propKey, serverDifferences);
                   }
               }
           }
@@ -14026,19 +14088,19 @@ This ensures that you're testing the behavior the user would see in the browser.
     }
     function estimateBandwidth() {
       if (typeof performance.getEntriesByType === "function") {
-        for (var count = 0, bits = 0, resourceEntries = performance.getEntriesByType("resource"), i = 0;i < resourceEntries.length; i++) {
-          var entry = resourceEntries[i], transferSize = entry.transferSize, initiatorType = entry.initiatorType, duration = entry.duration;
+        for (var count = 0, bits = 0, resourceEntries = performance.getEntriesByType("resource"), i2 = 0;i2 < resourceEntries.length; i2++) {
+          var entry = resourceEntries[i2], transferSize = entry.transferSize, initiatorType = entry.initiatorType, duration = entry.duration;
           if (transferSize && duration && isLikelyStaticResource(initiatorType)) {
             initiatorType = 0;
             duration = entry.responseEnd;
-            for (i += 1;i < resourceEntries.length; i++) {
-              var overlapEntry = resourceEntries[i], overlapStartTime = overlapEntry.startTime;
+            for (i2 += 1;i2 < resourceEntries.length; i2++) {
+              var overlapEntry = resourceEntries[i2], overlapStartTime = overlapEntry.startTime;
               if (overlapStartTime > duration)
                 break;
               var { transferSize: overlapTransferSize, initiatorType: overlapInitiatorType } = overlapEntry;
               overlapTransferSize && isLikelyStaticResource(overlapInitiatorType) && (overlapEntry = overlapEntry.responseEnd, initiatorType += overlapTransferSize * (overlapEntry < duration ? 1 : (duration - overlapStartTime) / (overlapEntry - overlapStartTime)));
             }
-            --i;
+            --i2;
             bits += 8 * (transferSize + initiatorType) / (entry.duration / 1000);
             count++;
             if (10 < count)
@@ -14344,8 +14406,8 @@ This ensures that you're testing the behavior the user would see in the browser.
     }
     function describeHydratableInstanceForDevWarnings(instance) {
       if (instance.nodeType === 1) {
-        for (var JSCompiler_temp_const = instance.nodeName.toLowerCase(), serverDifferences = {}, attributes = instance.attributes, i = 0;i < attributes.length; i++) {
-          var attr = attributes[i];
+        for (var JSCompiler_temp_const = instance.nodeName.toLowerCase(), serverDifferences = {}, attributes = instance.attributes, i2 = 0;i2 < attributes.length; i2++) {
+          var attr = attributes[i2];
           serverDifferences[getPropNameFromAttributeName(attr.name)] = attr.name.toLowerCase() === "style" ? getStylesObjectFromElement(instance) : attr.value;
         }
         return { type: JSCompiler_temp_const, props: serverDifferences };
@@ -14610,8 +14672,8 @@ This ensures that you're testing the behavior the user would see in the browser.
       return resource.instance;
     }
     function insertStylesheet(instance, precedence, root2) {
-      for (var nodes = root2.querySelectorAll('link[rel="stylesheet"][data-precedence],style[data-precedence]'), last = nodes.length ? nodes[nodes.length - 1] : null, prior = last, i = 0;i < nodes.length; i++) {
-        var node = nodes[i];
+      for (var nodes = root2.querySelectorAll('link[rel="stylesheet"][data-precedence],style[data-precedence]'), last = nodes.length ? nodes[nodes.length - 1] : null, prior = last, i2 = 0;i2 < nodes.length; i2++) {
+        var node = nodes[i2];
         if (node.dataset.precedence === precedence)
           prior = node;
         else if (prior !== last)
@@ -14790,8 +14852,8 @@ This ensures that you're testing the behavior the user would see in the browser.
         else {
           precedences = new Map;
           precedencesByRoot.set(root2, precedences);
-          for (var nodes = root2.querySelectorAll("link[data-precedence],style[data-precedence]"), i = 0;i < nodes.length; i++) {
-            var node = nodes[i];
+          for (var nodes = root2.querySelectorAll("link[data-precedence],style[data-precedence]"), i2 = 0;i2 < nodes.length; i2++) {
+            var node = nodes[i2];
             if (node.nodeName === "LINK" || node.getAttribute("media") !== "not all")
               precedences.set(node.dataset.precedence, node), last = node;
           }
@@ -14799,14 +14861,14 @@ This ensures that you're testing the behavior the user would see in the browser.
         }
         nodes = resource.instance;
         node = nodes.getAttribute("data-precedence");
-        i = precedences.get(node) || last;
-        i === last && precedences.set(LAST_PRECEDENCE, nodes);
+        i2 = precedences.get(node) || last;
+        i2 === last && precedences.set(LAST_PRECEDENCE, nodes);
         precedences.set(node, nodes);
         this.count++;
         last = onUnsuspend.bind(this);
         nodes.addEventListener("load", last);
         nodes.addEventListener("error", last);
-        i ? i.parentNode.insertBefore(nodes, i.nextSibling) : (root2 = root2.nodeType === 9 ? root2.head : root2, root2.insertBefore(nodes, root2.firstChild));
+        i2 ? i2.parentNode.insertBefore(nodes, i2.nextSibling) : (root2 = root2.nodeType === 9 ? root2.head : root2, root2.insertBefore(nodes, root2.firstChild));
         resource.state.loading |= Inserted;
       }
     }
@@ -14884,8 +14946,8 @@ Check the render method of %s.`, getComponentNameFromFiber(current) || "Unknown"
     function markRetryLaneImpl(fiber, retryLane) {
       fiber = fiber.memoizedState;
       if (fiber !== null && fiber.dehydrated !== null) {
-        var a = fiber.retryLane;
-        fiber.retryLane = a !== 0 && a < retryLane ? a : retryLane;
+        var a2 = fiber.retryLane;
+        fiber.retryLane = a2 !== 0 && a2 < retryLane ? a2 : retryLane;
       }
     }
     function markRetryLaneIfNotHydrated(fiber, retryLane) {
@@ -15221,15 +15283,15 @@ Check the render method of %s.`, getComponentNameFromFiber(current) || "Unknown"
     function scheduleReplayQueueIfNeeded(formReplayingQueue) {
       lastScheduledReplayQueue !== formReplayingQueue && (lastScheduledReplayQueue = formReplayingQueue, Scheduler.unstable_scheduleCallback(Scheduler.unstable_NormalPriority, function() {
         lastScheduledReplayQueue === formReplayingQueue && (lastScheduledReplayQueue = null);
-        for (var i = 0;i < formReplayingQueue.length; i += 3) {
-          var form = formReplayingQueue[i], submitterOrAction = formReplayingQueue[i + 1], formData = formReplayingQueue[i + 2];
+        for (var i2 = 0;i2 < formReplayingQueue.length; i2 += 3) {
+          var form = formReplayingQueue[i2], submitterOrAction = formReplayingQueue[i2 + 1], formData = formReplayingQueue[i2 + 2];
           if (typeof submitterOrAction !== "function")
             if (findInstanceBlockingTarget(submitterOrAction || form) === null)
               continue;
             else
               break;
           var formInst = getInstanceFromNode(form);
-          formInst !== null && (formReplayingQueue.splice(i, 3), i -= 3, form = {
+          formInst !== null && (formReplayingQueue.splice(i2, 3), i2 -= 3, form = {
             pending: true,
             data: formData,
             method: form.method,
@@ -15247,18 +15309,18 @@ Check the render method of %s.`, getComponentNameFromFiber(current) || "Unknown"
       queuedMouse !== null && scheduleCallbackIfUnblocked(queuedMouse, unblocked);
       queuedPointers.forEach(unblock);
       queuedPointerCaptures.forEach(unblock);
-      for (var i = 0;i < queuedExplicitHydrationTargets.length; i++) {
-        var queuedTarget = queuedExplicitHydrationTargets[i];
+      for (var i2 = 0;i2 < queuedExplicitHydrationTargets.length; i2++) {
+        var queuedTarget = queuedExplicitHydrationTargets[i2];
         queuedTarget.blockedOn === unblocked && (queuedTarget.blockedOn = null);
       }
-      for (;0 < queuedExplicitHydrationTargets.length && (i = queuedExplicitHydrationTargets[0], i.blockedOn === null); )
-        attemptExplicitHydrationTarget(i), i.blockedOn === null && queuedExplicitHydrationTargets.shift();
-      i = (unblocked.ownerDocument || unblocked).$$reactFormReplay;
-      if (i != null)
-        for (queuedTarget = 0;queuedTarget < i.length; queuedTarget += 3) {
-          var form = i[queuedTarget], submitterOrAction = i[queuedTarget + 1], formProps = form[internalPropsKey] || null;
+      for (;0 < queuedExplicitHydrationTargets.length && (i2 = queuedExplicitHydrationTargets[0], i2.blockedOn === null); )
+        attemptExplicitHydrationTarget(i2), i2.blockedOn === null && queuedExplicitHydrationTargets.shift();
+      i2 = (unblocked.ownerDocument || unblocked).$$reactFormReplay;
+      if (i2 != null)
+        for (queuedTarget = 0;queuedTarget < i2.length; queuedTarget += 3) {
+          var form = i2[queuedTarget], submitterOrAction = i2[queuedTarget + 1], formProps = form[internalPropsKey] || null;
           if (typeof submitterOrAction === "function")
-            formProps || scheduleReplayQueueIfNeeded(i);
+            formProps || scheduleReplayQueueIfNeeded(i2);
           else if (formProps) {
             var action = null;
             if (submitterOrAction && submitterOrAction.hasAttribute("formAction"))
@@ -15270,8 +15332,8 @@ Check the render method of %s.`, getComponentNameFromFiber(current) || "Unknown"
               }
             else
               action = formProps.action;
-            typeof action === "function" ? i[queuedTarget + 1] = action : (i.splice(queuedTarget, 3), queuedTarget -= 3);
-            scheduleReplayQueueIfNeeded(i);
+            typeof action === "function" ? i2[queuedTarget + 1] = action : (i2.splice(queuedTarget, 3), queuedTarget -= 3);
+            scheduleReplayQueueIfNeeded(i2);
           }
         }
     }
@@ -16118,7 +16180,7 @@ Check the render method of %s.`, getComponentNameFromFiber(current) || "Unknown"
         });
         window.addEventListener("test", options$jscomp$0, options$jscomp$0);
         window.removeEventListener("test", options$jscomp$0, options$jscomp$0);
-      } catch (e) {
+      } catch (e2) {
         passiveBrowserEventsSupported = false;
       }
     var root = null, startText = null, fallbackText = null, EventInterface = {
@@ -17305,9 +17367,9 @@ Check the top-level render call using <` + componentName2 + ">.");
         mountHookTypesDev();
         return mountOptimistic(passthrough);
       },
-      useMemoCache: function(size) {
+      useMemoCache: function(size2) {
         warnInvalidHookAccess();
-        return useMemoCache(size);
+        return useMemoCache(size2);
       },
       useHostTransitionStatus,
       useCacheRefresh: function() {
@@ -17456,9 +17518,9 @@ Check the top-level render call using <` + componentName2 + ">.");
         updateHookTypesDev();
         return updateOptimistic(passthrough, reducer2);
       },
-      useMemoCache: function(size) {
+      useMemoCache: function(size2) {
         warnInvalidHookAccess();
-        return useMemoCache(size);
+        return useMemoCache(size2);
       },
       useHostTransitionStatus,
       useCacheRefresh: function() {
@@ -17607,9 +17669,9 @@ Check the top-level render call using <` + componentName2 + ">.");
         updateHookTypesDev();
         return rerenderOptimistic(passthrough, reducer2);
       },
-      useMemoCache: function(size) {
+      useMemoCache: function(size2) {
         warnInvalidHookAccess();
-        return useMemoCache(size);
+        return useMemoCache(size2);
       },
       useHostTransitionStatus,
       useCacheRefresh: function() {
@@ -17702,8 +17764,8 @@ Check the top-level render call using <` + componentName2 + ">.");
     var didWarnAboutUpdateInRenderForAnotherComponent = new Set;
     var fakeActCallbackNode$1 = {}, firstScheduledRoot = null, lastScheduledRoot = null, didScheduleMicrotask = false, didScheduleMicrotask_act = false, mightHavePendingSyncWork = false, isFlushingWork = false, currentEventTransitionLane = 0, fakeActCallbackNode = {};
     (function() {
-      for (var i = 0;i < simpleEventPluginEvents.length; i++) {
-        var eventName = simpleEventPluginEvents[i], domEventName = eventName.toLowerCase();
+      for (var i2 = 0;i2 < simpleEventPluginEvents.length; i2++) {
+        var eventName = simpleEventPluginEvents[i2], domEventName = eventName.toLowerCase();
         eventName = eventName[0].toUpperCase() + eventName.slice(1);
         registerSimpleEvent(domEventName, "on" + eventName);
       }
@@ -17961,10 +18023,10 @@ Check the top-level render call using <` + componentName2 + ">.");
       if (target) {
         var updatePriority = resolveUpdatePriority();
         target = { blockedOn: null, target, priority: updatePriority };
-        for (var i = 0;i < queuedExplicitHydrationTargets.length && updatePriority !== 0 && updatePriority < queuedExplicitHydrationTargets[i].priority; i++)
+        for (var i2 = 0;i2 < queuedExplicitHydrationTargets.length && updatePriority !== 0 && updatePriority < queuedExplicitHydrationTargets[i2].priority; i2++)
           ;
-        queuedExplicitHydrationTargets.splice(i, 0, target);
-        i === 0 && attemptExplicitHydrationTarget(target);
+        queuedExplicitHydrationTargets.splice(i2, 0, target);
+        i2 === 0 && attemptExplicitHydrationTarget(target);
       }
     };
     (function() {
@@ -18085,8 +18147,8 @@ var appContextDefaults = {
   zoom: 1,
   setZoom: () => {},
   quality: 80,
-  setQuality: () => {},
   effort: 4,
+  setQuality: () => {},
   setEffort: () => {},
   crop: {
     x: 0,
@@ -18097,7 +18159,10 @@ var appContextDefaults = {
   settings: {
     effort: 4,
     quality: 80,
-    theme: "auto"
+    theme: "auto",
+    maxWidth: 2400,
+    outputFolder: "",
+    language: "English"
   }
 };
 var sharedContext = import_react.createContext(appContextDefaults);
@@ -20687,55 +20752,1870 @@ function DragDrop() {
 }
 
 // src/mainview/modules/imagesEditor.tsx
-var import_react8 = __toESM(require_react(), 1);
+var import_react9 = __toESM(require_react(), 1);
 
 // src/mainview/modules/imagesList.tsx
-var import_react6 = __toESM(require_react(), 1);
+var import_react7 = __toESM(require_react(), 1);
 
 // src/mainview/modules/imagesListItem.tsx
+var import_react6 = __toESM(require_react(), 1);
+
+// node_modules/react-tooltip/dist/react-tooltip.min.mjs
 var import_react5 = __toESM(require_react(), 1);
-var jsx_dev_runtime3 = __toESM(require_jsx_dev_runtime(), 1);
-function ImagesListItem(props) {
-  const appContext = import_react5.useContext(sharedContext);
-  const activeImage = appContext.images.find((image) => image.isActive);
-  function imageClickHandler(e) {
-    e.preventDefault();
-    if (e.target instanceof HTMLElement) {
-      appContext.setImages((images) => {
-        return images.map((image) => ({
-          ...image,
-          isActive: image === appContext.images[props.index]
-        }));
-      });
-      appContext.setZoom(appContextDefaults.zoom);
-      appContext.setCrop(appContextDefaults.crop);
-      appContext.setQuality(appContext.images[props.index].quality);
-      appContext.setEffort(appContext.images[props.index].effort);
+
+// node_modules/@floating-ui/utils/dist/floating-ui.utils.mjs
+var min = Math.min;
+var max = Math.max;
+var round = Math.round;
+var floor = Math.floor;
+var createCoords = (v) => ({
+  x: v,
+  y: v
+});
+var oppositeSideMap = {
+  left: "right",
+  right: "left",
+  bottom: "top",
+  top: "bottom"
+};
+function clamp(start, value, end) {
+  return max(start, min(value, end));
+}
+function evaluate(value, param) {
+  return typeof value === "function" ? value(param) : value;
+}
+function getSide(placement) {
+  return placement.split("-")[0];
+}
+function getAlignment(placement) {
+  return placement.split("-")[1];
+}
+function getOppositeAxis(axis) {
+  return axis === "x" ? "y" : "x";
+}
+function getAxisLength(axis) {
+  return axis === "y" ? "height" : "width";
+}
+function getSideAxis(placement) {
+  const firstChar = placement[0];
+  return firstChar === "t" || firstChar === "b" ? "y" : "x";
+}
+function getAlignmentAxis(placement) {
+  return getOppositeAxis(getSideAxis(placement));
+}
+function getAlignmentSides(placement, rects, rtl) {
+  if (rtl === undefined) {
+    rtl = false;
+  }
+  const alignment = getAlignment(placement);
+  const alignmentAxis = getAlignmentAxis(placement);
+  const length = getAxisLength(alignmentAxis);
+  let mainAlignmentSide = alignmentAxis === "x" ? alignment === (rtl ? "end" : "start") ? "right" : "left" : alignment === "start" ? "bottom" : "top";
+  if (rects.reference[length] > rects.floating[length]) {
+    mainAlignmentSide = getOppositePlacement(mainAlignmentSide);
+  }
+  return [mainAlignmentSide, getOppositePlacement(mainAlignmentSide)];
+}
+function getExpandedPlacements(placement) {
+  const oppositePlacement = getOppositePlacement(placement);
+  return [getOppositeAlignmentPlacement(placement), oppositePlacement, getOppositeAlignmentPlacement(oppositePlacement)];
+}
+function getOppositeAlignmentPlacement(placement) {
+  return placement.includes("start") ? placement.replace("start", "end") : placement.replace("end", "start");
+}
+var lrPlacement = ["left", "right"];
+var rlPlacement = ["right", "left"];
+var tbPlacement = ["top", "bottom"];
+var btPlacement = ["bottom", "top"];
+function getSideList(side, isStart, rtl) {
+  switch (side) {
+    case "top":
+    case "bottom":
+      if (rtl)
+        return isStart ? rlPlacement : lrPlacement;
+      return isStart ? lrPlacement : rlPlacement;
+    case "left":
+    case "right":
+      return isStart ? tbPlacement : btPlacement;
+    default:
+      return [];
+  }
+}
+function getOppositeAxisPlacements(placement, flipAlignment, direction, rtl) {
+  const alignment = getAlignment(placement);
+  let list = getSideList(getSide(placement), direction === "start", rtl);
+  if (alignment) {
+    list = list.map((side) => side + "-" + alignment);
+    if (flipAlignment) {
+      list = list.concat(list.map(getOppositeAlignmentPlacement));
     }
   }
-  function itemDeleteClickHandler(e) {
-    e.preventDefault();
-    console.log("Open the modal!");
-  }
-  return /* @__PURE__ */ jsx_dev_runtime3.jsxDEV("div", {
-    className: "imageslist-list-item" + (activeImage?.input === props.input ? " active" : ""),
-    children: [
-      /* @__PURE__ */ jsx_dev_runtime3.jsxDEV("a", {
-        href: "#",
-        onClick: itemDeleteClickHandler,
-        className: "imageslist-list-item-close",
-        children: "×"
-      }, undefined, false, undefined, this),
-      /* @__PURE__ */ jsx_dev_runtime3.jsxDEV("a", {
-        href: "#",
-        onClick: imageClickHandler,
-        className: "imageslist-list-item-image",
-        style: { backgroundImage: "url('" + props.output + "')" },
-        children: " "
-      }, undefined, false, undefined, this)
-    ]
-  }, undefined, true, undefined, this);
+  return list;
 }
+function getOppositePlacement(placement) {
+  const side = getSide(placement);
+  return oppositeSideMap[side] + placement.slice(side.length);
+}
+function expandPaddingObject(padding) {
+  return {
+    top: 0,
+    right: 0,
+    bottom: 0,
+    left: 0,
+    ...padding
+  };
+}
+function getPaddingObject(padding) {
+  return typeof padding !== "number" ? expandPaddingObject(padding) : {
+    top: padding,
+    right: padding,
+    bottom: padding,
+    left: padding
+  };
+}
+function rectToClientRect(rect) {
+  const {
+    x,
+    y,
+    width,
+    height
+  } = rect;
+  return {
+    width,
+    height,
+    top: y,
+    left: x,
+    right: x + width,
+    bottom: y + height,
+    x,
+    y
+  };
+}
+
+// node_modules/@floating-ui/core/dist/floating-ui.core.mjs
+function computeCoordsFromPlacement(_ref, placement, rtl) {
+  let {
+    reference,
+    floating
+  } = _ref;
+  const sideAxis = getSideAxis(placement);
+  const alignmentAxis = getAlignmentAxis(placement);
+  const alignLength = getAxisLength(alignmentAxis);
+  const side = getSide(placement);
+  const isVertical = sideAxis === "y";
+  const commonX = reference.x + reference.width / 2 - floating.width / 2;
+  const commonY = reference.y + reference.height / 2 - floating.height / 2;
+  const commonAlign = reference[alignLength] / 2 - floating[alignLength] / 2;
+  let coords;
+  switch (side) {
+    case "top":
+      coords = {
+        x: commonX,
+        y: reference.y - floating.height
+      };
+      break;
+    case "bottom":
+      coords = {
+        x: commonX,
+        y: reference.y + reference.height
+      };
+      break;
+    case "right":
+      coords = {
+        x: reference.x + reference.width,
+        y: commonY
+      };
+      break;
+    case "left":
+      coords = {
+        x: reference.x - floating.width,
+        y: commonY
+      };
+      break;
+    default:
+      coords = {
+        x: reference.x,
+        y: reference.y
+      };
+  }
+  switch (getAlignment(placement)) {
+    case "start":
+      coords[alignmentAxis] -= commonAlign * (rtl && isVertical ? -1 : 1);
+      break;
+    case "end":
+      coords[alignmentAxis] += commonAlign * (rtl && isVertical ? -1 : 1);
+      break;
+  }
+  return coords;
+}
+async function detectOverflow(state, options) {
+  var _await$platform$isEle;
+  if (options === undefined) {
+    options = {};
+  }
+  const {
+    x,
+    y,
+    platform,
+    rects,
+    elements,
+    strategy
+  } = state;
+  const {
+    boundary = "clippingAncestors",
+    rootBoundary = "viewport",
+    elementContext = "floating",
+    altBoundary = false,
+    padding = 0
+  } = evaluate(options, state);
+  const paddingObject = getPaddingObject(padding);
+  const altContext = elementContext === "floating" ? "reference" : "floating";
+  const element = elements[altBoundary ? altContext : elementContext];
+  const clippingClientRect = rectToClientRect(await platform.getClippingRect({
+    element: ((_await$platform$isEle = await (platform.isElement == null ? undefined : platform.isElement(element))) != null ? _await$platform$isEle : true) ? element : element.contextElement || await (platform.getDocumentElement == null ? undefined : platform.getDocumentElement(elements.floating)),
+    boundary,
+    rootBoundary,
+    strategy
+  }));
+  const rect = elementContext === "floating" ? {
+    x,
+    y,
+    width: rects.floating.width,
+    height: rects.floating.height
+  } : rects.reference;
+  const offsetParent = await (platform.getOffsetParent == null ? undefined : platform.getOffsetParent(elements.floating));
+  const offsetScale = await (platform.isElement == null ? undefined : platform.isElement(offsetParent)) ? await (platform.getScale == null ? undefined : platform.getScale(offsetParent)) || {
+    x: 1,
+    y: 1
+  } : {
+    x: 1,
+    y: 1
+  };
+  const elementClientRect = rectToClientRect(platform.convertOffsetParentRelativeRectToViewportRelativeRect ? await platform.convertOffsetParentRelativeRectToViewportRelativeRect({
+    elements,
+    rect,
+    offsetParent,
+    strategy
+  }) : rect);
+  return {
+    top: (clippingClientRect.top - elementClientRect.top + paddingObject.top) / offsetScale.y,
+    bottom: (elementClientRect.bottom - clippingClientRect.bottom + paddingObject.bottom) / offsetScale.y,
+    left: (clippingClientRect.left - elementClientRect.left + paddingObject.left) / offsetScale.x,
+    right: (elementClientRect.right - clippingClientRect.right + paddingObject.right) / offsetScale.x
+  };
+}
+var MAX_RESET_COUNT = 50;
+var computePosition = async (reference, floating, config) => {
+  const {
+    placement = "bottom",
+    strategy = "absolute",
+    middleware = [],
+    platform
+  } = config;
+  const platformWithDetectOverflow = platform.detectOverflow ? platform : {
+    ...platform,
+    detectOverflow
+  };
+  const rtl = await (platform.isRTL == null ? undefined : platform.isRTL(floating));
+  let rects = await platform.getElementRects({
+    reference,
+    floating,
+    strategy
+  });
+  let {
+    x,
+    y
+  } = computeCoordsFromPlacement(rects, placement, rtl);
+  let statefulPlacement = placement;
+  let resetCount = 0;
+  const middlewareData = {};
+  for (let i = 0;i < middleware.length; i++) {
+    const currentMiddleware = middleware[i];
+    if (!currentMiddleware) {
+      continue;
+    }
+    const {
+      name,
+      fn
+    } = currentMiddleware;
+    const {
+      x: nextX,
+      y: nextY,
+      data,
+      reset
+    } = await fn({
+      x,
+      y,
+      initialPlacement: placement,
+      placement: statefulPlacement,
+      strategy,
+      middlewareData,
+      rects,
+      platform: platformWithDetectOverflow,
+      elements: {
+        reference,
+        floating
+      }
+    });
+    x = nextX != null ? nextX : x;
+    y = nextY != null ? nextY : y;
+    middlewareData[name] = {
+      ...middlewareData[name],
+      ...data
+    };
+    if (reset && resetCount < MAX_RESET_COUNT) {
+      resetCount++;
+      if (typeof reset === "object") {
+        if (reset.placement) {
+          statefulPlacement = reset.placement;
+        }
+        if (reset.rects) {
+          rects = reset.rects === true ? await platform.getElementRects({
+            reference,
+            floating,
+            strategy
+          }) : reset.rects;
+        }
+        ({
+          x,
+          y
+        } = computeCoordsFromPlacement(rects, statefulPlacement, rtl));
+      }
+      i = -1;
+    }
+  }
+  return {
+    x,
+    y,
+    placement: statefulPlacement,
+    strategy,
+    middlewareData
+  };
+};
+var arrow = (options) => ({
+  name: "arrow",
+  options,
+  async fn(state) {
+    const {
+      x,
+      y,
+      placement,
+      rects,
+      platform,
+      elements,
+      middlewareData
+    } = state;
+    const {
+      element,
+      padding = 0
+    } = evaluate(options, state) || {};
+    if (element == null) {
+      return {};
+    }
+    const paddingObject = getPaddingObject(padding);
+    const coords = {
+      x,
+      y
+    };
+    const axis = getAlignmentAxis(placement);
+    const length = getAxisLength(axis);
+    const arrowDimensions = await platform.getDimensions(element);
+    const isYAxis = axis === "y";
+    const minProp = isYAxis ? "top" : "left";
+    const maxProp = isYAxis ? "bottom" : "right";
+    const clientProp = isYAxis ? "clientHeight" : "clientWidth";
+    const endDiff = rects.reference[length] + rects.reference[axis] - coords[axis] - rects.floating[length];
+    const startDiff = coords[axis] - rects.reference[axis];
+    const arrowOffsetParent = await (platform.getOffsetParent == null ? undefined : platform.getOffsetParent(element));
+    let clientSize = arrowOffsetParent ? arrowOffsetParent[clientProp] : 0;
+    if (!clientSize || !await (platform.isElement == null ? undefined : platform.isElement(arrowOffsetParent))) {
+      clientSize = elements.floating[clientProp] || rects.floating[length];
+    }
+    const centerToReference = endDiff / 2 - startDiff / 2;
+    const largestPossiblePadding = clientSize / 2 - arrowDimensions[length] / 2 - 1;
+    const minPadding = min(paddingObject[minProp], largestPossiblePadding);
+    const maxPadding = min(paddingObject[maxProp], largestPossiblePadding);
+    const min$1 = minPadding;
+    const max2 = clientSize - arrowDimensions[length] - maxPadding;
+    const center = clientSize / 2 - arrowDimensions[length] / 2 + centerToReference;
+    const offset = clamp(min$1, center, max2);
+    const shouldAddOffset = !middlewareData.arrow && getAlignment(placement) != null && center !== offset && rects.reference[length] / 2 - (center < min$1 ? minPadding : maxPadding) - arrowDimensions[length] / 2 < 0;
+    const alignmentOffset = shouldAddOffset ? center < min$1 ? center - min$1 : center - max2 : 0;
+    return {
+      [axis]: coords[axis] + alignmentOffset,
+      data: {
+        [axis]: offset,
+        centerOffset: center - offset - alignmentOffset,
+        ...shouldAddOffset && {
+          alignmentOffset
+        }
+      },
+      reset: shouldAddOffset
+    };
+  }
+});
+var flip = function(options) {
+  if (options === undefined) {
+    options = {};
+  }
+  return {
+    name: "flip",
+    options,
+    async fn(state) {
+      var _middlewareData$arrow, _middlewareData$flip;
+      const {
+        placement,
+        middlewareData,
+        rects,
+        initialPlacement,
+        platform,
+        elements
+      } = state;
+      const {
+        mainAxis: checkMainAxis = true,
+        crossAxis: checkCrossAxis = true,
+        fallbackPlacements: specifiedFallbackPlacements,
+        fallbackStrategy = "bestFit",
+        fallbackAxisSideDirection = "none",
+        flipAlignment = true,
+        ...detectOverflowOptions
+      } = evaluate(options, state);
+      if ((_middlewareData$arrow = middlewareData.arrow) != null && _middlewareData$arrow.alignmentOffset) {
+        return {};
+      }
+      const side = getSide(placement);
+      const initialSideAxis = getSideAxis(initialPlacement);
+      const isBasePlacement = getSide(initialPlacement) === initialPlacement;
+      const rtl = await (platform.isRTL == null ? undefined : platform.isRTL(elements.floating));
+      const fallbackPlacements = specifiedFallbackPlacements || (isBasePlacement || !flipAlignment ? [getOppositePlacement(initialPlacement)] : getExpandedPlacements(initialPlacement));
+      const hasFallbackAxisSideDirection = fallbackAxisSideDirection !== "none";
+      if (!specifiedFallbackPlacements && hasFallbackAxisSideDirection) {
+        fallbackPlacements.push(...getOppositeAxisPlacements(initialPlacement, flipAlignment, fallbackAxisSideDirection, rtl));
+      }
+      const placements2 = [initialPlacement, ...fallbackPlacements];
+      const overflow = await platform.detectOverflow(state, detectOverflowOptions);
+      const overflows = [];
+      let overflowsData = ((_middlewareData$flip = middlewareData.flip) == null ? undefined : _middlewareData$flip.overflows) || [];
+      if (checkMainAxis) {
+        overflows.push(overflow[side]);
+      }
+      if (checkCrossAxis) {
+        const sides2 = getAlignmentSides(placement, rects, rtl);
+        overflows.push(overflow[sides2[0]], overflow[sides2[1]]);
+      }
+      overflowsData = [...overflowsData, {
+        placement,
+        overflows
+      }];
+      if (!overflows.every((side2) => side2 <= 0)) {
+        var _middlewareData$flip2, _overflowsData$filter;
+        const nextIndex = (((_middlewareData$flip2 = middlewareData.flip) == null ? undefined : _middlewareData$flip2.index) || 0) + 1;
+        const nextPlacement = placements2[nextIndex];
+        if (nextPlacement) {
+          const ignoreCrossAxisOverflow = checkCrossAxis === "alignment" ? initialSideAxis !== getSideAxis(nextPlacement) : false;
+          if (!ignoreCrossAxisOverflow || overflowsData.every((d) => getSideAxis(d.placement) === initialSideAxis ? d.overflows[0] > 0 : true)) {
+            return {
+              data: {
+                index: nextIndex,
+                overflows: overflowsData
+              },
+              reset: {
+                placement: nextPlacement
+              }
+            };
+          }
+        }
+        let resetPlacement = (_overflowsData$filter = overflowsData.filter((d) => d.overflows[0] <= 0).sort((a, b) => a.overflows[1] - b.overflows[1])[0]) == null ? undefined : _overflowsData$filter.placement;
+        if (!resetPlacement) {
+          switch (fallbackStrategy) {
+            case "bestFit": {
+              var _overflowsData$filter2;
+              const placement2 = (_overflowsData$filter2 = overflowsData.filter((d) => {
+                if (hasFallbackAxisSideDirection) {
+                  const currentSideAxis = getSideAxis(d.placement);
+                  return currentSideAxis === initialSideAxis || currentSideAxis === "y";
+                }
+                return true;
+              }).map((d) => [d.placement, d.overflows.filter((overflow2) => overflow2 > 0).reduce((acc, overflow2) => acc + overflow2, 0)]).sort((a, b) => a[1] - b[1])[0]) == null ? undefined : _overflowsData$filter2[0];
+              if (placement2) {
+                resetPlacement = placement2;
+              }
+              break;
+            }
+            case "initialPlacement":
+              resetPlacement = initialPlacement;
+              break;
+          }
+        }
+        if (placement !== resetPlacement) {
+          return {
+            reset: {
+              placement: resetPlacement
+            }
+          };
+        }
+      }
+      return {};
+    }
+  };
+};
+var originSides = /* @__PURE__ */ new Set(["left", "top"]);
+async function convertValueToCoords(state, options) {
+  const {
+    placement,
+    platform,
+    elements
+  } = state;
+  const rtl = await (platform.isRTL == null ? undefined : platform.isRTL(elements.floating));
+  const side = getSide(placement);
+  const alignment = getAlignment(placement);
+  const isVertical = getSideAxis(placement) === "y";
+  const mainAxisMulti = originSides.has(side) ? -1 : 1;
+  const crossAxisMulti = rtl && isVertical ? -1 : 1;
+  const rawValue = evaluate(options, state);
+  let {
+    mainAxis,
+    crossAxis,
+    alignmentAxis
+  } = typeof rawValue === "number" ? {
+    mainAxis: rawValue,
+    crossAxis: 0,
+    alignmentAxis: null
+  } : {
+    mainAxis: rawValue.mainAxis || 0,
+    crossAxis: rawValue.crossAxis || 0,
+    alignmentAxis: rawValue.alignmentAxis
+  };
+  if (alignment && typeof alignmentAxis === "number") {
+    crossAxis = alignment === "end" ? alignmentAxis * -1 : alignmentAxis;
+  }
+  return isVertical ? {
+    x: crossAxis * crossAxisMulti,
+    y: mainAxis * mainAxisMulti
+  } : {
+    x: mainAxis * mainAxisMulti,
+    y: crossAxis * crossAxisMulti
+  };
+}
+var offset = function(options) {
+  if (options === undefined) {
+    options = 0;
+  }
+  return {
+    name: "offset",
+    options,
+    async fn(state) {
+      var _middlewareData$offse, _middlewareData$arrow;
+      const {
+        x,
+        y,
+        placement,
+        middlewareData
+      } = state;
+      const diffCoords = await convertValueToCoords(state, options);
+      if (placement === ((_middlewareData$offse = middlewareData.offset) == null ? undefined : _middlewareData$offse.placement) && (_middlewareData$arrow = middlewareData.arrow) != null && _middlewareData$arrow.alignmentOffset) {
+        return {};
+      }
+      return {
+        x: x + diffCoords.x,
+        y: y + diffCoords.y,
+        data: {
+          ...diffCoords,
+          placement
+        }
+      };
+    }
+  };
+};
+var shift = function(options) {
+  if (options === undefined) {
+    options = {};
+  }
+  return {
+    name: "shift",
+    options,
+    async fn(state) {
+      const {
+        x,
+        y,
+        placement,
+        platform
+      } = state;
+      const {
+        mainAxis: checkMainAxis = true,
+        crossAxis: checkCrossAxis = false,
+        limiter = {
+          fn: (_ref) => {
+            let {
+              x: x2,
+              y: y2
+            } = _ref;
+            return {
+              x: x2,
+              y: y2
+            };
+          }
+        },
+        ...detectOverflowOptions
+      } = evaluate(options, state);
+      const coords = {
+        x,
+        y
+      };
+      const overflow = await platform.detectOverflow(state, detectOverflowOptions);
+      const crossAxis = getSideAxis(getSide(placement));
+      const mainAxis = getOppositeAxis(crossAxis);
+      let mainAxisCoord = coords[mainAxis];
+      let crossAxisCoord = coords[crossAxis];
+      if (checkMainAxis) {
+        const minSide = mainAxis === "y" ? "top" : "left";
+        const maxSide = mainAxis === "y" ? "bottom" : "right";
+        const min2 = mainAxisCoord + overflow[minSide];
+        const max2 = mainAxisCoord - overflow[maxSide];
+        mainAxisCoord = clamp(min2, mainAxisCoord, max2);
+      }
+      if (checkCrossAxis) {
+        const minSide = crossAxis === "y" ? "top" : "left";
+        const maxSide = crossAxis === "y" ? "bottom" : "right";
+        const min2 = crossAxisCoord + overflow[minSide];
+        const max2 = crossAxisCoord - overflow[maxSide];
+        crossAxisCoord = clamp(min2, crossAxisCoord, max2);
+      }
+      const limitedCoords = limiter.fn({
+        ...state,
+        [mainAxis]: mainAxisCoord,
+        [crossAxis]: crossAxisCoord
+      });
+      return {
+        ...limitedCoords,
+        data: {
+          x: limitedCoords.x - x,
+          y: limitedCoords.y - y,
+          enabled: {
+            [mainAxis]: checkMainAxis,
+            [crossAxis]: checkCrossAxis
+          }
+        }
+      };
+    }
+  };
+};
+
+// node_modules/@floating-ui/utils/dist/floating-ui.utils.dom.mjs
+function hasWindow() {
+  return typeof window !== "undefined";
+}
+function getNodeName(node) {
+  if (isNode(node)) {
+    return (node.nodeName || "").toLowerCase();
+  }
+  return "#document";
+}
+function getWindow(node) {
+  var _node$ownerDocument;
+  return (node == null || (_node$ownerDocument = node.ownerDocument) == null ? undefined : _node$ownerDocument.defaultView) || window;
+}
+function getDocumentElement(node) {
+  var _ref;
+  return (_ref = (isNode(node) ? node.ownerDocument : node.document) || window.document) == null ? undefined : _ref.documentElement;
+}
+function isNode(value) {
+  if (!hasWindow()) {
+    return false;
+  }
+  return value instanceof Node || value instanceof getWindow(value).Node;
+}
+function isElement(value) {
+  if (!hasWindow()) {
+    return false;
+  }
+  return value instanceof Element || value instanceof getWindow(value).Element;
+}
+function isHTMLElement(value) {
+  if (!hasWindow()) {
+    return false;
+  }
+  return value instanceof HTMLElement || value instanceof getWindow(value).HTMLElement;
+}
+function isShadowRoot(value) {
+  if (!hasWindow() || typeof ShadowRoot === "undefined") {
+    return false;
+  }
+  return value instanceof ShadowRoot || value instanceof getWindow(value).ShadowRoot;
+}
+function isOverflowElement(element) {
+  const {
+    overflow,
+    overflowX,
+    overflowY,
+    display
+  } = getComputedStyle2(element);
+  return /auto|scroll|overlay|hidden|clip/.test(overflow + overflowY + overflowX) && display !== "inline" && display !== "contents";
+}
+function isTableElement(element) {
+  return /^(table|td|th)$/.test(getNodeName(element));
+}
+function isTopLayer(element) {
+  try {
+    if (element.matches(":popover-open")) {
+      return true;
+    }
+  } catch (_e) {}
+  try {
+    return element.matches(":modal");
+  } catch (_e) {
+    return false;
+  }
+}
+var willChangeRe = /transform|translate|scale|rotate|perspective|filter/;
+var containRe = /paint|layout|strict|content/;
+var isNotNone = (value) => !!value && value !== "none";
+var isWebKitValue;
+function isContainingBlock(elementOrCss) {
+  const css = isElement(elementOrCss) ? getComputedStyle2(elementOrCss) : elementOrCss;
+  return isNotNone(css.transform) || isNotNone(css.translate) || isNotNone(css.scale) || isNotNone(css.rotate) || isNotNone(css.perspective) || !isWebKit() && (isNotNone(css.backdropFilter) || isNotNone(css.filter)) || willChangeRe.test(css.willChange || "") || containRe.test(css.contain || "");
+}
+function getContainingBlock(element) {
+  let currentNode = getParentNode(element);
+  while (isHTMLElement(currentNode) && !isLastTraversableNode(currentNode)) {
+    if (isContainingBlock(currentNode)) {
+      return currentNode;
+    } else if (isTopLayer(currentNode)) {
+      return null;
+    }
+    currentNode = getParentNode(currentNode);
+  }
+  return null;
+}
+function isWebKit() {
+  if (isWebKitValue == null) {
+    isWebKitValue = typeof CSS !== "undefined" && CSS.supports && CSS.supports("-webkit-backdrop-filter", "none");
+  }
+  return isWebKitValue;
+}
+function isLastTraversableNode(node) {
+  return /^(html|body|#document)$/.test(getNodeName(node));
+}
+function getComputedStyle2(element) {
+  return getWindow(element).getComputedStyle(element);
+}
+function getNodeScroll(element) {
+  if (isElement(element)) {
+    return {
+      scrollLeft: element.scrollLeft,
+      scrollTop: element.scrollTop
+    };
+  }
+  return {
+    scrollLeft: element.scrollX,
+    scrollTop: element.scrollY
+  };
+}
+function getParentNode(node) {
+  if (getNodeName(node) === "html") {
+    return node;
+  }
+  const result = node.assignedSlot || node.parentNode || isShadowRoot(node) && node.host || getDocumentElement(node);
+  return isShadowRoot(result) ? result.host : result;
+}
+function getNearestOverflowAncestor(node) {
+  const parentNode = getParentNode(node);
+  if (isLastTraversableNode(parentNode)) {
+    return node.ownerDocument ? node.ownerDocument.body : node.body;
+  }
+  if (isHTMLElement(parentNode) && isOverflowElement(parentNode)) {
+    return parentNode;
+  }
+  return getNearestOverflowAncestor(parentNode);
+}
+function getOverflowAncestors(node, list, traverseIframes) {
+  var _node$ownerDocument2;
+  if (list === undefined) {
+    list = [];
+  }
+  if (traverseIframes === undefined) {
+    traverseIframes = true;
+  }
+  const scrollableAncestor = getNearestOverflowAncestor(node);
+  const isBody = scrollableAncestor === ((_node$ownerDocument2 = node.ownerDocument) == null ? undefined : _node$ownerDocument2.body);
+  const win = getWindow(scrollableAncestor);
+  if (isBody) {
+    const frameElement = getFrameElement(win);
+    return list.concat(win, win.visualViewport || [], isOverflowElement(scrollableAncestor) ? scrollableAncestor : [], frameElement && traverseIframes ? getOverflowAncestors(frameElement) : []);
+  } else {
+    return list.concat(scrollableAncestor, getOverflowAncestors(scrollableAncestor, [], traverseIframes));
+  }
+}
+function getFrameElement(win) {
+  return win.parent && Object.getPrototypeOf(win.parent) ? win.frameElement : null;
+}
+
+// node_modules/@floating-ui/dom/dist/floating-ui.dom.mjs
+function getCssDimensions(element) {
+  const css = getComputedStyle2(element);
+  let width = parseFloat(css.width) || 0;
+  let height = parseFloat(css.height) || 0;
+  const hasOffset = isHTMLElement(element);
+  const offsetWidth = hasOffset ? element.offsetWidth : width;
+  const offsetHeight = hasOffset ? element.offsetHeight : height;
+  const shouldFallback = round(width) !== offsetWidth || round(height) !== offsetHeight;
+  if (shouldFallback) {
+    width = offsetWidth;
+    height = offsetHeight;
+  }
+  return {
+    width,
+    height,
+    $: shouldFallback
+  };
+}
+function unwrapElement(element) {
+  return !isElement(element) ? element.contextElement : element;
+}
+function getScale(element) {
+  const domElement = unwrapElement(element);
+  if (!isHTMLElement(domElement)) {
+    return createCoords(1);
+  }
+  const rect = domElement.getBoundingClientRect();
+  const {
+    width,
+    height,
+    $
+  } = getCssDimensions(domElement);
+  let x = ($ ? round(rect.width) : rect.width) / width;
+  let y = ($ ? round(rect.height) : rect.height) / height;
+  if (!x || !Number.isFinite(x)) {
+    x = 1;
+  }
+  if (!y || !Number.isFinite(y)) {
+    y = 1;
+  }
+  return {
+    x,
+    y
+  };
+}
+var noOffsets = /* @__PURE__ */ createCoords(0);
+function getVisualOffsets(element) {
+  const win = getWindow(element);
+  if (!isWebKit() || !win.visualViewport) {
+    return noOffsets;
+  }
+  return {
+    x: win.visualViewport.offsetLeft,
+    y: win.visualViewport.offsetTop
+  };
+}
+function shouldAddVisualOffsets(element, isFixed, floatingOffsetParent) {
+  if (isFixed === undefined) {
+    isFixed = false;
+  }
+  if (!floatingOffsetParent || isFixed && floatingOffsetParent !== getWindow(element)) {
+    return false;
+  }
+  return isFixed;
+}
+function getBoundingClientRect(element, includeScale, isFixedStrategy, offsetParent) {
+  if (includeScale === undefined) {
+    includeScale = false;
+  }
+  if (isFixedStrategy === undefined) {
+    isFixedStrategy = false;
+  }
+  const clientRect = element.getBoundingClientRect();
+  const domElement = unwrapElement(element);
+  let scale = createCoords(1);
+  if (includeScale) {
+    if (offsetParent) {
+      if (isElement(offsetParent)) {
+        scale = getScale(offsetParent);
+      }
+    } else {
+      scale = getScale(element);
+    }
+  }
+  const visualOffsets = shouldAddVisualOffsets(domElement, isFixedStrategy, offsetParent) ? getVisualOffsets(domElement) : createCoords(0);
+  let x = (clientRect.left + visualOffsets.x) / scale.x;
+  let y = (clientRect.top + visualOffsets.y) / scale.y;
+  let width = clientRect.width / scale.x;
+  let height = clientRect.height / scale.y;
+  if (domElement) {
+    const win = getWindow(domElement);
+    const offsetWin = offsetParent && isElement(offsetParent) ? getWindow(offsetParent) : offsetParent;
+    let currentWin = win;
+    let currentIFrame = getFrameElement(currentWin);
+    while (currentIFrame && offsetParent && offsetWin !== currentWin) {
+      const iframeScale = getScale(currentIFrame);
+      const iframeRect = currentIFrame.getBoundingClientRect();
+      const css = getComputedStyle2(currentIFrame);
+      const left = iframeRect.left + (currentIFrame.clientLeft + parseFloat(css.paddingLeft)) * iframeScale.x;
+      const top = iframeRect.top + (currentIFrame.clientTop + parseFloat(css.paddingTop)) * iframeScale.y;
+      x *= iframeScale.x;
+      y *= iframeScale.y;
+      width *= iframeScale.x;
+      height *= iframeScale.y;
+      x += left;
+      y += top;
+      currentWin = getWindow(currentIFrame);
+      currentIFrame = getFrameElement(currentWin);
+    }
+  }
+  return rectToClientRect({
+    width,
+    height,
+    x,
+    y
+  });
+}
+function getWindowScrollBarX(element, rect) {
+  const leftScroll = getNodeScroll(element).scrollLeft;
+  if (!rect) {
+    return getBoundingClientRect(getDocumentElement(element)).left + leftScroll;
+  }
+  return rect.left + leftScroll;
+}
+function getHTMLOffset(documentElement, scroll) {
+  const htmlRect = documentElement.getBoundingClientRect();
+  const x = htmlRect.left + scroll.scrollLeft - getWindowScrollBarX(documentElement, htmlRect);
+  const y = htmlRect.top + scroll.scrollTop;
+  return {
+    x,
+    y
+  };
+}
+function convertOffsetParentRelativeRectToViewportRelativeRect(_ref) {
+  let {
+    elements,
+    rect,
+    offsetParent,
+    strategy
+  } = _ref;
+  const isFixed = strategy === "fixed";
+  const documentElement = getDocumentElement(offsetParent);
+  const topLayer = elements ? isTopLayer(elements.floating) : false;
+  if (offsetParent === documentElement || topLayer && isFixed) {
+    return rect;
+  }
+  let scroll = {
+    scrollLeft: 0,
+    scrollTop: 0
+  };
+  let scale = createCoords(1);
+  const offsets = createCoords(0);
+  const isOffsetParentAnElement = isHTMLElement(offsetParent);
+  if (isOffsetParentAnElement || !isOffsetParentAnElement && !isFixed) {
+    if (getNodeName(offsetParent) !== "body" || isOverflowElement(documentElement)) {
+      scroll = getNodeScroll(offsetParent);
+    }
+    if (isOffsetParentAnElement) {
+      const offsetRect = getBoundingClientRect(offsetParent);
+      scale = getScale(offsetParent);
+      offsets.x = offsetRect.x + offsetParent.clientLeft;
+      offsets.y = offsetRect.y + offsetParent.clientTop;
+    }
+  }
+  const htmlOffset = documentElement && !isOffsetParentAnElement && !isFixed ? getHTMLOffset(documentElement, scroll) : createCoords(0);
+  return {
+    width: rect.width * scale.x,
+    height: rect.height * scale.y,
+    x: rect.x * scale.x - scroll.scrollLeft * scale.x + offsets.x + htmlOffset.x,
+    y: rect.y * scale.y - scroll.scrollTop * scale.y + offsets.y + htmlOffset.y
+  };
+}
+function getClientRects(element) {
+  return Array.from(element.getClientRects());
+}
+function getDocumentRect(element) {
+  const html = getDocumentElement(element);
+  const scroll = getNodeScroll(element);
+  const body = element.ownerDocument.body;
+  const width = max(html.scrollWidth, html.clientWidth, body.scrollWidth, body.clientWidth);
+  const height = max(html.scrollHeight, html.clientHeight, body.scrollHeight, body.clientHeight);
+  let x = -scroll.scrollLeft + getWindowScrollBarX(element);
+  const y = -scroll.scrollTop;
+  if (getComputedStyle2(body).direction === "rtl") {
+    x += max(html.clientWidth, body.clientWidth) - width;
+  }
+  return {
+    width,
+    height,
+    x,
+    y
+  };
+}
+var SCROLLBAR_MAX = 25;
+function getViewportRect(element, strategy) {
+  const win = getWindow(element);
+  const html = getDocumentElement(element);
+  const visualViewport = win.visualViewport;
+  let width = html.clientWidth;
+  let height = html.clientHeight;
+  let x = 0;
+  let y = 0;
+  if (visualViewport) {
+    width = visualViewport.width;
+    height = visualViewport.height;
+    const visualViewportBased = isWebKit();
+    if (!visualViewportBased || visualViewportBased && strategy === "fixed") {
+      x = visualViewport.offsetLeft;
+      y = visualViewport.offsetTop;
+    }
+  }
+  const windowScrollbarX = getWindowScrollBarX(html);
+  if (windowScrollbarX <= 0) {
+    const doc = html.ownerDocument;
+    const body = doc.body;
+    const bodyStyles = getComputedStyle(body);
+    const bodyMarginInline = doc.compatMode === "CSS1Compat" ? parseFloat(bodyStyles.marginLeft) + parseFloat(bodyStyles.marginRight) || 0 : 0;
+    const clippingStableScrollbarWidth = Math.abs(html.clientWidth - body.clientWidth - bodyMarginInline);
+    if (clippingStableScrollbarWidth <= SCROLLBAR_MAX) {
+      width -= clippingStableScrollbarWidth;
+    }
+  } else if (windowScrollbarX <= SCROLLBAR_MAX) {
+    width += windowScrollbarX;
+  }
+  return {
+    width,
+    height,
+    x,
+    y
+  };
+}
+function getInnerBoundingClientRect(element, strategy) {
+  const clientRect = getBoundingClientRect(element, true, strategy === "fixed");
+  const top = clientRect.top + element.clientTop;
+  const left = clientRect.left + element.clientLeft;
+  const scale = isHTMLElement(element) ? getScale(element) : createCoords(1);
+  const width = element.clientWidth * scale.x;
+  const height = element.clientHeight * scale.y;
+  const x = left * scale.x;
+  const y = top * scale.y;
+  return {
+    width,
+    height,
+    x,
+    y
+  };
+}
+function getClientRectFromClippingAncestor(element, clippingAncestor, strategy) {
+  let rect;
+  if (clippingAncestor === "viewport") {
+    rect = getViewportRect(element, strategy);
+  } else if (clippingAncestor === "document") {
+    rect = getDocumentRect(getDocumentElement(element));
+  } else if (isElement(clippingAncestor)) {
+    rect = getInnerBoundingClientRect(clippingAncestor, strategy);
+  } else {
+    const visualOffsets = getVisualOffsets(element);
+    rect = {
+      x: clippingAncestor.x - visualOffsets.x,
+      y: clippingAncestor.y - visualOffsets.y,
+      width: clippingAncestor.width,
+      height: clippingAncestor.height
+    };
+  }
+  return rectToClientRect(rect);
+}
+function hasFixedPositionAncestor(element, stopNode) {
+  const parentNode = getParentNode(element);
+  if (parentNode === stopNode || !isElement(parentNode) || isLastTraversableNode(parentNode)) {
+    return false;
+  }
+  return getComputedStyle2(parentNode).position === "fixed" || hasFixedPositionAncestor(parentNode, stopNode);
+}
+function getClippingElementAncestors(element, cache) {
+  const cachedResult = cache.get(element);
+  if (cachedResult) {
+    return cachedResult;
+  }
+  let result = getOverflowAncestors(element, [], false).filter((el) => isElement(el) && getNodeName(el) !== "body");
+  let currentContainingBlockComputedStyle = null;
+  const elementIsFixed = getComputedStyle2(element).position === "fixed";
+  let currentNode = elementIsFixed ? getParentNode(element) : element;
+  while (isElement(currentNode) && !isLastTraversableNode(currentNode)) {
+    const computedStyle = getComputedStyle2(currentNode);
+    const currentNodeIsContaining = isContainingBlock(currentNode);
+    if (!currentNodeIsContaining && computedStyle.position === "fixed") {
+      currentContainingBlockComputedStyle = null;
+    }
+    const shouldDropCurrentNode = elementIsFixed ? !currentNodeIsContaining && !currentContainingBlockComputedStyle : !currentNodeIsContaining && computedStyle.position === "static" && !!currentContainingBlockComputedStyle && (currentContainingBlockComputedStyle.position === "absolute" || currentContainingBlockComputedStyle.position === "fixed") || isOverflowElement(currentNode) && !currentNodeIsContaining && hasFixedPositionAncestor(element, currentNode);
+    if (shouldDropCurrentNode) {
+      result = result.filter((ancestor) => ancestor !== currentNode);
+    } else {
+      currentContainingBlockComputedStyle = computedStyle;
+    }
+    currentNode = getParentNode(currentNode);
+  }
+  cache.set(element, result);
+  return result;
+}
+function getClippingRect(_ref) {
+  let {
+    element,
+    boundary,
+    rootBoundary,
+    strategy
+  } = _ref;
+  const elementClippingAncestors = boundary === "clippingAncestors" ? isTopLayer(element) ? [] : getClippingElementAncestors(element, this._c) : [].concat(boundary);
+  const clippingAncestors = [...elementClippingAncestors, rootBoundary];
+  const firstRect = getClientRectFromClippingAncestor(element, clippingAncestors[0], strategy);
+  let top = firstRect.top;
+  let right = firstRect.right;
+  let bottom = firstRect.bottom;
+  let left = firstRect.left;
+  for (let i = 1;i < clippingAncestors.length; i++) {
+    const rect = getClientRectFromClippingAncestor(element, clippingAncestors[i], strategy);
+    top = max(rect.top, top);
+    right = min(rect.right, right);
+    bottom = min(rect.bottom, bottom);
+    left = max(rect.left, left);
+  }
+  return {
+    width: right - left,
+    height: bottom - top,
+    x: left,
+    y: top
+  };
+}
+function getDimensions(element) {
+  const {
+    width,
+    height
+  } = getCssDimensions(element);
+  return {
+    width,
+    height
+  };
+}
+function getRectRelativeToOffsetParent(element, offsetParent, strategy) {
+  const isOffsetParentAnElement = isHTMLElement(offsetParent);
+  const documentElement = getDocumentElement(offsetParent);
+  const isFixed = strategy === "fixed";
+  const rect = getBoundingClientRect(element, true, isFixed, offsetParent);
+  let scroll = {
+    scrollLeft: 0,
+    scrollTop: 0
+  };
+  const offsets = createCoords(0);
+  function setLeftRTLScrollbarOffset() {
+    offsets.x = getWindowScrollBarX(documentElement);
+  }
+  if (isOffsetParentAnElement || !isOffsetParentAnElement && !isFixed) {
+    if (getNodeName(offsetParent) !== "body" || isOverflowElement(documentElement)) {
+      scroll = getNodeScroll(offsetParent);
+    }
+    if (isOffsetParentAnElement) {
+      const offsetRect = getBoundingClientRect(offsetParent, true, isFixed, offsetParent);
+      offsets.x = offsetRect.x + offsetParent.clientLeft;
+      offsets.y = offsetRect.y + offsetParent.clientTop;
+    } else if (documentElement) {
+      setLeftRTLScrollbarOffset();
+    }
+  }
+  if (isFixed && !isOffsetParentAnElement && documentElement) {
+    setLeftRTLScrollbarOffset();
+  }
+  const htmlOffset = documentElement && !isOffsetParentAnElement && !isFixed ? getHTMLOffset(documentElement, scroll) : createCoords(0);
+  const x = rect.left + scroll.scrollLeft - offsets.x - htmlOffset.x;
+  const y = rect.top + scroll.scrollTop - offsets.y - htmlOffset.y;
+  return {
+    x,
+    y,
+    width: rect.width,
+    height: rect.height
+  };
+}
+function isStaticPositioned(element) {
+  return getComputedStyle2(element).position === "static";
+}
+function getTrueOffsetParent(element, polyfill) {
+  if (!isHTMLElement(element) || getComputedStyle2(element).position === "fixed") {
+    return null;
+  }
+  if (polyfill) {
+    return polyfill(element);
+  }
+  let rawOffsetParent = element.offsetParent;
+  if (getDocumentElement(element) === rawOffsetParent) {
+    rawOffsetParent = rawOffsetParent.ownerDocument.body;
+  }
+  return rawOffsetParent;
+}
+function getOffsetParent(element, polyfill) {
+  const win = getWindow(element);
+  if (isTopLayer(element)) {
+    return win;
+  }
+  if (!isHTMLElement(element)) {
+    let svgOffsetParent = getParentNode(element);
+    while (svgOffsetParent && !isLastTraversableNode(svgOffsetParent)) {
+      if (isElement(svgOffsetParent) && !isStaticPositioned(svgOffsetParent)) {
+        return svgOffsetParent;
+      }
+      svgOffsetParent = getParentNode(svgOffsetParent);
+    }
+    return win;
+  }
+  let offsetParent = getTrueOffsetParent(element, polyfill);
+  while (offsetParent && isTableElement(offsetParent) && isStaticPositioned(offsetParent)) {
+    offsetParent = getTrueOffsetParent(offsetParent, polyfill);
+  }
+  if (offsetParent && isLastTraversableNode(offsetParent) && isStaticPositioned(offsetParent) && !isContainingBlock(offsetParent)) {
+    return win;
+  }
+  return offsetParent || getContainingBlock(element) || win;
+}
+var getElementRects = async function(data) {
+  const getOffsetParentFn = this.getOffsetParent || getOffsetParent;
+  const getDimensionsFn = this.getDimensions;
+  const floatingDimensions = await getDimensionsFn(data.floating);
+  return {
+    reference: getRectRelativeToOffsetParent(data.reference, await getOffsetParentFn(data.floating), data.strategy),
+    floating: {
+      x: 0,
+      y: 0,
+      width: floatingDimensions.width,
+      height: floatingDimensions.height
+    }
+  };
+};
+function isRTL(element) {
+  return getComputedStyle2(element).direction === "rtl";
+}
+var platform = {
+  convertOffsetParentRelativeRectToViewportRelativeRect,
+  getDocumentElement,
+  getClippingRect,
+  getOffsetParent,
+  getElementRects,
+  getClientRects,
+  getDimensions,
+  getScale,
+  isElement,
+  isRTL
+};
+function rectsAreEqual(a, b) {
+  return a.x === b.x && a.y === b.y && a.width === b.width && a.height === b.height;
+}
+function observeMove(element, onMove) {
+  let io = null;
+  let timeoutId;
+  const root = getDocumentElement(element);
+  function cleanup() {
+    var _io;
+    clearTimeout(timeoutId);
+    (_io = io) == null || _io.disconnect();
+    io = null;
+  }
+  function refresh(skip, threshold) {
+    if (skip === undefined) {
+      skip = false;
+    }
+    if (threshold === undefined) {
+      threshold = 1;
+    }
+    cleanup();
+    const elementRectForRootMargin = element.getBoundingClientRect();
+    const {
+      left,
+      top,
+      width,
+      height
+    } = elementRectForRootMargin;
+    if (!skip) {
+      onMove();
+    }
+    if (!width || !height) {
+      return;
+    }
+    const insetTop = floor(top);
+    const insetRight = floor(root.clientWidth - (left + width));
+    const insetBottom = floor(root.clientHeight - (top + height));
+    const insetLeft = floor(left);
+    const rootMargin = -insetTop + "px " + -insetRight + "px " + -insetBottom + "px " + -insetLeft + "px";
+    const options = {
+      rootMargin,
+      threshold: max(0, min(1, threshold)) || 1
+    };
+    let isFirstUpdate = true;
+    function handleObserve(entries) {
+      const ratio = entries[0].intersectionRatio;
+      if (ratio !== threshold) {
+        if (!isFirstUpdate) {
+          return refresh();
+        }
+        if (!ratio) {
+          timeoutId = setTimeout(() => {
+            refresh(false, 0.0000001);
+          }, 1000);
+        } else {
+          refresh(false, ratio);
+        }
+      }
+      if (ratio === 1 && !rectsAreEqual(elementRectForRootMargin, element.getBoundingClientRect())) {
+        refresh();
+      }
+      isFirstUpdate = false;
+    }
+    try {
+      io = new IntersectionObserver(handleObserve, {
+        ...options,
+        root: root.ownerDocument
+      });
+    } catch (_e) {
+      io = new IntersectionObserver(handleObserve, options);
+    }
+    io.observe(element);
+  }
+  refresh(true);
+  return cleanup;
+}
+function autoUpdate(reference, floating, update, options) {
+  if (options === undefined) {
+    options = {};
+  }
+  const {
+    ancestorScroll = true,
+    ancestorResize = true,
+    elementResize = typeof ResizeObserver === "function",
+    layoutShift = typeof IntersectionObserver === "function",
+    animationFrame = false
+  } = options;
+  const referenceEl = unwrapElement(reference);
+  const ancestors = ancestorScroll || ancestorResize ? [...referenceEl ? getOverflowAncestors(referenceEl) : [], ...floating ? getOverflowAncestors(floating) : []] : [];
+  ancestors.forEach((ancestor) => {
+    ancestorScroll && ancestor.addEventListener("scroll", update, {
+      passive: true
+    });
+    ancestorResize && ancestor.addEventListener("resize", update);
+  });
+  const cleanupIo = referenceEl && layoutShift ? observeMove(referenceEl, update) : null;
+  let reobserveFrame = -1;
+  let resizeObserver = null;
+  if (elementResize) {
+    resizeObserver = new ResizeObserver((_ref) => {
+      let [firstEntry] = _ref;
+      if (firstEntry && firstEntry.target === referenceEl && resizeObserver && floating) {
+        resizeObserver.unobserve(floating);
+        cancelAnimationFrame(reobserveFrame);
+        reobserveFrame = requestAnimationFrame(() => {
+          var _resizeObserver;
+          (_resizeObserver = resizeObserver) == null || _resizeObserver.observe(floating);
+        });
+      }
+      update();
+    });
+    if (referenceEl && !animationFrame) {
+      resizeObserver.observe(referenceEl);
+    }
+    if (floating) {
+      resizeObserver.observe(floating);
+    }
+  }
+  let frameId;
+  let prevRefRect = animationFrame ? getBoundingClientRect(reference) : null;
+  if (animationFrame) {
+    frameLoop();
+  }
+  function frameLoop() {
+    const nextRefRect = getBoundingClientRect(reference);
+    if (prevRefRect && !rectsAreEqual(prevRefRect, nextRefRect)) {
+      update();
+    }
+    prevRefRect = nextRefRect;
+    frameId = requestAnimationFrame(frameLoop);
+  }
+  update();
+  return () => {
+    var _resizeObserver2;
+    ancestors.forEach((ancestor) => {
+      ancestorScroll && ancestor.removeEventListener("scroll", update);
+      ancestorResize && ancestor.removeEventListener("resize", update);
+    });
+    cleanupIo == null || cleanupIo();
+    (_resizeObserver2 = resizeObserver) == null || _resizeObserver2.disconnect();
+    resizeObserver = null;
+    if (animationFrame) {
+      cancelAnimationFrame(frameId);
+    }
+  };
+}
+var offset2 = offset;
+var shift2 = shift;
+var flip2 = flip;
+var arrow2 = arrow;
+var computePosition2 = (reference, floating, options) => {
+  const cache = new Map;
+  const mergedOptions = {
+    platform,
+    ...options
+  };
+  const platformWithCache = {
+    ...mergedOptions.platform,
+    _c: cache
+  };
+  return computePosition(reference, floating, {
+    ...mergedOptions,
+    platform: platformWithCache
+  });
+};
+
+// node_modules/react-tooltip/dist/react-tooltip.min.mjs
+var import_classnames = __toESM(require_classnames(), 1);
+var h = "react-tooltip-core-styles";
+var w = "react-tooltip-base-styles";
+var b = { core: false, base: false };
+function S({ css: e2, id: t2 = w, type: o2 = "base", ref: r2 }) {
+  var l2, n2;
+  if (!e2 || typeof document == "undefined" || b[o2])
+    return;
+  if (o2 === "core" && typeof process != "undefined" && ((l2 = process === null || process === undefined ? undefined : process.env) === null || l2 === undefined ? undefined : l2.REACT_TOOLTIP_DISABLE_CORE_STYLES))
+    return;
+  if (o2 !== "base" && typeof process != "undefined" && ((n2 = process === null || process === undefined ? undefined : process.env) === null || n2 === undefined ? undefined : n2.REACT_TOOLTIP_DISABLE_BASE_STYLES))
+    return;
+  o2 === "core" && (t2 = h), r2 || (r2 = {});
+  const { insertAt: i2 } = r2;
+  if (document.getElementById(t2))
+    return;
+  const c2 = document.head || document.getElementsByTagName("head")[0], s2 = document.createElement("style");
+  s2.id = t2, s2.type = "text/css", i2 === "top" && c2.firstChild ? c2.insertBefore(s2, c2.firstChild) : c2.appendChild(s2), s2.styleSheet ? s2.styleSheet.cssText = e2 : s2.appendChild(document.createTextNode(e2)), b[o2] = true;
+}
+var E = async ({ elementReference: e2 = null, tooltipReference: t2 = null, tooltipArrowReference: o2 = null, place: r2 = "top", offset: l2 = 10, strategy: n2 = "absolute", middlewares: i2 = [offset2(Number(l2)), flip2({ fallbackAxisSideDirection: "start" }), shift2({ padding: 5 })], border: c2, arrowSize: s2 = 8 }) => {
+  if (!e2)
+    return { tooltipStyles: {}, tooltipArrowStyles: {}, place: r2 };
+  if (t2 === null)
+    return { tooltipStyles: {}, tooltipArrowStyles: {}, place: r2 };
+  const a2 = i2;
+  return o2 ? (a2.push(arrow2({ element: o2, padding: 5 })), computePosition2(e2, t2, { placement: r2, strategy: n2, middleware: a2 }).then(({ x: e3, y: t3, placement: o3, middlewareData: r3 }) => {
+    var l3, n3;
+    const i3 = { left: `${e3}px`, top: `${t3}px`, border: c2 }, { x: a3, y: u } = (l3 = r3.arrow) !== null && l3 !== undefined ? l3 : { x: 0, y: 0 }, d = (n3 = { top: "bottom", right: "left", bottom: "top", left: "right" }[o3.split("-")[0]]) !== null && n3 !== undefined ? n3 : "bottom", p = c2 && { borderBottom: c2, borderRight: c2 };
+    let v = 0;
+    if (c2) {
+      const e4 = `${c2}`.match(/(\d+)px/);
+      v = (e4 == null ? undefined : e4[1]) ? Number(e4[1]) : 1;
+    }
+    return { tooltipStyles: i3, tooltipArrowStyles: { left: a3 != null ? `${a3}px` : "", top: u != null ? `${u}px` : "", right: "", bottom: "", ...p, [d]: `-${s2 / 2 + v}px` }, place: o3 };
+  })) : computePosition2(e2, t2, { placement: "bottom", strategy: n2, middleware: a2 }).then(({ x: e3, y: t3, placement: o3 }) => ({ tooltipStyles: { left: `${e3}px`, top: `${t3}px` }, tooltipArrowStyles: {}, place: o3 }));
+};
+var A = (e2, t2) => !(("CSS" in window) && ("supports" in window.CSS)) || window.CSS.supports(e2, t2);
+var _ = (e2, t2, o2) => {
+  let r2 = null;
+  const l2 = function(...l3) {
+    const n2 = () => {
+      r2 = null, o2 || e2.apply(this, l3);
+    };
+    o2 && !r2 && (e2.apply(this, l3), r2 = setTimeout(n2, t2)), o2 || (r2 && clearTimeout(r2), r2 = setTimeout(n2, t2));
+  };
+  return l2.cancel = () => {
+    r2 && (clearTimeout(r2), r2 = null);
+  }, l2;
+};
+var O = (e2) => e2 !== null && !Array.isArray(e2) && typeof e2 == "object";
+var k = (e2, t2) => {
+  if (e2 === t2)
+    return true;
+  if (Array.isArray(e2) && Array.isArray(t2))
+    return e2.length === t2.length && e2.every((e3, o3) => k(e3, t2[o3]));
+  if (Array.isArray(e2) !== Array.isArray(t2))
+    return false;
+  if (!O(e2) || !O(t2))
+    return e2 === t2;
+  const o2 = Object.keys(e2), r2 = Object.keys(t2);
+  return o2.length === r2.length && o2.every((o3) => k(e2[o3], t2[o3]));
+};
+var T = (e2) => {
+  if (!(e2 instanceof HTMLElement || e2 instanceof SVGElement))
+    return false;
+  const t2 = getComputedStyle(e2);
+  return ["overflow", "overflow-x", "overflow-y"].some((e3) => {
+    const o2 = t2.getPropertyValue(e3);
+    return o2 === "auto" || o2 === "scroll";
+  });
+};
+var L = (e2) => {
+  if (!e2)
+    return null;
+  let t2 = e2.parentElement;
+  for (;t2; ) {
+    if (T(t2))
+      return t2;
+    t2 = t2.parentElement;
+  }
+  return document.scrollingElement || document.documentElement;
+};
+var C = typeof window != "undefined" ? import_react5.useLayoutEffect : import_react5.useEffect;
+var R = (e2) => {
+  e2.current && (clearTimeout(e2.current), e2.current = null);
+};
+var x = "DEFAULT_TOOLTIP_ID";
+var N = { anchorRefs: new Set, activeAnchor: { current: null }, attach: () => {}, detach: () => {}, setActiveAnchor: () => {} };
+var $ = import_react5.createContext({ getTooltipData: () => N });
+function I(e2 = x) {
+  return import_react5.useContext($).getTooltipData(e2);
+}
+var B = { tooltip: "core-styles-module_tooltip__3vRRp", fixed: "core-styles-module_fixed__pcSol", arrow: "core-styles-module_arrow__cvMwQ", noArrow: "core-styles-module_noArrow__xock6", clickable: "core-styles-module_clickable__ZuTTB", show: "core-styles-module_show__Nt9eE", closing: "core-styles-module_closing__sGnxF" };
+var D = { tooltip: "styles-module_tooltip__mnnfp", arrow: "styles-module_arrow__K0L3T", dark: "styles-module_dark__xNqje", light: "styles-module_light__Z6W-X", success: "styles-module_success__A2AKt", warning: "styles-module_warning__SCK0X", error: "styles-module_error__JvumD", info: "styles-module_info__BWdHW" };
+var q = ({ forwardRef: t2, id: r2, className: i2, classNameArrow: c2, variant: u = "dark", anchorId: d, anchorSelect: p, place: v = "top", offset: m = 10, events: h2 = ["hover"], openOnClick: w2 = false, positionStrategy: b2 = "absolute", middlewares: S2, wrapper: g, delayShow: A2 = 0, delayHide: O2 = 0, float: T2 = false, hidden: x2 = false, noArrow: N2 = false, clickable: $2 = false, closeOnEsc: j = false, closeOnScroll: z = false, closeOnResize: q2 = false, openEvents: H, closeEvents: M, globalCloseEvents: W, imperativeModeOnly: P, style: V, position: F, afterShow: K, afterHide: U, disableTooltip: X, content: Y, contentWrapperRef: G, isOpen: Z, defaultIsOpen: J = false, setIsOpen: Q, previousActiveAnchor: ee, activeAnchor: te, setActiveAnchor: oe, border: re, opacity: le, arrowColor: ne, arrowSize: ie = 8, role: ce = "tooltip" }) => {
+  var se;
+  const ae = import_react5.useRef(null), ue = import_react5.useRef(null), de = import_react5.useRef(null), pe = import_react5.useRef(null), ve = import_react5.useRef(null), [me, fe] = import_react5.useState({ tooltipStyles: {}, tooltipArrowStyles: {}, place: v }), [ye, he] = import_react5.useState(false), [we, be] = import_react5.useState(false), [Se, ge] = import_react5.useState(null), Ee = import_react5.useRef(false), Ae = import_react5.useRef(null), { anchorRefs: _e, setActiveAnchor: Oe } = I(r2), ke = import_react5.useRef(false), [Te, Le] = import_react5.useState([]), Ce = import_react5.useRef(false), Re = w2 || h2.includes("click"), xe = Re || (H == null ? undefined : H.click) || (H == null ? undefined : H.dblclick) || (H == null ? undefined : H.mousedown), Ne = H ? { ...H } : { mouseover: true, focus: true, mouseenter: false, click: false, dblclick: false, mousedown: false };
+  !H && Re && Object.assign(Ne, { mouseenter: false, focus: false, mouseover: false, click: true });
+  const $e = M ? { ...M } : { mouseout: true, blur: true, mouseleave: false, click: false, dblclick: false, mouseup: false };
+  !M && Re && Object.assign($e, { mouseleave: false, blur: false, mouseout: false });
+  const je = W ? { ...W } : { escape: j || false, scroll: z || false, resize: q2 || false, clickOutsideAnchor: xe || false };
+  P && (Object.assign(Ne, { mouseover: false, focus: false, mouseenter: false, click: false, dblclick: false, mousedown: false }), Object.assign($e, { mouseout: false, blur: false, mouseleave: false, click: false, dblclick: false, mouseup: false }), Object.assign(je, { escape: false, scroll: false, resize: false, clickOutsideAnchor: false })), C(() => (Ce.current = true, () => {
+    Ce.current = false;
+  }), []);
+  const Ie = (e2) => {
+    Ce.current && (e2 && be(true), setTimeout(() => {
+      Ce.current && (Q == null || Q(e2), Z === undefined && he(e2));
+    }, 10));
+  };
+  import_react5.useEffect(() => {
+    if (r2) {
+      if (ye) {
+        t3(ee);
+        const o2 = e2(te), l2 = [...new Set([...o2, r2])].filter(Boolean).join(" ");
+        te == null || te.setAttribute("aria-describedby", l2);
+      } else
+        t3(te);
+      return () => {
+        t3(te), t3(ee);
+      };
+    }
+    function e2(e3) {
+      var t4;
+      return ((t4 = e3 == null ? undefined : e3.getAttribute("aria-describedby")) === null || t4 === undefined ? undefined : t4.split(" ")) || [];
+    }
+    function t3(t4) {
+      const o2 = e2(t4).filter((e3) => e3 !== r2);
+      o2.length ? t4 == null || t4.setAttribute("aria-describedby", o2.join(" ")) : t4 == null || t4.removeAttribute("aria-describedby");
+    }
+  }, [te, ye, r2, ee]), import_react5.useEffect(() => {
+    if (Z === undefined)
+      return () => null;
+    Z && be(true);
+    const e2 = setTimeout(() => {
+      he(Z);
+    }, 10);
+    return () => {
+      clearTimeout(e2);
+    };
+  }, [Z]), import_react5.useEffect(() => {
+    if (ye !== Ee.current)
+      if (R(ve), Ee.current = ye, ye)
+        K == null || K();
+      else {
+        const e2 = ((e3) => {
+          const t3 = e3.match(/^([\d.]+)(ms|s)$/);
+          if (!t3)
+            return 0;
+          const [, o2, r3] = t3;
+          return Number(o2) * (r3 === "ms" ? 1 : 1000);
+        })(getComputedStyle(document.body).getPropertyValue("--rt-transition-show-delay"));
+        ve.current = setTimeout(() => {
+          be(false), ge(null), U == null || U();
+        }, e2 + 25);
+      }
+  }, [ye]);
+  const ze = (e2) => {
+    fe((t3) => k(t3, e2) ? t3 : e2);
+  }, Be = (e2 = A2) => {
+    R(de), we ? Ie(true) : de.current = setTimeout(() => {
+      Ie(true);
+    }, e2);
+  }, De = (e2 = O2) => {
+    R(pe), pe.current = setTimeout(() => {
+      ke.current || Ie(false);
+    }, e2);
+  }, qe = (e2) => {
+    var t3;
+    if (!e2)
+      return;
+    const o2 = (t3 = e2.currentTarget) !== null && t3 !== undefined ? t3 : e2.target;
+    if (!(o2 == null ? undefined : o2.isConnected))
+      return oe(null), void Oe({ current: null });
+    A2 ? Be() : Ie(true), oe(o2), Oe({ current: o2 }), R(pe);
+  }, He = () => {
+    $2 ? De(O2 || 100) : O2 ? De() : Ie(false), R(de);
+  }, Me = ({ x: e2, y: t3 }) => {
+    var o2;
+    const r3 = { getBoundingClientRect: () => ({ x: e2, y: t3, width: 0, height: 0, top: t3, left: e2, right: e2, bottom: t3 }) };
+    E({ place: (o2 = Se == null ? undefined : Se.place) !== null && o2 !== undefined ? o2 : v, offset: m, elementReference: r3, tooltipReference: ae.current, tooltipArrowReference: ue.current, strategy: b2, middlewares: S2, border: re, arrowSize: ie }).then((e3) => {
+      ze(e3);
+    });
+  }, We = (e2) => {
+    if (!e2)
+      return;
+    const t3 = e2, o2 = { x: t3.clientX, y: t3.clientY };
+    Me(o2), Ae.current = o2;
+  }, Pe = (e2) => {
+    var t3;
+    if (!ye)
+      return;
+    const o2 = e2.target;
+    if (!o2.isConnected)
+      return;
+    if ((t3 = ae.current) === null || t3 === undefined ? undefined : t3.contains(o2))
+      return;
+    [document.querySelector(`[id='${d}']`), ...Te].some((e3) => e3 == null ? undefined : e3.contains(o2)) || (Ie(false), R(de));
+  }, Ve = _(qe, 50, true), Fe = _(He, 50, true), Ke = (e2) => {
+    Fe.cancel(), Ve(e2);
+  }, Ue = () => {
+    Ve.cancel(), Fe();
+  }, Xe = import_react5.useCallback(() => {
+    var e2, t3;
+    const o2 = (e2 = Se == null ? undefined : Se.position) !== null && e2 !== undefined ? e2 : F;
+    o2 ? Me(o2) : T2 ? Ae.current && Me(Ae.current) : (te == null ? undefined : te.isConnected) && E({ place: (t3 = Se == null ? undefined : Se.place) !== null && t3 !== undefined ? t3 : v, offset: m, elementReference: te, tooltipReference: ae.current, tooltipArrowReference: ue.current, strategy: b2, middlewares: S2, border: re, arrowSize: ie }).then((e3) => {
+      Ce.current && ze(e3);
+    });
+  }, [ye, te, Y, V, v, Se == null ? undefined : Se.place, m, b2, F, Se == null ? undefined : Se.position, T2, ie]);
+  import_react5.useEffect(() => {
+    var e2, t3;
+    const o2 = new Set(_e);
+    Te.forEach((e3) => {
+      (X == null ? undefined : X(e3)) || o2.add({ current: e3 });
+    });
+    const r3 = document.querySelector(`[id='${d}']`);
+    r3 && !(X == null ? undefined : X(r3)) && o2.add({ current: r3 });
+    const l2 = () => {
+      Ie(false);
+    }, n2 = L(te), i3 = L(ae.current);
+    je.scroll && (window.addEventListener("scroll", l2), n2 == null || n2.addEventListener("scroll", l2), i3 == null || i3.addEventListener("scroll", l2));
+    let c3 = null;
+    je.resize ? window.addEventListener("resize", l2) : te && ae.current && (c3 = autoUpdate(te, ae.current, Xe, { ancestorResize: true, elementResize: true, layoutShift: true }));
+    const s2 = (e3) => {
+      e3.key === "Escape" && Ie(false);
+    };
+    je.escape && window.addEventListener("keydown", s2), je.clickOutsideAnchor && window.addEventListener("click", Pe);
+    const a2 = [], u2 = (e3) => Boolean((e3 == null ? undefined : e3.target) && (te == null ? undefined : te.contains(e3.target))), p2 = (e3) => {
+      ye && u2(e3) || qe(e3);
+    }, v2 = (e3) => {
+      ye && u2(e3) && He();
+    }, m2 = ["mouseover", "mouseout", "mouseenter", "mouseleave", "focus", "blur"], y2 = ["click", "dblclick", "mousedown", "mouseup"];
+    Object.entries(Ne).forEach(([e3, t4]) => {
+      t4 && (m2.includes(e3) ? a2.push({ event: e3, listener: Ke }) : y2.includes(e3) && a2.push({ event: e3, listener: p2 }));
+    }), Object.entries($e).forEach(([e3, t4]) => {
+      t4 && (m2.includes(e3) ? a2.push({ event: e3, listener: Ue }) : y2.includes(e3) && a2.push({ event: e3, listener: v2 }));
+    }), T2 && a2.push({ event: "pointermove", listener: We });
+    const h3 = () => {
+      ke.current = true;
+    }, w3 = () => {
+      ke.current = false, He();
+    }, b3 = $2 && ($e.mouseout || $e.mouseleave);
+    return b3 && ((e2 = ae.current) === null || e2 === undefined || e2.addEventListener("mouseover", h3), (t3 = ae.current) === null || t3 === undefined || t3.addEventListener("mouseout", w3)), a2.forEach(({ event: e3, listener: t4 }) => {
+      o2.forEach((o3) => {
+        var r4;
+        (r4 = o3.current) === null || r4 === undefined || r4.addEventListener(e3, t4);
+      });
+    }), () => {
+      var e3, t4;
+      je.scroll && (window.removeEventListener("scroll", l2), n2 == null || n2.removeEventListener("scroll", l2), i3 == null || i3.removeEventListener("scroll", l2)), je.resize ? window.removeEventListener("resize", l2) : c3 == null || c3(), je.clickOutsideAnchor && window.removeEventListener("click", Pe), je.escape && window.removeEventListener("keydown", s2), b3 && ((e3 = ae.current) === null || e3 === undefined || e3.removeEventListener("mouseover", h3), (t4 = ae.current) === null || t4 === undefined || t4.removeEventListener("mouseout", w3)), a2.forEach(({ event: e4, listener: t5 }) => {
+        o2.forEach((o3) => {
+          var r4;
+          (r4 = o3.current) === null || r4 === undefined || r4.removeEventListener(e4, t5);
+        });
+      });
+    };
+  }, [te, Xe, we, _e, Te, H, M, W, Re, A2, O2]), import_react5.useEffect(() => {
+    var e2, t3;
+    let o2 = (t3 = (e2 = Se == null ? undefined : Se.anchorSelect) !== null && e2 !== undefined ? e2 : p) !== null && t3 !== undefined ? t3 : "";
+    !o2 && r2 && (o2 = `[data-tooltip-id='${r2.replace(/'/g, "\\'")}']`);
+    const l2 = new MutationObserver((e3) => {
+      const t4 = [], l3 = [];
+      e3.forEach((e4) => {
+        if (e4.type === "attributes" && e4.attributeName === "data-tooltip-id") {
+          e4.target.getAttribute("data-tooltip-id") === r2 ? t4.push(e4.target) : e4.oldValue === r2 && l3.push(e4.target);
+        }
+        if (e4.type === "childList") {
+          if (te) {
+            const t5 = [...e4.removedNodes].filter((e5) => e5.nodeType === 1);
+            if (o2)
+              try {
+                l3.push(...t5.filter((e5) => e5.matches(o2))), l3.push(...t5.flatMap((e5) => [...e5.querySelectorAll(o2)]));
+              } catch (e5) {}
+            t5.some((e5) => {
+              var t6;
+              return !!((t6 = e5 == null ? undefined : e5.contains) === null || t6 === undefined ? undefined : t6.call(e5, te)) && (be(false), Ie(false), oe(null), R(de), R(pe), true);
+            });
+          }
+          if (o2)
+            try {
+              const r3 = [...e4.addedNodes].filter((e5) => e5.nodeType === 1);
+              t4.push(...r3.filter((e5) => e5.matches(o2))), t4.push(...r3.flatMap((e5) => [...e5.querySelectorAll(o2)]));
+            } catch (e5) {}
+        }
+      }), (t4.length || l3.length) && Le((e4) => [...e4.filter((e5) => !l3.includes(e5)), ...t4]);
+    });
+    return l2.observe(document.body, { childList: true, subtree: true, attributes: true, attributeFilter: ["data-tooltip-id"], attributeOldValue: true }), () => {
+      l2.disconnect();
+    };
+  }, [r2, p, Se == null ? undefined : Se.anchorSelect, te]), import_react5.useEffect(() => {
+    Xe();
+  }, [Xe]), import_react5.useEffect(() => {
+    if (!(G == null ? undefined : G.current))
+      return () => null;
+    const e2 = new ResizeObserver(() => {
+      setTimeout(() => Xe());
+    });
+    return e2.observe(G.current), () => {
+      e2.disconnect();
+    };
+  }, [Y, G == null ? undefined : G.current]), import_react5.useEffect(() => {
+    var e2;
+    const t3 = document.querySelector(`[id='${d}']`), o2 = [...Te, t3];
+    te && o2.includes(te) || oe((e2 = Te[0]) !== null && e2 !== undefined ? e2 : t3);
+  }, [d, Te, te]), import_react5.useEffect(() => (J && Ie(true), () => {
+    R(de), R(pe);
+  }), []), import_react5.useEffect(() => {
+    var e2;
+    let t3 = (e2 = Se == null ? undefined : Se.anchorSelect) !== null && e2 !== undefined ? e2 : p;
+    if (!t3 && r2 && (t3 = `[data-tooltip-id='${r2.replace(/'/g, "\\'")}']`), t3)
+      try {
+        const e3 = Array.from(document.querySelectorAll(t3));
+        Le(e3);
+      } catch (e3) {
+        Le([]);
+      }
+  }, [r2, p, Se == null ? undefined : Se.anchorSelect]), import_react5.useEffect(() => {
+    de.current && (R(de), Be(A2));
+  }, [A2]);
+  const Ye = (se = Se == null ? undefined : Se.content) !== null && se !== undefined ? se : Y, Ge = ye && Object.keys(me.tooltipStyles).length > 0;
+  return import_react5.useImperativeHandle(t2, () => ({ open: (e2) => {
+    if (e2 == null ? undefined : e2.anchorSelect)
+      try {
+        document.querySelector(e2.anchorSelect);
+      } catch (t3) {
+        return void console.warn(`[react-tooltip] "${e2.anchorSelect}" is not a valid CSS selector`);
+      }
+    ge(e2 != null ? e2 : null), (e2 == null ? undefined : e2.delay) ? Be(e2.delay) : Ie(true);
+  }, close: (e2) => {
+    (e2 == null ? undefined : e2.delay) ? De(e2.delay) : Ie(false);
+  }, activeAnchor: te, place: me.place, isOpen: Boolean(we && !x2 && Ye && Ge) })), we && !x2 && Ye ? import_react5.default.createElement(g, { id: r2, role: ce, className: import_classnames.default("react-tooltip", B.tooltip, D.tooltip, D[u], i2, `react-tooltip__place-${me.place}`, B[Ge ? "show" : "closing"], Ge ? "react-tooltip__show" : "react-tooltip__closing", b2 === "fixed" && B.fixed, $2 && B.clickable), onTransitionEnd: (e2) => {
+    R(ve), ye || e2.propertyName !== "opacity" || (be(false), ge(null), U == null || U());
+  }, style: { ...V, ...me.tooltipStyles, opacity: le !== undefined && Ge ? le : undefined }, ref: ae }, Ye, import_react5.default.createElement(g, { className: import_classnames.default("react-tooltip-arrow", B.arrow, D.arrow, c2, N2 && B.noArrow), style: { ...me.tooltipArrowStyles, background: ne ? `linear-gradient(to right bottom, transparent 50%, ${ne} 50%)` : undefined, "--rt-arrow-size": `${ie}px` }, ref: ue })) : null;
+};
+var H = ({ content: t2 }) => import_react5.default.createElement("span", { dangerouslySetInnerHTML: { __html: t2 } });
+var M = import_react5.default.forwardRef(({ id: t2, anchorId: r2, anchorSelect: n2, content: i2, html: c2, render: a2, className: u, classNameArrow: d, variant: p = "dark", place: v = "top", offset: m = 10, wrapper: f = "div", children: h2 = null, events: w2 = ["hover"], openOnClick: b2 = false, positionStrategy: S2 = "absolute", middlewares: g, delayShow: E2 = 0, delayHide: _2 = 0, float: O2 = false, hidden: k2 = false, noArrow: T2 = false, clickable: L2 = false, closeOnEsc: C2 = false, closeOnScroll: R2 = false, closeOnResize: x2 = false, openEvents: N2, closeEvents: $2, globalCloseEvents: j, imperativeModeOnly: z = false, style: B2, position: D2, isOpen: M2, defaultIsOpen: W = false, disableStyleInjection: P = false, border: V, opacity: F, arrowColor: K, arrowSize: U, setIsOpen: X, afterShow: Y, afterHide: G, disableTooltip: Z, role: J = "tooltip" }, Q) => {
+  const [ee, te] = import_react5.useState(i2), [oe, re] = import_react5.useState(c2), [le, ne] = import_react5.useState(v), [ie, ce] = import_react5.useState(p), [se, ae] = import_react5.useState(m), [ue, de] = import_react5.useState(E2), [pe, ve] = import_react5.useState(_2), [me, fe] = import_react5.useState(O2), [ye, he] = import_react5.useState(k2), [we, be] = import_react5.useState(f), [Se, ge] = import_react5.useState(w2), [Ee, Ae] = import_react5.useState(S2), [_e, Oe] = import_react5.useState(null), [ke, Te] = import_react5.useState(null), Le = import_react5.useRef(null), Ce = import_react5.useRef(P), { anchorRefs: Re, activeAnchor: xe } = I(t2), Ne = (e2) => e2 == null ? undefined : e2.getAttributeNames().reduce((t3, o2) => {
+    var r3;
+    if (o2.startsWith("data-tooltip-")) {
+      t3[o2.replace(/^data-tooltip-/, "")] = (r3 = e2 == null ? undefined : e2.getAttribute(o2)) !== null && r3 !== undefined ? r3 : null;
+    }
+    return t3;
+  }, {}), $e = (e2) => {
+    const t3 = { place: (e3) => {
+      var t4;
+      ne((t4 = e3) !== null && t4 !== undefined ? t4 : v);
+    }, content: (e3) => {
+      te(e3 != null ? e3 : i2);
+    }, html: (e3) => {
+      re(e3 != null ? e3 : c2);
+    }, variant: (e3) => {
+      var t4;
+      ce((t4 = e3) !== null && t4 !== undefined ? t4 : p);
+    }, offset: (e3) => {
+      ae(e3 === null ? m : Number(e3));
+    }, wrapper: (e3) => {
+      var t4;
+      be((t4 = e3) !== null && t4 !== undefined ? t4 : f);
+    }, events: (e3) => {
+      const t4 = e3 == null ? undefined : e3.split(" ");
+      ge(t4 != null ? t4 : w2);
+    }, "position-strategy": (e3) => {
+      var t4;
+      Ae((t4 = e3) !== null && t4 !== undefined ? t4 : S2);
+    }, "delay-show": (e3) => {
+      de(e3 === null ? E2 : Number(e3));
+    }, "delay-hide": (e3) => {
+      ve(e3 === null ? _2 : Number(e3));
+    }, float: (e3) => {
+      fe(e3 === null ? O2 : e3 === "true");
+    }, hidden: (e3) => {
+      he(e3 === null ? k2 : e3 === "true");
+    }, "class-name": (e3) => {
+      Oe(e3);
+    } };
+    Object.values(t3).forEach((e3) => e3(null)), Object.entries(e2).forEach(([e3, o2]) => {
+      var r3;
+      (r3 = t3[e3]) === null || r3 === undefined || r3.call(t3, o2);
+    });
+  };
+  import_react5.useEffect(() => {
+    te(i2);
+  }, [i2]), import_react5.useEffect(() => {
+    re(c2);
+  }, [c2]), import_react5.useEffect(() => {
+    ne(v);
+  }, [v]), import_react5.useEffect(() => {
+    ce(p);
+  }, [p]), import_react5.useEffect(() => {
+    ae(m);
+  }, [m]), import_react5.useEffect(() => {
+    de(E2);
+  }, [E2]), import_react5.useEffect(() => {
+    ve(_2);
+  }, [_2]), import_react5.useEffect(() => {
+    fe(O2);
+  }, [O2]), import_react5.useEffect(() => {
+    he(k2);
+  }, [k2]), import_react5.useEffect(() => {
+    Ae(S2);
+  }, [S2]), import_react5.useEffect(() => {
+    Ce.current !== P && console.warn("[react-tooltip] Do not change `disableStyleInjection` dynamically.");
+  }, [P]), import_react5.useEffect(() => {
+    typeof window != "undefined" && window.dispatchEvent(new CustomEvent("react-tooltip-inject-styles", { detail: { disableCore: P === "core", disableBase: P } }));
+  }, []), import_react5.useEffect(() => {
+    var e2;
+    const o2 = new Set(Re);
+    let l2 = n2;
+    if (!l2 && t2 && (l2 = `[data-tooltip-id='${t2.replace(/'/g, "\\'")}']`), l2)
+      try {
+        document.querySelectorAll(l2).forEach((e3) => {
+          o2.add({ current: e3 });
+        });
+      } catch (e3) {
+        console.warn(`[react-tooltip] "${l2}" is not a valid CSS selector`);
+      }
+    const i3 = document.querySelector(`[id='${r2}']`);
+    if (i3 && o2.add({ current: i3 }), !o2.size)
+      return () => null;
+    const c3 = (e2 = ke != null ? ke : i3) !== null && e2 !== undefined ? e2 : xe.current, s2 = new MutationObserver((e3) => {
+      e3.forEach((e4) => {
+        var t3;
+        if (!c3 || e4.type !== "attributes" || !((t3 = e4.attributeName) === null || t3 === undefined ? undefined : t3.startsWith("data-tooltip-")))
+          return;
+        const o3 = Ne(c3);
+        $e(o3);
+      });
+    }), a3 = { attributes: true, childList: false, subtree: false };
+    if (c3) {
+      const e3 = Ne(c3);
+      $e(e3), s2.observe(c3, a3);
+    }
+    return () => {
+      s2.disconnect();
+    };
+  }, [Re, xe, ke, r2, n2]), import_react5.useEffect(() => {
+    (B2 == null ? undefined : B2.border) && console.warn("[react-tooltip] Do not set `style.border`. Use `border` prop instead."), V && !A("border", `${V}`) && console.warn(`[react-tooltip] "${V}" is not a valid \`border\`.`), (B2 == null ? undefined : B2.opacity) && console.warn("[react-tooltip] Do not set `style.opacity`. Use `opacity` prop instead."), F && !A("opacity", `${F}`) && console.warn(`[react-tooltip] "${F}" is not a valid \`opacity\`.`);
+  }, []);
+  let je = h2;
+  const Ie = import_react5.useRef(null);
+  if (a2) {
+    const t3 = a2({ content: (ke == null ? undefined : ke.getAttribute("data-tooltip-content")) || ee || null, activeAnchor: ke });
+    je = t3 ? import_react5.default.createElement("div", { ref: Ie, className: "react-tooltip-content-wrapper" }, t3) : null;
+  } else
+    ee && (je = ee);
+  oe && (je = import_react5.default.createElement(H, { content: oe }));
+  const ze = { forwardRef: Q, id: t2, anchorId: r2, anchorSelect: n2, className: import_classnames.default(u, _e), classNameArrow: d, content: je, contentWrapperRef: Ie, place: le, variant: ie, offset: se, wrapper: we, events: Se, openOnClick: b2, positionStrategy: Ee, middlewares: g, delayShow: ue, delayHide: pe, float: me, hidden: ye, noArrow: T2, clickable: L2, closeOnEsc: C2, closeOnScroll: R2, closeOnResize: x2, openEvents: N2, closeEvents: $2, globalCloseEvents: j, imperativeModeOnly: z, style: B2, position: D2, isOpen: M2, defaultIsOpen: W, border: V, opacity: F, arrowColor: K, arrowSize: U, setIsOpen: X, afterShow: Y, afterHide: G, disableTooltip: Z, activeAnchor: ke, previousActiveAnchor: Le.current, setActiveAnchor: (e2) => {
+    Te((t3) => ((e2 == null ? undefined : e2.isSameNode(t3)) || (Le.current = t3), e2));
+  }, role: J };
+  return import_react5.default.createElement(q, { ...ze });
+});
+typeof window != "undefined" && window.addEventListener("react-tooltip-inject-styles", (e2) => {
+  e2.detail.disableCore || S({ css: `:root{--rt-color-white:#fff;--rt-color-dark:#222;--rt-color-success:#8dc572;--rt-color-error:#be6464;--rt-color-warning:#f0ad4e;--rt-color-info:#337ab7;--rt-opacity:0.9;--rt-transition-show-delay:0.15s;--rt-transition-closing-delay:0.15s;--rt-arrow-size:8px}.core-styles-module_tooltip__3vRRp{position:absolute;top:0;left:0;pointer-events:none;opacity:0;will-change:opacity}.core-styles-module_fixed__pcSol{position:fixed}.core-styles-module_arrow__cvMwQ{position:absolute;background:inherit;z-index:-1}.core-styles-module_noArrow__xock6{display:none}.core-styles-module_clickable__ZuTTB{pointer-events:auto}.core-styles-module_show__Nt9eE{opacity:var(--rt-opacity);transition:opacity var(--rt-transition-show-delay)ease-out}.core-styles-module_closing__sGnxF{opacity:0;transition:opacity var(--rt-transition-closing-delay)ease-in}`, type: "core" }), e2.detail.disableBase || S({ css: `
+.styles-module_tooltip__mnnfp{padding:8px 16px;border-radius:3px;font-size:90%;width:max-content}.styles-module_arrow__K0L3T{width:var(--rt-arrow-size);height:var(--rt-arrow-size)}[class*='react-tooltip__place-top']>.styles-module_arrow__K0L3T{transform:rotate(45deg)}[class*='react-tooltip__place-right']>.styles-module_arrow__K0L3T{transform:rotate(135deg)}[class*='react-tooltip__place-bottom']>.styles-module_arrow__K0L3T{transform:rotate(225deg)}[class*='react-tooltip__place-left']>.styles-module_arrow__K0L3T{transform:rotate(315deg)}.styles-module_dark__xNqje{background:var(--rt-color-dark);color:var(--rt-color-white)}.styles-module_light__Z6W-X{background-color:var(--rt-color-white);color:var(--rt-color-dark)}.styles-module_success__A2AKt{background-color:var(--rt-color-success);color:var(--rt-color-white)}.styles-module_warning__SCK0X{background-color:var(--rt-color-warning);color:var(--rt-color-white)}.styles-module_error__JvumD{background-color:var(--rt-color-error);color:var(--rt-color-white)}.styles-module_info__BWdHW{background-color:var(--rt-color-info);color:var(--rt-color-white)}`, type: "base" });
+});
 
 // node_modules/electrobun/dist/api/shared/rpc.ts
 var MAX_ID = 10000000000;
@@ -20754,16 +22634,16 @@ function createRPC(options = {}) {
     transport = newTransport;
     transport.registerHandler?.(handler);
   }
-  function setRequestHandler(h) {
-    if (typeof h === "function") {
-      requestHandler = h;
+  function setRequestHandler(h2) {
+    if (typeof h2 === "function") {
+      requestHandler = h2;
       return;
     }
     requestHandler = (method, params) => {
-      const handlerFn = h[method];
+      const handlerFn = h2[method];
       if (handlerFn)
         return handlerFn(params);
-      const fallbackHandler = h._;
+      const fallbackHandler = h2._;
       if (!fallbackHandler)
         throw new Error(`The requested method has no handler: ${String(method)}`);
       return fallbackHandler(method, params);
@@ -21064,34 +22944,125 @@ class Electroview {
   }
 }
 
-// src/shared/shared-snippets.ts
-function formatBytes(bytes) {
-  if (bytes === 0)
-    return "0 B";
-  const units = ["B", "KB", "MB", "GB", "TB"];
-  const i = Math.floor(Math.log(bytes) / Math.log(1000));
-  const value = bytes / 1000 ** i;
-  return `${value.toFixed(2)} ${units[i]}`;
-}
-
-// src/mainview/modules/imagesList.tsx
-var jsx_dev_runtime4 = __toESM(require_jsx_dev_runtime(), 1);
+// src/shared/shared-electroview.ts
 var rpc = Electroview.defineRPC({
+  maxRequestTime: 30000,
   handlers: {
     requests: {},
     messages: {}
   }
 });
 var electroview = new Electroview({ rpc });
-function ImagesList() {
+
+// src/mainview/modules/imagesListItem.tsx
+var jsx_dev_runtime3 = __toESM(require_jsx_dev_runtime(), 1);
+function ImagesListItem(props) {
   const appContext = import_react6.useContext(sharedContext);
-  async function revealClickHandler(e) {
-    e.preventDefault();
-    await electroview.rpc?.request.revealInFileManager();
+  const activeImage = appContext.images.find((image) => image.isActive);
+  function imageClickHandler(e2) {
+    e2.preventDefault();
+    if (e2.target instanceof HTMLElement) {
+      appContext.setImages((images) => {
+        return images.map((image) => ({
+          ...image,
+          isActive: image === appContext.images[props.index]
+        }));
+      });
+      appContext.setZoom(appContextDefaults.zoom);
+      appContext.setCrop(appContextDefaults.crop);
+      appContext.setQuality(appContext.images[props.index].quality);
+      appContext.setEffort(appContext.images[props.index].effort);
+    }
   }
-  function clearAllClickHandler(e) {
-    e.preventDefault();
-    console.log("Show confirmation modal!");
+  async function itemDeleteClickHandler(e2) {
+    e2.preventDefault();
+    console.log("Open the modal!");
+    const res = await electroview.rpc?.request.deleteImage({ path: props.input });
+    if (typeof res !== "undefined" && "image" in res && "input" in res.image) {
+      appContext.setImages((images) => {
+        return images.filter((image) => {
+          return image.input !== res.image.input;
+        });
+      });
+    }
+  }
+  async function revealItemClickHandler(e2) {
+    e2.preventDefault();
+    console.log("Open in finder!");
+    await electroview.rpc?.request.revealInFileManager({ path: props.input });
+  }
+  return /* @__PURE__ */ jsx_dev_runtime3.jsxDEV("div", {
+    className: "imageslist-list-item" + (activeImage?.input === props.input ? " active" : ""),
+    children: [
+      /* @__PURE__ */ jsx_dev_runtime3.jsxDEV("a", {
+        href: "#",
+        onClick: itemDeleteClickHandler,
+        className: "imageslist-list-item-close",
+        "data-tooltip-id": "delete-image",
+        "data-tooltip-delay-show": 500,
+        children: "×"
+      }, undefined, false, undefined, this),
+      /* @__PURE__ */ jsx_dev_runtime3.jsxDEV("a", {
+        href: "#",
+        onClick: revealItemClickHandler,
+        className: "imageslist-list-item-reveal",
+        "data-tooltip-id": "reveal-image",
+        "data-tooltip-delay-show": 500,
+        children: " "
+      }, undefined, false, undefined, this),
+      /* @__PURE__ */ jsx_dev_runtime3.jsxDEV("span", {
+        className: "imageslist-list-item-filename",
+        children: props.input.split("/").pop()
+      }, undefined, false, undefined, this),
+      /* @__PURE__ */ jsx_dev_runtime3.jsxDEV("a", {
+        href: "#",
+        onClick: imageClickHandler,
+        className: "imageslist-list-item-image",
+        style: { backgroundImage: "url('" + props.output + "')" },
+        children: " "
+      }, undefined, false, undefined, this),
+      /* @__PURE__ */ jsx_dev_runtime3.jsxDEV(M, {
+        id: "delete-image",
+        place: "top",
+        content: "Delete image",
+        className: "tooltip"
+      }, undefined, false, undefined, this),
+      /* @__PURE__ */ jsx_dev_runtime3.jsxDEV(M, {
+        id: "reveal-image",
+        place: "top",
+        content: "Reveal image in file manager",
+        className: "tooltip"
+      }, undefined, false, undefined, this)
+    ]
+  }, undefined, true, undefined, this);
+}
+
+// src/shared/shared-snippets.ts
+function formatBytes(bytes) {
+  if (bytes === 0)
+    return "0 B";
+  const units = ["B", "KB", "MB", "GB", "TB"];
+  const i2 = Math.floor(Math.log(bytes) / Math.log(1000));
+  const value = bytes / 1000 ** i2;
+  return `${value.toFixed(2)} ${units[i2]}`;
+}
+
+// src/mainview/modules/imagesList.tsx
+var jsx_dev_runtime4 = __toESM(require_jsx_dev_runtime(), 1);
+function ImagesList() {
+  const appContext = import_react7.useContext(sharedContext);
+  async function revealClickHandler(e2) {
+    e2.preventDefault();
+    const res = await electroview.rpc?.request.revealInFileManager();
+    console.log(res);
+  }
+  async function clearAllClickHandler(e2) {
+    e2.preventDefault();
+    const res = await electroview.rpc?.request.clearAll();
+    console.log(res);
+    if (res?.severity === "SUCCESS") {
+      appContext.setImages([]);
+    }
   }
   return /* @__PURE__ */ jsx_dev_runtime4.jsxDEV("div", {
     className: "imageslist",
@@ -21141,14 +23112,14 @@ function ImagesList() {
         href: "#",
         onClick: revealClickHandler,
         className: "imageslist-revealbutton",
-        children: "Reveal in file manager"
+        children: "Reveal folder in file manager"
       }, undefined, false, undefined, this)
     ]
   }, undefined, true, undefined, this);
 }
 
 // src/mainview/modules/imagesCanvas.tsx
-var import_react7 = __toESM(require_react(), 1);
+var import_react8 = __toESM(require_react(), 1);
 
 // node_modules/react-easy-crop/index.module.mjs
 var React2 = __toESM(require_react(), 1);
@@ -21186,7 +23157,7 @@ function restrictPosition(position, mediaSize, cropSize, zoom, rotation) {
 }
 function restrictPositionCoord(position, mediaSize, cropSize, zoom) {
   var maxPosition = Math.abs(mediaSize * zoom / 2 - cropSize / 2);
-  return clamp(position, -maxPosition, maxPosition);
+  return clamp2(position, -maxPosition, maxPosition);
 }
 function getDistanceBetweenPoints(pointA, pointB) {
   return Math.sqrt(Math.pow(pointA.y - pointB.y, 2) + Math.pow(pointA.x - pointB.x, 2));
@@ -21229,15 +23200,15 @@ function computeCroppedArea(crop, mediaSize, cropSize, aspect, zoom, rotation, r
     croppedAreaPixels
   };
 }
-function limitArea(max, value) {
-  return Math.min(max, Math.max(0, value));
+function limitArea(max2, value) {
+  return Math.min(max2, Math.max(0, value));
 }
 function noOp(_max, value) {
   return value;
 }
 function getInitialCropFromCroppedAreaPercentages(croppedAreaPercentages, mediaSize, rotation, cropSize, minZoom, maxZoom) {
   var mediaBBoxSize = rotateSize(mediaSize.width, mediaSize.height, rotation);
-  var zoom = clamp(cropSize.width / mediaBBoxSize.width * (100 / croppedAreaPercentages.width), minZoom, maxZoom);
+  var zoom = clamp2(cropSize.width / mediaBBoxSize.width * (100 / croppedAreaPercentages.width), minZoom, maxZoom);
   var crop = {
     x: zoom * mediaBBoxSize.width / 2 - cropSize.width / 2 - mediaBBoxSize.width * zoom * (croppedAreaPercentages.x / 100),
     y: zoom * mediaBBoxSize.height / 2 - cropSize.height / 2 - mediaBBoxSize.height * zoom * (croppedAreaPercentages.y / 100)
@@ -21256,7 +23227,7 @@ function getInitialCropFromCroppedAreaPixels(croppedAreaPixels, mediaSize, rotat
     rotation = 0;
   }
   var mediaNaturalBBoxSize = rotateSize(mediaSize.naturalWidth, mediaSize.naturalHeight, rotation);
-  var zoom = clamp(getZoomFromCroppedAreaPixels(croppedAreaPixels, mediaSize, cropSize), minZoom, maxZoom);
+  var zoom = clamp2(getZoomFromCroppedAreaPixels(croppedAreaPixels, mediaSize, cropSize), minZoom, maxZoom);
   var cropZoom = cropSize.height > cropSize.width ? cropSize.height / croppedAreaPixels.height : cropSize.width / croppedAreaPixels.width;
   var crop = {
     x: ((mediaNaturalBBoxSize.width - croppedAreaPixels.width) / 2 - croppedAreaPixels.x) * cropZoom,
@@ -21267,10 +23238,10 @@ function getInitialCropFromCroppedAreaPixels(croppedAreaPixels, mediaSize, rotat
     zoom
   };
 }
-function getCenter(a, b) {
+function getCenter(a2, b2) {
   return {
-    x: (b.x + a.x) / 2,
-    y: (b.y + a.y) / 2
+    x: (b2.x + a2.x) / 2,
+    y: (b2.y + a2.y) / 2
   };
 }
 function getRadianAngle(degreeValue) {
@@ -21283,8 +23254,8 @@ function rotateSize(width, height, rotation) {
     height: Math.abs(Math.sin(rotRad) * width) + Math.abs(Math.cos(rotRad) * height)
   };
 }
-function clamp(value, min, max) {
-  return Math.min(Math.max(value, min), max);
+function clamp2(value, min2, max2) {
+  return Math.min(Math.max(value, min2), max2);
 }
 function classNames() {
   var args = [];
@@ -21442,8 +23413,8 @@ var Cropper = function(_super) {
       });
       _this.resizeObserver.observe(_this.containerRef);
     };
-    _this.preventZoomSafari = function(e) {
-      return e.preventDefault();
+    _this.preventZoomSafari = function(e2) {
+      return e2.preventDefault();
     };
     _this.cleanEvents = function() {
       if (!_this.currentDoc)
@@ -21558,29 +23529,29 @@ var Cropper = function(_super) {
         };
       }
     };
-    _this.onMouseDown = function(e) {
+    _this.onMouseDown = function(e2) {
       if (!_this.currentDoc)
         return;
-      e.preventDefault();
+      e2.preventDefault();
       _this.currentDoc.addEventListener("mousemove", _this.onMouseMove);
       _this.currentDoc.addEventListener("mouseup", _this.onDragStopped);
       _this.saveContainerPosition();
-      _this.onDragStart(Cropper2.getMousePoint(e));
+      _this.onDragStart(Cropper2.getMousePoint(e2));
     };
-    _this.onMouseMove = function(e) {
-      return _this.onDrag(Cropper2.getMousePoint(e));
+    _this.onMouseMove = function(e2) {
+      return _this.onDrag(Cropper2.getMousePoint(e2));
     };
-    _this.onScroll = function(e) {
+    _this.onScroll = function(e2) {
       if (!_this.currentDoc)
         return;
-      e.preventDefault();
+      e2.preventDefault();
       _this.saveContainerPosition();
     };
-    _this.onTouchStart = function(e) {
+    _this.onTouchStart = function(e2) {
       if (!_this.currentDoc)
         return;
       _this.isTouching = true;
-      if (_this.props.onTouchRequest && !_this.props.onTouchRequest(e)) {
+      if (_this.props.onTouchRequest && !_this.props.onTouchRequest(e2)) {
         return;
       }
       _this.currentDoc.addEventListener("touchmove", _this.onTouchMove, {
@@ -21588,59 +23559,59 @@ var Cropper = function(_super) {
       });
       _this.currentDoc.addEventListener("touchend", _this.onDragStopped);
       _this.saveContainerPosition();
-      if (e.touches.length === 2) {
-        _this.onPinchStart(e);
-      } else if (e.touches.length === 1) {
-        _this.onDragStart(Cropper2.getTouchPoint(e.touches[0]));
+      if (e2.touches.length === 2) {
+        _this.onPinchStart(e2);
+      } else if (e2.touches.length === 1) {
+        _this.onDragStart(Cropper2.getTouchPoint(e2.touches[0]));
       }
     };
-    _this.onTouchMove = function(e) {
-      e.preventDefault();
-      if (e.touches.length === 2) {
-        _this.onPinchMove(e);
-      } else if (e.touches.length === 1) {
-        _this.onDrag(Cropper2.getTouchPoint(e.touches[0]));
+    _this.onTouchMove = function(e2) {
+      e2.preventDefault();
+      if (e2.touches.length === 2) {
+        _this.onPinchMove(e2);
+      } else if (e2.touches.length === 1) {
+        _this.onDrag(Cropper2.getTouchPoint(e2.touches[0]));
       }
     };
-    _this.onGestureStart = function(e) {
+    _this.onGestureStart = function(e2) {
       if (!_this.currentDoc)
         return;
-      e.preventDefault();
+      e2.preventDefault();
       _this.currentDoc.addEventListener("gesturechange", _this.onGestureChange);
       _this.currentDoc.addEventListener("gestureend", _this.onGestureEnd);
       _this.gestureZoomStart = _this.props.zoom;
       _this.gestureRotationStart = _this.props.rotation;
     };
-    _this.onGestureChange = function(e) {
-      e.preventDefault();
+    _this.onGestureChange = function(e2) {
+      e2.preventDefault();
       if (_this.isTouching) {
         return;
       }
-      var point = Cropper2.getMousePoint(e);
-      var newZoom = _this.gestureZoomStart - 1 + e.scale;
+      var point = Cropper2.getMousePoint(e2);
+      var newZoom = _this.gestureZoomStart - 1 + e2.scale;
       _this.setNewZoom(newZoom, point, {
         shouldUpdatePosition: true
       });
       if (_this.props.onRotationChange) {
-        var newRotation = _this.gestureRotationStart + e.rotation;
+        var newRotation = _this.gestureRotationStart + e2.rotation;
         _this.props.onRotationChange(newRotation);
       }
     };
-    _this.onGestureEnd = function(e) {
+    _this.onGestureEnd = function(e2) {
       _this.cleanEvents();
     };
     _this.onDragStart = function(_a) {
       var _b, _c;
-      var { x, y } = _a;
+      var { x: x2, y: y2 } = _a;
       _this.dragStartPosition = {
-        x,
-        y
+        x: x2,
+        y: y2
       };
       _this.dragStartCrop = __assign({}, _this.props.crop);
       (_c = (_b = _this.props).onInteractionStart) === null || _c === undefined || _c.call(_b);
     };
     _this.onDrag = function(_a) {
-      var { x, y } = _a;
+      var { x: x2, y: y2 } = _a;
       if (!_this.currentWindow)
         return;
       if (_this.rafDragTimeout)
@@ -21648,10 +23619,10 @@ var Cropper = function(_super) {
       _this.rafDragTimeout = _this.currentWindow.requestAnimationFrame(function() {
         if (!_this.state.cropSize)
           return;
-        if (x === undefined || y === undefined)
+        if (x2 === undefined || y2 === undefined)
           return;
-        var offsetX = x - _this.dragStartPosition.x;
-        var offsetY = y - _this.dragStartPosition.y;
+        var offsetX = x2 - _this.dragStartPosition.x;
+        var offsetY = y2 - _this.dragStartPosition.y;
         var requestedPosition = {
           x: _this.dragStartCrop.x + offsetX,
           y: _this.dragStartCrop.y + offsetY
@@ -21667,15 +23638,15 @@ var Cropper = function(_super) {
       _this.emitCropData();
       (_b = (_a = _this.props).onInteractionEnd) === null || _b === undefined || _b.call(_a);
     };
-    _this.onWheel = function(e) {
+    _this.onWheel = function(e2) {
       if (!_this.currentWindow)
         return;
-      if (_this.props.onWheelRequest && !_this.props.onWheelRequest(e)) {
+      if (_this.props.onWheelRequest && !_this.props.onWheelRequest(e2)) {
         return;
       }
-      e.preventDefault();
-      var point = Cropper2.getMousePoint(e);
-      var pixelY = import_normalize_wheel.default(e).pixelY;
+      e2.preventDefault();
+      var point = Cropper2.getMousePoint(e2);
+      var pixelY = import_normalize_wheel.default(e2).pixelY;
       var newZoom = _this.props.zoom - pixelY * _this.props.zoomSpeed / 200;
       _this.setNewZoom(newZoom, point, {
         shouldUpdatePosition: true
@@ -21701,28 +23672,28 @@ var Cropper = function(_super) {
       }, 250);
     };
     _this.getPointOnContainer = function(_a, containerTopLeft) {
-      var { x, y } = _a;
+      var { x: x2, y: y2 } = _a;
       if (!_this.containerRect) {
         throw new Error("The Cropper is not mounted");
       }
       return {
-        x: _this.containerRect.width / 2 - (x - containerTopLeft.x),
-        y: _this.containerRect.height / 2 - (y - containerTopLeft.y)
+        x: _this.containerRect.width / 2 - (x2 - containerTopLeft.x),
+        y: _this.containerRect.height / 2 - (y2 - containerTopLeft.y)
       };
     };
     _this.getPointOnMedia = function(_a) {
-      var { x, y } = _a;
+      var { x: x2, y: y2 } = _a;
       var _b = _this.props, crop = _b.crop, zoom = _b.zoom;
       return {
-        x: (x + crop.x) / zoom,
-        y: (y + crop.y) / zoom
+        x: (x2 + crop.x) / zoom,
+        y: (y2 + crop.y) / zoom
       };
     };
     _this.setNewZoom = function(zoom, point, _a) {
       var _b = _a === undefined ? {} : _a, _c = _b.shouldUpdatePosition, shouldUpdatePosition = _c === undefined ? true : _c;
       if (!_this.state.cropSize || !_this.props.onZoomChange)
         return;
-      var newZoom = clamp(zoom, _this.props.minZoom, _this.props.maxZoom);
+      var newZoom = clamp2(zoom, _this.props.minZoom, _this.props.maxZoom);
       if (shouldUpdatePosition) {
         var zoomPoint = _this.getPointOnContainer(point, _this.containerPosition);
         var zoomTarget = _this.getPointOnMedia(zoomPoint);
@@ -21952,19 +23923,19 @@ var Cropper = function(_super) {
     }
     return this.props.objectFit;
   };
-  Cropper2.prototype.onPinchStart = function(e) {
-    var pointA = Cropper2.getTouchPoint(e.touches[0]);
-    var pointB = Cropper2.getTouchPoint(e.touches[1]);
+  Cropper2.prototype.onPinchStart = function(e2) {
+    var pointA = Cropper2.getTouchPoint(e2.touches[0]);
+    var pointB = Cropper2.getTouchPoint(e2.touches[1]);
     this.lastPinchDistance = getDistanceBetweenPoints(pointA, pointB);
     this.lastPinchRotation = getRotationBetweenPoints(pointA, pointB);
     this.onDragStart(getCenter(pointA, pointB));
   };
-  Cropper2.prototype.onPinchMove = function(e) {
+  Cropper2.prototype.onPinchMove = function(e2) {
     var _this = this;
     if (!this.currentDoc || !this.currentWindow)
       return;
-    var pointA = Cropper2.getTouchPoint(e.touches[0]);
-    var pointB = Cropper2.getTouchPoint(e.touches[1]);
+    var pointA = Cropper2.getTouchPoint(e2.touches[0]);
+    var pointB = Cropper2.getTouchPoint(e2.touches[1]);
     var center = getCenter(pointA, pointB);
     this.onDrag(center);
     if (this.rafPinchTimeout)
@@ -21985,7 +23956,7 @@ var Cropper = function(_super) {
   Cropper2.prototype.render = function() {
     var _this = this;
     var _a;
-    var _b = this.props, image = _b.image, video = _b.video, mediaProps = _b.mediaProps, cropperProps = _b.cropperProps, transform = _b.transform, _c = _b.crop, x = _c.x, y = _c.y, rotation = _b.rotation, zoom = _b.zoom, cropShape = _b.cropShape, showGrid = _b.showGrid, roundCropAreaPixels = _b.roundCropAreaPixels, _d = _b.style, containerStyle = _d.containerStyle, cropAreaStyle = _d.cropAreaStyle, mediaStyle = _d.mediaStyle, _e = _b.classes, containerClassName = _e.containerClassName, cropAreaClassName = _e.cropAreaClassName, mediaClassName = _e.mediaClassName;
+    var _b = this.props, image = _b.image, video = _b.video, mediaProps = _b.mediaProps, cropperProps = _b.cropperProps, transform = _b.transform, _c = _b.crop, x2 = _c.x, y2 = _c.y, rotation = _b.rotation, zoom = _b.zoom, cropShape = _b.cropShape, showGrid = _b.showGrid, roundCropAreaPixels = _b.roundCropAreaPixels, _d = _b.style, containerStyle = _d.containerStyle, cropAreaStyle = _d.cropAreaStyle, mediaStyle = _d.mediaStyle, _e = _b.classes, containerClassName = _e.containerClassName, cropAreaClassName = _e.cropAreaClassName, mediaClassName = _e.mediaClassName;
     var objectFit = (_a = this.state.mediaObjectFit) !== null && _a !== undefined ? _a : this.getObjectFit();
     return React2.createElement("div", {
       onMouseDown: this.onMouseDown,
@@ -22003,7 +23974,7 @@ var Cropper = function(_super) {
       src: image,
       ref: this.imageRef,
       style: __assign(__assign({}, mediaStyle), {
-        transform: transform || "translate(".concat(x, "px, ").concat(y, "px) rotate(").concat(rotation, "deg) scale(").concat(zoom, ")")
+        transform: transform || "translate(".concat(x2, "px, ").concat(y2, "px) rotate(").concat(rotation, "deg) scale(").concat(zoom, ")")
       }),
       onLoad: this.onMediaLoad
     })) : video && React2.createElement("video", __assign({
@@ -22016,7 +23987,7 @@ var Cropper = function(_super) {
       ref: this.videoRef,
       onLoadedMetadata: this.onMediaLoad,
       style: __assign(__assign({}, mediaStyle), {
-        transform: transform || "translate(".concat(x, "px, ").concat(y, "px) rotate(").concat(rotation, "deg) scale(").concat(zoom, ")")
+        transform: transform || "translate(".concat(x2, "px, ").concat(y2, "px) rotate(").concat(rotation, "deg) scale(").concat(zoom, ")")
       }),
       controls: false
     }), (Array.isArray(video) ? video : [{
@@ -22056,10 +24027,10 @@ var Cropper = function(_super) {
     zoomWithScroll: true,
     keyboardStep: KEYBOARD_STEP
   };
-  Cropper2.getMousePoint = function(e) {
+  Cropper2.getMousePoint = function(e2) {
     return {
-      x: Number(e.clientX),
-      y: Number(e.clientY)
+      x: Number(e2.clientX),
+      y: Number(e2.clientY)
     };
   };
   Cropper2.getTouchPoint = function(touch) {
@@ -22073,39 +24044,32 @@ var Cropper = function(_super) {
 
 // src/mainview/modules/imagesCanvas.tsx
 var jsx_dev_runtime5 = __toESM(require_jsx_dev_runtime(), 1);
-var rpc2 = Electroview.defineRPC({
-  maxRequestTime: 30000,
-  handlers: {
-    requests: {},
-    messages: {}
-  }
-});
-var electroview2 = new Electroview({ rpc: rpc2 });
 function ImagesCanvas() {
-  const appContext = import_react7.useContext(sharedContext);
+  const appContext = import_react8.useContext(sharedContext);
   const activeImage = appContext.images.find((image) => image.isActive);
-  console.log("activeimage:", activeImage);
-  const inputHandler = (e) => {
-    if (e.target instanceof HTMLInputElement && e.target.nextElementSibling instanceof HTMLElement) {
-      if (e.target.previousElementSibling?.innerHTML === "Quality") {
-        appContext.setQuality(Number(e.target.value));
-      } else if (e.target.previousElementSibling?.innerHTML === "Effort") {
-        appContext.setEffort(Number(e.target.value));
-      }
+  import_react8.useEffect(() => {
+    console.log("activeimage:", activeImage);
+  }, [activeImage]);
+  if (typeof activeImage === "undefined") {
+    return;
+  }
+  const inputHandler = (field, e2) => {
+    const value = Number(e2.target.value);
+    if (field === "quality") {
+      appContext.setQuality(value);
+    } else {
+      appContext.setEffort(value);
     }
   };
   const mouseUpHandler = async () => {
     try {
-      if (typeof activeImage === "undefined") {
-        return;
-      }
       const updateImageProps = {
         path: activeImage.input,
         quality: appContext.quality,
         effort: appContext.effort
       };
       console.log("updateImageProps: ", updateImageProps);
-      const res = await electroview2.rpc?.request.updateImage(updateImageProps);
+      const res = await electroview.rpc?.request.updateImage(updateImageProps);
       if (typeof res !== "undefined") {
         console.log(res);
         appContext.setImages((images) => images.map((image) => {
@@ -22120,134 +24084,152 @@ function ImagesCanvas() {
       console.log(error);
     }
   };
-  if (activeImage) {
-    return /* @__PURE__ */ jsx_dev_runtime5.jsxDEV("div", {
-      className: "imagescanvas",
-      children: [
-        /* @__PURE__ */ jsx_dev_runtime5.jsxDEV("div", {
-          className: "imagescanvas-col",
-          children: [
-            /* @__PURE__ */ jsx_dev_runtime5.jsxDEV("div", {
-              className: "imagescanvas-col-header",
-              children: "Input"
-            }, undefined, false, undefined, this),
-            /* @__PURE__ */ jsx_dev_runtime5.jsxDEV("div", {
-              className: "imagescanvas-col-bg",
-              children: /* @__PURE__ */ jsx_dev_runtime5.jsxDEV(Cropper, {
-                image: activeImage.input,
-                crop: appContext.crop,
-                zoom: appContext.zoom,
-                maxZoom: 10,
-                onCropChange: appContext.setCrop,
-                onZoomChange: appContext.setZoom
+  return /* @__PURE__ */ jsx_dev_runtime5.jsxDEV("div", {
+    className: "imagescanvas",
+    children: [
+      /* @__PURE__ */ jsx_dev_runtime5.jsxDEV("div", {
+        className: "imagescanvas-col",
+        children: [
+          /* @__PURE__ */ jsx_dev_runtime5.jsxDEV("div", {
+            className: "imagescanvas-col-header",
+            children: "Input"
+          }, undefined, false, undefined, this),
+          /* @__PURE__ */ jsx_dev_runtime5.jsxDEV("div", {
+            className: "imagescanvas-col-bg",
+            children: /* @__PURE__ */ jsx_dev_runtime5.jsxDEV(Cropper, {
+              image: activeImage.input,
+              crop: appContext.crop,
+              zoom: appContext.zoom,
+              maxZoom: 10,
+              onCropChange: appContext.setCrop,
+              onZoomChange: appContext.setZoom
+            }, activeImage.input, false, undefined, this)
+          }, undefined, false, undefined, this),
+          /* @__PURE__ */ jsx_dev_runtime5.jsxDEV("div", {
+            className: "imagescanvas-col-footer",
+            children: [
+              /* @__PURE__ */ jsx_dev_runtime5.jsxDEV("div", {
+                className: "imagescanvas-col-footer-bytes",
+                children: formatBytes(activeImage.inputSizeBytes)
+              }, undefined, false, undefined, this),
+              /* @__PURE__ */ jsx_dev_runtime5.jsxDEV("div", {
+                className: "imagescanvas-col-footer-size",
+                children: activeImage.inputResolution.width + "px x " + activeImage.inputResolution.height + "px"
               }, undefined, false, undefined, this)
-            }, undefined, false, undefined, this),
-            /* @__PURE__ */ jsx_dev_runtime5.jsxDEV("div", {
-              className: "imagescanvas-col-footer",
-              children: [
-                /* @__PURE__ */ jsx_dev_runtime5.jsxDEV("div", {
-                  className: "imagescanvas-col-footer-bytes",
-                  children: formatBytes(activeImage.inputSizeBytes)
-                }, undefined, false, undefined, this),
-                /* @__PURE__ */ jsx_dev_runtime5.jsxDEV("div", {
-                  className: "imagescanvas-col-footer-size",
-                  children: activeImage.inputResolution.width + "px x " + activeImage.inputResolution.height + "px"
-                }, undefined, false, undefined, this)
-              ]
-            }, undefined, true, undefined, this)
-          ]
-        }, undefined, true, undefined, this),
-        /* @__PURE__ */ jsx_dev_runtime5.jsxDEV("div", {
-          className: "imagescanvas-col",
-          children: [
-            /* @__PURE__ */ jsx_dev_runtime5.jsxDEV("div", {
-              className: "imagescanvas-col-header",
-              children: "Output"
-            }, undefined, false, undefined, this),
-            /* @__PURE__ */ jsx_dev_runtime5.jsxDEV("div", {
-              className: "imagescanvas-col-bg",
-              children: /* @__PURE__ */ jsx_dev_runtime5.jsxDEV(Cropper, {
-                image: activeImage.output,
-                crop: appContext.crop,
-                zoom: appContext.zoom,
-                maxZoom: 10,
-                onCropChange: appContext.setCrop,
-                onZoomChange: appContext.setZoom
-              }, activeImage.output, false, undefined, this)
-            }, undefined, false, undefined, this),
-            /* @__PURE__ */ jsx_dev_runtime5.jsxDEV("div", {
-              className: "imagescanvas-col-footer",
-              children: [
-                /* @__PURE__ */ jsx_dev_runtime5.jsxDEV("div", {
-                  className: "imagescanvas-col-footer-bytes",
-                  children: formatBytes(activeImage.outputSizeBytes)
-                }, undefined, false, undefined, this),
-                /* @__PURE__ */ jsx_dev_runtime5.jsxDEV("div", {
-                  className: "imagescanvas-col-footer-size",
-                  children: activeImage.outputResolution.width + "px x " + activeImage.outputResolution.height + "px"
-                }, undefined, false, undefined, this)
-              ]
-            }, undefined, true, undefined, this)
-          ]
-        }, undefined, true, undefined, this),
-        /* @__PURE__ */ jsx_dev_runtime5.jsxDEV("div", {
-          className: "imagescanvas-sliders",
-          children: [
-            /* @__PURE__ */ jsx_dev_runtime5.jsxDEV("label", {
-              className: "imagescanvas-sliders-slider",
-              children: [
-                /* @__PURE__ */ jsx_dev_runtime5.jsxDEV("span", {
-                  className: "imagescanvas-sliders-slider-label",
+            ]
+          }, undefined, true, undefined, this)
+        ]
+      }, undefined, true, undefined, this),
+      /* @__PURE__ */ jsx_dev_runtime5.jsxDEV("div", {
+        className: "imagescanvas-col",
+        children: [
+          /* @__PURE__ */ jsx_dev_runtime5.jsxDEV("div", {
+            className: "imagescanvas-col-header",
+            children: "Output"
+          }, undefined, false, undefined, this),
+          /* @__PURE__ */ jsx_dev_runtime5.jsxDEV("div", {
+            className: "imagescanvas-col-bg",
+            children: /* @__PURE__ */ jsx_dev_runtime5.jsxDEV(Cropper, {
+              image: activeImage.output,
+              crop: appContext.crop,
+              zoom: appContext.zoom,
+              maxZoom: 10,
+              onCropChange: appContext.setCrop,
+              onZoomChange: appContext.setZoom
+            }, activeImage.output, false, undefined, this)
+          }, undefined, false, undefined, this),
+          /* @__PURE__ */ jsx_dev_runtime5.jsxDEV("div", {
+            className: "imagescanvas-col-footer",
+            children: [
+              /* @__PURE__ */ jsx_dev_runtime5.jsxDEV("div", {
+                className: "imagescanvas-col-footer-bytes",
+                children: formatBytes(activeImage.outputSizeBytes)
+              }, undefined, false, undefined, this),
+              /* @__PURE__ */ jsx_dev_runtime5.jsxDEV("div", {
+                className: "imagescanvas-col-footer-size",
+                children: activeImage.outputResolution.width + "px x " + activeImage.outputResolution.height + "px"
+              }, undefined, false, undefined, this)
+            ]
+          }, undefined, true, undefined, this)
+        ]
+      }, undefined, true, undefined, this),
+      /* @__PURE__ */ jsx_dev_runtime5.jsxDEV("div", {
+        className: "imagescanvas-sliders",
+        children: [
+          /* @__PURE__ */ jsx_dev_runtime5.jsxDEV("label", {
+            className: "imagescanvas-sliders-slider",
+            children: [
+              /* @__PURE__ */ jsx_dev_runtime5.jsxDEV("div", {
+                className: "imagescanvas-sliders-slider-label",
+                children: /* @__PURE__ */ jsx_dev_runtime5.jsxDEV("span", {
+                  className: "imagescanvas-sliders-slider-label-span",
+                  "data-tooltip-id": "quality",
                   children: "Quality"
-                }, undefined, false, undefined, this),
-                /* @__PURE__ */ jsx_dev_runtime5.jsxDEV("input", {
-                  onChange: inputHandler,
-                  onMouseUp: mouseUpHandler,
-                  className: "imagescanvas-sliders-slider-input",
-                  type: "range",
-                  min: "1",
-                  max: "100",
-                  value: appContext.quality
-                }, undefined, false, undefined, this),
-                /* @__PURE__ */ jsx_dev_runtime5.jsxDEV("div", {
-                  className: "imagescanvas-sliders-slider-inputvalue",
-                  children: appContext.quality
                 }, undefined, false, undefined, this)
-              ]
-            }, undefined, true, undefined, this),
-            /* @__PURE__ */ jsx_dev_runtime5.jsxDEV("label", {
-              className: "imagescanvas-sliders-slider",
-              children: [
-                /* @__PURE__ */ jsx_dev_runtime5.jsxDEV("span", {
-                  className: "imagescanvas-sliders-slider-label",
+              }, undefined, false, undefined, this),
+              /* @__PURE__ */ jsx_dev_runtime5.jsxDEV("input", {
+                onChange: (e2) => inputHandler("quality", e2),
+                onMouseUp: mouseUpHandler,
+                className: "imagescanvas-sliders-slider-input",
+                type: "range",
+                min: "1",
+                max: "100",
+                value: appContext.quality
+              }, undefined, false, undefined, this),
+              /* @__PURE__ */ jsx_dev_runtime5.jsxDEV("div", {
+                className: "imagescanvas-sliders-slider-inputvalue",
+                children: appContext.quality
+              }, undefined, false, undefined, this)
+            ]
+          }, undefined, true, undefined, this),
+          /* @__PURE__ */ jsx_dev_runtime5.jsxDEV("label", {
+            className: "imagescanvas-sliders-slider",
+            children: [
+              /* @__PURE__ */ jsx_dev_runtime5.jsxDEV("div", {
+                className: "imagescanvas-sliders-slider-label",
+                children: /* @__PURE__ */ jsx_dev_runtime5.jsxDEV("span", {
+                  className: "imagescanvas-sliders-slider-label-span",
+                  "data-tooltip-id": "effort",
                   children: "Effort"
-                }, undefined, false, undefined, this),
-                /* @__PURE__ */ jsx_dev_runtime5.jsxDEV("input", {
-                  onChange: inputHandler,
-                  onMouseUp: mouseUpHandler,
-                  className: "imagescanvas-sliders-slider-input",
-                  type: "range",
-                  min: "0",
-                  max: "6",
-                  value: appContext.effort
-                }, undefined, false, undefined, this),
-                /* @__PURE__ */ jsx_dev_runtime5.jsxDEV("div", {
-                  className: "imagescanvas-sliders-slider-inputvalue",
-                  children: appContext.effort
                 }, undefined, false, undefined, this)
-              ]
-            }, undefined, true, undefined, this)
-          ]
-        }, undefined, true, undefined, this)
-      ]
-    }, undefined, true, undefined, this);
-  }
+              }, undefined, false, undefined, this),
+              /* @__PURE__ */ jsx_dev_runtime5.jsxDEV("input", {
+                onChange: (e2) => inputHandler("effort", e2),
+                onMouseUp: mouseUpHandler,
+                className: "imagescanvas-sliders-slider-input",
+                type: "range",
+                min: "0",
+                max: "6",
+                value: appContext.effort
+              }, undefined, false, undefined, this),
+              /* @__PURE__ */ jsx_dev_runtime5.jsxDEV("div", {
+                className: "imagescanvas-sliders-slider-inputvalue",
+                children: appContext.effort
+              }, undefined, false, undefined, this)
+            ]
+          }, undefined, true, undefined, this)
+        ]
+      }, undefined, true, undefined, this),
+      /* @__PURE__ */ jsx_dev_runtime5.jsxDEV(M, {
+        id: "quality",
+        place: "top",
+        content: "Compression quality from 1-100. Higher quality means less compression and larger files.",
+        className: "tooltip"
+      }, undefined, false, undefined, this),
+      /* @__PURE__ */ jsx_dev_runtime5.jsxDEV(M, {
+        id: "effort",
+        place: "top",
+        content: "Level of CPU effort to reduce file size from 0-6. Higher effort means processing will take longer but be better looking (usually).",
+        className: "tooltip"
+      }, undefined, false, undefined, this)
+    ]
+  }, undefined, true, undefined, this);
 }
 
 // src/mainview/modules/imagesEditor.tsx
 var jsx_dev_runtime6 = __toESM(require_jsx_dev_runtime(), 1);
 function ImagesEditor() {
-  const appContext = import_react8.useContext(sharedContext);
+  const appContext = import_react9.useContext(sharedContext);
   return /* @__PURE__ */ jsx_dev_runtime6.jsxDEV("div", {
     className: "imageseditor" + (appContext.imagesLoading || Object.keys(appContext.images).length > 0 ? " active" : ""),
     children: [
@@ -22258,17 +24240,17 @@ function ImagesEditor() {
 }
 
 // src/mainview/app.tsx
-var import_react9 = __toESM(require_react(), 1);
+var import_react10 = __toESM(require_react(), 1);
 var jsx_dev_runtime7 = __toESM(require_jsx_dev_runtime(), 1);
 function Moop() {
-  const [images, setImages] = import_react9.useState(appContextDefaults.images);
-  const [outputFolderSize, setOutputFolderSize] = import_react9.useState(appContextDefaults.outputFolderSize);
-  const [inputFolderSize, setInputFolderSize] = import_react9.useState(appContextDefaults.inputFolderSize);
-  const [imagesLoading, setImagesLoading] = import_react9.useState(appContextDefaults.imagesLoading);
-  const [crop, setCrop] = import_react9.useState(appContextDefaults.crop);
-  const [zoom, setZoom] = import_react9.useState(appContextDefaults.zoom);
-  const [quality, setQuality] = import_react9.useState(appContextDefaults.quality);
-  const [effort, setEffort] = import_react9.useState(appContextDefaults.effort);
+  const [images, setImages] = import_react10.useState(appContextDefaults.images);
+  const [outputFolderSize, setOutputFolderSize] = import_react10.useState(appContextDefaults.outputFolderSize);
+  const [inputFolderSize, setInputFolderSize] = import_react10.useState(appContextDefaults.inputFolderSize);
+  const [imagesLoading, setImagesLoading] = import_react10.useState(appContextDefaults.imagesLoading);
+  const [crop, setCrop] = import_react10.useState(appContextDefaults.crop);
+  const [zoom, setZoom] = import_react10.useState(appContextDefaults.zoom);
+  const [quality, setQuality] = import_react10.useState(appContextDefaults.quality);
+  const [effort, setEffort] = import_react10.useState(appContextDefaults.effort);
   return /* @__PURE__ */ jsx_dev_runtime7.jsxDEV(sharedContext.Provider, {
     value: {
       ...appContextDefaults,

@@ -1,33 +1,30 @@
 import { useContext } from "react";
 import { sharedContext } from "../../shared/shared-context";
 import ImagesListItem from "./imagesListItem";
-import { Electroview } from "electrobun/view";
-import type { AppRPCSchema } from "../../shared/shared-types";
+import { electroview } from "../../shared/shared-electroview";
 
 import { formatBytes } from "../../shared/shared-snippets";
 
-const rpc = Electroview.defineRPC<AppRPCSchema>({
-	handlers: {
-		requests: {},
-		messages: {},
-	},
-});
 
-const electroview = new Electroview({ rpc });
 
 export default function ImagesList() {
 	const appContext = useContext(sharedContext);
 
 	async function revealClickHandler(e: React.MouseEvent) {
 		e.preventDefault();
-		await electroview.rpc?.request.revealInFileManager();
+		const res = await electroview.rpc?.request.revealInFileManager();
+		console.log(res)
 	}
-
-	function clearAllClickHandler(e: React.MouseEvent) {
+	
+	async function clearAllClickHandler(e: React.MouseEvent) {
 		e.preventDefault();
-
+		
 		// show confirmation modal
-		console.log('Show confirmation modal!');
+		const res = await electroview.rpc?.request.clearAll();
+		console.log(res)
+		if (res?.severity === 'SUCCESS') {
+			appContext.setImages([]);
+		}
 	}
 
 	return (
@@ -48,7 +45,7 @@ export default function ImagesList() {
 				<div className={'imageslist-list-loading' + (appContext.imagesLoading ? ' active' : '')}></div>
 				{Object.keys(appContext.images).length > 0 ? <a onClick={clearAllClickHandler} href="#" className="imageslist-list-clearall">Clear all</a> : ''}
 			</div>
-			<a href="#" onClick={revealClickHandler} className="imageslist-revealbutton">Reveal in file manager</a>
+			<a href="#" onClick={revealClickHandler} className="imageslist-revealbutton">Reveal folder in file manager</a>
 		</div>
 	);
 }

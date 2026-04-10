@@ -3,12 +3,14 @@ import { join } from 'node:path';
 
 // set the directories
 const moopDirectoryKey = Date.now();
+const rootDirectory = Utils.paths.pictures;
 const imageDirectory = join(Utils.paths.pictures, `moop-${moopDirectoryKey}`);
 const inputDirectory = join(imageDirectory, 'input');
 const outputDirectory = join(imageDirectory, 'output');
 
 export function getImageDirectories(){
 	return {
+		rootDirectory,
 		imageDirectory,
 		inputDirectory,
 		outputDirectory

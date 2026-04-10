@@ -61,7 +61,7 @@ body.theme-dark {
   --font-body: 'Futura', Arial, Helvetica, sans-serif;
   --mainbg-gradient: linear-gradient(-45deg, #3D4C8C, #472D61);
   --imagelist-header-color: rgba(217, 217, 217, 0.8);
-  --imagelist-header-bg: rgba(88,88,88,0.25);
+  --imagelist-header-bg: rgba(88, 88, 88, 0.25);
   --imagelist-bg: rgba(32, 32, 32, 0.5);
   --imagelist-reveal-bg: rgba(52, 52, 52, 0.5);
   --imagelist-font-color: #D6D6E9;
@@ -69,12 +69,13 @@ body.theme-dark {
   --imagelist-reveal-button-font-color: #fff;
   --imagelist-reveal-button-stroke-color: #fff;
   --imagelist-item-close-bg: #c72782;
+  --imagelist-item-reveal-bg: rgb(97, 97, 97);
   --imagelist-item-border-color: rgba(255, 255, 255, 0.6);
   --imagelist-item-shadow-color: #000;
   --imagelist-item-close-font-color: #fff;
   --imagelist-item-close-stroke-color: rgba(255, 255, 255, 0.25);
   --imagelist-loading-fill: #514b82;
-  --imagecanvas-bg: rgba(0,0,0,0.25);
+  --imagecanvas-bg: rgba(0, 0, 0, 0.25);
   --imagecanvas-header-bg: rgba(52, 52, 52, 0.8);
   --imagecanvas-footer-bg: rgba(52, 52, 52, 0.8);
   --imagecanvas-header-font-color: #fff;
@@ -191,23 +192,29 @@ body.theme-dark {
       transform: scale(1);
     }
   }
-  .imageslist-list-item:hover .imageslist-list-item-close {
+  .imageslist-list-item:hover .imageslist-list-item-filename,
+  .imageslist-list-item:hover .imageslist-list-item-close,
+  .imageslist-list-item:hover .imageslist-list-item-reveal {
     pointer-events: all;
     opacity: 1;
     transform: scale(1);
+  }
+  .imageslist-list-item:hover .imageslist-list-item-filename {
+    pointer-events: none;
   }
   .imageslist-list-item.active .imageslist-list-item-image {
     border: 2px solid var(--imagelist-item-border-color);
     box-shadow: 0px 4px 15px var(--imagelist-item-border-color);
   }
-  .imageslist-list-item-close {
+  .imageslist-list-item-close,
+  .imageslist-list-item-reveal {
     position: absolute;
-    top: 0px;
-    left: 0px;
+    top: 4px;
+    left: 4px;
     text-decoration: none;
     color: var(--imagelist-item-close-font-color);
     background-color: var(--imagelist-item-close-bg);
-    padding: 0px 6px;
+    padding: 0px 7px 2px 7px;
     border-radius: 25px;
     font-family: var(--font-body);
     border: 1px solid var(--imagelist-item-close-stroke-color);
@@ -215,6 +222,34 @@ body.theme-dark {
     opacity: 0;
     transition: opacity 0.25s ease, transform 0.25s ease;
     transform: scale(0);
+  }
+  .imageslist-list-item-close {
+    padding: 0px 7px 2px 7px;
+  }
+  .imageslist-list-item-reveal {
+    top: 34px;
+    padding: 0px 10px 2px 10px;
+    background-color: var(--imagelist-item-reveal-bg);
+  }
+  .imageslist-list-item-reveal:before {
+    content: "";
+    position: absolute;
+    bottom: 31%;
+    transform: rotate(45deg);
+    left: 46%;
+    width: 7px;
+    height: 2px;
+    background-color: var(--imagelist-item-close-font-color);
+  }
+  .imageslist-list-item-reveal:after {
+    content: "";
+    position: absolute;
+    top: 21%;
+    left: 22%;
+    border-radius: 100%;
+    border: 2px solid var(--imagelist-item-close-font-color);
+    width: 5px;
+    height: 5px;
   }
   .imageslist-list-item-image {
     background-size: cover;
@@ -226,6 +261,20 @@ body.theme-dark {
     box-shadow: 0px 4px 15px var(--imagelist-item-shadow-color);
     transition: box-shadow 0.5s ease, border-color 0.5s ease;
     border: 2px solid transparent;
+  }
+  .imageslist-list-item-filename {
+    font-family: var(--font-body);
+    font-size: 12px;
+    padding: 5px 10px;
+    color: var(--imagelist-item-close-font-color);
+    position: absolute;
+    bottom: 5px;
+    left: 5px;
+    background-color: var(--imagelist-item-reveal-bg);
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.25s ease, transform 0.25s ease;
+    transform: scale(0);
   }
   .imageslist-list-item-actions {
     display: grid;
@@ -478,6 +527,14 @@ body.theme-dark {
     font-size: 10px;
     text-align: center;
     width: 20px;
+  }
+}
+@media only screen {
+  div.tooltip[role=tooltip] {
+    font-family: var(--font-body);
+    letter-spacing: 0.5px;
+    font-size: 10px;
+    z-index: 50;
   }
 }
 

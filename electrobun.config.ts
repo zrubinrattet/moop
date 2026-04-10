@@ -3,7 +3,7 @@ import type { ElectrobunConfig } from "electrobun";
 export default {
 	app: {
 		name: "moop",
-		identifier: "moop.electrobun.com",
+		identifier: "com.moop.moop",
 		version: "0.0.1",
 	},
 	build: {

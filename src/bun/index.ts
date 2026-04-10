@@ -1,5 +1,6 @@
 import { BrowserWindow, BrowserView, Utils, ApplicationMenu } from "electrobun/bun";
 import { mkdir, readdir, stat } from "node:fs/promises";
+import { mkdirSync } from "node:fs";
 import { join } from "node:path";
 
 import * as fastq from "fastq";
@@ -8,15 +9,16 @@ import { availableParallelism } from "node:os";
 import path from "node:path";
 import sharp from "sharp";
 
-import type { APIResponseType, BaseResponseType, AppRPCSchema, Image, UpdateImageResponseType, ProcessImageTask } from '../shared/shared-types';
-import { BaseResponse, APIResponse } from '../shared/shared-objects';
+import type { APIResponseType, BaseResponseType, AppRPCSchema, Image, ProcessImageResponseType, ProcessImageTask, SettingsResponseType, ApplicationSettingsType } from '../shared/shared-types';
+import { BaseResponse, APIResponse, ProcessImageResponse } from '../shared/shared-objects';
 import { getImageDirectories } from '../shared/shared-directories';
 import { convertImageURL } from '../shared/shared-funcs';
 import { statSync } from "node:fs";
 import { imageSizeFromFile } from "image-size/fromFile";
 import { appContextDefaults } from "../shared/shared-context";
+import { rm } from "node:fs/promises";
 
-const { imageDirectory, inputDirectory, outputDirectory } = getImageDirectories();
+const { rootDirectory, imageDirectory, inputDirectory, outputDirectory } = getImageDirectories();
 
 const corsHeaders = {
 	"Access-Control-Allow-Origin": "*",
@@ -31,6 +33,23 @@ const dirSize = async (directory: string) => {
 
 	return (await Promise.all(stats)).reduce((accumulator, { size }) => accumulator + size, 0);
 }
+
+
+// prime the settings.json file on disk
+// ensure the userData directory exists
+mkdirSync(Utils.paths.userData, { recursive: true });
+// establish settings file
+const settingsPath = join(Utils.paths.userData, 'settings.json');
+
+// if the settings file doesn't exist
+if (!await Bun.file(settingsPath).exists()) {
+	// Write a settings file based on the defaults we got in-app.
+	await Bun.write(settingsPath, JSON.stringify({ ...appContextDefaults.settings, ...{ outputFolder: rootDirectory } }));
+}
+
+const appSettings: ApplicationSettingsType = await Bun.file(settingsPath).json();
+
+
 
 Bun.serve({
 	port: 3000,
@@ -190,10 +209,10 @@ async function processImage(arg: ProcessImageTask): Promise<void> {
 		density: 72,
 		animated: true,
 	}).resize({
-		width: 2400,
+		width: appSettings.maxWidth ? appSettings.maxWidth : undefined,
 		withoutEnlargement: true
 	}).webp({
-		quality:  arg.quality || appContextDefaults.settings.quality,
+		quality: arg.quality || appContextDefaults.settings.quality,
 		effort: arg.effort || appContextDefaults.settings.effort,
 	}).toFile(outputPath);
 }
@@ -204,12 +223,45 @@ const rpc = BrowserView.defineRPC<AppRPCSchema>({
 	maxRequestTime: 30000,
 	handlers: {
 		requests: {
-			revealInFileManager: async () => {
+			getSettings: async () => {
+				const base: SettingsResponseType = {
+					...BaseResponse, ...appContextDefaults.settings,
+				}
+				const loadedSettings = await Bun.file(settingsPath).json();
+
+				return { ...base, ...loadedSettings };
+			},
+			resetSettings: async () => {
+				const ret: SettingsResponseType = {
+					...BaseResponse, ...appContextDefaults.settings,
+				}
+
+				await Bun.write(settingsPath, JSON.stringify({ ...appContextDefaults.settings, ...{ outputFolder: rootDirectory } }));
+
+				const newSettings = await Bun.file(settingsPath).json();
+
+				return { ...ret, ...newSettings };
+			},
+			setSettings: async (props) => {
+				const ret: SettingsResponseType = {
+					...BaseResponse, ...appContextDefaults.settings,
+				}
+
+				const loadedSettings = await Bun.file(settingsPath).json();
+				const newSettings = { ...loadedSettings, ...props };
+				await Bun.write(settingsPath, newSettings);
+
+				return { ...ret, ...newSettings };
+			},
+			revealInFileManager: async (props) => {
 				// init response
 				const ret: BaseResponseType = BaseResponse;
 
 				try {
-					Utils.showItemInFolder(imageDirectory);
+					Utils.showItemInFolder( typeof props?.path === 'undefined' ? imageDirectory : convertImageURL({
+						url: props.path,
+						type: 'localtoabsolute'
+					}));
 					ret.message = 'Opened images folder';
 				} catch (error) {
 					if (error instanceof Error) {
@@ -224,24 +276,27 @@ const rpc = BrowserView.defineRPC<AppRPCSchema>({
 				return ret;
 			},
 			updateImage: async (params) => {
-				const ret: UpdateImageResponseType = {
-					...BaseResponse, image: {
-						input: '',
-						output: '',
-						inputSizeBytes: 0,
-						outputSizeBytes: 0,
-						inputResolution: {
-							width: 0,
-							height: 0,
-						},
-						outputResolution: {
-							width: 0,
-							height: 0,
-						},
-						isActive: false,
-						effort: appContextDefaults.settings.effort,
-						quality: appContextDefaults.settings.quality,
-					}
+
+				const { quality, effort } = params;
+
+				if (quality === undefined || effort === undefined) {
+
+					const ret: ProcessImageResponseType = {
+						...ProcessImageResponse,
+						message: 'No update',
+						severity: 'WARNING'
+					};
+
+					return ret;
+				}
+
+				const ret: ProcessImageResponseType = {
+					...ProcessImageResponse,
+					image: {
+						...ProcessImageResponse.image,
+						effort,
+						quality,
+					},
 				};
 
 				const inputPath = convertImageURL({
@@ -249,7 +304,6 @@ const rpc = BrowserView.defineRPC<AppRPCSchema>({
 					type: 'localtoabsolute',
 				});
 
-				const { quality, effort } = params;
 
 				await queue.push({
 					path: inputPath,
@@ -287,6 +341,101 @@ const rpc = BrowserView.defineRPC<AppRPCSchema>({
 
 				return ret;
 			},
+			deleteImage: async (params) => {
+				const { response } = await Utils.showMessageBox({
+					type: "question",
+					title: "Confirm Delete",
+					message: "Are you sure you want to delete this file?",
+					detail: "This action cannot be undone.",
+					buttons: ["Delete", "Cancel"],
+					defaultId: 1,  // Focus "Cancel" by default
+					cancelId: 1    // Pressing Escape returns 1 (Cancel)
+				});
+
+				if (response === 0) {
+					// User clicked "Delete"
+					console.log("Deleting file...");
+					const ret: ProcessImageResponseType = ProcessImageResponse;
+					const inputPath = convertImageURL({
+						url: params.path,
+						type: 'localtoabsolute',
+					});
+					const outputPath = join(outputDirectory, `${path.parse(inputPath).name}.webp`);
+					const inputResolution = await imageSizeFromFile(inputPath);
+					const outputResolution = await imageSizeFromFile(outputPath);
+					const image = {
+						input: convertImageURL({ url: inputPath, type: 'absolutetolocal' }),
+						inputSizeBytes: statSync(inputPath).size,
+						inputResolution: {
+							width: inputResolution.width,
+							height: inputResolution.height,
+						},
+						output: `${convertImageURL({ url: outputPath, type: 'absolutetolocal' })}?v=${statSync(outputPath).mtimeMs}`,
+						outputSizeBytes: statSync(outputPath).size,
+						outputResolution: {
+							width: outputResolution.width,
+							height: outputResolution.height,
+						},
+						isActive: true,
+					}
+					ret.image = { ...ProcessImageResponse.image, ...image };
+
+					const inputTrashSuccessful = Utils.moveToTrash(inputPath)
+					const outputTrashSuccessful = Utils.moveToTrash(outputPath)
+
+					if (inputTrashSuccessful && outputTrashSuccessful) {
+						ret.message = 'Successfully deleted image';
+					}
+					else {
+						ret.message = 'Could not delete image';
+						ret.severity = 'ERROR';
+					}
+
+					return ret;
+				} else {
+					// User clicked "Cancel" or closed the dialog
+					console.log("Cancelled");
+					return { ...BaseResponse, message: 'Cancelled delete' };
+				}
+			},
+			clearAll: async () => {
+				const ret = BaseResponse;
+
+				const { response } = await Utils.showMessageBox({
+					type: "question",
+					title: "Confirm clear all",
+					message: "Are you sure you want to delete all images?",
+					detail: "This action cannot be undone.",
+					buttons: ["Clear all", "Cancel"],
+					defaultId: 1,  // Focus "Cancel" by default
+					cancelId: 1    // Pressing Escape returns 1 (Cancel)
+				});
+				if (response === 0) {
+					try {
+						// await rm(inputDirectory, { recursive: true, force: true });
+						// await rm(outputDirectory, { recursive: true, force: true });
+						Utils.moveToTrash(inputDirectory);
+						Utils.moveToTrash(outputDirectory);
+						await mkdir(inputDirectory, { recursive: true });
+						await mkdir(outputDirectory, { recursive: true });
+						const [inputFiles, outputFiles] = await Promise.all([
+							readdir(inputDirectory),
+							readdir(outputDirectory),
+						]);
+						if (inputFiles.length === 0 && outputFiles.length === 0) {
+							ret.message = 'All images deleted successfully';
+						}
+					} catch {
+						ret.message = 'There was an error';
+						ret.severity = 'ERROR';
+					}
+				}
+				else {
+					ret.message = 'Cancelled clear all';
+				}
+				console.log('returning: ', ret);
+				return ret;
+			}
 		},
 	},
 });

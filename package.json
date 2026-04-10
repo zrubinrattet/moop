@@ -32,6 +32,7 @@
 		"react-dom": "^19.2.4",
 		"react-dropzone": "^15.0.0",
 		"react-easy-crop": "^5.5.7",
+		"react-tooltip": "^5.30.0",
 		"sharp": "^0.34.5"
 	}
 }

@@ -9,8 +9,9 @@
 
 	.imagescanvas-col {
 		position: relative;
-		&:first-child{
-			&:after{
+
+		&:first-child {
+			&:after {
 				content: '';
 				position: absolute;
 				top: 0;
@@ -55,13 +56,13 @@
 		display: inline-block;
 		bottom: 0px;
 	}
-	
-	.imagescanvas-col-footer-bytes{
+
+	.imagescanvas-col-footer-bytes {
 		font-size: 16px;
 		margin-bottom: 6px;
 	}
-	
-	.imagescanvas-col-footer-size{
+
+	.imagescanvas-col-footer-size {
 		font-size: 12px;
 		opacity: 0.5;
 	}
