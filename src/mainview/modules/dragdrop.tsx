@@ -2,15 +2,15 @@ import { sharedContext, appContextDefaults } from "../../shared/shared-context";
 import { useContext } from "react";
 import { useDropzone } from "react-dropzone";
 import { Image } from "../../shared/shared-types";
-
+import toast from "react-hot-toast";
 export default function DragDrop() {
-	
+
 	const appContext = useContext(sharedContext);
 
 	const dropHandler = async (acceptedFiles: Array<File>) => {
 		// we're loading images now!
 		appContext.setImagesLoading(true);
-		
+
 		// keep track of date for performance measuring
 		const dateNow = Date.now();
 
@@ -26,10 +26,37 @@ export default function DragDrop() {
 				const resJson = await res.json();
 
 				if (Object.keys(resJson.data.images).length) {
-					appContext.setImages((currentImages) => ([
-						...currentImages,
-						...resJson.data.images,
-					]));
+					appContext.setImages((currentImages) => {
+
+						// prevent dupes from being added
+						const dupes: Image[] = [];
+
+						currentImages.forEach((currentImage) => {
+							resJson.data.images.forEach((resJsonImage: Image) => {
+								if (currentImage.input.split('/').pop() === resJsonImage.input.split('/').pop()) {
+									dupes.push(resJsonImage);
+									toast(`${resJsonImage.input.split('/').pop()} is already in the list.`, {
+										className: 'hottoast'
+									});
+								}
+							})
+						});
+
+						let newImages;
+						if (dupes.length) {
+							newImages = resJson.data.images.filter((image: Image) => {
+								const imageFileName = image.input.split('/').pop();
+								return imageFileName && !dupes.map(dupe => dupe.input).indexOf(imageFileName);
+							});
+						}
+						else {
+							newImages = [...resJson.data.images];
+						}
+						return [
+							...currentImages,
+							...newImages,
+						]
+					});
 					appContext.setInputFolderSize(resJson.data.inputFolderSize);
 					appContext.setOutputFolderSize(resJson.data.outputFolderSize);
 				}
@@ -47,7 +74,7 @@ export default function DragDrop() {
 				if (!firstPromiseResolved) {
 					firstPromiseResolved = true;
 					appContext.setImages((images) => {
-						const temp:Image = val.data.images[0];
+						const temp: Image = val.data.images[0];
 						temp.isActive = true;
 						images[images.indexOf(val.data.images[0])] = temp;
 						return images;
@@ -65,7 +92,19 @@ export default function DragDrop() {
 		appContext.setImagesLoading(false);
 	};
 
-	const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop: dropHandler, noClick: true })
+	const { getRootProps, getInputProps, isDragActive } = useDropzone({
+		onDrop: dropHandler,
+		noClick: true,
+		accept: {
+			'image/jpeg': ['.jpg', '.jpeg', '.jpe', '.jfif'],
+			'image/png': ['.png'],
+			'image/webp': ['.webp'],
+			'image/tiff': ['.tif', '.tiff'],
+			'image/gif': ['.gif'],
+			'image/svg+xml': ['.svg', '.svgz'],
+			'image/avif': ['.avif'],
+		}
+	})
 
 	return (
 		<div className={'dragdrop' + (isDragActive ? ' highlight' : '')} {...getRootProps()}>

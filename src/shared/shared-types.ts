@@ -1,11 +1,19 @@
 import type { RPCSchema } from "electrobun/bun";
+export type AvailableThemes = 'auto' | 'light' | 'dark';
 export type ApplicationSettingsType = {
-	theme: 'auto' | 'light' | 'dark',
+	theme: AvailableThemes,
 	quality: number,
 	effort: number,
+	// note set to 0 means no resizing
 	maxWidth: number,
+	// note set to 0 means no resizing
+	maxHeight: number,
+	// will eventually support custom root output folder
 	outputFolder: string,
-	language: 'English',
+	// will eventually support multiple langs
+	language: 'en-US',
+	// will eventually support multiple output formats
+	outputFormat: 'webp' | 'jpeg' | 'png';
 }
 export type Image = {
 	input: string,
@@ -33,6 +41,10 @@ export type ProcessImageTask = {
 export type AppRPCSchema = {
 	bun: RPCSchema<{
 		requests: {
+			openFileDialog : {
+				params: undefined,
+				response: OpenFileDialogResponseType
+			},
 			revealInFileManager: {
 				params: {path?: string} | undefined,
 				response: BaseResponseType
@@ -82,3 +94,7 @@ export type ProcessImageResponseType = BaseResponseType & {
 }
 
 export type SettingsResponseType = BaseResponseType & ApplicationSettingsType
+
+export type OpenFileDialogResponseType = BaseResponseType & {
+	path : string,
+}

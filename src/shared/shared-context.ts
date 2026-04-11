@@ -54,8 +54,11 @@ export const appContextDefaults: ApplicationState = {
 		theme: 'auto',
 		// if 0, no resizing.
 		maxWidth: 2400,
+		// if 0, no resizing.
+		maxHeight: 0,
 		outputFolder: '',
-		language: 'English'
+		language: 'en-US',
+		outputFormat: 'webp'
 	}
 };
 

@@ -1,8 +1,10 @@
 import MainBG from './modules/mainbg';
 import DragDrop from './modules/dragdrop';
 import ImagesEditor from './modules/imagesEditor';
+import SettingsPane from './modules/settings';
 import { sharedContext, appContextDefaults } from '../shared/shared-context';
 import { useState } from 'react';
+import { Toaster } from 'react-hot-toast';
 
 export default function Moop() {
 	const [images, setImages] = useState(appContextDefaults.images);
@@ -34,6 +36,8 @@ export default function Moop() {
 			effort: effort,
 			setEffort: setEffort,
 		}}>
+			<Toaster />
+			<SettingsPane />
 			<DragDrop />
 			<ImagesEditor />
 			<MainBG />

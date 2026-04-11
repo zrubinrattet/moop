@@ -9,14 +9,13 @@ import { availableParallelism } from "node:os";
 import path from "node:path";
 import sharp from "sharp";
 
-import type { APIResponseType, BaseResponseType, AppRPCSchema, Image, ProcessImageResponseType, ProcessImageTask, SettingsResponseType, ApplicationSettingsType } from '../shared/shared-types';
+import type { APIResponseType, BaseResponseType, AppRPCSchema, Image, ProcessImageResponseType, ProcessImageTask, SettingsResponseType, ApplicationSettingsType, OpenFileDialogResponseType } from '../shared/shared-types';
 import { BaseResponse, APIResponse, ProcessImageResponse } from '../shared/shared-objects';
 import { getImageDirectories } from '../shared/shared-directories';
 import { convertImageURL } from '../shared/shared-funcs';
 import { statSync } from "node:fs";
 import { imageSizeFromFile } from "image-size/fromFile";
 import { appContextDefaults } from "../shared/shared-context";
-import { rm } from "node:fs/promises";
 
 const { rootDirectory, imageDirectory, inputDirectory, outputDirectory } = getImageDirectories();
 
@@ -41,15 +40,33 @@ mkdirSync(Utils.paths.userData, { recursive: true });
 // establish settings file
 const settingsPath = join(Utils.paths.userData, 'settings.json');
 
-// if the settings file doesn't exist
-if (!await Bun.file(settingsPath).exists()) {
+async function settingsValidJSON(){
+	try {
+		await Bun.file(settingsPath).json();
+		return true;
+	} catch {
+		return false;
+	}
+}
+
+if (
+	// if the settings file doesn't exist
+	!await Bun.file(settingsPath).exists()
+	||
+	// file does exist but got corrupted
+	(
+		await Bun.file(settingsPath).exists()
+		&&
+		await !settingsValidJSON()
+	)
+) {
 	// Write a settings file based on the defaults we got in-app.
 	await Bun.write(settingsPath, JSON.stringify({ ...appContextDefaults.settings, ...{ outputFolder: rootDirectory } }));
 }
 
 const appSettings: ApplicationSettingsType = await Bun.file(settingsPath).json();
 
-
+console.log('app settings loaded: ', appSettings)
 
 Bun.serve({
 	port: 3000,
@@ -223,6 +240,16 @@ const rpc = BrowserView.defineRPC<AppRPCSchema>({
 	maxRequestTime: 30000,
 	handlers: {
 		requests: {
+			openFileDialog: async () => {
+				const res = await Utils.openFileDialog({
+					canChooseDirectory: true,
+					canChooseFiles: false,
+					allowsMultipleSelection: false,
+					startingFolder: Utils.paths.pictures,
+				});
+				const ret: OpenFileDialogResponseType = { ...BaseResponse, ...{ path: res[0] } };
+				return ret;
+			},
 			getSettings: async () => {
 				const base: SettingsResponseType = {
 					...BaseResponse, ...appContextDefaults.settings,
@@ -249,7 +276,8 @@ const rpc = BrowserView.defineRPC<AppRPCSchema>({
 
 				const loadedSettings = await Bun.file(settingsPath).json();
 				const newSettings = { ...loadedSettings, ...props };
-				await Bun.write(settingsPath, newSettings);
+				console.log('newsettings: ', newSettings)
+				await Bun.write(settingsPath, JSON.stringify(newSettings));
 
 				return { ...ret, ...newSettings };
 			},

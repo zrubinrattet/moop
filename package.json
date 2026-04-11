@@ -33,6 +33,7 @@
 		"react-dropzone": "^15.0.0",
 		"react-easy-crop": "^5.5.7",
 		"react-hot-toast": "^2.6.0",
+		"react-select": "^5.10.2",
 		"react-tooltip": "^5.30.0",
 		"sharp": "^0.34.5"
 	}
