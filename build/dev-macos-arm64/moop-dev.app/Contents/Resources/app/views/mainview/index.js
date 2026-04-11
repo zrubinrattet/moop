@@ -23537,12 +23537,19 @@ class Electroview {
   }
 }
 
+// src/shared/shared-eventbus.ts
+var eventBus = new EventTarget;
+
 // src/shared/shared-electroview.ts
 var rpc = Electroview.defineRPC({
   maxRequestTime: 30000,
   handlers: {
     requests: {},
-    messages: {}
+    messages: {
+      openSettings: () => {
+        eventBus.dispatchEvent(new CustomEvent("openSettings"));
+      }
+    }
   }
 });
 var electroview = new Electroview({ rpc });
@@ -24655,6 +24662,8 @@ function ImagesCanvas() {
   if (typeof activeImage === "undefined") {
     return;
   }
+  const effortTooltipContent = `Level of CPU effort to reduce file size from 0-6.
+	Higher effort means processing will take longer but will usually be better looking & lower in filesize (usually).`;
   const inputHandler = (field, e3) => {
     const value = Number(e3.target.value);
     if (field === "quality") {
@@ -24821,7 +24830,7 @@ function ImagesCanvas() {
       /* @__PURE__ */ jsx_dev_runtime5.jsxDEV(M, {
         id: "effort",
         place: "top",
-        content: "Level of CPU effort to reduce file size from 0-6. Higher effort means processing will take longer but be better looking (usually).",
+        content: effortTooltipContent,
         className: "tooltip"
       }, undefined, false, undefined, this)
     ]
@@ -30494,6 +30503,8 @@ function NumberField({
 // src/mainview/modules/settings.tsx
 var jsx_dev_runtime8 = __toESM(require_jsx_dev_runtime(), 1);
 function SettingsPane() {
+  const appContext = import_react21.useContext(sharedContext);
+  const { settings, setSettings } = appContext;
   const themeOptions = [
     { value: "auto", label: "Auto" },
     { value: "dark", label: "Dark" },
@@ -30509,8 +30520,8 @@ function SettingsPane() {
     { value: "default", label: "Pictures (default)" },
     { value: "custom", label: "Custom" }
   ];
-  const [settings, setSettings] = import_react21.useState(appContextDefaults.settings);
   const [outputFolder, setOutputFolder] = import_react21.useState("");
+  const [settingsPaneOpen, setSettingsPaneOpen] = import_react21.useState(false);
   import_react21.useEffect(() => {
     async function loadSettings() {
       const loadedSettings = await electroview.rpc?.request.getSettings();
@@ -30526,10 +30537,37 @@ function SettingsPane() {
           language: loadedSettings.language,
           outputFormat: loadedSettings.outputFormat
         });
+        setOutputFolder(loadedSettings.outputFolder ?? "");
+        appContext.setQuality(loadedSettings.quality);
+        appContext.setEffort(loadedSettings.effort);
       }
     }
     loadSettings();
+    const openSettingsHandler = () => {
+      setSettingsPaneOpen(true);
+      console.log("settings open");
+    };
+    eventBus.addEventListener("openSettings", openSettingsHandler);
+    return () => {
+      eventBus.removeEventListener("openSettings", openSettingsHandler);
+    };
   }, []);
+  import_react21.useEffect(() => {
+    if (!settingsPaneOpen) {
+      return;
+    }
+    const keyDownHandler = (e3) => {
+      if (e3.key === "Escape" || e3.key === "Esc") {
+        e3.preventDefault();
+        e3.stopPropagation();
+        setSettingsPaneOpen(false);
+      }
+    };
+    window.addEventListener("keydown", keyDownHandler, { capture: true });
+    return () => {
+      window.removeEventListener("keydown", keyDownHandler, { capture: true });
+    };
+  }, [settingsPaneOpen]);
   const submitHandler = async (e3) => {
     e3.preventDefault();
     const submitterName = e3.nativeEvent.submitter?.getAttribute("name");
@@ -30540,10 +30578,20 @@ function SettingsPane() {
       console.log(formProps);
       const res = await electroview.rpc?.request.setSettings({ ...appContextDefaults.settings, ...formProps });
       console.log(res);
+      const newSettings = { ...appContextDefaults.settings, ...formProps };
+      setSettings(newSettings);
+      zt(`Settings updated.`, {
+        className: "hottoast"
+      });
+      appContext.setQuality(newSettings.quality);
+      appContext.setEffort(newSettings.effort);
     } else if (submitterName === "restoredefaults") {
       const res = await electroview.rpc?.request.setSettings({ ...appContextDefaults.settings });
       console.log(res);
       setSettings(appContextDefaults.settings);
+      zt(`Default settings restored.`, {
+        className: "hottoast"
+      });
     }
   };
   const outputFolderSelectHandler = async (option) => {
@@ -30559,15 +30607,27 @@ function SettingsPane() {
   };
   const outputFolderButtonClickHandler = async () => {
     const res = await electroview.rpc?.request.openFileDialog() || { path: "" };
-    setOutputFolder(res.path);
+    if (res.path.length) {
+      setOutputFolder(res.path);
+    }
   };
+  const closeClickHandler = (e3) => {
+    e3.preventDefault();
+    setSettingsPaneOpen(false);
+  };
+  const effortTooltipContent = `Level of CPU effort to reduce file size from 0-6.
+	Higher effort means processing will take longer but will usually be better looking & lower in filesize (usually).`;
+  const formatTooltipContent = `The output file format. WebP is default and typically offers better compression than the other options.
+	It also has wide browser support and offers support for animated formats like gif.
+	Jpeg and png are available as well in case the need comes up.`;
   return /* @__PURE__ */ jsx_dev_runtime8.jsxDEV("div", {
-    className: "settingspane",
+    className: "settingspane" + (settingsPaneOpen ? " active" : ""),
     children: /* @__PURE__ */ jsx_dev_runtime8.jsxDEV("div", {
       className: "settingspane-inner",
       children: [
         /* @__PURE__ */ jsx_dev_runtime8.jsxDEV("a", {
           href: "#",
+          onClick: closeClickHandler,
           className: "settingspane-inner-close",
           children: "×"
         }, undefined, false, undefined, this),
@@ -30588,9 +30648,16 @@ function SettingsPane() {
                     className: "settingspane-inner-fields-form-fields-field",
                     children: [
                       /* @__PURE__ */ jsx_dev_runtime8.jsxDEV("label", {
+                        "data-tooltip-id": "theme",
                         htmlFor: "theme",
                         className: "settingspane-inner-fields-form-fields-field-label",
                         children: "Theme"
+                      }, undefined, false, undefined, this),
+                      /* @__PURE__ */ jsx_dev_runtime8.jsxDEV(M, {
+                        id: "theme",
+                        place: "top",
+                        content: "The display theme of the app. Auto defaults to your systems preference.",
+                        className: "tooltip"
                       }, undefined, false, undefined, this),
                       /* @__PURE__ */ jsx_dev_runtime8.jsxDEV(StateManagedSelect$1, {
                         inputId: "theme",
@@ -30614,9 +30681,16 @@ function SettingsPane() {
                     className: "settingspane-inner-fields-form-fields-field number",
                     children: [
                       /* @__PURE__ */ jsx_dev_runtime8.jsxDEV("label", {
+                        "data-tooltip-id": "quality",
                         htmlFor: "quality",
                         className: "settingspane-inner-fields-form-fields-field-label",
-                        children: "Default quality"
+                        children: "Default Quality"
+                      }, undefined, false, undefined, this),
+                      /* @__PURE__ */ jsx_dev_runtime8.jsxDEV(M, {
+                        id: "quality",
+                        place: "top",
+                        content: "Compression quality from 1-100. Higher quality means less compression and larger files.",
+                        className: "tooltip"
                       }, undefined, false, undefined, this),
                       /* @__PURE__ */ jsx_dev_runtime8.jsxDEV(NumberField, {
                         min: 1,
@@ -30631,9 +30705,16 @@ function SettingsPane() {
                     className: "settingspane-inner-fields-form-fields-field number",
                     children: [
                       /* @__PURE__ */ jsx_dev_runtime8.jsxDEV("label", {
+                        "data-tooltip-id": "effort",
                         htmlFor: "effort",
                         className: "settingspane-inner-fields-form-fields-field-label",
-                        children: "Default effort"
+                        children: "Default Effort"
+                      }, undefined, false, undefined, this),
+                      /* @__PURE__ */ jsx_dev_runtime8.jsxDEV(M, {
+                        id: "effort",
+                        place: "top",
+                        content: effortTooltipContent,
+                        className: "tooltip"
                       }, undefined, false, undefined, this),
                       /* @__PURE__ */ jsx_dev_runtime8.jsxDEV(NumberField, {
                         min: 0,
@@ -30649,8 +30730,15 @@ function SettingsPane() {
                     children: [
                       /* @__PURE__ */ jsx_dev_runtime8.jsxDEV("label", {
                         htmlFor: "maxWidth",
+                        "data-tooltip-id": "maxwidth",
                         className: "settingspane-inner-fields-form-fields-field-label",
                         children: "Max Width"
+                      }, undefined, false, undefined, this),
+                      /* @__PURE__ */ jsx_dev_runtime8.jsxDEV(M, {
+                        id: "maxwidth",
+                        place: "top",
+                        content: "The max width to resize to of the output image. Enter 0 for no resize clamping on this axis.",
+                        className: "tooltip"
                       }, undefined, false, undefined, this),
                       /* @__PURE__ */ jsx_dev_runtime8.jsxDEV(NumberField, {
                         min: 0,
@@ -30666,8 +30754,15 @@ function SettingsPane() {
                     children: [
                       /* @__PURE__ */ jsx_dev_runtime8.jsxDEV("label", {
                         htmlFor: "maxheight",
+                        "data-tooltip-id": "maxheight",
                         className: "settingspane-inner-fields-form-fields-field-label",
                         children: "Max Height"
+                      }, undefined, false, undefined, this),
+                      /* @__PURE__ */ jsx_dev_runtime8.jsxDEV(M, {
+                        id: "maxheight",
+                        place: "top",
+                        content: "The max height to resize to of the output image. Enter 0 for no resize clamping on this axis.",
+                        className: "tooltip"
                       }, undefined, false, undefined, this),
                       /* @__PURE__ */ jsx_dev_runtime8.jsxDEV(NumberField, {
                         min: 0,
@@ -30683,8 +30778,15 @@ function SettingsPane() {
                     children: [
                       /* @__PURE__ */ jsx_dev_runtime8.jsxDEV("label", {
                         htmlFor: "output",
+                        "data-tooltip-id": "outputfolder",
                         className: "settingspane-inner-fields-form-fields-field-label",
                         children: "Output Folder"
+                      }, undefined, false, undefined, this),
+                      /* @__PURE__ */ jsx_dev_runtime8.jsxDEV(M, {
+                        id: "outputfolder",
+                        place: "top",
+                        content: "By default your user's Pictures folder is used for the root of the output folders. You may also set a custom direectory.",
+                        className: "tooltip"
                       }, undefined, false, undefined, this),
                       /* @__PURE__ */ jsx_dev_runtime8.jsxDEV(StateManagedSelect$1, {
                         inputId: "output",
@@ -30722,8 +30824,15 @@ function SettingsPane() {
                     children: [
                       /* @__PURE__ */ jsx_dev_runtime8.jsxDEV("label", {
                         htmlFor: "language",
+                        "data-tooltip-id": "language",
                         className: "settingspane-inner-fields-form-fields-field-label",
                         children: "Language"
+                      }, undefined, false, undefined, this),
+                      /* @__PURE__ */ jsx_dev_runtime8.jsxDEV(M, {
+                        id: "language",
+                        place: "top",
+                        content: "The written language used throughout the app.",
+                        className: "tooltip"
                       }, undefined, false, undefined, this),
                       /* @__PURE__ */ jsx_dev_runtime8.jsxDEV(StateManagedSelect$1, {
                         inputId: "language",
@@ -30748,8 +30857,15 @@ function SettingsPane() {
                     children: [
                       /* @__PURE__ */ jsx_dev_runtime8.jsxDEV("label", {
                         htmlFor: "format",
+                        "data-tooltip-id": "format",
                         className: "settingspane-inner-fields-form-fields-field-label",
                         children: "Format"
+                      }, undefined, false, undefined, this),
+                      /* @__PURE__ */ jsx_dev_runtime8.jsxDEV(M, {
+                        id: "format",
+                        place: "top",
+                        content: formatTooltipContent,
+                        className: "tooltip"
                       }, undefined, false, undefined, this),
                       /* @__PURE__ */ jsx_dev_runtime8.jsxDEV(StateManagedSelect$1, {
                         inputId: "format",
@@ -30795,6 +30911,7 @@ function SettingsPane() {
 var import_react22 = __toESM(require_react(), 1);
 var jsx_dev_runtime9 = __toESM(require_jsx_dev_runtime(), 1);
 function Moop() {
+  const [settings, setSettings] = import_react22.useState(appContextDefaults.settings);
   const [images, setImages] = import_react22.useState(appContextDefaults.images);
   const [outputFolderSize, setOutputFolderSize] = import_react22.useState(appContextDefaults.outputFolderSize);
   const [inputFolderSize, setInputFolderSize] = import_react22.useState(appContextDefaults.inputFolderSize);
@@ -30806,6 +30923,8 @@ function Moop() {
   return /* @__PURE__ */ jsx_dev_runtime9.jsxDEV(sharedContext.Provider, {
     value: {
       ...appContextDefaults,
+      settings,
+      setSettings,
       images,
       setImages,
       outputFolderSize,

@@ -2,7 +2,7 @@ import { BrowserWindow, BrowserView, Utils, ApplicationMenu } from "electrobun/b
 import { mkdir, readdir, stat } from "node:fs/promises";
 import { mkdirSync } from "node:fs";
 import { join } from "node:path";
-
+import Electrobun from "electrobun/bun";
 import * as fastq from "fastq";
 import type { queueAsPromised } from "fastq";
 import { availableParallelism } from "node:os";
@@ -124,8 +124,8 @@ Bun.serve({
 								height: outputResolution.height,
 							},
 							isActive: false,
-							effort: appContextDefaults.settings.effort,
-							quality: appContextDefaults.settings.quality,
+							effort: appSettings.effort,
+							quality: appSettings.quality,
 						};
 
 						ret.images = [image];
@@ -226,11 +226,12 @@ async function processImage(arg: ProcessImageTask): Promise<void> {
 		density: 72,
 		animated: true,
 	}).resize({
-		width: appSettings.maxWidth ? appSettings.maxWidth : undefined,
+		width: appSettings.maxWidth ? Number(appSettings.maxWidth) : undefined,
+		height: appSettings.maxHeight ? Number(appSettings.maxHeight) : undefined,
 		withoutEnlargement: true
 	}).webp({
-		quality: arg.quality || appContextDefaults.settings.quality,
-		effort: arg.effort || appContextDefaults.settings.effort,
+		quality: Number(arg.quality) || Number(appSettings.quality),
+		effort: Number(arg.effort) || Number(appSettings.effort),
 	}).toFile(outputPath);
 }
 
@@ -358,8 +359,8 @@ const rpc = BrowserView.defineRPC<AppRPCSchema>({
 							height: outputResolution.height,
 						},
 						isActive: true,
-						effort: effort || appContextDefaults.settings.effort,
-						quality: quality || appContextDefaults.settings.quality,
+						effort: effort || appSettings.effort,
+						quality: quality || appSettings.quality,
 					};
 				}).catch((err) => {
 					console.error(err)
@@ -481,7 +482,7 @@ ApplicationMenu.setApplicationMenu([
 
 
 // Create the main application window
-const mainWindow: BrowserWindow = new BrowserWindow({
+const mainWindow = new BrowserWindow({
 	title: "moop",
 	url: "views://mainview/index.html",
 	frame: {
@@ -522,9 +523,10 @@ mainWindow.webview.openDevTools();
 // mainWindow.webview.on("did-commit-navigation", (event) => {
 // 	console.log("webview did-commit-navigation", event);
 // });
-// Electrobun.events.on("application-menu-clicked", (e) => {
-// 	console.log("application menu clicked", e.data.action);
-// });
+Electrobun.events.on("application-menu-clicked", (e) => {
+	console.log("application menu clicked", e.data.action);
+	mainWindow.webview.rpc?.send.openSettings()
+});
 // Quit the app when the main window is closed
 mainWindow.on("close", () => {
 	Utils.quit();

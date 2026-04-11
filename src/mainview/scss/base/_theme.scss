@@ -4,11 +4,12 @@ body {
 	}
 
 	&.theme-dark {
-
 		--font-header: 'Madimi One', sans-serif;
 		--font-body: 'Futura', Arial, Helvetica, sans-serif;
 
 		--mainbg-gradient: linear-gradient(-45deg, #3D4C8C, #472D61);
+
+		--tooltip-bg: rgb(0, 0, 0);
 
 		--imagelist-header-color: rgba(217, 217, 217, 0.8);
 		--imagelist-header-bg: rgba(88, 88, 88, 0.25);

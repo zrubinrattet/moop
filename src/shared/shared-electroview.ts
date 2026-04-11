@@ -1,11 +1,15 @@
 import { Electroview } from "electrobun/view";
 import type { AppRPCSchema } from "./shared-types";
-
+import { eventBus } from "./shared-eventbus";
 const rpc = Electroview.defineRPC<AppRPCSchema>({
 	maxRequestTime: 30000,
 	handlers: {
 		requests: {},
-		messages: {},
+		messages: {
+			openSettings: () => {
+				eventBus.dispatchEvent(new CustomEvent('openSettings'));
+			}
+		},
 	},
 });
 

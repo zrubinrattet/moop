@@ -15,6 +15,12 @@ export default function ImagesCanvas() {
 	if ('undefined' === typeof activeImage) {
 		return;
 	}
+
+	const effortTooltipContent = `Level of CPU effort to reduce file size from 0-6.
+	Higher effort means processing will take longer but will usually be better looking & lower in filesize (usually).`;
+
+
+
 	const inputHandler = (field: 'quality' | 'effort', e: React.ChangeEvent<HTMLInputElement>) => {
 		const value = Number(e.target.value);
 		if (field === 'quality') {
@@ -122,7 +128,7 @@ export default function ImagesCanvas() {
 			<Tooltip
 				id="effort"
 				place="top"
-				content="Level of CPU effort to reduce file size from 0-6. Higher effort means processing will take longer but be better looking (usually)."
+				content={effortTooltipContent}
 				className="tooltip"
 			/>
 		</div>

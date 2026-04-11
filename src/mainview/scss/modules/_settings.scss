@@ -8,6 +8,16 @@
 		height: 100%;
 		font-family: var(--font-body);
 		letter-spacing: 0.5px;
+		transition: opacity 0.25s ease, transform 0.25s ease;
+		opacity: 0;
+		transform: scale(0);
+		pointer-events: none;
+
+		&.active {
+			pointer-events: all;
+			opacity: 1;
+			transform: scale(1);
+		}
 	}
 
 	.settingspane-inner {
@@ -93,10 +103,7 @@
 		}
 	}
 
-	.settingspane-inner-fields-form-fields-field-button {
-		margin-top: 15px;
-	}
-
+	.settingspane-inner-fields-form-fields-field-button,
 	.settingspane-inner-fields-form-field-submit {
 		appearance: none;
 		border: 1px solid var(--settings-font-color);
@@ -115,6 +122,14 @@
 		&[name="restoredefaults"] {
 			background-color: var(--settings-restore-bg);
 		}
+	}
+
+	.settingspane-inner-fields-form-fields-field-button {
+		margin-top: 15px;
+		margin-right: 0;
+		position: absolute;
+		background-color: var(--settings-field-bg);
+		font-size: 12px;
 	}
 
 	.settingspane-inner-fields-form-fields-field-label {
@@ -136,10 +151,25 @@
 
 		div[class*="control"] {
 			border: 1px solid var(--settings-field-border-color);
+			border-color: var(--settings-field-border-color);
+			box-shadow: none;
+
+			&:hover {
+				border-color: var(--settings-field-border-color);
+			}
 		}
 
-		div[class*="option"]:hover {
-			background-color: var(--settings-field-bg-hover);
+		div[class*="option"] {
+			background-color: var(--settings-field-bg);
+
+			&:active,
+			&:hover {
+				background-color: var(--settings-field-bg-hover);
+			}
+		}
+
+		div[class*="indicatorContainer"] {
+			color: var(--settings-font-color);
 		}
 	}
 
@@ -170,6 +200,8 @@
 
 	.settingspane-inner-fields-form-fields-field-desc {
 		position: absolute;
-		margin-top: 10px;
+		margin-top: 24px;
+		font-size: 12px;
+		margin-left: 130px;
 	}
 }

@@ -41,12 +41,12 @@ export type ProcessImageTask = {
 export type AppRPCSchema = {
 	bun: RPCSchema<{
 		requests: {
-			openFileDialog : {
+			openFileDialog: {
 				params: undefined,
 				response: OpenFileDialogResponseType
 			},
 			revealInFileManager: {
-				params: {path?: string} | undefined,
+				params: { path?: string } | undefined,
 				response: BaseResponseType
 			},
 			clearAll: {
@@ -74,8 +74,12 @@ export type AppRPCSchema = {
 				response: SettingsResponseType,
 			},
 		}
-	}>;
-	webview: RPCSchema;
+	}>,
+	webview: RPCSchema<{
+		messages: {
+			openSettings: undefined,
+		}
+	}>
 };
 
 export type BaseResponseType = {
@@ -96,5 +100,5 @@ export type ProcessImageResponseType = BaseResponseType & {
 export type SettingsResponseType = BaseResponseType & ApplicationSettingsType
 
 export type OpenFileDialogResponseType = BaseResponseType & {
-	path : string,
+	path: string,
 }

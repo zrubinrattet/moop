@@ -60,6 +60,7 @@ body.theme-dark {
   --font-header: 'Madimi One', sans-serif;
   --font-body: 'Futura', Arial, Helvetica, sans-serif;
   --mainbg-gradient: linear-gradient(-45deg, #3D4C8C, #472D61);
+  --tooltip-bg: rgb(0, 0, 0);
   --imagelist-header-color: rgba(217, 217, 217, 0.8);
   --imagelist-header-bg: rgba(88, 88, 88, 0.25);
   --imagelist-bg: rgba(32, 32, 32, 0.5);
@@ -543,6 +544,9 @@ body.theme-dark {
     letter-spacing: 0.5px;
     font-size: 10px;
     z-index: 50;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.7);
+    background-color: var(--tooltip-bg);
+    white-space: pre-line;
   }
 }
 @media only screen {
@@ -562,6 +566,15 @@ body.theme-dark {
     height: 100%;
     font-family: var(--font-body);
     letter-spacing: 0.5px;
+    transition: opacity 0.25s ease, transform 0.25s ease;
+    opacity: 0;
+    transform: scale(0);
+    pointer-events: none;
+  }
+  .settingspane.active {
+    pointer-events: all;
+    opacity: 1;
+    transform: scale(1);
   }
   .settingspane-inner {
     position: relative;
@@ -635,9 +648,7 @@ body.theme-dark {
     border-color: var(--settings-font-color) transparent transparent transparent;
     transform: rotate(0deg);
   }
-  .settingspane-inner-fields-form-fields-field-button {
-    margin-top: 15px;
-  }
+  .settingspane-inner-fields-form-fields-field-button,
   .settingspane-inner-fields-form-field-submit {
     appearance: none;
     border: 1px solid var(--settings-font-color);
@@ -649,11 +660,20 @@ body.theme-dark {
     cursor: pointer;
     margin-right: 15px;
   }
+  .settingspane-inner-fields-form-fields-field-button[name=save],
   .settingspane-inner-fields-form-field-submit[name=save] {
     background-color: var(--settings-save-bg);
   }
+  .settingspane-inner-fields-form-fields-field-button[name=restoredefaults],
   .settingspane-inner-fields-form-field-submit[name=restoredefaults] {
     background-color: var(--settings-restore-bg);
+  }
+  .settingspane-inner-fields-form-fields-field-button {
+    margin-top: 15px;
+    margin-right: 0;
+    position: absolute;
+    background-color: var(--settings-field-bg);
+    font-size: 12px;
   }
   .settingspane-inner-fields-form-fields-field-label {
     display: block;
@@ -670,9 +690,20 @@ body.theme-dark {
   }
   .settingspane-inner-fields-form-fields-field-select div[class*=control] {
     border: 1px solid var(--settings-field-border-color);
+    border-color: var(--settings-field-border-color);
+    box-shadow: none;
   }
-  .settingspane-inner-fields-form-fields-field-select div[class*=option]:hover {
+  .settingspane-inner-fields-form-fields-field-select div[class*=control]:hover {
+    border-color: var(--settings-field-border-color);
+  }
+  .settingspane-inner-fields-form-fields-field-select div[class*=option] {
+    background-color: var(--settings-field-bg);
+  }
+  .settingspane-inner-fields-form-fields-field-select div[class*=option]:active, .settingspane-inner-fields-form-fields-field-select div[class*=option]:hover {
     background-color: var(--settings-field-bg-hover);
+  }
+  .settingspane-inner-fields-form-fields-field-select div[class*=indicatorContainer] {
+    color: var(--settings-font-color);
   }
   .settingspane-inner-fields-form-fields-field-number {
     appearance: none;
@@ -694,7 +725,9 @@ body.theme-dark {
   }
   .settingspane-inner-fields-form-fields-field-desc {
     position: absolute;
-    margin-top: 10px;
+    margin-top: 24px;
+    font-size: 12px;
+    margin-left: 130px;
   }
 }
 
