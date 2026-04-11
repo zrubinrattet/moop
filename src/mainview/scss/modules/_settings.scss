@@ -140,7 +140,7 @@
 	}
 
 	.settingspane-inner-fields-form-fields-field-select {
-
+		
 		div[class*="singleValue"],
 		div[class*="control"],
 		div[class*="menu"] {
@@ -170,6 +170,14 @@
 
 		div[class*="indicatorContainer"] {
 			color: var(--settings-font-color);
+		}
+
+		// hide weird cursor flicking.
+		.css-hlgwow input {
+			&,
+			&:after{
+				opacity: 0 !important;
+			}
 		}
 	}
 

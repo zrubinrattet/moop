@@ -40,7 +40,7 @@ mkdirSync(Utils.paths.userData, { recursive: true });
 // establish settings file
 const settingsPath = join(Utils.paths.userData, 'settings.json');
 
-async function settingsValidJSON(){
+async function settingsValidJSON() {
 	try {
 		await Bun.file(settingsPath).json();
 		return true;
@@ -226,8 +226,8 @@ async function processImage(arg: ProcessImageTask): Promise<void> {
 		density: 72,
 		animated: true,
 	}).resize({
-		width: appSettings.maxWidth ? Number(appSettings.maxWidth) : undefined,
-		height: appSettings.maxHeight ? Number(appSettings.maxHeight) : undefined,
+		width: Number(appSettings.maxWidth) ? Number(appSettings.maxWidth) : undefined,
+		height: Number(appSettings.maxHeight) ? Number(appSettings.maxHeight) : undefined,
 		withoutEnlargement: true
 	}).webp({
 		quality: Number(arg.quality) || Number(appSettings.quality),

@@ -705,6 +705,9 @@ body.theme-dark {
   .settingspane-inner-fields-form-fields-field-select div[class*=indicatorContainer] {
     color: var(--settings-font-color);
   }
+  .settingspane-inner-fields-form-fields-field-select .css-hlgwow input, .settingspane-inner-fields-form-fields-field-select .css-hlgwow input:after {
+    opacity: 0 !important;
+  }
   .settingspane-inner-fields-form-fields-field-number {
     appearance: none;
     padding: 10px 10px 8px 10px;

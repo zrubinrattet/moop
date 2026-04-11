@@ -3,7 +3,7 @@ import DragDrop from './modules/dragdrop';
 import ImagesEditor from './modules/imagesEditor';
 import SettingsPane from './modules/settings';
 import { sharedContext, appContextDefaults } from '../shared/shared-context';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Toaster } from 'react-hot-toast';
 
 export default function Moop() {
