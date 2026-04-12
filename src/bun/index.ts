@@ -83,8 +83,7 @@ Bun.serve({
 			POST: async (req) => {
 				const {  imageDirectory, inputDirectory, outputDirectory } = getImageDirectories();
 				const ret: APIResponseType = APIResponse;
-				const { imageDirectory, inputDirectory, outputDirectory } = await getImageDirectories();
-				console.log(imageDirectory, inputDirectory, outputDirectory)
+
 				const form = await req.formData();
 				const image = form.get('image');
 
@@ -96,15 +95,8 @@ Bun.serve({
 				}
 
 				try {
-					const dirSize = async (directory: string) => {
-						const files = await readdir(directory);
-						const stats = files.map(file => stat(path.join(directory, file)));
-
-						return (await Promise.all(stats)).reduce((accumulator, { size }) => accumulator + size, 0);
-					}
 
 					// make the dirs
-
 					await mkdir(imageDirectory, { recursive: true });
 					await mkdir(inputDirectory, { recursive: true });
 					await mkdir(outputDirectory, { recursive: true });
@@ -127,13 +119,13 @@ Bun.serve({
 						const outputResolution = await imageSizeFromFile(outputPath);
 
 						const image: Image = {
-							input: await convertImageURL({ url: inputPath, type: 'absolutetolocal' }),
+							input: convertImageURL({ url: inputPath, type: 'absolutetolocal' }),
 							inputSizeBytes: statSync(inputPath).size,
 							inputResolution: {
 								width: inputResolution.width,
 								height: inputResolution.height,
 							},
-							output: `${await convertImageURL({ url: outputPath, type: 'absolutetolocal' })}?v=${statSync(outputPath).mtimeMs}`,
+							output: `${convertImageURL({ url: outputPath, type: 'absolutetolocal' })}?v=${statSync(outputPath).mtimeMs}`,
 							outputSizeBytes: statSync(outputPath).size,
 							outputResolution: {
 								width: outputResolution.width,
@@ -226,9 +218,9 @@ Bun.serve({
 	},
 });
 
-// batch processing
-
 const concurrency = availableParallelism();
+
+
 
 const queue: queueAsPromised<ProcessImageTask> = fastq.promise(processImage, concurrency);
 
@@ -236,7 +228,6 @@ const queue: queueAsPromised<ProcessImageTask> = fastq.promise(processImage, con
 async function processImage(arg: ProcessImageTask): Promise<void> {
 	const { outputDirectory } = getImageDirectories();
 	// No need for a try-catch block, fastq handles errors automatically
-	const { outputDirectory } = await getImageDirectories();
 	const parsed = path.parse(arg.path);
 	const outputPath = join(outputDirectory, `${parsed.name}.webp`);
 
@@ -254,7 +245,7 @@ async function processImage(arg: ProcessImageTask): Promise<void> {
 	}).toFile(outputPath);
 }
 
-// rpc
+
 
 const rpc = BrowserView.defineRPC<AppRPCSchema>({
 	maxRequestTime: 30000,
@@ -314,9 +305,9 @@ const rpc = BrowserView.defineRPC<AppRPCSchema>({
 				const { imageDirectory } = getImageDirectories();
 				// init response
 				const ret: BaseResponseType = BaseResponse;
-				const { imageDirectory } = await getImageDirectories();
+
 				try {
-					Utils.showItemInFolder(typeof props?.path === 'undefined' ? imageDirectory : await convertImageURL({
+					Utils.showItemInFolder(typeof props?.path === 'undefined' ? imageDirectory : convertImageURL({
 						url: props.path,
 						type: 'localtoabsolute'
 					}));
@@ -357,7 +348,7 @@ const rpc = BrowserView.defineRPC<AppRPCSchema>({
 					},
 				};
 
-				const inputPath = await convertImageURL({
+				const inputPath = convertImageURL({
 					url: params.path,
 					type: 'localtoabsolute',
 				});
@@ -375,13 +366,13 @@ const rpc = BrowserView.defineRPC<AppRPCSchema>({
 					const outputResolution = await imageSizeFromFile(outputPath);
 
 					ret.image = {
-						input: await convertImageURL({ url: inputPath, type: 'absolutetolocal' }),
+						input: convertImageURL({ url: inputPath, type: 'absolutetolocal' }),
 						inputSizeBytes: statSync(inputPath).size,
 						inputResolution: {
 							width: inputResolution.width,
 							height: inputResolution.height,
 						},
-						output: `${await convertImageURL({ url: outputPath, type: 'absolutetolocal' })}?v=${statSync(outputPath).mtimeMs}`,
+						output: `${convertImageURL({ url: outputPath, type: 'absolutetolocal' })}?v=${statSync(outputPath).mtimeMs}`,
 						outputSizeBytes: statSync(outputPath).size,
 						outputResolution: {
 							width: outputResolution.width,
@@ -415,7 +406,7 @@ const rpc = BrowserView.defineRPC<AppRPCSchema>({
 					// User clicked "Delete"
 					console.log("Deleting file...");
 					const ret: ProcessImageResponseType = ProcessImageResponse;
-					const inputPath = await convertImageURL({
+					const inputPath = convertImageURL({
 						url: params.path,
 						type: 'localtoabsolute',
 					});
@@ -423,13 +414,13 @@ const rpc = BrowserView.defineRPC<AppRPCSchema>({
 					const inputResolution = await imageSizeFromFile(inputPath);
 					const outputResolution = await imageSizeFromFile(outputPath);
 					const image = {
-						input: await convertImageURL({ url: inputPath, type: 'absolutetolocal' }),
+						input: convertImageURL({ url: inputPath, type: 'absolutetolocal' }),
 						inputSizeBytes: statSync(inputPath).size,
 						inputResolution: {
 							width: inputResolution.width,
 							height: inputResolution.height,
 						},
-						output: `${await convertImageURL({ url: outputPath, type: 'absolutetolocal' })}?v=${statSync(outputPath).mtimeMs}`,
+						output: `${convertImageURL({ url: outputPath, type: 'absolutetolocal' })}?v=${statSync(outputPath).mtimeMs}`,
 						outputSizeBytes: statSync(outputPath).size,
 						outputResolution: {
 							width: outputResolution.width,
@@ -500,7 +491,17 @@ const rpc = BrowserView.defineRPC<AppRPCSchema>({
 	},
 });
 
-// main window stuff
+ApplicationMenu.setApplicationMenu([
+	{
+		submenu: [
+			{ label: "Settings", action: "settings", accelerator: ',' },
+			{ label: "Quit", role: "quit", accelerator: 'q' }
+		],
+	}
+]);
+
+
+
 
 // Create the main application window
 const mainWindow = new BrowserWindow({
@@ -532,11 +533,6 @@ mainWindow.on("resize", () => {
 
 // crack open dev tools
 mainWindow.webview.openDevTools();
-// Quit the app when the main window is closed
-mainWindow.on("close", () => {
-	Utils.quit();
-});
-
 
 // mainWindow.webview.on("will-navigate", (event) => {
 // 	console.log("webview will-navigate", event);
@@ -549,22 +545,13 @@ mainWindow.on("close", () => {
 // mainWindow.webview.on("did-commit-navigation", (event) => {
 // 	console.log("webview did-commit-navigation", event);
 // });
-
-// app menu stuff
-
-ApplicationMenu.setApplicationMenu([
-	{
-		submenu: [
-			{ label: "Settings", action: "settings", accelerator: ',' },
-			{ label: "Quit", role: "quit", accelerator: 'q' }
-		],
-	}
-]);
-
 Electrobun.events.on("application-menu-clicked", (e) => {
 	console.log("application menu clicked", e.data.action);
 	mainWindow.webview.rpc?.send.openSettings()
 });
-
+// Quit the app when the main window is closed
+mainWindow.on("close", () => {
+	Utils.quit();
+});
 
 console.log("Moop Electrobun app started!");
