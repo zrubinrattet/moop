@@ -9,6 +9,7 @@ export type ApplicationSettingsType = {
 	// note set to 0 means no resizing
 	maxHeight: number,
 	// will eventually support custom root output folder
+	// if blank, use Utils.paths.pictures
 	outputFolder: string,
 	// will eventually support multiple langs
 	language: 'en-US',

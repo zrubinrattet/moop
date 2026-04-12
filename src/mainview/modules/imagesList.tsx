@@ -26,7 +26,7 @@ export default function ImagesList() {
 			appContext.setImages([]);
 		}
 	}
-
+	console.log(appContext.images)
 	return (
 		<div className="imageslist">
 			<div className="imageslist-header">

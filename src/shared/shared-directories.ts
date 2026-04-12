@@ -1,14 +1,28 @@
 import { Utils } from "electrobun";
 import { join } from 'node:path';
+import { ApplicationSettingsType } from "./shared-types";
 
-// set the directories
-const moopDirectoryKey = Date.now();
-const rootDirectory = Utils.paths.pictures;
-const imageDirectory = join(Utils.paths.pictures, `moop-${moopDirectoryKey}`);
-const inputDirectory = join(imageDirectory, 'input');
-const outputDirectory = join(imageDirectory, 'output');
 
-export function getImageDirectories(){
+export async function getImageDirectories() {
+	const settingsPath = join(Utils.paths.userData, 'settings.json');
+
+	let rootDirectory = Utils.paths.pictures;
+
+	if (await Bun.file(settingsPath).exists()) {
+		try {
+			const settingsData: ApplicationSettingsType = await Bun.file(settingsPath).json();
+			rootDirectory = settingsData.outputFolder || Utils.paths.pictures;
+		}
+		catch{
+			rootDirectory = Utils.paths.pictures;
+		}
+	}
+
+	// set the directories
+	const moopDirectoryKey = Date.now();
+	const imageDirectory = join(rootDirectory, `moop-${moopDirectoryKey}`);
+	const inputDirectory = join(imageDirectory, 'input');
+	const outputDirectory = join(imageDirectory, 'output');
 	return {
 		rootDirectory,
 		imageDirectory,

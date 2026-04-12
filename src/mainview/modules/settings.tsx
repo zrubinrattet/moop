@@ -92,6 +92,7 @@ export default function SettingsPane() {
 		if (submitterName === 'save') {
 			const formData = new FormData(e.currentTarget);
 			const formProps = Object.fromEntries(formData)
+			delete formProps.output;
 			console.log(formProps)
 			const res = await electroview.rpc?.request.setSettings({ ...appContextDefaults.settings, ...formProps })
 			console.log(res)
@@ -259,7 +260,7 @@ export default function SettingsPane() {
 								/>
 								{outputFolder.length ? <><input className="settingspane-inner-fields-form-fields-field-button" onClick={outputFolderButtonClickHandler} type="button" value="Change location" />
 									<div className="settingspane-inner-fields-form-fields-field-desc">{outputFolder}</div></> : ''}
-								<input className="settingspane-inner-fields-form-fields-field-desc" name="customOutputFolder" type="hidden" readOnly value={outputFolder} />
+								<input className="settingspane-inner-fields-form-fields-field-desc" name="outputFolder" type="hidden" readOnly value={outputFolder} />
 							</div>
 							<div className="settingspane-inner-fields-form-fields-field">
 								<label htmlFor="language" data-tooltip-id="language" className="settingspane-inner-fields-form-fields-field-label">Language</label>

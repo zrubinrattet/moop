@@ -74,6 +74,7 @@ export default function DragDrop() {
 				if (!firstPromiseResolved) {
 					firstPromiseResolved = true;
 					appContext.setImages((images) => {
+						console.log(val)
 						const temp: Image = val.data.images[0];
 						temp.isActive = true;
 						images[images.indexOf(val.data.images[0])] = temp;

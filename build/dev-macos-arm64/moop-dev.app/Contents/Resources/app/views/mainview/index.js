@@ -21308,6 +21308,7 @@ function DragDrop() {
         if (!firstPromiseResolved) {
           firstPromiseResolved = true;
           appContext.setImages((images) => {
+            console.log(val);
             const temp = val.data.images[0];
             temp.isActive = true;
             images[images.indexOf(val.data.images[0])] = temp;
@@ -23673,6 +23674,7 @@ function ImagesList() {
       appContext.setImages([]);
     }
   }
+  console.log(appContext.images);
   return /* @__PURE__ */ jsx_dev_runtime4.jsxDEV("div", {
     className: "imageslist",
     children: [
@@ -30575,6 +30577,7 @@ function SettingsPane() {
     if (submitterName === "save") {
       const formData = new FormData(e3.currentTarget);
       const formProps = Object.fromEntries(formData);
+      delete formProps.output;
       console.log(formProps);
       const res = await electroview.rpc?.request.setSettings({ ...appContextDefaults.settings, ...formProps });
       console.log(res);
@@ -30812,7 +30815,7 @@ function SettingsPane() {
                       }, undefined, true, undefined, this) : "",
                       /* @__PURE__ */ jsx_dev_runtime8.jsxDEV("input", {
                         className: "settingspane-inner-fields-form-fields-field-desc",
-                        name: "customOutputFolder",
+                        name: "outputFolder",
                         type: "hidden",
                         readOnly: true,
                         value: outputFolder

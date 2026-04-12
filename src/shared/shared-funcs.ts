@@ -10,9 +10,10 @@ type convertImageURLProps = {
 	type: 'absolutetolocal' | 'localtoabsolute',
 }
 
-export function convertImageURL(props: convertImageURLProps) {
+export async function convertImageURL(props: convertImageURLProps) {
 	let ret = '';
-	const { imageDirectory } = getImageDirectories();
+
+	const { imageDirectory } = await getImageDirectories();
 	switch (props.type) {
 		case 'absolutetolocal': {
 			const base = props.url.split(/moop-\d+(.*)/);
@@ -27,6 +28,5 @@ export function convertImageURL(props: convertImageURLProps) {
 			break;
 		}
 	}
-
 	return ret;
 }
