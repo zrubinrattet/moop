@@ -30576,6 +30576,7 @@ function SettingsPane() {
       const formData = new FormData(e3.currentTarget);
       const formProps = Object.fromEntries(formData);
       console.log(formProps);
+      delete formProps.output;
       const res = await electroview.rpc?.request.setSettings({ ...appContextDefaults.settings, ...formProps });
       console.log(res);
       const newSettings = { ...appContextDefaults.settings, ...formProps };
@@ -30812,7 +30813,7 @@ function SettingsPane() {
                       }, undefined, true, undefined, this) : "",
                       /* @__PURE__ */ jsx_dev_runtime8.jsxDEV("input", {
                         className: "settingspane-inner-fields-form-fields-field-desc",
-                        name: "customOutputFolder",
+                        name: "outputFolder",
                         type: "hidden",
                         readOnly: true,
                         value: outputFolder
