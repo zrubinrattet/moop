@@ -9,61 +9,71 @@ import { availableParallelism } from "node:os";
 import path from "node:path";
 import sharp from "sharp";
 
-import type { APIResponseType, BaseResponseType, AppRPCSchema, Image, ProcessImageResponseType, ProcessImageTask, SettingsResponseType, ApplicationSettingsType, OpenFileDialogResponseType } from '../shared/shared-types';
+import type { APIResponseType, BaseResponseType, AppRPCSchema, Image, ProcessImageResponseType, ProcessImageTask, SettingsResponseType, OpenFileDialogResponseType } from '../shared/shared-types';
 import { BaseResponse, APIResponse, ProcessImageResponse } from '../shared/shared-objects';
 import { getImageDirectories } from '../shared/shared-directories';
 import { convertImageURL } from '../shared/shared-funcs';
 import { statSync } from "node:fs";
 import { imageSizeFromFile } from "image-size/fromFile";
 import { appContextDefaults } from "../shared/shared-context";
+import { getSettings, initSettings, setSettings } from "../shared/shared-settings";
+import { cp } from "node:fs/promises";
 
 
+const corsHeaders = {
+	"Access-Control-Allow-Origin": "*",
+	"Access-Control-Allow-Methods": "GET, POST, OPTIONS",
+	"Access-Control-Allow-Headers": "Content-Type",
+};
+
+
+const dirSize = async (directory: string) => {
+	const files = await readdir(directory);
+	const stats = files.map(file => stat(path.join(directory, file)));
+
+	return (await Promise.all(stats)).reduce((accumulator, { size }) => accumulator + size, 0);
+}
 
 
 // prime the settings.json file on disk
 // ensure the userData directory exists
 mkdirSync(Utils.paths.userData, { recursive: true });
 // establish settings file
-const settingsPath = join(Utils.paths.userData, 'settings.json');
+// const settingsPath = join(Utils.paths.userData, 'settings.json');
 
-async function settingsValidJSON() {
-	try {
-		await Bun.file(settingsPath).json();
-		return true;
-	} catch {
-		return false;
-	}
-}
+// async function settingsValidJSON() {
+// 	try {
+// 		await Bun.file(settingsPath).json();
+// 		return true;
+// 	} catch {
+// 		return false;
+// 	}
+// }
 
-if (
-	// if the settings file doesn't exist
-	!await Bun.file(settingsPath).exists()
-	||
-	// file does exist but got corrupted
-	(
-		await Bun.file(settingsPath).exists()
-		&&
-		await !settingsValidJSON()
-	)
-) {
-	// Write a settings file based on the defaults we got in-app.
-	await Bun.write(settingsPath, JSON.stringify({ ...appContextDefaults.settings, ...{ outputFolder: '' } }));
-}
+// if (
+// 	// if the settings file doesn't exist
+// 	!await Bun.file(settingsPath).exists()
+// 	||
+// 	// file does exist but got corrupted
+// 	(
+// 		await Bun.file(settingsPath).exists()
+// 		&&
+// 		await !settingsValidJSON()
+// 	)
+// ) {
+// 	// Write a settings file based on the defaults we got in-app.
+// 	await Bun.write(settingsPath, JSON.stringify({ ...appContextDefaults.settings, ...{ outputFolder: '' } }));
+// }
 
+// const appSettings: ApplicationSettingsType = await Bun.file(settingsPath).json();
 
-const appSettings: ApplicationSettingsType = await Bun.file(settingsPath).json();
+// console.log('app settings loaded: ', appSettings)
 
+await initSettings();
 
-console.log('app settings loaded: ', appSettings)
+const appSettings = getSettings();
 
-
-
-// server stuff
-const corsHeaders = {
-	"Access-Control-Allow-Origin": "*",
-	"Access-Control-Allow-Methods": "GET, POST, OPTIONS",
-	"Access-Control-Allow-Headers": "Content-Type",
-};
+// const { rootDirectory, imageDirectory, inputDirectory, outputDirectory } = getImageDirectories();
 
 Bun.serve({
 	port: 3000,
@@ -71,6 +81,7 @@ Bun.serve({
 		// rest api to upload images
 		'/images': {
 			POST: async (req) => {
+				const {  imageDirectory, inputDirectory, outputDirectory } = getImageDirectories();
 				const ret: APIResponseType = APIResponse;
 				const { imageDirectory, inputDirectory, outputDirectory } = await getImageDirectories();
 				console.log(imageDirectory, inputDirectory, outputDirectory)
@@ -160,8 +171,8 @@ Bun.serve({
 			},
 		},
 		// rest api that serves filesystem images via URL
-		'/images/*': async req => {
-			const { imageDirectory } = await getImageDirectories();
+		'/images/*': req => {
+			const { imageDirectory } = getImageDirectories();
 			const url = new URL(req.url);
 			const basename = decodeURIComponent(url.pathname.slice("/images/".length));
 			const imagePath = join(imageDirectory, basename);
@@ -223,6 +234,7 @@ const queue: queueAsPromised<ProcessImageTask> = fastq.promise(processImage, con
 
 
 async function processImage(arg: ProcessImageTask): Promise<void> {
+	const { outputDirectory } = getImageDirectories();
 	// No need for a try-catch block, fastq handles errors automatically
 	const { outputDirectory } = await getImageDirectories();
 	const parsed = path.parse(arg.path);
@@ -262,7 +274,7 @@ const rpc = BrowserView.defineRPC<AppRPCSchema>({
 				const base: SettingsResponseType = {
 					...BaseResponse, ...appContextDefaults.settings,
 				}
-				const loadedSettings = await Bun.file(settingsPath).json();
+				const loadedSettings = getSettings();
 
 				return { ...base, ...loadedSettings };
 			},
@@ -270,11 +282,11 @@ const rpc = BrowserView.defineRPC<AppRPCSchema>({
 				const ret: SettingsResponseType = {
 					...BaseResponse, ...appContextDefaults.settings,
 				}
-				const { rootDirectory } = await getImageDirectories();
-				await Bun.write(settingsPath, JSON.stringify({ ...appContextDefaults.settings, ...{ outputFolder: rootDirectory } }));
 
-				const newSettings = await Bun.file(settingsPath).json();
+				setSettings({ ...appContextDefaults.settings, ...{ outputFolder: '' } })
 
+				const newSettings = await getSettings();
+				
 				return { ...ret, ...newSettings };
 			},
 			setSettings: async (props) => {
@@ -282,14 +294,24 @@ const rpc = BrowserView.defineRPC<AppRPCSchema>({
 					...BaseResponse, ...appContextDefaults.settings,
 				}
 
-				const loadedSettings = await Bun.file(settingsPath).json();
+				const loadedSettings = getSettings();
 				const newSettings = { ...loadedSettings, ...props };
 				console.log('newsettings: ', newSettings)
-				await Bun.write(settingsPath, JSON.stringify(newSettings));
+
+				const oldImageDirectory = getImageDirectories().imageDirectory;
+				
+				await setSettings(newSettings);
+				
+				const newImageDirectory = getImageDirectories().imageDirectory;
+				console.log(oldImageDirectory, newImageDirectory)
+				if( oldImageDirectory !== newImageDirectory ){
+					await cp(oldImageDirectory, newImageDirectory, {recursive: true});
+				}
 
 				return { ...ret, ...newSettings };
 			},
 			revealInFileManager: async (props) => {
+				const { imageDirectory } = getImageDirectories();
 				// init response
 				const ret: BaseResponseType = BaseResponse;
 				const { imageDirectory } = await getImageDirectories();
@@ -312,7 +334,7 @@ const rpc = BrowserView.defineRPC<AppRPCSchema>({
 				return ret;
 			},
 			updateImage: async (params) => {
-				const { outputDirectory } = await getImageDirectories();
+				const { outputDirectory } = getImageDirectories();
 				const { quality, effort } = params;
 
 				if (quality === undefined || effort === undefined) {
@@ -378,7 +400,7 @@ const rpc = BrowserView.defineRPC<AppRPCSchema>({
 				return ret;
 			},
 			deleteImage: async (params) => {
-				const { outputDirectory } = await getImageDirectories();
+				const { outputDirectory } = getImageDirectories();
 				const { response } = await Utils.showMessageBox({
 					type: "question",
 					title: "Confirm Delete",
@@ -436,7 +458,7 @@ const rpc = BrowserView.defineRPC<AppRPCSchema>({
 				}
 			},
 			clearAll: async () => {
-				const { inputDirectory, outputDirectory } = await getImageDirectories();
+				const { inputDirectory, outputDirectory } = getImageDirectories();
 				const ret = BaseResponse;
 
 				const { response } = await Utils.showMessageBox({

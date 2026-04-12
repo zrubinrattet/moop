@@ -94,6 +94,7 @@ export default function SettingsPane() {
 			const formProps = Object.fromEntries(formData)
 			delete formProps.output;
 			console.log(formProps)
+			delete formProps.output;
 			const res = await electroview.rpc?.request.setSettings({ ...appContextDefaults.settings, ...formProps })
 			console.log(res)
 			const newSettings = { ...appContextDefaults.settings, ...formProps };
