@@ -23543,7 +23543,7 @@ var eventBus = new EventTarget;
 
 // src/shared/shared-electroview.ts
 var rpc = Electroview.defineRPC({
-  maxRequestTime: 30000,
+  maxRequestTime: 6000,
   handlers: {
     requests: {},
     messages: {
@@ -23588,7 +23588,9 @@ function ImagesListItem(props) {
           }
           return image.input !== res.image.input;
         }).map((image) => {
-          if (res.image.isActive && image.input === images[prevIndex].input) {
+          if (res.image.isActive && images[prevIndex] && image.input === images[prevIndex].input) {
+            image.isActive = true;
+          } else if (!images[prevIndex]) {
             image.isActive = true;
           }
           return image;
@@ -23674,32 +23676,34 @@ function ImagesList() {
       appContext.setImages([]);
     }
   }
-  console.log(appContext.images);
   return /* @__PURE__ */ jsx_dev_runtime4.jsxDEV("div", {
     className: "imageslist",
     children: [
       /* @__PURE__ */ jsx_dev_runtime4.jsxDEV("div", {
         className: "imageslist-header",
-        children: [
-          /* @__PURE__ */ jsx_dev_runtime4.jsxDEV("span", {
-            className: "imageslist-header-item",
-            children: [
-              Object.keys(appContext.images).length,
-              " images at ",
-              formatBytes(appContext.inputFolderSize),
-              " to ",
-              formatBytes(appContext.outputFolderSize)
-            ]
-          }, undefined, true, undefined, this),
-          /* @__PURE__ */ jsx_dev_runtime4.jsxDEV("span", {
-            className: "imageslist-header-subitem",
-            children: [
-              (100 * (1 - appContext.outputFolderSize / appContext.inputFolderSize)).toFixed(2),
-              "% reduction"
-            ]
-          }, undefined, true, undefined, this)
-        ]
-      }, undefined, true, undefined, this),
+        children: /* @__PURE__ */ jsx_dev_runtime4.jsxDEV("div", {
+          className: "imageslist-header-text",
+          children: [
+            /* @__PURE__ */ jsx_dev_runtime4.jsxDEV("span", {
+              className: "imageslist-header-text-item",
+              children: [
+                Object.keys(appContext.images).length,
+                " images at ",
+                formatBytes(appContext.inputFolderSize),
+                " to ",
+                formatBytes(appContext.outputFolderSize)
+              ]
+            }, undefined, true, undefined, this),
+            /* @__PURE__ */ jsx_dev_runtime4.jsxDEV("span", {
+              className: "imageslist-header-text-subitem",
+              children: [
+                !appContext.outputFolderSize || !appContext.inputFolderSize ? 0 : (100 * (1 - appContext.outputFolderSize / appContext.inputFolderSize)).toFixed(2),
+                "% reduction"
+              ]
+            }, undefined, true, undefined, this)
+          ]
+        }, undefined, true, undefined, this)
+      }, undefined, false, undefined, this),
       /* @__PURE__ */ jsx_dev_runtime4.jsxDEV("div", {
         className: "imageslist-list",
         children: [
@@ -24657,10 +24661,18 @@ var Cropper = function(_super) {
 var jsx_dev_runtime5 = __toESM(require_jsx_dev_runtime(), 1);
 function ImagesCanvas() {
   const appContext = import_react10.useContext(sharedContext);
+  const mouseUpDebounceRef = import_react10.useRef(null);
   const activeImage = appContext.images.find((image) => image.isActive);
   import_react10.useEffect(() => {
     console.log("activeimage:", activeImage);
   }, [activeImage]);
+  import_react10.useEffect(() => {
+    return () => {
+      if (mouseUpDebounceRef.current) {
+        clearTimeout(mouseUpDebounceRef.current);
+      }
+    };
+  }, []);
   if (typeof activeImage === "undefined") {
     return;
   }
@@ -24674,28 +24686,39 @@ function ImagesCanvas() {
       appContext.setEffort(value);
     }
   };
-  const mouseUpHandler = async () => {
+  const updateImage = async (targetInput, quality, effort) => {
     try {
       const updateImageProps = {
-        path: activeImage.input,
-        quality: appContext.quality,
-        effort: appContext.effort
+        path: targetInput,
+        quality,
+        effort
       };
       console.log("updateImageProps: ", updateImageProps);
       const res = await electroview.rpc?.request.updateImage(updateImageProps);
       if (typeof res !== "undefined") {
         console.log(res);
         appContext.setImages((images) => images.map((image) => {
-          if (image.input === activeImage.input) {
-            return { ...res.image, isActive: true };
+          if (image.input === targetInput) {
+            return { ...res.image, isActive: image.isActive };
           } else {
-            return { ...image, isActive: false };
+            return image;
           }
         }));
       }
     } catch (error) {
-      console.log(error);
+      console.log("updateImageprops error: ", error);
     }
+  };
+  const mouseUpHandler = () => {
+    const targetInput = activeImage.input;
+    const quality = appContext.quality;
+    const effort = appContext.effort;
+    if (mouseUpDebounceRef.current) {
+      clearTimeout(mouseUpDebounceRef.current);
+    }
+    mouseUpDebounceRef.current = setTimeout(() => {
+      updateImage(targetInput, quality, effort);
+    }, 1000);
   };
   return /* @__PURE__ */ jsx_dev_runtime5.jsxDEV("div", {
     className: "imagescanvas",
@@ -30587,8 +30610,6 @@ function SettingsPane() {
       zt(`Settings updated.`, {
         className: "hottoast"
       });
-      appContext.setQuality(newSettings.quality);
-      appContext.setEffort(newSettings.effort);
     } else if (submitterName === "restoredefaults") {
       const res = await electroview.rpc?.request.setSettings({ ...appContextDefaults.settings });
       console.log(res);
@@ -30757,7 +30778,7 @@ function SettingsPane() {
                     className: "settingspane-inner-fields-form-fields-field number",
                     children: [
                       /* @__PURE__ */ jsx_dev_runtime8.jsxDEV("label", {
-                        htmlFor: "maxheight",
+                        htmlFor: "maxHeight",
                         "data-tooltip-id": "maxheight",
                         className: "settingspane-inner-fields-form-fields-field-label",
                         children: "Max Height"
@@ -30771,7 +30792,7 @@ function SettingsPane() {
                       /* @__PURE__ */ jsx_dev_runtime8.jsxDEV(NumberField, {
                         min: 0,
                         max: 16383,
-                        name: "maxheight",
+                        name: "maxHeight",
                         value: settings.maxHeight,
                         onChange: (val) => setSettings((current) => ({ ...current, maxHeight: Number(val) }))
                       }, undefined, false, undefined, this)

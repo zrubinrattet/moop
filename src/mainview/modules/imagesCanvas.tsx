@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useRef } from "react";
 import { sharedContext, } from "../../shared/shared-context";
 import { formatBytes } from "../../shared/shared-snippets";
 import Cropper from 'react-easy-crop'
@@ -7,10 +7,19 @@ import { Tooltip } from "react-tooltip";
 
 export default function ImagesCanvas() {
 	const appContext = useContext(sharedContext);
+	const mouseUpDebounceRef = useRef<NodeJS.Timeout>(null);
+
 	const activeImage = appContext.images.find(image => image.isActive);
 	useEffect(() => {
 		console.log("activeimage:", activeImage);
 	}, [activeImage]);
+	useEffect(() => {
+		return () => {
+			if (mouseUpDebounceRef.current) {
+				clearTimeout(mouseUpDebounceRef.current);
+			}
+		};
+	}, []);
 	// bail if no activeImage
 	if ('undefined' === typeof activeImage) {
 		return;
@@ -31,12 +40,12 @@ export default function ImagesCanvas() {
 		}
 	}
 
-	const mouseUpHandler = async () => {
+	const updateImage = async (targetInput: string, quality: number, effort: number) => {
 		try {
 			const updateImageProps = {
-				path: activeImage.input,
-				quality: appContext.quality,
-				effort: appContext.effort,
+				path: targetInput,
+				quality,
+				effort,
 			};
 			console.log('updateImageProps: ', updateImageProps)
 			const res = await electroview.rpc?.request.updateImage(updateImageProps);
@@ -44,17 +53,30 @@ export default function ImagesCanvas() {
 				console.log(res)
 				appContext.setImages((images) =>
 					images.map((image) => {
-						if (image.input === activeImage.input) {
-							return { ...res.image, isActive: true };
+						if (image.input === targetInput) {
+							// Keep current selection state in case user selected another image while this request was in flight.
+							return { ...res.image, isActive: image.isActive };
 						} else {
-							return { ...image, isActive: false };
+							return image;
 						}
 					})
 				);
 			}
 		} catch (error) {
-			console.log(error)
+			console.log('updateImageprops error: ', error)
 		}
+	}
+	const mouseUpHandler = () => {
+		const targetInput = activeImage.input;
+		const quality = appContext.quality;
+		const effort = appContext.effort;
+		
+		if (mouseUpDebounceRef.current) {
+			clearTimeout(mouseUpDebounceRef.current);
+		}
+		mouseUpDebounceRef.current = setTimeout(() => {
+			updateImage(targetInput, quality, effort);
+		}, 1000);
 	}
 
 	return (

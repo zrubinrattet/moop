@@ -102,8 +102,6 @@ export default function SettingsPane() {
 			toast(`Settings updated.`, {
 				className: 'hottoast'
 			});
-			appContext.setQuality(newSettings.quality)
-			appContext.setEffort(newSettings.effort)
 		}
 		else if (submitterName === 'restoredefaults') {
 			const res = await electroview.rpc?.request.setSettings({ ...appContextDefaults.settings })
@@ -228,7 +226,7 @@ export default function SettingsPane() {
 								/>
 							</div>
 							<div className="settingspane-inner-fields-form-fields-field number">
-								<label htmlFor="maxheight" data-tooltip-id="maxheight" className="settingspane-inner-fields-form-fields-field-label">Max Height</label>
+								<label htmlFor="maxHeight" data-tooltip-id="maxheight" className="settingspane-inner-fields-form-fields-field-label">Max Height</label>
 								<Tooltip
 									id="maxheight"
 									place="top"
@@ -238,7 +236,7 @@ export default function SettingsPane() {
 								<NumberField
 									min={0}
 									max={16383}
-									name="maxheight"
+									name="maxHeight"
 									value={settings.maxHeight}
 									onChange={(val) => setSettings((current) => ({ ...current, maxHeight: Number(val) }))}
 								/>

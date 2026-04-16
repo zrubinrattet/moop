@@ -44,7 +44,10 @@ export default function ImagesListItem(props: ImagesListItemProps) {
 					}
 					return image.input !== res.image.input;
 				}).map((image) => {
-					if( res.image.isActive && image.input === images[prevIndex].input ){
+					if( res.image.isActive && images[prevIndex] && image.input === images[prevIndex].input ){
+						image.isActive = true;
+					}
+					else if( !images[prevIndex] ){
 						image.isActive = true;
 					}
 					return image;

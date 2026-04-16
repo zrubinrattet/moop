@@ -26,12 +26,14 @@ export default function ImagesList() {
 			appContext.setImages([]);
 		}
 	}
-	console.log(appContext.images)
+	// console.log(appContext.images)
 	return (
 		<div className="imageslist">
 			<div className="imageslist-header">
-				<span className="imageslist-header-item">{Object.keys(appContext.images).length} images at {formatBytes(appContext.inputFolderSize)} to {formatBytes(appContext.outputFolderSize)}</span>
-				<span className="imageslist-header-subitem">{(100 * (1 - appContext.outputFolderSize / appContext.inputFolderSize)).toFixed(2)}% reduction</span>
+				<div className="imageslist-header-text">
+					<span className="imageslist-header-text-item">{Object.keys(appContext.images).length} images at {formatBytes(appContext.inputFolderSize)} to {formatBytes(appContext.outputFolderSize)}</span>
+					<span className="imageslist-header-text-subitem">{ !appContext.outputFolderSize || !appContext.inputFolderSize ? 0 : (100 * (1 - appContext.outputFolderSize / appContext.inputFolderSize)).toFixed(2) }% reduction</span>
+				</div>
 			</div>
 			<div className="imageslist-list">
 				{appContext.images.map((image, index) => (

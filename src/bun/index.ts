@@ -1,5 +1,5 @@
 import { BrowserWindow, BrowserView, Utils, ApplicationMenu } from "electrobun/bun";
-import { mkdir, readdir, stat } from "node:fs/promises";
+import { mkdir, readdir, stat, exists } from "node:fs/promises";
 import { mkdirSync } from "node:fs";
 import { join } from "node:path";
 import Electrobun from "electrobun/bun";
@@ -71,7 +71,7 @@ mkdirSync(Utils.paths.userData, { recursive: true });
 
 await initSettings();
 
-const appSettings = getSettings();
+
 
 // const { rootDirectory, imageDirectory, inputDirectory, outputDirectory } = getImageDirectories();
 
@@ -83,6 +83,7 @@ Bun.serve({
 			POST: async (req) => {
 				const {  imageDirectory, inputDirectory, outputDirectory } = getImageDirectories();
 				const ret: APIResponseType = APIResponse;
+				const appSettings = getSettings();
 
 				const form = await req.formData();
 				const image = form.get('image');
@@ -227,6 +228,7 @@ const queue: queueAsPromised<ProcessImageTask> = fastq.promise(processImage, con
 
 async function processImage(arg: ProcessImageTask): Promise<void> {
 	const { outputDirectory } = getImageDirectories();
+	const appSettings = getSettings();
 	// No need for a try-catch block, fastq handles errors automatically
 	const parsed = path.parse(arg.path);
 	const outputPath = join(outputDirectory, `${parsed.name}.webp`);
@@ -284,10 +286,10 @@ const rpc = BrowserView.defineRPC<AppRPCSchema>({
 				const ret: SettingsResponseType = {
 					...BaseResponse, ...appContextDefaults.settings,
 				}
-
 				const loadedSettings = getSettings();
 				const newSettings = { ...loadedSettings, ...props };
 				console.log('newsettings: ', newSettings)
+				console.log(ret)
 
 				const oldImageDirectory = getImageDirectories().imageDirectory;
 				
@@ -295,7 +297,7 @@ const rpc = BrowserView.defineRPC<AppRPCSchema>({
 				
 				const newImageDirectory = getImageDirectories().imageDirectory;
 				console.log(oldImageDirectory, newImageDirectory)
-				if( oldImageDirectory !== newImageDirectory ){
+				if( await exists(oldImageDirectory) &&  oldImageDirectory !== newImageDirectory ){
 					await cp(oldImageDirectory, newImageDirectory, {recursive: true});
 				}
 
@@ -327,6 +329,7 @@ const rpc = BrowserView.defineRPC<AppRPCSchema>({
 			updateImage: async (params) => {
 				const { outputDirectory } = getImageDirectories();
 				const { quality, effort } = params;
+				const appSettings = getSettings();
 
 				if (quality === undefined || effort === undefined) {
 
@@ -378,7 +381,7 @@ const rpc = BrowserView.defineRPC<AppRPCSchema>({
 							width: outputResolution.width,
 							height: outputResolution.height,
 						},
-						isActive: true,
+						isActive: false,
 						effort: effort || appSettings.effort,
 						quality: quality || appSettings.quality,
 					};
@@ -387,7 +390,7 @@ const rpc = BrowserView.defineRPC<AppRPCSchema>({
 					ret.message = 'Error processing image';
 					ret.severity = 'ERROR';
 				})
-
+				console.log('Ret', ret)
 				return ret;
 			},
 			deleteImage: async (params) => {
