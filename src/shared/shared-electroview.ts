@@ -2,7 +2,7 @@ import { Electroview } from "electrobun/view";
 import type { AppRPCSchema } from "./shared-types";
 import { eventBus } from "./shared-eventbus";
 const rpc = Electroview.defineRPC<AppRPCSchema>({
-	maxRequestTime: 6000,
+	maxRequestTime: 600000,
 	handlers: {
 		requests: {},
 		messages: {

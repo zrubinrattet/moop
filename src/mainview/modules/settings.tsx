@@ -10,7 +10,7 @@ import { eventBus } from "../../shared/shared-eventbus";
 
 export default function SettingsPane() {
 	const appContext = useContext(sharedContext);
-	const { settings, setSettings } = appContext;
+	const { settings, setSettings, setQuality, setEffort } = appContext;
 
 	const themeOptions: Array<{ value: AvailableThemes; label: string }> = [
 		{ value: 'auto', label: 'Auto' },
@@ -33,22 +33,34 @@ export default function SettingsPane() {
 
 	useEffect(() => {
 		async function loadSettings() {
-			const loadedSettings = await electroview.rpc?.request.getSettings();
-			console.log('laoded settings: ', loadedSettings)
-			if (loadedSettings) {
-				setSettings({
-					effort: loadedSettings.effort,
-					quality: loadedSettings.quality,
-					theme: loadedSettings.theme,
-					maxWidth: loadedSettings.maxWidth,
-					maxHeight: loadedSettings.maxHeight,
-					outputFolder: loadedSettings.outputFolder,
-					language: loadedSettings.language,
-					outputFormat: loadedSettings.outputFormat,
-				});
-				setOutputFolder(loadedSettings.outputFolder ?? '');
-				appContext.setQuality(loadedSettings.quality)
-				appContext.setEffort(loadedSettings.effort)
+			try {
+				const loadedSettings = await electroview.rpc?.request.getSettings();
+				console.log('laoded settings: ', loadedSettings)
+				if (loadedSettings) {
+					setSettings({
+						effort: loadedSettings.effort,
+						quality: loadedSettings.quality,
+						theme: loadedSettings.theme,
+						maxWidth: loadedSettings.maxWidth,
+						maxHeight: loadedSettings.maxHeight,
+						outputFolder: loadedSettings.outputFolder,
+						language: loadedSettings.language,
+						outputFormat: loadedSettings.outputFormat,
+					});
+					setOutputFolder(loadedSettings.outputFolder ?? '');
+					setQuality(loadedSettings.quality)
+					setEffort(loadedSettings.effort)
+				}
+			} catch (error) {
+				let message = '';
+				if (typeof error === 'object' && null !== error && 'message' in error) {
+					message = String(error.message) || '';
+				}
+				if (message) {
+					toast(message, {
+						className: 'hottoast',
+					});
+				}
 			}
 		}
 
@@ -64,7 +76,7 @@ export default function SettingsPane() {
 		return () => {
 			eventBus.removeEventListener('openSettings', openSettingsHandler)
 		};
-	}, []);
+	}, [setQuality, setEffort, setSettings]);
 
 	useEffect(() => {
 		if (!settingsPaneOpen) {
@@ -95,21 +107,46 @@ export default function SettingsPane() {
 			delete formProps.output;
 			console.log(formProps)
 			delete formProps.output;
-			const res = await electroview.rpc?.request.setSettings({ ...appContextDefaults.settings, ...formProps })
-			console.log(res)
-			const newSettings = { ...appContextDefaults.settings, ...formProps };
-			setSettings(newSettings);
-			toast(`Settings updated.`, {
-				className: 'hottoast'
-			});
+			try {
+				const res = await electroview.rpc?.request.setSettings({ ...appContextDefaults.settings, ...formProps })
+				console.log(res)
+				const newSettings = { ...appContextDefaults.settings, ...formProps };
+				setSettings(newSettings);
+				toast(`Settings updated.`, {
+					className: 'hottoast'
+				});
+			} catch (error) {
+				let message = '';
+				if (typeof error === 'object' && null !== error && 'message' in error) {
+					message = String(error.message) || '';
+				}
+				if (message) {
+					toast(message, {
+						className: 'hottoast',
+					});
+				}
+			}
 		}
 		else if (submitterName === 'restoredefaults') {
-			const res = await electroview.rpc?.request.setSettings({ ...appContextDefaults.settings })
-			console.log(res)
-			setSettings(appContextDefaults.settings)
-			toast(`Default settings restored.`, {
-				className: 'hottoast'
-			});
+			try {
+				const res = await electroview.rpc?.request.setSettings({ ...appContextDefaults.settings })
+				console.log(res)
+				setSettings(appContextDefaults.settings)
+				toast(`Default settings restored.`, {
+					className: 'hottoast'
+				});
+			} catch (error) {
+				let message = '';
+				if (typeof error === 'object' && null !== error && 'message' in error) {
+					message = String(error.message) || '';
+				}
+				if (message) {
+					toast(message, {
+						className: 'hottoast',
+					});
+				}
+			}
+
 		}
 	}
 	const outputFolderSelectHandler = async (option: { value: 'default' | 'custom'; label: string } | null) => {
@@ -117,17 +154,41 @@ export default function SettingsPane() {
 			return;
 		}
 		if (option.value === 'custom') {
-			const res = await electroview.rpc?.request.openFileDialog() || { path: '' };
-			setOutputFolder(res.path);
+			try {
+				const res = await electroview.rpc?.request.openFileDialog() || { path: '' };
+				setOutputFolder(res.path);
+			} catch (error) {
+				let message = '';
+				if (typeof error === 'object' && null !== error && 'message' in error) {
+					message = String(error.message) || '';
+				}
+				if (message) {
+					toast(message, {
+						className: 'hottoast',
+					});
+				}
+			}
 		}
 		else {
 			setOutputFolder('');
 		}
 	}
 	const outputFolderButtonClickHandler = async () => {
-		const res = await electroview.rpc?.request.openFileDialog() || { path: '' };
-		if (res.path.length) {
-			setOutputFolder(res.path);
+		try {
+			const res = await electroview.rpc?.request.openFileDialog() || { path: '' };
+			if (res.path.length) {
+				setOutputFolder(res.path);
+			}
+		} catch (error) {
+			let message = '';
+			if (typeof error === 'object' && null !== error && 'message' in error) {
+				message = String(error.message) || '';
+			}
+			if (message) {
+				toast(message, {
+					className: 'hottoast',
+				});
+			}
 		}
 	}
 

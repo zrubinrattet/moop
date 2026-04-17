@@ -1,6 +1,6 @@
 import { sharedContext, appContextDefaults } from "../../shared/shared-context";
 import { useContext } from "react";
-import { useDropzone } from "react-dropzone";
+import { useDropzone, FileRejection } from "react-dropzone";
 import { Image } from "../../shared/shared-types";
 import toast from "react-hot-toast";
 export default function DragDrop() {
@@ -93,8 +93,17 @@ export default function DragDrop() {
 		appContext.setImagesLoading(false);
 	};
 
+	const dropRejectHandler = (rejections: FileRejection[]) => {
+		rejections?.forEach((rejection) => {
+			rejection.errors.forEach((error) => {
+				toast(error.message, { className: 'hottoast' });
+			});
+		});
+	}
+
 	const { getRootProps, getInputProps, isDragActive } = useDropzone({
 		onDrop: dropHandler,
+		onDropRejected: dropRejectHandler,
 		noClick: true,
 		accept: {
 			'image/jpeg': ['.jpg', '.jpeg', '.jpe', '.jfif'],

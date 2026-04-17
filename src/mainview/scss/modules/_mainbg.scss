@@ -13,6 +13,7 @@
 		left: 0;
 		z-index: 1;
 		width: 100%;
+		box-sizing: border-box;
 
 		&.hide {
 			.mainbg-svgcontainer {

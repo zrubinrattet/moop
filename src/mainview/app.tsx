@@ -12,6 +12,7 @@ export default function Moop() {
 	const [outputFolderSize, setOutputFolderSize] = useState(appContextDefaults.outputFolderSize);
 	const [inputFolderSize, setInputFolderSize] = useState(appContextDefaults.inputFolderSize);
 	const [imagesLoading, setImagesLoading] = useState(appContextDefaults.imagesLoading);
+	const [imagesProcessing, setImagesProcessing] = useState(appContextDefaults.imagesProcessing);
 	const [crop, setCrop] = useState(appContextDefaults.crop);
 	const [zoom, setZoom] = useState(appContextDefaults.zoom);
 	const [quality, setQuality] = useState(appContextDefaults.quality);
@@ -30,6 +31,8 @@ export default function Moop() {
 			setInputFolderSize: setInputFolderSize,
 			imagesLoading: imagesLoading,
 			setImagesLoading: setImagesLoading,
+			imagesProcessing: imagesProcessing,
+			setImagesProcessing : setImagesProcessing,
 			crop: crop,
 			setCrop: setCrop,
 			zoom: zoom,

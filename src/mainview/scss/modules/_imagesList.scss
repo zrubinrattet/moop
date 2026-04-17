@@ -1,3 +1,5 @@
+@use '../base/mixins';
+
 @media only screen {
 	.imageslist {
 		display: grid;
@@ -57,6 +59,7 @@
 		}
 
 		&:hover {
+
 			.imageslist-list-item-filename,
 			.imageslist-list-item-close,
 			.imageslist-list-item-reveal {
@@ -64,7 +67,8 @@
 				opacity: 1;
 				transform: scale(1);
 			}
-			.imageslist-list-item-filename{
+
+			.imageslist-list-item-filename {
 				pointer-events: none;
 			}
 		}
@@ -94,6 +98,7 @@
 		transition: opacity 0.25s ease, transform 0.25s ease;
 		transform: scale(0);
 	}
+
 	.imageslist-list-item-reveal {
 		top: 34px;
 		padding: 0px 10px 2px 10px;
@@ -123,6 +128,36 @@
 
 	}
 
+	.imageslist-list-item-loading {
+		@include mixins.loading;
+		position: absolute;
+		top: calc(50% - 33px);
+		right: 50%;
+		margin-bottom: 0;
+		border-color: var(--imagelist-item-loading-color1);
+		
+		@keyframes rotateBorderColor {
+			0% {
+				border-color: var(--imagelist-item-loading-color1);
+			}
+
+			50% {
+				border-color: var(--imagelist-item-loading-color2);
+			}
+
+			100% {
+				border-color: var(--imagelist-item-loading-color1);
+			}
+		}
+
+		&.active {
+			animation:
+				l20-1 0.8s infinite linear alternate,
+				l20-2 1.6s infinite linear,
+				rotateBorderColor 1s infinite linear;
+		}
+	}
+
 	.imageslist-list-item-image {
 		background-size: cover;
 		background-repeat: no-repeat;
@@ -136,9 +171,10 @@
 		text-decoration: none;
 	}
 
-	.imageslist-list-item-filename{
+	.imageslist-list-item-filename {
 		font-family: var(--font-body);
 		font-size: 12px;
+		letter-spacing: 0.5px;
 		padding: 5px 10px;
 		color: var(--imagelist-item-close-font-color);
 		position: absolute;

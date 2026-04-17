@@ -81,7 +81,7 @@ Bun.serve({
 		// rest api to upload images
 		'/images': {
 			POST: async (req) => {
-				const {  imageDirectory, inputDirectory, outputDirectory } = getImageDirectories();
+				const { imageDirectory, inputDirectory, outputDirectory } = getImageDirectories();
 				const ret: APIResponseType = APIResponse;
 				const appSettings = getSettings();
 
@@ -90,6 +90,21 @@ Bun.serve({
 
 				if (!(image instanceof File)) {
 					return new Response('Missing file', {
+						status: 400,
+						headers: corsHeaders,
+					});
+				}
+
+				const allowedTypes = ['image/jpeg',
+					'image/png',
+					'image/webp',
+					'image/tiff',
+					'image/gif',
+					'image/svg+xml',
+					'image/avif'];
+
+				if (!allowedTypes.find(entry => entry === image.type)) {
+					return new Response('Incorrect file type', {
 						status: 400,
 						headers: corsHeaders,
 					});
@@ -279,7 +294,7 @@ const rpc = BrowserView.defineRPC<AppRPCSchema>({
 				setSettings({ ...appContextDefaults.settings, ...{ outputFolder: '' } })
 
 				const newSettings = await getSettings();
-				
+
 				return { ...ret, ...newSettings };
 			},
 			setSettings: async (props) => {
@@ -292,13 +307,13 @@ const rpc = BrowserView.defineRPC<AppRPCSchema>({
 				console.log(ret)
 
 				const oldImageDirectory = getImageDirectories().imageDirectory;
-				
+
 				await setSettings(newSettings);
-				
+
 				const newImageDirectory = getImageDirectories().imageDirectory;
 				console.log(oldImageDirectory, newImageDirectory)
-				if( await exists(oldImageDirectory) &&  oldImageDirectory !== newImageDirectory ){
-					await cp(oldImageDirectory, newImageDirectory, {recursive: true});
+				if (await exists(oldImageDirectory) && oldImageDirectory !== newImageDirectory) {
+					await cp(oldImageDirectory, newImageDirectory, { recursive: true });
 				}
 
 				return { ...ret, ...newSettings };

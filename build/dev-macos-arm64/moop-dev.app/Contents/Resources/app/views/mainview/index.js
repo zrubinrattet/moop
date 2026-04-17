@@ -18228,6 +18228,8 @@ var appContextDefaults = {
   images: [],
   imagesLoading: false,
   setImagesLoading: () => {},
+  imagesProcessing: [],
+  setImagesProcessing: () => {},
   zoom: 1,
   setZoom: () => {},
   quality: 80,
@@ -21323,8 +21325,16 @@ function DragDrop() {
     console.log(`Upload complete in ${(Date.now() - dateNow) / 1000}s`, responses);
     appContext.setImagesLoading(false);
   };
+  const dropRejectHandler = (rejections) => {
+    rejections?.forEach((rejection) => {
+      rejection.errors.forEach((error) => {
+        zt(error.message, { className: "hottoast" });
+      });
+    });
+  };
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop: dropHandler,
+    onDropRejected: dropRejectHandler,
     noClick: true,
     accept: {
       "image/jpeg": [".jpg", ".jpeg", ".jpe", ".jfif"],
@@ -23543,7 +23553,7 @@ var eventBus = new EventTarget;
 
 // src/shared/shared-electroview.ts
 var rpc = Electroview.defineRPC({
-  maxRequestTime: 6000,
+  maxRequestTime: 600000,
   handlers: {
     requests: {},
     messages: {
@@ -23577,31 +23587,55 @@ function ImagesListItem(props) {
   }
   async function itemDeleteClickHandler(e3) {
     e3.preventDefault();
-    console.log("Open the modal!");
-    const res = await electroview.rpc?.request.deleteImage({ path: props.input });
-    if (res && "image" in res && "input" in res.image) {
-      appContext.setImages((images) => {
-        let prevIndex = 0;
-        return images.filter((image, index) => {
-          if (image.input === res.image.input) {
-            prevIndex = index - 1 || 0;
-          }
-          return image.input !== res.image.input;
-        }).map((image) => {
-          if (res.image.isActive && images[prevIndex] && image.input === images[prevIndex].input) {
-            image.isActive = true;
-          } else if (!images[prevIndex]) {
-            image.isActive = true;
-          }
-          return image;
+    try {
+      console.log("Open the modal!");
+      const res = await electroview.rpc?.request.deleteImage({ path: props.input });
+      if (res && "image" in res && "input" in res.image) {
+        appContext.setImages((images) => {
+          let prevIndex = 0;
+          return images.filter((image, index) => {
+            if (image.input === res.image.input) {
+              prevIndex = index - 1 || 0;
+            }
+            return image.input !== res.image.input;
+          }).map((image) => {
+            if (res.image.isActive && images[prevIndex] && image.input === images[prevIndex].input) {
+              image.isActive = true;
+            } else if (!images[prevIndex]) {
+              image.isActive = true;
+            }
+            return image;
+          });
         });
-      });
+      }
+    } catch (error) {
+      let message = "";
+      if (typeof error === "object" && error !== null && "message" in error) {
+        message = String(error.message) || "";
+      }
+      if (message) {
+        zt(message, {
+          className: "hottoast"
+        });
+      }
     }
   }
   async function revealItemClickHandler(e3) {
     e3.preventDefault();
-    console.log("Open in finder!");
-    await electroview.rpc?.request.revealInFileManager({ path: props.input });
+    try {
+      console.log("Open in finder!");
+      await electroview.rpc?.request.revealInFileManager({ path: props.input });
+    } catch (error) {
+      let message = "";
+      if (typeof error === "object" && error !== null && "message" in error) {
+        message = String(error.message) || "";
+      }
+      if (message) {
+        zt(message, {
+          className: "hottoast"
+        });
+      }
+    }
   }
   return /* @__PURE__ */ jsx_dev_runtime3.jsxDEV("div", {
     className: "imageslist-list-item" + (activeImage?.input === props.input ? " active" : ""),
@@ -23621,6 +23655,9 @@ function ImagesListItem(props) {
         "data-tooltip-id": "reveal-image",
         "data-tooltip-delay-show": 500,
         children: " "
+      }, undefined, false, undefined, this),
+      /* @__PURE__ */ jsx_dev_runtime3.jsxDEV("div", {
+        className: "imageslist-list-item-loading " + (appContext.imagesProcessing.filter((input) => input === props.input).length ? "active" : "")
       }, undefined, false, undefined, this),
       /* @__PURE__ */ jsx_dev_runtime3.jsxDEV("span", {
         className: "imageslist-list-item-filename",
@@ -23665,15 +23702,39 @@ function ImagesList() {
   const appContext = import_react9.useContext(sharedContext);
   async function revealClickHandler(e3) {
     e3.preventDefault();
-    const res = await electroview.rpc?.request.revealInFileManager();
-    console.log(res);
+    try {
+      const res = await electroview.rpc?.request.revealInFileManager();
+      console.log(res);
+    } catch (error) {
+      let message = "";
+      if (typeof error === "object" && error !== null && "message" in error) {
+        message = String(error.message) || "";
+      }
+      if (message) {
+        zt(message, {
+          className: "hottoast"
+        });
+      }
+    }
   }
   async function clearAllClickHandler(e3) {
     e3.preventDefault();
-    const res = await electroview.rpc?.request.clearAll();
-    console.log(res);
-    if (res?.severity === "SUCCESS") {
-      appContext.setImages([]);
+    try {
+      const res = await electroview.rpc?.request.clearAll();
+      console.log(res);
+      if (res?.severity === "SUCCESS") {
+        appContext.setImages([]);
+      }
+    } catch (error) {
+      let message = "";
+      if (typeof error === "object" && error !== null && "message" in error) {
+        message = String(error.message) || "";
+      }
+      if (message) {
+        zt(message, {
+          className: "hottoast"
+        });
+      }
     }
   }
   return /* @__PURE__ */ jsx_dev_runtime4.jsxDEV("div", {
@@ -24662,6 +24723,7 @@ var jsx_dev_runtime5 = __toESM(require_jsx_dev_runtime(), 1);
 function ImagesCanvas() {
   const appContext = import_react10.useContext(sharedContext);
   const mouseUpDebounceRef = import_react10.useRef(null);
+  const mouseDownQualityEffort = import_react10.useRef({ quality: 0, effort: 0 });
   const activeImage = appContext.images.find((image) => image.isActive);
   import_react10.useEffect(() => {
     console.log("activeimage:", activeImage);
@@ -24677,7 +24739,7 @@ function ImagesCanvas() {
     return;
   }
   const effortTooltipContent = `Level of CPU effort to reduce file size from 0-6.
-	Higher effort means processing will take longer but will usually be better looking & lower in filesize (usually).`;
+	Higher effort means image processing will take longer but will usually be better looking & lower in filesize.`;
   const inputHandler = (field, e3) => {
     const value = Number(e3.target.value);
     if (field === "quality") {
@@ -24694,6 +24756,9 @@ function ImagesCanvas() {
         effort
       };
       console.log("updateImageProps: ", updateImageProps);
+      appContext.setImagesProcessing((oldImages) => {
+        return [...new Set([...oldImages, targetInput])];
+      });
       const res = await electroview.rpc?.request.updateImage(updateImageProps);
       if (typeof res !== "undefined") {
         console.log(res);
@@ -24706,19 +24771,38 @@ function ImagesCanvas() {
         }));
       }
     } catch (error) {
-      console.log("updateImageprops error: ", error);
+      console.log("updateImageprops error: ", typeof error);
+      let message = "";
+      if (typeof error === "object" && error !== null && "message" in error) {
+        message = String(error.message) || "";
+      }
+      if (message) {
+        zt(message, {
+          className: "hottoast"
+        });
+      }
+    } finally {
+      appContext.setImagesProcessing((oldImages) => {
+        return oldImages.filter((oldImage) => oldImage !== targetInput);
+      });
     }
+  };
+  const mouseDownHandler = () => {
+    mouseDownQualityEffort.current = { quality: appContext.quality, effort: appContext.effort };
   };
   const mouseUpHandler = () => {
     const targetInput = activeImage.input;
     const quality = appContext.quality;
     const effort = appContext.effort;
+    if (quality === mouseDownQualityEffort.current.quality && effort === mouseDownQualityEffort.current.effort) {
+      return;
+    }
     if (mouseUpDebounceRef.current) {
       clearTimeout(mouseUpDebounceRef.current);
     }
     mouseUpDebounceRef.current = setTimeout(() => {
       updateImage(targetInput, quality, effort);
-    }, 1000);
+    }, 500);
   };
   return /* @__PURE__ */ jsx_dev_runtime5.jsxDEV("div", {
     className: "imagescanvas",
@@ -24792,6 +24876,12 @@ function ImagesCanvas() {
       /* @__PURE__ */ jsx_dev_runtime5.jsxDEV("div", {
         className: "imagescanvas-sliders",
         children: [
+          /* @__PURE__ */ jsx_dev_runtime5.jsxDEV("div", {
+            className: "imagescanvas-sliders-loading " + (appContext.imagesProcessing.filter((input) => activeImage.input === input).length ? "active" : ""),
+            children: /* @__PURE__ */ jsx_dev_runtime5.jsxDEV("div", {
+              className: "imagescanvas-sliders-loading-icon " + (appContext.imagesProcessing.filter((input) => activeImage.input === input).length ? "active" : "")
+            }, undefined, false, undefined, this)
+          }, undefined, false, undefined, this),
           /* @__PURE__ */ jsx_dev_runtime5.jsxDEV("label", {
             className: "imagescanvas-sliders-slider",
             children: [
@@ -24805,6 +24895,7 @@ function ImagesCanvas() {
               }, undefined, false, undefined, this),
               /* @__PURE__ */ jsx_dev_runtime5.jsxDEV("input", {
                 onChange: (e3) => inputHandler("quality", e3),
+                onMouseDown: mouseDownHandler,
                 onMouseUp: mouseUpHandler,
                 className: "imagescanvas-sliders-slider-input",
                 type: "range",
@@ -24831,6 +24922,7 @@ function ImagesCanvas() {
               }, undefined, false, undefined, this),
               /* @__PURE__ */ jsx_dev_runtime5.jsxDEV("input", {
                 onChange: (e3) => inputHandler("effort", e3),
+                onMouseDown: mouseDownHandler,
                 onMouseUp: mouseUpHandler,
                 className: "imagescanvas-sliders-slider-input",
                 type: "range",
@@ -30529,7 +30621,7 @@ function NumberField({
 var jsx_dev_runtime8 = __toESM(require_jsx_dev_runtime(), 1);
 function SettingsPane() {
   const appContext = import_react21.useContext(sharedContext);
-  const { settings, setSettings } = appContext;
+  const { settings, setSettings, setQuality, setEffort } = appContext;
   const themeOptions = [
     { value: "auto", label: "Auto" },
     { value: "dark", label: "Dark" },
@@ -30549,22 +30641,34 @@ function SettingsPane() {
   const [settingsPaneOpen, setSettingsPaneOpen] = import_react21.useState(false);
   import_react21.useEffect(() => {
     async function loadSettings() {
-      const loadedSettings = await electroview.rpc?.request.getSettings();
-      console.log("laoded settings: ", loadedSettings);
-      if (loadedSettings) {
-        setSettings({
-          effort: loadedSettings.effort,
-          quality: loadedSettings.quality,
-          theme: loadedSettings.theme,
-          maxWidth: loadedSettings.maxWidth,
-          maxHeight: loadedSettings.maxHeight,
-          outputFolder: loadedSettings.outputFolder,
-          language: loadedSettings.language,
-          outputFormat: loadedSettings.outputFormat
-        });
-        setOutputFolder(loadedSettings.outputFolder ?? "");
-        appContext.setQuality(loadedSettings.quality);
-        appContext.setEffort(loadedSettings.effort);
+      try {
+        const loadedSettings = await electroview.rpc?.request.getSettings();
+        console.log("laoded settings: ", loadedSettings);
+        if (loadedSettings) {
+          setSettings({
+            effort: loadedSettings.effort,
+            quality: loadedSettings.quality,
+            theme: loadedSettings.theme,
+            maxWidth: loadedSettings.maxWidth,
+            maxHeight: loadedSettings.maxHeight,
+            outputFolder: loadedSettings.outputFolder,
+            language: loadedSettings.language,
+            outputFormat: loadedSettings.outputFormat
+          });
+          setOutputFolder(loadedSettings.outputFolder ?? "");
+          setQuality(loadedSettings.quality);
+          setEffort(loadedSettings.effort);
+        }
+      } catch (error) {
+        let message = "";
+        if (typeof error === "object" && error !== null && "message" in error) {
+          message = String(error.message) || "";
+        }
+        if (message) {
+          zt(message, {
+            className: "hottoast"
+          });
+        }
       }
     }
     loadSettings();
@@ -30576,7 +30680,7 @@ function SettingsPane() {
     return () => {
       eventBus.removeEventListener("openSettings", openSettingsHandler);
     };
-  }, []);
+  }, [setQuality, setEffort, setSettings]);
   import_react21.useEffect(() => {
     if (!settingsPaneOpen) {
       return;
@@ -30603,20 +30707,44 @@ function SettingsPane() {
       delete formProps.output;
       console.log(formProps);
       delete formProps.output;
-      const res = await electroview.rpc?.request.setSettings({ ...appContextDefaults.settings, ...formProps });
-      console.log(res);
-      const newSettings = { ...appContextDefaults.settings, ...formProps };
-      setSettings(newSettings);
-      zt(`Settings updated.`, {
-        className: "hottoast"
-      });
+      try {
+        const res = await electroview.rpc?.request.setSettings({ ...appContextDefaults.settings, ...formProps });
+        console.log(res);
+        const newSettings = { ...appContextDefaults.settings, ...formProps };
+        setSettings(newSettings);
+        zt(`Settings updated.`, {
+          className: "hottoast"
+        });
+      } catch (error) {
+        let message = "";
+        if (typeof error === "object" && error !== null && "message" in error) {
+          message = String(error.message) || "";
+        }
+        if (message) {
+          zt(message, {
+            className: "hottoast"
+          });
+        }
+      }
     } else if (submitterName === "restoredefaults") {
-      const res = await electroview.rpc?.request.setSettings({ ...appContextDefaults.settings });
-      console.log(res);
-      setSettings(appContextDefaults.settings);
-      zt(`Default settings restored.`, {
-        className: "hottoast"
-      });
+      try {
+        const res = await electroview.rpc?.request.setSettings({ ...appContextDefaults.settings });
+        console.log(res);
+        setSettings(appContextDefaults.settings);
+        zt(`Default settings restored.`, {
+          className: "hottoast"
+        });
+      } catch (error) {
+        let message = "";
+        if (typeof error === "object" && error !== null && "message" in error) {
+          message = String(error.message) || "";
+        }
+        if (message) {
+          zt(message, {
+            className: "hottoast"
+          });
+        }
+      }
     }
   };
   const outputFolderSelectHandler = async (option) => {
@@ -30624,16 +30752,40 @@ function SettingsPane() {
       return;
     }
     if (option.value === "custom") {
-      const res = await electroview.rpc?.request.openFileDialog() || { path: "" };
-      setOutputFolder(res.path);
+      try {
+        const res = await electroview.rpc?.request.openFileDialog() || { path: "" };
+        setOutputFolder(res.path);
+      } catch (error) {
+        let message = "";
+        if (typeof error === "object" && error !== null && "message" in error) {
+          message = String(error.message) || "";
+        }
+        if (message) {
+          zt(message, {
+            className: "hottoast"
+          });
+        }
+      }
     } else {
       setOutputFolder("");
     }
   };
   const outputFolderButtonClickHandler = async () => {
-    const res = await electroview.rpc?.request.openFileDialog() || { path: "" };
-    if (res.path.length) {
-      setOutputFolder(res.path);
+    try {
+      const res = await electroview.rpc?.request.openFileDialog() || { path: "" };
+      if (res.path.length) {
+        setOutputFolder(res.path);
+      }
+    } catch (error) {
+      let message = "";
+      if (typeof error === "object" && error !== null && "message" in error) {
+        message = String(error.message) || "";
+      }
+      if (message) {
+        zt(message, {
+          className: "hottoast"
+        });
+      }
     }
   };
   const closeClickHandler = (e3) => {
@@ -30941,6 +31093,7 @@ function Moop() {
   const [outputFolderSize, setOutputFolderSize] = import_react22.useState(appContextDefaults.outputFolderSize);
   const [inputFolderSize, setInputFolderSize] = import_react22.useState(appContextDefaults.inputFolderSize);
   const [imagesLoading, setImagesLoading] = import_react22.useState(appContextDefaults.imagesLoading);
+  const [imagesProcessing, setImagesProcessing] = import_react22.useState(appContextDefaults.imagesProcessing);
   const [crop, setCrop] = import_react22.useState(appContextDefaults.crop);
   const [zoom, setZoom] = import_react22.useState(appContextDefaults.zoom);
   const [quality, setQuality] = import_react22.useState(appContextDefaults.quality);
@@ -30958,6 +31111,8 @@ function Moop() {
       setInputFolderSize,
       imagesLoading,
       setImagesLoading,
+      imagesProcessing,
+      setImagesProcessing,
       crop,
       setCrop,
       zoom,

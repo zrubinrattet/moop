@@ -4,6 +4,7 @@ import ImagesListItem from "./imagesListItem";
 import { electroview } from "../../shared/shared-electroview";
 
 import { formatBytes } from "../../shared/shared-snippets";
+import toast from "react-hot-toast";
 
 
 
@@ -12,18 +13,42 @@ export default function ImagesList() {
 
 	async function revealClickHandler(e: React.MouseEvent) {
 		e.preventDefault();
-		const res = await electroview.rpc?.request.revealInFileManager();
-		console.log(res)
+		try {
+			const res = await electroview.rpc?.request.revealInFileManager();
+			console.log(res)
+		} catch (error) {
+			let message = '';
+			if(typeof error === 'object' && null !== error && 'message' in error ) {
+			 	message = String(error.message) || '';
+			}
+			if (message) {
+				toast(message, {
+					className: 'hottoast',
+				});
+			}
+		}
 	}
 	
 	async function clearAllClickHandler(e: React.MouseEvent) {
 		e.preventDefault();
 		
-		// show confirmation modal
-		const res = await electroview.rpc?.request.clearAll();
-		console.log(res)
-		if (res?.severity === 'SUCCESS') {
-			appContext.setImages([]);
+		try {
+			
+			const res = await electroview.rpc?.request.clearAll();
+			console.log(res)
+			if (res?.severity === 'SUCCESS') {
+				appContext.setImages([]);
+			}
+		} catch (error) {
+			let message = '';
+			if(typeof error === 'object' && null !== error && 'message' in error ) {
+			 	message = String(error.message) || '';
+			}
+			if (message) {
+				toast(message, {
+					className: 'hottoast',
+				});
+			}
 		}
 	}
 	// console.log(appContext.images)

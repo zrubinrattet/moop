@@ -2,7 +2,7 @@ import { createContext, Dispatch, SetStateAction } from "react";
 import { Image, ApplicationSettingsType } from "./shared-types";
 
 type Crop = {
-	x : number,
+	x: number,
 	y: number,
 }
 type ApplicationState = {
@@ -16,6 +16,8 @@ type ApplicationState = {
 	setOutputFolderSize: Dispatch<SetStateAction<number>>,
 	imagesLoading: boolean,
 	setImagesLoading: Dispatch<SetStateAction<boolean>>,
+	imagesProcessing: Array<string>,
+	setImagesProcessing: Dispatch<SetStateAction<Array<string>>>,
 	crop: Crop,
 	setCrop: Dispatch<SetStateAction<Crop>>
 	zoom: number,
@@ -35,18 +37,20 @@ export const appContextDefaults: ApplicationState = {
 	images: [],
 	imagesLoading: false,
 	setImagesLoading: () => { },
+	imagesProcessing: [],
+	setImagesProcessing: () => { },
 	zoom: 1,
-	setZoom: () => {},
+	setZoom: () => { },
 	// quality & effort are used for the UI, not an app-settings representation
 	quality: 80,
 	effort: 4,
-	setQuality: () => {},
-	setEffort: () => {},
+	setQuality: () => { },
+	setEffort: () => { },
 	crop: {
 		x: 0,
-		y : 0,
+		y: 0,
 	},
-	setCrop: () => {},
+	setCrop: () => { },
 	setSettings: () => { },
 	settings: {
 		effort: 4,
