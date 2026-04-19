@@ -19,10 +19,45 @@ export default function SettingsPane() {
 		{ value: 'dark', label: t('dark') },
 		{ value: 'light', label: t('light') },
 	];
-	const languageOptions: Array<{ value: AvailableLangs; label: string }> = [
-		{ value: 'en', label: t('en') },
-		{ value: 'es', label: t('es') }
-	];
+	const langs = {
+		"am": "Amharic",
+		"ar": "Arabic",
+		"bn": "Bangla",
+		"bho": "Bhojpuri",
+		"zh": "Chinese",
+		"en": "English",
+		"fil": "Filipino",
+		"fr": "French",
+		"de": "German",
+		"gu": "Gujarati",
+		"ha": "Hausa",
+		"hi": "Hindi",
+		"id": "Indonesian",
+		"it": "Italian",
+		"ja": "Japanese",
+		"jv": "Javanese",
+		"kn": "Kannada",
+		"ko": "Korean",
+		"ml": "Malayalam",
+		"mr": "Marathi",
+		"fa": "Persian",
+		"pt": "Portuguese",
+		"pa": "Punjabi",
+		"ru": "Russian",
+		"es": "Spanish",
+		"sw": "Swahili",
+		"ta": "Tamil",
+		"te": "Telugu",
+		"th": "Thai",
+		"tr": "Turkish",
+		"ur": "Urdu",
+		"vi": "Vietnamese",
+		"yo": "Yoruba"
+	};
+	const languageOptions: Array<{ value: AvailableLangs; label: string }> = Object.keys(langs).map((value) => ({
+		value: value as AvailableLangs,
+		label: t(value)
+	}));
 	const outputFormatOptions: Array<{ value: AvailableOutputFormats; label: string }> = [
 		{ value: 'webp', label: 'WebP' },
 	];

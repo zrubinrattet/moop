@@ -1,6 +1,40 @@
 import type { RPCSchema } from "electrobun/bun";
 export type AvailableThemes = 'auto' | 'light' | 'dark';
 export type AvailableLangs = 'en' | 'es';
+// export type AvailableLangs =
+//   | 'en'  // English
+//   | 'zh'  // Chinese (merged: Mandarin/Yue/Wu)
+//   | 'hi'  // Hindi
+//   | 'es'  // Spanish
+//   | 'ar'  // Arabic (merged dialects)
+//   | 'fr'  // French
+//   | 'bn'  // Bengali
+//   | 'pt'  // Portuguese
+//   | 'id'  // Indonesian
+//   | 'ur'  // Urdu
+//   | 'ru'  // Russian
+//   | 'de'  // German
+//   | 'ja'  // Japanese
+//   | 'mr'  // Marathi
+//   | 'vi'  // Vietnamese
+//   | 'te'  // Telugu
+//   | 'sw'  // Swahili
+//   | 'ha'  // Hausa
+//   | 'tr'  // Turkish
+//   | 'pa'  // Punjabi
+//   | 'fil' // Filipino/Tagalog
+//   | 'ta'  // Tamil
+//   | 'fa'  // Persian
+//   | 'ko'  // Korean
+//   | 'am'  // Amharic
+//   | 'th'  // Thai
+//   | 'jv'  // Javanese
+//   | 'it'  // Italian
+//   | 'gu'  // Gujarati
+//   | 'kn'  // Kannada
+//   | 'yo'  // Yoruba
+//   | 'bho' // Bhojpuri (ISO 639-3)
+//   | 'ml'; // Malayalam
 export type AvailableOutputFormats = 'webp' | 'jpeg' | 'png';
 export type ApplicationSettingsType = {
 	theme: AvailableThemes,
