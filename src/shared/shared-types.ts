@@ -1,6 +1,7 @@
 import type { RPCSchema } from "electrobun/bun";
 export type AvailableThemes = 'auto' | 'light' | 'dark';
 export type AvailableLangs = 'en' | 'es';
+export type AvailableOutputFormats = 'webp' | 'jpeg' | 'png';
 export type ApplicationSettingsType = {
 	theme: AvailableThemes,
 	quality: number,
@@ -15,7 +16,7 @@ export type ApplicationSettingsType = {
 	// multiple langs supported
 	language: AvailableLangs,
 	// will eventually support multiple output formats
-	outputFormat: 'webp' | 'jpeg' | 'png';
+	outputFormat: AvailableOutputFormats;
 }
 export type Image = {
 	input: string,

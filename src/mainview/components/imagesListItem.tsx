@@ -4,6 +4,8 @@ import { sharedContext, appContextDefaults } from "../../shared/shared-context";
 import { electroview } from "../../shared/shared-electroview";
 import toast from "react-hot-toast";
 import { t } from "../lang/lang";
+import { handleRPCRequestCatch } from "../../shared/shared-utils";
+import { BaseResponseType, ProcessImageResponseType } from "../../shared/shared-types";
 
 type ImagesListItemProps = {
 	index: number,
@@ -34,7 +36,7 @@ export default function ImagesListItem(props: ImagesListItemProps) {
 		e.preventDefault();
 		try {
 			console.log('Open the modal!');
-			const res = await electroview.rpc?.request.deleteImage({ path: props.input });
+			const res: BaseResponseType | ProcessImageResponseType | undefined = await electroview.rpc?.request.deleteImage({ path: props.input });
 
 			if (res && 'image' in res && 'input' in res.image) {
 				appContext.setImages((images) => {
@@ -57,33 +59,27 @@ export default function ImagesListItem(props: ImagesListItemProps) {
 					});
 				});
 			}
-		} catch (error) {
-			let message = '';
-			if (typeof error === 'object' && null !== error && 'message' in error) {
-				message = String(error.message) || '';
-			}
-			if (message) {
-				toast(message, {
-					className: 'hottoast',
+			if (res) {
+				toast(res.message, {
+					className: 'hottoast'
 				});
 			}
+		} catch (error) {
+			handleRPCRequestCatch(error);
 		}
 	}
 	async function revealItemClickHandler(e: React.MouseEvent) {
 		e.preventDefault();
 		try {
 			console.log('Open in finder!');
-			await electroview.rpc?.request.revealInFileManager({ path: props.input });
+			const res: BaseResponseType | undefined = await electroview.rpc?.request.revealInFileManager({ path: props.input });
+			if (res && res.severity === 'ERROR') {
+				toast(res.message, {
+					className: 'hottoast'
+				})
+			}
 		} catch (error) {
-			let message = '';
-			if (typeof error === 'object' && null !== error && 'message' in error) {
-				message = String(error.message) || '';
-			}
-			if (message) {
-				toast(message, {
-					className: 'hottoast',
-				});
-			}
+			handleRPCRequestCatch(error);
 		}
 	}
 	return (

@@ -6,6 +6,8 @@ import { electroview } from "../../shared/shared-electroview";
 import { formatBytes } from "../../shared/shared-snippets";
 import toast from "react-hot-toast";
 import { t } from "../lang/lang";
+import { BaseResponseType } from "../../shared/shared-types";
+import { handleRPCRequestCatch } from "../../shared/shared-utils";
 
 
 
@@ -15,49 +17,50 @@ export default function ImagesList() {
 	async function revealClickHandler(e: React.MouseEvent) {
 		e.preventDefault();
 		try {
-			await electroview.rpc?.request.revealInFileManager();
-		} catch (error) {
-			let message = '';
-			if(typeof error === 'object' && null !== error && 'message' in error ) {
-			 	message = String(error.message) || '';
+			const res: BaseResponseType | undefined = await electroview.rpc?.request.revealInFileManager();
+			if (typeof res !== 'undefined') {
+				if (res.severity === 'ERROR') {
+					toast(res.message, {
+						className: 'hottoast',
+					});
+				}
 			}
-			if (message) {
-				toast(message, {
+			else {
+				toast(t('unknownError'), {
 					className: 'hottoast',
 				});
 			}
+		} catch (error) {
+			handleRPCRequestCatch(error)
 		}
 	}
-	
+
 	async function clearAllClickHandler(e: React.MouseEvent) {
 		e.preventDefault();
-		
+
 		try {
-			
-			const res = await electroview.rpc?.request.clearAll();
+
+			const res: BaseResponseType | undefined = await electroview.rpc?.request.clearAll();
 			console.log(res)
 			if (res?.severity === 'SUCCESS') {
 				appContext.setImages([]);
 			}
-		} catch (error) {
-			let message = '';
-			if(typeof error === 'object' && null !== error && 'message' in error ) {
-			 	message = String(error.message) || '';
-			}
-			if (message) {
-				toast(message, {
+			if (res?.message) {
+				toast(res.message, {
 					className: 'hottoast',
 				});
 			}
+		} catch (error) {
+			handleRPCRequestCatch(error)
 		}
 	}
-	
+
 	return (
 		<div className="imageslist">
 			<div className="imageslist-header">
 				<div className="imageslist-header-text">
 					<span className="imageslist-header-text-item">{Object.keys(appContext.images).length} {t('imagesAt')} {formatBytes(appContext.inputFolderSize)} {t('to')} {formatBytes(appContext.outputFolderSize)}</span>
-					<span className="imageslist-header-text-subitem">{ !appContext.outputFolderSize || !appContext.inputFolderSize ? 0 : (100 * (1 - appContext.outputFolderSize / appContext.inputFolderSize)).toFixed(2) }% {t('reduction')}</span>
+					<span className="imageslist-header-text-subitem">{!appContext.outputFolderSize || !appContext.inputFolderSize ? 0 : (100 * (1 - appContext.outputFolderSize / appContext.inputFolderSize)).toFixed(2)}% {t('reduction')}</span>
 				</div>
 			</div>
 			<div className="imageslist-list">

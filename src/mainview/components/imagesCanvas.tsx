@@ -6,6 +6,7 @@ import { electroview } from "../../shared/shared-electroview";
 import { Tooltip } from "react-tooltip";
 import toast from "react-hot-toast";
 import { t } from "../lang/lang";
+import { handleRPCRequestCatch } from "../../shared/shared-utils";
 
 export default function ImagesCanvas() {
 	const appContext = useContext(sharedContext);
@@ -67,17 +68,15 @@ export default function ImagesCanvas() {
 					})
 				);
 			}
+			else {
+				toast(t('unableToUpdateImage'), {
+					className: 'hottoast',
+				});
+			}
 		}
 		catch (error) {
 			console.log('updateImageprops error: ', typeof error);
-			if (typeof error === 'object' && null !== error && 'message' in error) {
-				const message = String(error.message) || '';
-				if (message) {
-					toast(message, {
-						className: 'hottoast',
-					});
-				}
-			}
+			handleRPCRequestCatch(error);
 		}
 		finally {
 			appContext.setImagesProcessing((oldImages) => {

@@ -18,6 +18,7 @@ import { imageSizeFromFile } from "image-size/fromFile";
 import { appContextDefaults } from "../shared/shared-context";
 import { getSettings, initSettings, setSettings } from "../shared/shared-settings";
 import { cp } from "node:fs/promises";
+import { setLocale, t } from "../mainview/lang/lang";
 
 
 const corsHeaders = {
@@ -71,7 +72,7 @@ mkdirSync(Utils.paths.userData, { recursive: true });
 
 await initSettings();
 
-
+setLocale(getSettings().language);
 
 // const { rootDirectory, imageDirectory, inputDirectory, outputDirectory } = getImageDirectories();
 
@@ -362,7 +363,7 @@ const rpc = BrowserView.defineRPC<AppRPCSchema>({
 						ret.message = error.message;
 					}
 					else {
-						ret.message = 'Unknown error occurred.';
+						ret.message = t('unknownError');
 					}
 
 					ret.severity = 'ERROR';
@@ -405,7 +406,7 @@ const rpc = BrowserView.defineRPC<AppRPCSchema>({
 					quality: quality,
 					effort: effort,
 				}).then(async () => {
-					ret.message = `Successfully processed image.`;
+					ret.message = t('updateImageSuccess');
 
 					const outputPath = join(outputDirectory, `${path.parse(inputPath).name}.webp`);
 					const inputResolution = await imageSizeFromFile(inputPath);
@@ -430,7 +431,7 @@ const rpc = BrowserView.defineRPC<AppRPCSchema>({
 					};
 				}).catch((err) => {
 					console.error(err)
-					ret.message = 'Error processing image';
+					ret.message = t('updateImageError');
 					ret.severity = 'ERROR';
 				})
 				console.log('Ret', ret)
@@ -480,16 +481,16 @@ const rpc = BrowserView.defineRPC<AppRPCSchema>({
 					const outputTrashSuccessful = Utils.moveToTrash(outputPath)
 
 					if (inputTrashSuccessful && outputTrashSuccessful) {
-						ret.message = 'Successfully deleted image';
+						ret.message = t('deleteImageSuccess');
 					}
 					else {
-						ret.message = 'Could not delete image';
+						ret.message = t('deleteImageError');
 						ret.severity = 'ERROR';
 					}
 
 					return ret;
 				} else {
-					// User clicked "Cancel" or closed the dialog
+					// user clicked cancel or closed the dialog
 					console.log("Cancelled");
 					return { ...BaseResponse, message: 'Cancelled delete' };
 				}
@@ -504,31 +505,32 @@ const rpc = BrowserView.defineRPC<AppRPCSchema>({
 					message: "Are you sure you want to delete all images?",
 					detail: "This action cannot be undone.",
 					buttons: ["Clear all", "Cancel"],
-					defaultId: 1,  // Focus "Cancel" by default
-					cancelId: 1    // Pressing Escape returns 1 (Cancel)
+					// Focus on the cancel button by default
+					defaultId: 1,  
+					// Pressing Escape returns 1 (Cancel)
+					cancelId: 1    
 				});
+
+				// if clear all was pressed
 				if (response === 0) {
 					try {
-						// await rm(inputDirectory, { recursive: true, force: true });
-						// await rm(outputDirectory, { recursive: true, force: true });
 						Utils.moveToTrash(inputDirectory);
 						Utils.moveToTrash(outputDirectory);
 						await mkdir(inputDirectory, { recursive: true });
 						await mkdir(outputDirectory, { recursive: true });
-						const [inputFiles, outputFiles] = await Promise.all([
-							readdir(inputDirectory),
-							readdir(outputDirectory),
-						]);
+						const inputFiles = await readdir(inputDirectory);
+						const outputFiles = await readdir(outputDirectory);
+						
 						if (inputFiles.length === 0 && outputFiles.length === 0) {
-							ret.message = 'All images deleted successfully';
+							ret.message = t('deleteImagesSuccess');
 						}
 					} catch {
-						ret.message = 'There was an error';
+						ret.message = t('deleteImagesError');
 						ret.severity = 'ERROR';
 					}
 				}
 				else {
-					ret.message = 'Cancelled clear all';
+					ret.message = t('deleteImagesCancel');
 				}
 				console.log('returning: ', ret);
 				return ret;

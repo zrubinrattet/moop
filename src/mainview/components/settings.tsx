@@ -1,13 +1,14 @@
 import { useContext, useEffect, useState } from "react"
 import { electroview } from "../../shared/shared-electroview";
 import { appContextDefaults, sharedContext } from "../../shared/shared-context";
-import { ApplicationSettingsType, AvailableLangs, AvailableThemes } from "../../shared/shared-types";
+import { AvailableLangs, AvailableOutputFormats, AvailableThemes } from "../../shared/shared-types";
 import Select from "react-select";
 import NumberField from "./numberField";
 import { Tooltip } from "react-tooltip";
 import toast from "react-hot-toast";
 import { eventBus } from "../../shared/shared-eventbus";
 import { setLocale, t } from "../lang/lang";
+import { handleRPCRequestCatch } from "../../shared/shared-utils";
 
 export default function SettingsPane() {
 	const appContext = useContext(sharedContext);
@@ -22,7 +23,7 @@ export default function SettingsPane() {
 		{ value: 'en', label: t('en') },
 		{ value: 'es', label: t('es') }
 	];
-	const outputFormatOptions: Array<{ value: ApplicationSettingsType['outputFormat']; label: string }> = [
+	const outputFormatOptions: Array<{ value: AvailableOutputFormats; label: string }> = [
 		{ value: 'webp', label: 'WebP' },
 	];
 	const outputFolderOptions: Array<{ value: 'default' | 'custom'; label: string }> = [
@@ -55,15 +56,7 @@ export default function SettingsPane() {
 					setLocale(loadedSettings.language);
 				}
 			} catch (error) {
-				let message = '';
-				if (typeof error === 'object' && null !== error && 'message' in error) {
-					message = String(error.message) || '';
-				}
-				if (message) {
-					toast(message, {
-						className: 'hottoast',
-					});
-				}
+				handleRPCRequestCatch(error);
 			}
 		}
 
@@ -116,19 +109,11 @@ export default function SettingsPane() {
 				const newSettings = { ...appContextDefaults.settings, ...formProps };
 				setSettings(newSettings);
 				setLocale(newSettings.language);
-				toast(`Settings updated.`, {
+				toast(t('settingsUpdated'), {
 					className: 'hottoast'
 				});
 			} catch (error) {
-				let message = '';
-				if (typeof error === 'object' && null !== error && 'message' in error) {
-					message = String(error.message) || '';
-				}
-				if (message) {
-					toast(message, {
-						className: 'hottoast',
-					});
-				}
+				handleRPCRequestCatch(error)
 			}
 		}
 		else if (submitterName === 'restoredefaults') {
@@ -137,19 +122,11 @@ export default function SettingsPane() {
 				console.log(res)
 				setSettings(appContextDefaults.settings)
 				setLocale(appContextDefaults.settings.language);
-				toast(`Default settings restored.`, {
+				toast(t('settingsRestoredDefaults'), {
 					className: 'hottoast'
 				});
 			} catch (error) {
-				let message = '';
-				if (typeof error === 'object' && null !== error && 'message' in error) {
-					message = String(error.message) || '';
-				}
-				if (message) {
-					toast(message, {
-						className: 'hottoast',
-					});
-				}
+				handleRPCRequestCatch(error)
 			}
 
 		}
@@ -163,15 +140,7 @@ export default function SettingsPane() {
 				const res = await electroview.rpc?.request.openFileDialog() || { path: '' };
 				setOutputFolder(res.path);
 			} catch (error) {
-				let message = '';
-				if (typeof error === 'object' && null !== error && 'message' in error) {
-					message = String(error.message) || '';
-				}
-				if (message) {
-					toast(message, {
-						className: 'hottoast',
-					});
-				}
+				handleRPCRequestCatch(error)
 			}
 		}
 		else {
@@ -185,15 +154,7 @@ export default function SettingsPane() {
 				setOutputFolder(res.path);
 			}
 		} catch (error) {
-			let message = '';
-			if (typeof error === 'object' && null !== error && 'message' in error) {
-				message = String(error.message) || '';
-			}
-			if (message) {
-				toast(message, {
-					className: 'hottoast',
-				});
-			}
+			handleRPCRequestCatch(error)
 		}
 	}
 

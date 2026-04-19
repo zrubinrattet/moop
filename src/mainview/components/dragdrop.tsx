@@ -3,6 +3,8 @@ import { useContext } from "react";
 import { useDropzone, FileRejection } from "react-dropzone";
 import { Image } from "../../shared/shared-types";
 import toast from "react-hot-toast";
+import { t } from "../lang/lang";
+
 export default function DragDrop() {
 
 	const appContext = useContext(sharedContext);
@@ -35,7 +37,7 @@ export default function DragDrop() {
 							resJson.data.images.forEach((resJsonImage: Image) => {
 								if (currentImage.input.split('/').pop() === resJsonImage.input.split('/').pop()) {
 									dupes.push(resJsonImage);
-									toast(`${resJsonImage.input.split('/').pop()} is already in the list.`, {
+									toast(`${resJsonImage.input.split('/').pop()} ${t('isAlreadyInList')}.`, {
 										className: 'hottoast'
 									});
 								}
@@ -74,7 +76,6 @@ export default function DragDrop() {
 				if (!firstPromiseResolved) {
 					firstPromiseResolved = true;
 					appContext.setImages((images) => {
-						console.log(val)
 						const temp: Image = val.data.images[0];
 						temp.isActive = true;
 						images[images.indexOf(val.data.images[0])] = temp;
@@ -96,7 +97,7 @@ export default function DragDrop() {
 	const dropRejectHandler = (rejections: FileRejection[]) => {
 		rejections?.forEach((rejection) => {
 			rejection.errors.forEach((error) => {
-				toast(error.message, { className: 'hottoast' });
+				toast(error.message.replace('File type must be one of', t('fileTypeOneOf')), { className: 'hottoast' });
 			});
 		});
 	}

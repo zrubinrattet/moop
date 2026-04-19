@@ -24132,7 +24132,22 @@ It also has wide browser support and offers support for animated formats like gi
 Jpeg and png are available as well in case the need comes up.`,
     save: "Save",
     restoreDefaults: "Restore Defaults",
-    changeLocation: "Change location"
+    changeLocation: "Change location",
+    isAlreadyInList: "is already in the list",
+    fileTypeOneOf: "File type must be one of",
+    unableToUpdateImage: "Image failed to update",
+    imagesMissing: "Image(s) missing from filesystem.",
+    updateImageSuccess: "Successfully processed image.",
+    updateImageError: "Error processing image",
+    deleteImageSuccess: "Successfully deleted image",
+    deleteImageError: "Could not delete image",
+    deleteImagesSuccess: "All images deleted successfully",
+    deleteImagesError: "Could not delete images",
+    deleteImagesCancel: "Cancelled clear all",
+    unknownError: "Unknown error occurred.",
+    rpcTimeout: "RPC request timed out.",
+    settingsUpdated: "Settings updated.",
+    settingsRestoredDefaults: "Default settings restored."
   }
 };
 // src/mainview/lang/es.json
@@ -24179,7 +24194,21 @@ También tiene amplia compatibilidad con navegadores y soporte para formatos ani
 JPEG y PNG también están disponibles por si los necesitas.`,
     save: "Guardar",
     restoreDefaults: "Restaurar predeterminados",
-    changeLocation: "Cambiar ubicación"
+    changeLocation: "Cambiar ubicación",
+    isAlreadyInList: "ya está en la lista",
+    fileTypeOneOf: "El tipo de archivo debe ser uno de",
+    unableToUpdateImage: "No se pudo actualizar la imagen",
+    imagesMissing: "Faltan imágen(es) en el sistema de archivos.",
+    updateImageSuccess: "Imagen procesada con éxito.",
+    updateImageError: "Error al procesar la imagen",
+    deleteImageSuccess: "Imagen eliminada correctamente",
+    deleteImageError: "No se pudo eliminar la imagen.",
+    deleteImagesSuccess: "Todas las imágenes eliminadas correctamente",
+    deleteImagesError: "No se pudieron eliminar las imágenes",
+    deleteImagesCancel: "Cancelado borrar todo",
+    rpcTimeout: "La solicitud RPC ha caducado.",
+    settingsUpdated: "Configuración actualizada.",
+    settingsRestoredDefaults: "Configuración predeterminada restaurada."
   }
 };
 
@@ -27215,7 +27244,7 @@ function DragDrop() {
               resJson.data.images.forEach((resJsonImage) => {
                 if (currentImage.input.split("/").pop() === resJsonImage.input.split("/").pop()) {
                   dupes.push(resJsonImage);
-                  zt(`${resJsonImage.input.split("/").pop()} is already in the list.`, {
+                  zt(`${resJsonImage.input.split("/").pop()} ${t("isAlreadyInList")}.`, {
                     className: "hottoast"
                   });
                 }
@@ -27250,7 +27279,6 @@ function DragDrop() {
         if (!firstPromiseResolved) {
           firstPromiseResolved = true;
           appContext.setImages((images) => {
-            console.log(val);
             const temp = val.data.images[0];
             temp.isActive = true;
             images[images.indexOf(val.data.images[0])] = temp;
@@ -27268,7 +27296,7 @@ function DragDrop() {
   const dropRejectHandler = (rejections) => {
     rejections?.forEach((rejection) => {
       rejection.errors.forEach((error) => {
-        zt(error.message, { className: "hottoast" });
+        zt(error.message.replace("File type must be one of", t("fileTypeOneOf")), { className: "hottoast" });
       });
     });
   };
@@ -29505,6 +29533,23 @@ var rpc = Electroview.defineRPC({
 });
 var electroview = new Electroview({ rpc });
 
+// src/shared/shared-utils.ts
+function handleRPCRequestCatch(error) {
+  let message = "";
+  if (error instanceof Error) {
+    message = String(error.message) || "";
+  }
+  if (message && message.indexOf("RPC request timed out") === 0) {
+    zt(message.replace("RPC request timed out.", t("rpcTimeout")), {
+      className: "hottoast"
+    });
+  } else {
+    zt(t("unknownError"), {
+      className: "hottoast"
+    });
+  }
+}
+
 // src/mainview/components/imagesListItem.tsx
 var jsx_dev_runtime3 = __toESM(require_jsx_dev_runtime(), 1);
 function ImagesListItem(props) {
@@ -29548,33 +29593,27 @@ function ImagesListItem(props) {
           });
         });
       }
-    } catch (error) {
-      let message = "";
-      if (typeof error === "object" && error !== null && "message" in error) {
-        message = String(error.message) || "";
-      }
-      if (message) {
-        zt(message, {
+      if (res) {
+        zt(res.message, {
           className: "hottoast"
         });
       }
+    } catch (error) {
+      handleRPCRequestCatch(error);
     }
   }
   async function revealItemClickHandler(e3) {
     e3.preventDefault();
     try {
       console.log("Open in finder!");
-      await electroview.rpc?.request.revealInFileManager({ path: props.input });
-    } catch (error) {
-      let message = "";
-      if (typeof error === "object" && error !== null && "message" in error) {
-        message = String(error.message) || "";
-      }
-      if (message) {
-        zt(message, {
+      const res = await electroview.rpc?.request.revealInFileManager({ path: props.input });
+      if (res && res.severity === "ERROR") {
+        zt(res.message, {
           className: "hottoast"
         });
       }
+    } catch (error) {
+      handleRPCRequestCatch(error);
     }
   }
   return /* @__PURE__ */ jsx_dev_runtime3.jsxDEV("div", {
@@ -29643,17 +29682,20 @@ function ImagesList() {
   async function revealClickHandler(e3) {
     e3.preventDefault();
     try {
-      await electroview.rpc?.request.revealInFileManager();
-    } catch (error) {
-      let message = "";
-      if (typeof error === "object" && error !== null && "message" in error) {
-        message = String(error.message) || "";
-      }
-      if (message) {
-        zt(message, {
+      const res = await electroview.rpc?.request.revealInFileManager();
+      if (typeof res !== "undefined") {
+        if (res.severity === "ERROR") {
+          zt(res.message, {
+            className: "hottoast"
+          });
+        }
+      } else {
+        zt(t("unknownError"), {
           className: "hottoast"
         });
       }
+    } catch (error) {
+      handleRPCRequestCatch(error);
     }
   }
   async function clearAllClickHandler(e3) {
@@ -29664,16 +29706,13 @@ function ImagesList() {
       if (res?.severity === "SUCCESS") {
         appContext.setImages([]);
       }
-    } catch (error) {
-      let message = "";
-      if (typeof error === "object" && error !== null && "message" in error) {
-        message = String(error.message) || "";
-      }
-      if (message) {
-        zt(message, {
+      if (res?.message) {
+        zt(res.message, {
           className: "hottoast"
         });
       }
+    } catch (error) {
+      handleRPCRequestCatch(error);
     }
   }
   return /* @__PURE__ */ jsx_dev_runtime4.jsxDEV("div", {
@@ -30711,17 +30750,14 @@ function ImagesCanvas() {
             return image;
           }
         }));
+      } else {
+        zt(t("unableToUpdateImage"), {
+          className: "hottoast"
+        });
       }
     } catch (error) {
       console.log("updateImageprops error: ", typeof error);
-      if (typeof error === "object" && error !== null && "message" in error) {
-        const message = String(error.message) || "";
-        if (message) {
-          zt(message, {
-            className: "hottoast"
-          });
-        }
-      }
+      handleRPCRequestCatch(error);
     } finally {
       appContext.setImagesProcessing((oldImages) => {
         return oldImages.filter((oldImage) => oldImage !== targetInput);
@@ -30907,14 +30943,10 @@ function ImagesEditor() {
         const res = await electroview.rpc?.request.pollInputs();
         if (res && res.inputPaths.length < images.length) {
           setImages((oldImages) => oldImages.filter((oldImage) => res.inputPaths.includes(oldImage.input)));
-          zt("Image(s) missing from filesystem.", { className: "hottoast" });
-        } else {
-          console.log("no images missing!");
+          zt(t("imagesMissing"), { className: "hottoast" });
         }
       } catch (error) {
-        if (error && typeof error === "object" && "message" in error && typeof error.message === "string") {
-          zt(error.message, { className: "hottoast" });
-        }
+        handleRPCRequestCatch(error);
       }
     }
     try {
@@ -36634,15 +36666,7 @@ function SettingsPane() {
           setLocale(loadedSettings.language);
         }
       } catch (error) {
-        let message = "";
-        if (typeof error === "object" && error !== null && "message" in error) {
-          message = String(error.message) || "";
-        }
-        if (message) {
-          zt(message, {
-            className: "hottoast"
-          });
-        }
+        handleRPCRequestCatch(error);
       }
     }
     loadSettings();
@@ -36687,19 +36711,11 @@ function SettingsPane() {
         const newSettings = { ...appContextDefaults.settings, ...formProps };
         setSettings(newSettings);
         setLocale(newSettings.language);
-        zt(`Settings updated.`, {
+        zt(t("settingsUpdated"), {
           className: "hottoast"
         });
       } catch (error) {
-        let message = "";
-        if (typeof error === "object" && error !== null && "message" in error) {
-          message = String(error.message) || "";
-        }
-        if (message) {
-          zt(message, {
-            className: "hottoast"
-          });
-        }
+        handleRPCRequestCatch(error);
       }
     } else if (submitterName === "restoredefaults") {
       try {
@@ -36707,19 +36723,11 @@ function SettingsPane() {
         console.log(res);
         setSettings(appContextDefaults.settings);
         setLocale(appContextDefaults.settings.language);
-        zt(`Default settings restored.`, {
+        zt(t("settingsRestoredDefaults"), {
           className: "hottoast"
         });
       } catch (error) {
-        let message = "";
-        if (typeof error === "object" && error !== null && "message" in error) {
-          message = String(error.message) || "";
-        }
-        if (message) {
-          zt(message, {
-            className: "hottoast"
-          });
-        }
+        handleRPCRequestCatch(error);
       }
     }
   };
@@ -36732,15 +36740,7 @@ function SettingsPane() {
         const res = await electroview.rpc?.request.openFileDialog() || { path: "" };
         setOutputFolder(res.path);
       } catch (error) {
-        let message = "";
-        if (typeof error === "object" && error !== null && "message" in error) {
-          message = String(error.message) || "";
-        }
-        if (message) {
-          zt(message, {
-            className: "hottoast"
-          });
-        }
+        handleRPCRequestCatch(error);
       }
     } else {
       setOutputFolder("");
@@ -36753,15 +36753,7 @@ function SettingsPane() {
         setOutputFolder(res.path);
       }
     } catch (error) {
-      let message = "";
-      if (typeof error === "object" && error !== null && "message" in error) {
-        message = String(error.message) || "";
-      }
-      if (message) {
-        zt(message, {
-          className: "hottoast"
-        });
-      }
+      handleRPCRequestCatch(error);
     }
   };
   const closeClickHandler = (e3) => {

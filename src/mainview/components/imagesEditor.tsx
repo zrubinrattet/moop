@@ -4,6 +4,8 @@ import ImagesList from "./imagesList";
 import ImagesCanvas from "./imagesCanvas";
 import { electroview } from "../../shared/shared-electroview";
 import toast from "react-hot-toast";
+import { t } from "../lang/lang";
+import { handleRPCRequestCatch } from "../../shared/shared-utils";
 
 
 export default function ImagesEditor() {
@@ -20,15 +22,10 @@ export default function ImagesEditor() {
 					setImages((oldImages) =>
 						oldImages.filter(oldImage => res.inputPaths.includes(oldImage.input))
 					);
-					toast('Image(s) missing from filesystem.', { className: 'hottoast' });
-				}
-				else {
-					console.log('no images missing!')
+					toast(t('imagesMissing'), { className: 'hottoast' });
 				}
 			} catch (error) {
-				if (error && typeof error === 'object' && 'message' in error && typeof error.message === 'string') {
-					toast(error.message, { className: 'hottoast' });
-				}
+				handleRPCRequestCatch(error)
 			}
 
 		}

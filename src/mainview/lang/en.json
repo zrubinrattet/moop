@@ -38,6 +38,21 @@
 		"formatTooltip" : "The output file format. WebP is default and typically offers better compression than the other options.\r\nIt also has wide browser support and offers support for animated formats like gif.\r\nJpeg and png are available as well in case the need comes up.",
 		"save" : "Save",
 		"restoreDefaults" : "Restore Defaults",
-		"changeLocation" : "Change location"
+		"changeLocation" : "Change location",
+		"isAlreadyInList" : "is already in the list",
+		"fileTypeOneOf" : "File type must be one of",
+		"unableToUpdateImage" : "Image failed to update",
+		"imagesMissing" : "Image(s) missing from filesystem.",
+		"updateImageSuccess" : "Successfully processed image.",
+		"updateImageError" : "Error processing image",
+		"deleteImageSuccess" : "Successfully deleted image",
+		"deleteImageError" : "Could not delete image",
+		"deleteImagesSuccess" : "All images deleted successfully",
+		"deleteImagesError" : "Could not delete images",
+		"deleteImagesCancel" : "Cancelled clear all",
+		"unknownError" : "Unknown error occurred.",
+		"rpcTimeout" : "RPC request timed out.",
+		"settingsUpdated" : "Settings updated.",
+		"settingsRestoredDefaults" : "Default settings restored."
 	}
 }
