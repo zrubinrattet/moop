@@ -26,6 +26,7 @@
 	"dependencies": {
 		"electrobun": "^1.16.0",
 		"fastq": "^1.20.1",
+		"i18n-js": "^4.5.3",
 		"image-size": "^2.0.2",
 		"react": "^19.2.4",
 		"react-devtools": "^7.0.1",

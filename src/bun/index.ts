@@ -9,7 +9,7 @@ import { availableParallelism } from "node:os";
 import path from "node:path";
 import sharp from "sharp";
 
-import type { APIResponseType, BaseResponseType, AppRPCSchema, Image, ProcessImageResponseType, ProcessImageTask, SettingsResponseType, OpenFileDialogResponseType } from '../shared/shared-types';
+import type { APIResponseType, BaseResponseType, AppRPCSchema, Image, ProcessImageResponseType, ProcessImageTask, SettingsResponseType, OpenFileDialogResponseType, PollInputsResponseType } from '../shared/shared-types';
 import { BaseResponse, APIResponse, ProcessImageResponse } from '../shared/shared-objects';
 import { getImageDirectories } from '../shared/shared-directories';
 import { convertImageURL } from '../shared/shared-funcs';
@@ -184,9 +184,9 @@ Bun.serve({
 			const url = new URL(req.url);
 			const basename = decodeURIComponent(url.pathname.slice("/images/".length));
 			const imagePath = join(imageDirectory, basename);
-			let imageStats;
+
 			try {
-				imageStats = statSync(imagePath);
+				const imageStats = statSync(imagePath);
 
 				const imageFile = Bun.file(imagePath);
 				const etag = `W/"${imageStats.size}-${imageStats.mtimeMs}"`;
@@ -268,6 +268,34 @@ const rpc = BrowserView.defineRPC<AppRPCSchema>({
 	maxRequestTime: 30000,
 	handlers: {
 		requests: {
+			pollInputs: async () => {
+				const { inputDirectory } = getImageDirectories();
+				const inputPaths: Array<string> = []
+				const ret: PollInputsResponseType = {
+					...{ ...BaseResponse }, inputPaths
+				}
+				try {
+					const glob = new Bun.Glob("**/*");
+
+					// Get absolute paths for all files in a specific directory
+					const inputPaths = await Array.fromAsync(
+						glob.scan({
+							cwd: inputDirectory,
+							absolute: true,
+							onlyFiles: true
+						})
+					);
+
+					ret.inputPaths = inputPaths.map(inputPath => convertImageURL({ url: inputPath, type: 'absolutetolocal' }));
+					ret.message = 'Found inputs'
+				} catch (error) {
+
+					if (error && typeof error === 'object' && 'code' in error && error.code === 'ENOENT') {
+						ret.message = 'Folder does not exist yet';
+					}
+				}
+				return ret;
+			},
 			openFileDialog: async () => {
 				const res = await Utils.openFileDialog({
 					canChooseDirectory: true,
@@ -280,7 +308,7 @@ const rpc = BrowserView.defineRPC<AppRPCSchema>({
 			},
 			getSettings: async () => {
 				const base: SettingsResponseType = {
-					...BaseResponse, ...appContextDefaults.settings,
+					...{ ...BaseResponse }, ...appContextDefaults.settings,
 				}
 				const loadedSettings = getSettings();
 
@@ -288,7 +316,7 @@ const rpc = BrowserView.defineRPC<AppRPCSchema>({
 			},
 			resetSettings: async () => {
 				const ret: SettingsResponseType = {
-					...BaseResponse, ...appContextDefaults.settings,
+					...{ ...BaseResponse }, ...appContextDefaults.settings,
 				}
 
 				setSettings({ ...appContextDefaults.settings, ...{ outputFolder: '' } })
@@ -299,7 +327,7 @@ const rpc = BrowserView.defineRPC<AppRPCSchema>({
 			},
 			setSettings: async (props) => {
 				const ret: SettingsResponseType = {
-					...BaseResponse, ...appContextDefaults.settings,
+					...{ ...BaseResponse }, ...appContextDefaults.settings,
 				}
 				const loadedSettings = getSettings();
 				const newSettings = { ...loadedSettings, ...props };
@@ -349,7 +377,7 @@ const rpc = BrowserView.defineRPC<AppRPCSchema>({
 				if (quality === undefined || effort === undefined) {
 
 					const ret: ProcessImageResponseType = {
-						...ProcessImageResponse,
+						...{ ...ProcessImageResponse },
 						message: 'No update',
 						severity: 'WARNING'
 					};
@@ -358,7 +386,7 @@ const rpc = BrowserView.defineRPC<AppRPCSchema>({
 				}
 
 				const ret: ProcessImageResponseType = {
-					...ProcessImageResponse,
+					...{ ...ProcessImageResponse },
 					image: {
 						...ProcessImageResponse.image,
 						effort,
@@ -423,7 +451,7 @@ const rpc = BrowserView.defineRPC<AppRPCSchema>({
 				if (response === 0) {
 					// User clicked "Delete"
 					console.log("Deleting file...");
-					const ret: ProcessImageResponseType = ProcessImageResponse;
+					const ret: ProcessImageResponseType = { ...ProcessImageResponse };
 					const inputPath = convertImageURL({
 						url: params.path,
 						type: 'localtoabsolute',
@@ -468,7 +496,7 @@ const rpc = BrowserView.defineRPC<AppRPCSchema>({
 			},
 			clearAll: async () => {
 				const { inputDirectory, outputDirectory } = getImageDirectories();
-				const ret = BaseResponse;
+				const ret = { ...BaseResponse };
 
 				const { response } = await Utils.showMessageBox({
 					type: "question",
@@ -518,25 +546,23 @@ ApplicationMenu.setApplicationMenu([
 	}
 ]);
 
-
-
+// prevent too small screen
+const MIN_WIDTH = 1200;
+const MIN_HEIGHT = 800;
 
 // Create the main application window
 const mainWindow = new BrowserWindow({
 	title: "moop",
 	url: "views://mainview/index.html",
 	frame: {
-		width: 1200,
-		height: 800,
+		width: MIN_WIDTH,
+		height: MIN_HEIGHT,
 		x: 200,
 		y: 200,
 	},
 	rpc: rpc
 });
 
-// prevent too small screen
-const MIN_WIDTH = 1200;
-const MIN_HEIGHT = 800;
 
 mainWindow.on("resize", () => {
 	const { width, height } = mainWindow.getSize();

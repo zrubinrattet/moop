@@ -43,8 +43,8 @@ export const appContextDefaults: ApplicationState = {
 	setZoom: () => { },
 	// quality & effort are used for the UI, not an app-settings representation
 	quality: 80,
-	effort: 4,
 	setQuality: () => { },
+	effort: 4,
 	setEffort: () => { },
 	crop: {
 		x: 0,
@@ -61,7 +61,7 @@ export const appContextDefaults: ApplicationState = {
 		// if 0, no resizing.
 		maxHeight: 0,
 		outputFolder: '',
-		language: 'en-US',
+		language: 'en',
 		outputFormat: 'webp'
 	}
 };

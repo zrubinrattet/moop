@@ -1,5 +1,6 @@
 import type { RPCSchema } from "electrobun/bun";
 export type AvailableThemes = 'auto' | 'light' | 'dark';
+export type AvailableLangs = 'en' | 'es';
 export type ApplicationSettingsType = {
 	theme: AvailableThemes,
 	quality: number,
@@ -11,8 +12,8 @@ export type ApplicationSettingsType = {
 	// will eventually support custom root output folder
 	// if blank, use Utils.paths.pictures
 	outputFolder: string,
-	// will eventually support multiple langs
-	language: 'en-US',
+	// multiple langs supported
+	language: AvailableLangs,
 	// will eventually support multiple output formats
 	outputFormat: 'webp' | 'jpeg' | 'png';
 }
@@ -42,6 +43,10 @@ export type ProcessImageTask = {
 export type AppRPCSchema = {
 	bun: RPCSchema<{
 		requests: {
+			pollInputs : {
+				params: undefined,
+				response: PollInputsResponseType
+			},
 			openFileDialog: {
 				params: undefined,
 				response: OpenFileDialogResponseType
@@ -102,4 +107,8 @@ export type SettingsResponseType = BaseResponseType & ApplicationSettingsType
 
 export type OpenFileDialogResponseType = BaseResponseType & {
 	path: string,
+}
+
+export type PollInputsResponseType = BaseResponseType & {
+	inputPaths : Array<string>,
 }

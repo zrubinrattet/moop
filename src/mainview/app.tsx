@@ -1,10 +1,11 @@
-import MainBG from './modules/mainbg';
-import DragDrop from './modules/dragdrop';
-import ImagesEditor from './modules/imagesEditor';
-import SettingsPane from './modules/settings';
+import MainBG from './components/mainbg';
+import DragDrop from './components/dragdrop';
+import ImagesEditor from './components/imagesEditor';
+import SettingsPane from './components/settings';
 import { sharedContext, appContextDefaults } from '../shared/shared-context';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Toaster } from 'react-hot-toast';
+import { setLocale } from './lang/lang';
 
 export default function Moop() {
 	const [settings, setSettings] = useState(appContextDefaults.settings);
@@ -17,30 +18,34 @@ export default function Moop() {
 	const [zoom, setZoom] = useState(appContextDefaults.zoom);
 	const [quality, setQuality] = useState(appContextDefaults.quality);
 	const [effort, setEffort] = useState(appContextDefaults.effort);
-	
+
+	useEffect(() => {
+		setLocale(settings.language);
+	}, [settings.language]);
+
 	return (
 		<sharedContext.Provider value={{
 			...appContextDefaults,
-			settings: settings,
-			setSettings: setSettings,
-			images: images,
-			setImages: setImages,
-			outputFolderSize: outputFolderSize,
-			setOutputFolderSize: setOutputFolderSize,
-			inputFolderSize: inputFolderSize,
-			setInputFolderSize: setInputFolderSize,
-			imagesLoading: imagesLoading,
-			setImagesLoading: setImagesLoading,
-			imagesProcessing: imagesProcessing,
-			setImagesProcessing : setImagesProcessing,
-			crop: crop,
-			setCrop: setCrop,
-			zoom: zoom,
-			setZoom: setZoom,
-			quality: quality,
-			setQuality: setQuality,
-			effort: effort,
-			setEffort: setEffort,
+			settings,
+			setSettings,
+			images,
+			setImages,
+			outputFolderSize,
+			setOutputFolderSize,
+			inputFolderSize,
+			setInputFolderSize,
+			imagesLoading,
+			setImagesLoading,
+			imagesProcessing,
+			setImagesProcessing,
+			crop,
+			setCrop,
+			zoom,
+			setZoom,
+			quality,
+			setQuality,
+			effort,
+			setEffort,
 		}}>
 			<Toaster />
 			<SettingsPane />

@@ -860,6 +860,9 @@ body.theme-dark {
     background-color: var(--settings-field-bg);
     color: var(--settings-font-color);
   }
+  .settingspane-inner-fields-form-fields-field-select div[class*=menu] {
+    z-index: 15;
+  }
   .settingspane-inner-fields-form-fields-field-select div[class*=control] {
     border: 1px solid var(--settings-field-border-color);
     border-color: var(--settings-field-border-color);
