@@ -21,7 +21,9 @@ export default function Moop() {
 
 	useEffect(() => {
 		setLocale(settings.language);
-	}, [settings.language]);
+		['auto', 'light', 'dark'].forEach(name => document.body.classList.remove(`theme-${name}`));
+		document.body.classList.add(`theme-${settings.theme}`);
+	}, [settings.language, settings.theme]);
 
 	return (
 		<sharedContext.Provider value={{

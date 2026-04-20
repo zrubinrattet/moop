@@ -1,56 +1,128 @@
+@mixin theme-dark {
+	--font-header: 'Madimi One', sans-serif;
+	--font-body: 'Futura', Arial, Helvetica, sans-serif;
+
+	--mainbg-gradient: linear-gradient(-45deg, #3D4C8C, #472D61);
+
+	--highlight-bg: rgb(83, 34, 94);
+
+	--tooltip-bg: rgb(0, 0, 0);
+	--tooltip-color: #fff;
+
+	--imagelist-header-color: rgba(217, 217, 217, 0.8);
+	--imagelist-header-bg: rgba(88, 88, 88, 0.25);
+	--imagelist-bg: rgba(32, 32, 32, 0.5);
+	--imagelist-reveal-bg: rgba(52, 52, 52, 0.5);
+	--imagelist-font-color: #D6D6E9;
+	--imagelist-reveal-button-bg: rgba(52, 52, 52, 0.8);
+	--imagelist-reveal-button-font-color: #fff;
+	--imagelist-reveal-button-stroke-color: #fff;
+	--imagelist-item-close-bg: #c72782;
+	--imagelist-item-reveal-bg: rgb(97, 97, 97);
+	--imagelist-item-border-color: rgba(255, 255, 255, 0.6);
+	--imagelist-item-shadow-color: #000;
+	--imagelist-item-close-font-color: #fff;
+	--imagelist-item-close-stroke-color: rgba(255, 255, 255, 0.25);
+	--imagelist-item-loading-color1: #ababab;
+	--imagelist-item-loading-color2: #515151;
+	--imagelist-loading-fill: #514b82;
+
+	--imagecanvas-bg: rgba(0, 0, 0, 0.25);
+	--imagecanvas-header-bg: rgba(52, 52, 52, 0.8);
+	--imagecanvas-footer-bg: rgba(52, 52, 52, 0.8);
+	--imagecanvas-header-font-color: #fff;
+	--imagecanvas-sliders-bg: rgba(41, 39, 46, 1);
+	--imagecanvas-sliders-font-color: #fff;
+	--imagecanvas-slider-handle-fill: #989898;
+	--imagecanvas-slider-handle-stroke: #B4B4B4;
+	--imagecanvas-slider-track: #CFCFCF;
+	--imagecanvas-slider-number-bg: #595959;
+	--imagecanvas-slider-number-font-color: #fff;
+
+	--hottoast-bg: #4e4e4e;
+	--hottoast-font-color: #ffffff;
+
+	--settings-tint-bg: rgba(0, 0, 0, 0.7);
+	--settings-bg: #262626;
+	--settings-font-color: #fff;
+	--settings-field-bg: #373737;
+	--settings-field-bg-hover: #606060;
+	--settings-field-font-color: #fff;
+	--settings-field-border-color: #fff;
+	--settings-save-bg: rgba(8, 146, 89, 0.8);
+	--settings-restore-bg: rgba(177, 20, 156, 0.8);
+}
+
+@mixin theme-light {
+	--font-header: 'Madimi One', sans-serif;
+	--font-body: 'Futura', Arial, Helvetica, sans-serif;
+
+	--mainbg-gradient: linear-gradient(-45deg, #667EEA, #764BA2);
+	--highlight-bg: rgb(245, 175, 232);
+
+	--tooltip-bg: rgb(207, 207, 207);
+	--tooltip-color: #000;
+
+	--imagelist-header-color: rgba(217, 217, 217, 0.8);
+	--imagelist-header-bg: rgba(88, 88, 88, 0.25);
+	--imagelist-bg: rgba(32, 32, 32, 0.5);
+	--imagelist-reveal-bg: rgba(52, 52, 52, 0.5);
+	--imagelist-font-color: #D6D6E9;
+	--imagelist-reveal-button-bg: rgba(52, 52, 52, 0.8);
+	--imagelist-reveal-button-font-color: #fff;
+	--imagelist-reveal-button-stroke-color: #fff;
+	--imagelist-item-close-bg: #c72782;
+	--imagelist-item-reveal-bg: rgb(97, 97, 97);
+	--imagelist-item-border-color: rgba(255, 255, 255, 0.6);
+	--imagelist-item-shadow-color: #000;
+	--imagelist-item-close-font-color: #fff;
+	--imagelist-item-close-stroke-color: rgba(255, 255, 255, 0.25);
+	--imagelist-item-loading-color1: #ababab;
+	--imagelist-item-loading-color2: #515151;
+	--imagelist-loading-fill: #514b82;
+
+	--imagecanvas-bg: rgba(0, 0, 0, 0.25);
+	--imagecanvas-header-bg: rgba(52, 52, 52, 0.8);
+	--imagecanvas-footer-bg: rgba(52, 52, 52, 0.8);
+	--imagecanvas-header-font-color: #fff;
+	--imagecanvas-sliders-bg: rgba(41, 39, 46, 1);
+	--imagecanvas-sliders-font-color: #fff;
+	--imagecanvas-slider-handle-fill: #989898;
+	--imagecanvas-slider-handle-stroke: #B4B4B4;
+	--imagecanvas-slider-track: #CFCFCF;
+	--imagecanvas-slider-number-bg: #595959;
+	--imagecanvas-slider-number-font-color: #fff;
+
+	--hottoast-bg: #b3b3b3;
+	--hottoast-font-color: #000000;
+
+	--settings-tint-bg: rgba(188, 188, 188, 0.7);
+	--settings-bg: #dddddd;
+	--settings-font-color: #000000;
+	--settings-field-bg: #a8a8a8;
+	--settings-field-font-color: #000;
+	--settings-field-bg-hover: #aeaeae;
+	--settings-field-border-color: #000000;
+	--settings-save-bg: rgba(85, 243, 177, 0.8);
+	--settings-restore-bg: rgba(255, 94, 233, 0.8);
+}
+
 body {
 	&.theme-light {
-		--mainbg-gradient: linear-gradient(-45deg, #667EEA, #764BA2);
+		@include theme-light;
 	}
 
 	&.theme-dark {
-		--font-header: 'Madimi One', sans-serif;
-		--font-body: 'Futura', Arial, Helvetica, sans-serif;
+		@include theme-dark;
+	}
 
-		--mainbg-gradient: linear-gradient(-45deg, #3D4C8C, #472D61);
+	&.theme-auto {
+		@media (prefers-color-scheme: dark) {
+			@include theme-dark;
+		}
 
-		--tooltip-bg: rgb(0, 0, 0);
-
-		--imagelist-header-color: rgba(217, 217, 217, 0.8);
-		--imagelist-header-bg: rgba(88, 88, 88, 0.25);
-		--imagelist-bg: rgba(32, 32, 32, 0.5);
-		--imagelist-reveal-bg: rgba(52, 52, 52, 0.5);
-		--imagelist-font-color: #D6D6E9;
-		--imagelist-reveal-button-bg: rgba(52, 52, 52, 0.8);
-		--imagelist-reveal-button-font-color: #fff;
-		--imagelist-reveal-button-stroke-color: #fff;
-		--imagelist-item-close-bg: #c72782;
-		--imagelist-item-reveal-bg: rgb(97, 97, 97);
-		--imagelist-item-border-color: rgba(255, 255, 255, 0.6);
-		--imagelist-item-shadow-color: #000;
-		--imagelist-item-close-font-color: #fff;
-		--imagelist-item-close-stroke-color: rgba(255, 255, 255, 0.25);
-		--imagelist-item-loading-color1: #ababab;
-		--imagelist-item-loading-color2: #515151;
-		--imagelist-loading-fill: #514b82;
-
-		--imagecanvas-bg: rgba(0, 0, 0, 0.25);
-		--imagecanvas-header-bg: rgba(52, 52, 52, 0.8);
-		--imagecanvas-footer-bg: rgba(52, 52, 52, 0.8);
-		--imagecanvas-header-font-color: #fff;
-		--imagecanvas-sliders-bg: rgba(41, 39, 46, 1);
-		--imagecanvas-sliders-font-color: #fff;
-		--imagecanvas-slider-handle-fill: #989898;
-		--imagecanvas-slider-handle-stroke: #B4B4B4;
-		--imagecanvas-slider-track: #CFCFCF;
-		--imagecanvas-slider-number-bg: #595959;
-		--imagecanvas-slider-number-font-color: #fff;
-
-		--hottoast-bg: #4e4e4e;
-		--hottoast-font-color: #ffffff;
-
-		--settings-tint-bg: rgba(0, 0, 0, 0.7);
-		--settings-bg: #262626;
-		--settings-font-color: #fff;
-		--settings-field-bg: #373737;
-		--settings-field-bg-hover: #606060;
-		--settings-field-border-color: #fff;
-		--settings-save-bg: rgba(8, 146, 89, 0.8);
-		--settings-restore-bg: rgba(177, 20, 156, 0.8);
+		@media (prefers-color-scheme: light) {
+			@include theme-light;
+		}
 	}
 }

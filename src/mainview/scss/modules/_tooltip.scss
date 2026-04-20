@@ -1,11 +1,12 @@
 @media only screen {
 	div.tooltip[role="tooltip"]{
 		font-family: var(--font-body);
-		letter-spacing: 1px;
+		letter-spacing: 0.5px;
 		font-size: 10px;
 		z-index: 50;
 		box-shadow: 0px 4px 10px rgba(0,0,0,0.7);
 		background-color: var(--tooltip-bg);
 		white-space: pre-line;
+		color: var(--tooltip-color);
 	}
 }

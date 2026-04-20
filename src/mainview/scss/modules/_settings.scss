@@ -70,6 +70,10 @@
 		margin-bottom: 40px;
 		position: relative;
 
+		input{
+			outline: none;
+		}
+
 		&.number {
 			&:before {
 				content: '';
@@ -165,7 +169,7 @@
 
 		div[class*="option"] {
 			background-color: var(--settings-field-bg);
-
+			color: var(--settings-field-font-color);
 			&:active,
 			&:hover {
 				background-color: var(--settings-field-bg-hover);

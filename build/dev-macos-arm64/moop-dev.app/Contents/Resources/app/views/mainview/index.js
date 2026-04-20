@@ -40075,7 +40075,9 @@ function Moop() {
   const [effort, setEffort] = import_react22.useState(appContextDefaults.effort);
   import_react22.useEffect(() => {
     setLocale(settings.language);
-  }, [settings.language]);
+    ["auto", "light", "dark"].forEach((name) => document.body.classList.remove(`theme-${name}`));
+    document.body.classList.add(`theme-${settings.theme}`);
+  }, [settings.language, settings.theme]);
   return /* @__PURE__ */ jsx_dev_runtime9.jsxDEV(sharedContext.Provider, {
     value: {
       ...appContextDefaults,
