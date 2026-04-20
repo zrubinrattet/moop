@@ -19,6 +19,9 @@ import { appContextDefaults } from "../shared/shared-context";
 import { getSettings, initSettings, setSettings } from "../shared/shared-settings";
 import { cp } from "node:fs/promises";
 import { setLocale, t } from "../mainview/lang/lang";
+import pkg from "../../package.json" with { type: "json" };
+
+const APP_VERSION = pkg.version;
 
 
 const corsHeaders = {
@@ -507,9 +510,9 @@ const rpc = BrowserView.defineRPC<AppRPCSchema>({
 					detail: t('confirmClearAllDetail'),
 					buttons: [t('confirmClearButton0'), t('confirmClearButton1')],
 					// Focus on the cancel button by default
-					defaultId: 1,  
+					defaultId: 1,
 					// Pressing Escape returns 1 (Cancel)
-					cancelId: 1    
+					cancelId: 1
 				});
 
 				// if clear all was pressed
@@ -521,7 +524,7 @@ const rpc = BrowserView.defineRPC<AppRPCSchema>({
 						await mkdir(outputDirectory, { recursive: true });
 						const inputFiles = await readdir(inputDirectory);
 						const outputFiles = await readdir(outputDirectory);
-						
+
 						if (inputFiles.length === 0 && outputFiles.length === 0) {
 							ret.message = t('deleteImagesSuccess');
 						}
@@ -544,6 +547,7 @@ const rpc = BrowserView.defineRPC<AppRPCSchema>({
 ApplicationMenu.setApplicationMenu([
 	{
 		submenu: [
+			{ label: t('about'), action: "about" },
 			{ label: t('settings'), action: "settings", accelerator: ',' },
 			{ label: t('quit'), role: "quit", accelerator: 'q' }
 		],
@@ -595,7 +599,19 @@ mainWindow.webview.openDevTools();
 // });
 Electrobun.events.on("application-menu-clicked", (e) => {
 	console.log("application menu clicked", e.data.action);
-	mainWindow.webview.rpc?.send.openSettings()
+	if (e.data.action === 'settings') {
+		mainWindow.webview.rpc?.send.openSettings()
+	}
+	else if( e.data.action === 'about' ){
+		Utils.showMessageBox({
+			type: 'info',
+			title: '',
+			message: `Version: ${APP_VERSION}
+			Learn more at https://getmoop.app
+
+			Made with ♥️ in Oakland, CA.`
+		});
+	}
 });
 // Quit the app when the main window is closed
 mainWindow.on("close", () => {

@@ -95,6 +95,7 @@
 		"confirmDeleteImageDetail": "Это действие невозможно отменить.",
 		"confirmDeleteImageButton0": "Удалить",
 		"confirmDeleteImageButton1": "Отмена",
-		"quit": "Покидать"
+		"quit": "Покидать",
+		"about": "О"
 	}
 }

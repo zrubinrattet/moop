@@ -95,6 +95,7 @@
 		"confirmDeleteImageDetail": "لا يمكن التراجع عن هذا الإجراء.",
 		"confirmDeleteImageButton0": "يمسح",
 		"confirmDeleteImageButton1": "يلغي",
-		"quit": "يترك"
+		"quit": "يترك",
+		"about": "عن"
 	}
 }

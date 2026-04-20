@@ -95,6 +95,7 @@
 		"confirmDeleteImageDetail": "이 작업은 취소할 수 없습니다.",
 		"confirmDeleteImageButton0": "삭제",
 		"confirmDeleteImageButton1": "취소",
-		"quit": "그만두다"
+		"quit": "그만두다",
+		"about": "에 대한"
 	}
 }

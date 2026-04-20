@@ -95,6 +95,7 @@
 		"confirmDeleteImageDetail": "Không thể hoàn tác hành động này.",
 		"confirmDeleteImageButton0": "Xóa bỏ",
 		"confirmDeleteImageButton1": "Hủy bỏ",
-		"quit": "Từ bỏ"
+		"quit": "Từ bỏ",
+		"about": "Về"
 	}
 }

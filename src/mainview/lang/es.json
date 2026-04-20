@@ -95,6 +95,7 @@
 		"confirmDeleteImageDetail": "Esta acción no se puede deshacer.",
 		"confirmDeleteImageButton0": "Borrar",
 		"confirmDeleteImageButton1": "Cancelar",
-		"quit": "Abandonar"
+		"quit": "Abandonar",
+		"about": "Acerca de"
 	}
 }

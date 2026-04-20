@@ -95,6 +95,7 @@
 		"confirmDeleteImageDetail": "此操作无法撤消。",
 		"confirmDeleteImageButton0": "删除",
 		"confirmDeleteImageButton1": "取消",
-		"quit": "辞职"
+		"quit": "辞职",
+		"about": "关于"
 	}
 }

@@ -95,6 +95,7 @@
 		"confirmDeleteImageDetail": "Cette action ne peut pas être annulée.",
 		"confirmDeleteImageButton0": "Supprimer",
 		"confirmDeleteImageButton1": "Annuler",
-		"quit": "Quitter"
+		"quit": "Quitter",
+		"about": "À propos"
 	}
 }

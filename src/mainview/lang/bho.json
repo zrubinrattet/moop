@@ -95,6 +95,7 @@
 		"confirmDeleteImageDetail": "इस एक्शन को वापस नहीं किया जा सकता।",
 		"confirmDeleteImageButton0": "मिटाना",
 		"confirmDeleteImageButton1": "रद्द करना",
-		"quit": "छोड़ना"
+		"quit": "छोड़ना",
+		"about": "के बारे में"
 	}
 }

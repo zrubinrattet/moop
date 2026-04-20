@@ -95,6 +95,7 @@
 		"confirmDeleteImageDetail": "এই ক্রিয়াটি পূর্বাবস্থায় ফেরানো যাবে না৷",
 		"confirmDeleteImageButton0": "মুছুন",
 		"confirmDeleteImageButton1": "বাতিল করুন",
-		"quit": "প্রস্থান করুন"
+		"quit": "প্রস্থান করুন",
+		"about": "সম্পর্কে"
 	}
 }

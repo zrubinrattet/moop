@@ -95,6 +95,7 @@
 		"confirmDeleteImageDetail": "การดำเนินการนี้ไม่สามารถยกเลิกได้",
 		"confirmDeleteImageButton0": "ลบ",
 		"confirmDeleteImageButton1": "ยกเลิก",
-		"quit": "ล้มเลิก"
+		"quit": "ล้มเลิก",
+		"about": "เกี่ยวกับ"
 	}
 }

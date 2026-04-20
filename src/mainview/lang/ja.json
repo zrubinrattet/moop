@@ -95,6 +95,7 @@
 		"confirmDeleteImageDetail": "この操作は元に戻すことができません。",
 		"confirmDeleteImageButton0": "消去",
 		"confirmDeleteImageButton1": "キャンセル",
-		"quit": "やめる"
+		"quit": "やめる",
+		"about": "について"
 	}
 }

@@ -95,6 +95,7 @@
 		"confirmDeleteImageDetail": "Diese Aktion kann nicht rückgängig gemacht werden.",
 		"confirmDeleteImageButton0": "Löschen",
 		"confirmDeleteImageButton1": "Stornieren",
-		"quit": "Aufhören"
+		"quit": "Aufhören",
+		"about": "Um"
 	}
 }

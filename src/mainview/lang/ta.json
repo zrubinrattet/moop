@@ -95,6 +95,7 @@
 		"confirmDeleteImageDetail": "இந்தச் செயலைச் செயல்தவிர்க்க முடியாது.",
 		"confirmDeleteImageButton0": "நீக்கு",
 		"confirmDeleteImageButton1": "ரத்து செய்",
-		"quit": "வெளியேறு"
+		"quit": "வெளியேறு",
+		"about": "பற்றி"
 	}
 }

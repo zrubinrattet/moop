@@ -95,6 +95,7 @@
 		"confirmDeleteImageDetail": "Ang pagkilos na ito ay hindi maaaring i-undo.",
 		"confirmDeleteImageButton0": "Tanggalin",
 		"confirmDeleteImageButton1": "Kanselahin",
-		"quit": "quit"
+		"quit": "quit",
+		"about": "Tungkol sa"
 	}
 }

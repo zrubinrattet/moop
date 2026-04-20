@@ -95,6 +95,7 @@
 		"confirmDeleteImageDetail": "Tindakan ini tidak dapat dibatalkan.",
 		"confirmDeleteImageButton0": "Menghapus",
 		"confirmDeleteImageButton1": "Membatalkan",
-		"quit": "Berhenti"
+		"quit": "Berhenti",
+		"about": "Tentang"
 	}
 }

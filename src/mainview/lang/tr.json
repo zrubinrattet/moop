@@ -95,6 +95,7 @@
 		"confirmDeleteImageDetail": "Bu eylem geri alınamaz.",
 		"confirmDeleteImageButton0": "Silmek",
 		"confirmDeleteImageButton1": "İptal etmek",
-		"quit": "Çıkış yapmak"
+		"quit": "Çıkış yapmak",
+		"about": "Hakkında"
 	}
 }

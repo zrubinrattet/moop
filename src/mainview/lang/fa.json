@@ -95,6 +95,7 @@
 		"confirmDeleteImageDetail": "این عمل قابل بازگشت نیست.",
 		"confirmDeleteImageButton0": "حذف کنید",
 		"confirmDeleteImageButton1": "لغو کنید",
-		"quit": "ترک کنید"
+		"quit": "ترک کنید",
+		"about": "درباره"
 	}
 }
