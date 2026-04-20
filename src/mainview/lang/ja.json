@@ -84,6 +84,17 @@
 		"kn": "カンナダ語",
 		"yo": "ヨルバ語",
 		"bho": "ボージュプリー語",
-		"ml": "マラヤーラム語"
+		"ml": "マラヤーラム語",
+		"confirmClearAllTitle": "すべてクリアすることを確認",
+		"confirmClearAllMessage": "すべての画像を削除してもよろしいですか?",
+		"confirmClearAllDetail": "この操作は元に戻すことができません。",
+		"confirmClearButton0": "すべてクリア",
+		"confirmClearButton1": "キャンセル",
+		"confirmDeleteImageTitle": "削除の確認",
+		"confirmDeleteImageMessage": "このファイルを削除してもよろしいですか?",
+		"confirmDeleteImageDetail": "この操作は元に戻すことができません。",
+		"confirmDeleteImageButton0": "消去",
+		"confirmDeleteImageButton1": "キャンセル",
+		"quit": "やめる"
 	}
 }

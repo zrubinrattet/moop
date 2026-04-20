@@ -84,6 +84,17 @@
 		"kn": "കന്നഡ",
 		"yo": "യൊറൂബാ",
 		"bho": "ഭോജ്‌പുരി",
-		"ml": "മലയാളം"
+		"ml": "മലയാളം",
+		"confirmClearAllTitle": "എല്ലാം മായ്‌ക്കുക സ്ഥിരീകരിക്കുക",
+		"confirmClearAllMessage": "എല്ലാ ചിത്രങ്ങളും ഇല്ലാതാക്കണമെന്ന് തീർച്ചയാണോ?",
+		"confirmClearAllDetail": "ഈ പ്രവർത്തനം പഴയപടിയാക്കാനാകില്ല.",
+		"confirmClearButton0": "എല്ലാം മായ്‌ക്കുക",
+		"confirmClearButton1": "റദ്ദാക്കുക",
+		"confirmDeleteImageTitle": "ഇല്ലാതാക്കൽ സ്ഥിരീകരിക്കുക",
+		"confirmDeleteImageMessage": "ഈ ഫയൽ ഇല്ലാതാക്കണമെന്ന് തീർച്ചയാണോ?",
+		"confirmDeleteImageDetail": "ഈ പ്രവർത്തനം പഴയപടിയാക്കാനാകില്ല.",
+		"confirmDeleteImageButton0": "ഇല്ലാതാക്കുക",
+		"confirmDeleteImageButton1": "റദ്ദാക്കുക",
+		"quit": "ഉപേക്ഷിക്കുക"
 	}
 }

@@ -84,6 +84,17 @@
 		"kn": "칸나다어",
 		"yo": "요루바어",
 		"bho": "호즈푸리어",
-		"ml": "말라얄람어"
+		"ml": "말라얄람어",
+		"confirmClearAllTitle": "모두 지우기 확인",
+		"confirmClearAllMessage": "모든 이미지를 삭제하시겠습니까?",
+		"confirmClearAllDetail": "이 작업은 취소할 수 없습니다.",
+		"confirmClearButton0": "모두 지우기",
+		"confirmClearButton1": "취소",
+		"confirmDeleteImageTitle": "삭제 확인",
+		"confirmDeleteImageMessage": "이 파일을 삭제하시겠습니까?",
+		"confirmDeleteImageDetail": "이 작업은 취소할 수 없습니다.",
+		"confirmDeleteImageButton0": "삭제",
+		"confirmDeleteImageButton1": "취소",
+		"quit": "그만두다"
 	}
 }

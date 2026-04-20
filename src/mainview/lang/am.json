@@ -84,6 +84,17 @@
 		"kn": "ካናዳ",
 		"yo": "ዮሩባዊኛ",
 		"bho": "ቦጅፑሪ",
-		"ml": "ማላያላም"
+		"ml": "ማላያላም",
+		"confirmClearAllTitle": "ሁሉንም አጽዳ",
+		"confirmClearAllMessage": "እርግጠኛ ነዎት ሁሉንም ምስሎች መሰረዝ ይፈልጋሉ?",
+		"confirmClearAllDetail": "ይህ እርምጃ ሊቀለበስ አይችልም።",
+		"confirmClearButton0": "ሁሉንም አጽዳ",
+		"confirmClearButton1": "ሰርዝ",
+		"confirmDeleteImageTitle": "መሰረዝን ያረጋግጡ",
+		"confirmDeleteImageMessage": "እርግጠኛ ነዎት ይህን ፋይል መሰረዝ ይፈልጋሉ?",
+		"confirmDeleteImageDetail": "ይህ እርምጃ ሊቀለበስ አይችልም።",
+		"confirmDeleteImageButton0": "ሰርዝ",
+		"confirmDeleteImageButton1": "ሰርዝ",
+		"quit": "አቁም"
 	}
 }

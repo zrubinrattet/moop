@@ -84,6 +84,17 @@
 		"kn": "ಕನ್ನಡ",
 		"yo": "ಯೊರುಬಾ",
 		"bho": "ಭೋಜಪುರಿ",
-		"ml": "ಮಲಯಾಳಂ"
+		"ml": "ಮಲಯಾಳಂ",
+		"confirmClearAllTitle": "ಎಲ್ಲವನ್ನೂ ತೆರವುಗೊಳಿಸಿ ಎಂದು ಖಚಿತಪಡಿಸಿ",
+		"confirmClearAllMessage": "ಎಲ್ಲಾ ಚಿತ್ರಗಳನ್ನು ಅಳಿಸಲು ನೀವು ಖಚಿತವಾಗಿ ಬಯಸುವಿರಾ?",
+		"confirmClearAllDetail": "ಈ ಕ್ರಿಯೆಯನ್ನು ರದ್ದುಗೊಳಿಸಲಾಗುವುದಿಲ್ಲ.",
+		"confirmClearButton0": "ಎಲ್ಲವನ್ನೂ ತೆರವುಗೊಳಿಸಿ",
+		"confirmClearButton1": "ರದ್ದುಮಾಡು",
+		"confirmDeleteImageTitle": "ಅಳಿಸುವಿಕೆಯನ್ನು ದೃಢೀಕರಿಸಿ",
+		"confirmDeleteImageMessage": "ಈ ಫೈಲ್ ಅನ್ನು ಅಳಿಸಲು ನೀವು ಖಚಿತವಾಗಿ ಬಯಸುವಿರಾ?",
+		"confirmDeleteImageDetail": "ಈ ಕ್ರಿಯೆಯನ್ನು ರದ್ದುಗೊಳಿಸಲಾಗುವುದಿಲ್ಲ.",
+		"confirmDeleteImageButton0": "ಅಳಿಸಿ",
+		"confirmDeleteImageButton1": "ರದ್ದುಮಾಡು",
+		"quit": "ತ್ಯಜಿಸು"
 	}
 }

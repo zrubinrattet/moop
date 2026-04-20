@@ -84,6 +84,17 @@
 		"kn": "कन्नड",
 		"yo": "योरुबा",
 		"bho": "भोजपुरी",
-		"ml": "मल्याळम"
+		"ml": "मल्याळम",
+		"confirmClearAllTitle": "पुष्टी करा सर्व साफ करा",
+		"confirmClearAllMessage": "तुमची खात्री आहे की तुम्ही सर्व प्रतिमा हटवू इच्छिता?",
+		"confirmClearAllDetail": "ही क्रिया पूर्ववत केली जाऊ शकत नाही.",
+		"confirmClearButton0": "सर्व साफ करा",
+		"confirmClearButton1": "रद्द करा",
+		"confirmDeleteImageTitle": "हटविण्याची पुष्टी करा",
+		"confirmDeleteImageMessage": "तुमची खात्री आहे की तुम्ही ही फाइल हटवू इच्छिता?",
+		"confirmDeleteImageDetail": "ही क्रिया पूर्ववत केली जाऊ शकत नाही.",
+		"confirmDeleteImageButton0": "हटवा",
+		"confirmDeleteImageButton1": "रद्द करा",
+		"quit": "सोडा"
 	}
 }

@@ -84,6 +84,17 @@
 		"kn": "কন্নড়",
 		"yo": "ইওরুবা",
 		"bho": "ভোজপুরি",
-		"ml": "মালায়ালাম"
+		"ml": "মালায়ালাম",
+		"confirmClearAllTitle": "সব পরিষ্কার নিশ্চিত করুন",
+		"confirmClearAllMessage": "আপনি কি নিশ্চিত আপনি সব ছবি মুছে দিতে চান?",
+		"confirmClearAllDetail": "এই ক্রিয়াটি পূর্বাবস্থায় ফেরানো যাবে না৷",
+		"confirmClearButton0": "সব সাফ করুন",
+		"confirmClearButton1": "বাতিল করুন",
+		"confirmDeleteImageTitle": "মুছে ফেলা নিশ্চিত করুন",
+		"confirmDeleteImageMessage": "আপনি কি এই ফাইলটি মুছতে চান?",
+		"confirmDeleteImageDetail": "এই ক্রিয়াটি পূর্বাবস্থায় ফেরানো যাবে না৷",
+		"confirmDeleteImageButton0": "মুছুন",
+		"confirmDeleteImageButton1": "বাতিল করুন",
+		"quit": "প্রস্থান করুন"
 	}
 }

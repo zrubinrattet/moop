@@ -84,6 +84,17 @@
 		"kn": "కన్నడ",
 		"yo": "యోరుబా",
 		"bho": "భోజ్‌పురి",
-		"ml": "మలయాళం"
+		"ml": "మలయాళం",
+		"confirmClearAllTitle": "అన్నీ క్లియర్ చేయమని నిర్ధారించండి",
+		"confirmClearAllMessage": "మీరు ఖచ్చితంగా అన్ని చిత్రాలను తొలగించాలనుకుంటున్నారా?",
+		"confirmClearAllDetail": "ఈ చర్య రద్దు చేయబడదు.",
+		"confirmClearButton0": "అన్నీ క్లియర్ చేయండి",
+		"confirmClearButton1": "రద్దు చేయి",
+		"confirmDeleteImageTitle": "తొలగించడాన్ని నిర్ధారించండి",
+		"confirmDeleteImageMessage": "మీరు ఖచ్చితంగా ఈ ఫైల్‌ను తొలగించాలనుకుంటున్నారా?",
+		"confirmDeleteImageDetail": "ఈ చర్య రద్దు చేయబడదు.",
+		"confirmDeleteImageButton0": "తొలగించు",
+		"confirmDeleteImageButton1": "రద్దు చేయి",
+		"quit": "నిష్క్రమించు"
 	}
 }

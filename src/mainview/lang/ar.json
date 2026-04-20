@@ -84,6 +84,17 @@
 		"kn": "الكانادا",
 		"yo": "اليوروبا",
 		"bho": "البهوجبورية",
-		"ml": "المالايالامية"
+		"ml": "المالايالامية",
+		"confirmClearAllTitle": "تأكيد مسح الكل",
+		"confirmClearAllMessage": "هل أنت متأكد أنك تريد حذف جميع الصور؟",
+		"confirmClearAllDetail": "لا يمكن التراجع عن هذا الإجراء.",
+		"confirmClearButton0": "مسح الكل",
+		"confirmClearButton1": "يلغي",
+		"confirmDeleteImageTitle": "تأكيد الحذف",
+		"confirmDeleteImageMessage": "هل أنت متأكد أنك تريد حذف هذا الملف؟",
+		"confirmDeleteImageDetail": "لا يمكن التراجع عن هذا الإجراء.",
+		"confirmDeleteImageButton0": "يمسح",
+		"confirmDeleteImageButton1": "يلغي",
+		"quit": "يترك"
 	}
 }

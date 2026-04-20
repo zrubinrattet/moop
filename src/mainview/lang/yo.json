@@ -84,6 +84,17 @@
 		"kn": "Èdè Kannada",
 		"yo": "Èdè Yorùbá",
 		"bho": "Èdè Bojuri",
-		"ml": "Málàyálámù"
+		"ml": "Málàyálámù",
+		"confirmClearAllTitle": "Jẹrisi ko o gbogbo",
+		"confirmClearAllMessage": "Ṣe o da ọ loju pe o fẹ pa gbogbo awọn aworan rẹ bi?",
+		"confirmClearAllDetail": "Iṣe yii ko le ṣe atunṣe.",
+		"confirmClearButton0": "Ko gbogbo rẹ kuro",
+		"confirmClearButton1": "Fagilee",
+		"confirmDeleteImageTitle": "Jẹrisi piparẹ",
+		"confirmDeleteImageMessage": "Ṣe o da ọ loju pe o fẹ pa faili yii rẹ bi?",
+		"confirmDeleteImageDetail": "Iṣe yii ko le ṣe atunṣe.",
+		"confirmDeleteImageButton0": "Paarẹ",
+		"confirmDeleteImageButton1": "Fagilee",
+		"quit": "Jade"
 	}
 }

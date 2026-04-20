@@ -84,6 +84,17 @@
 		"kn": "Tiếng Kannada",
 		"yo": "Tiếng Yoruba",
 		"bho": "Tiếng Bhojpuri",
-		"ml": "Tiếng Malayalam"
+		"ml": "Tiếng Malayalam",
+		"confirmClearAllTitle": "Xác nhận xóa tất cả",
+		"confirmClearAllMessage": "Bạn có chắc chắn muốn xóa tất cả hình ảnh?",
+		"confirmClearAllDetail": "Không thể hoàn tác hành động này.",
+		"confirmClearButton0": "Xóa tất cả",
+		"confirmClearButton1": "Hủy bỏ",
+		"confirmDeleteImageTitle": "Xác nhận xóa",
+		"confirmDeleteImageMessage": "Bạn có chắc chắn muốn xóa tập tin này?",
+		"confirmDeleteImageDetail": "Không thể hoàn tác hành động này.",
+		"confirmDeleteImageButton0": "Xóa bỏ",
+		"confirmDeleteImageButton1": "Hủy bỏ",
+		"quit": "Từ bỏ"
 	}
 }

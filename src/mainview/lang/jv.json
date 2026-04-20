@@ -84,6 +84,17 @@
 		"kn": "Kannada",
 		"yo": "Yoruba",
 		"bho": "Bhojpuri",
-		"ml": "Malayalam"
+		"ml": "Malayalam",
+		"confirmClearAllTitle": "Konfirmasi cetha kabeh",
+		"confirmClearAllMessage": "Apa sampeyan yakin pengin mbusak kabeh gambar?",
+		"confirmClearAllDetail": "Tumindak iki ora bisa dibatalake.",
+		"confirmClearButton0": "Mbusak kabeh",
+		"confirmClearButton1": "Batal",
+		"confirmDeleteImageTitle": "Konfirmasi mbusak",
+		"confirmDeleteImageMessage": "Apa sampeyan yakin arep mbusak file iki?",
+		"confirmDeleteImageDetail": "Tumindak iki ora bisa dibatalake.",
+		"confirmDeleteImageButton0": "Mbusak",
+		"confirmDeleteImageButton1": "Batal",
+		"quit": "mandek"
 	}
 }

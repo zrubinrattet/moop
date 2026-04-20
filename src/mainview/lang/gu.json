@@ -84,6 +84,17 @@
 		"kn": "કન્નડ",
 		"yo": "યોરૂબા",
 		"bho": "ભોજપુરી",
-		"ml": "મલયાલમ"
+		"ml": "મલયાલમ",
+		"confirmClearAllTitle": "બધા સાફ કરવાની પુષ્ટિ કરો",
+		"confirmClearAllMessage": "શું તમે ખરેખર બધી છબીઓ કાઢી નાખવા માંગો છો?",
+		"confirmClearAllDetail": "આ ક્રિયા પૂર્વવત્ કરી શકાતી નથી.",
+		"confirmClearButton0": "બધા સાફ કરો",
+		"confirmClearButton1": "રદ કરો",
+		"confirmDeleteImageTitle": "કાઢી નાખવાની પુષ્ટિ કરો",
+		"confirmDeleteImageMessage": "શું તમે ખરેખર આ ફાઇલ કાઢી નાખવા માંગો છો?",
+		"confirmDeleteImageDetail": "આ ક્રિયા પૂર્વવત્ કરી શકાતી નથી.",
+		"confirmDeleteImageButton0": "કાઢી નાખો",
+		"confirmDeleteImageButton1": "રદ કરો",
+		"quit": "છોડો"
 	}
 }

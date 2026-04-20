@@ -84,6 +84,17 @@
 		"kn": "Kannada",
 		"yo": "Yoruba",
 		"bho": "Bhodschpuri",
-		"ml": "Malayalam"
+		"ml": "Malayalam",
+		"confirmClearAllTitle": "Bestätigen Sie, dass alles gelöscht ist",
+		"confirmClearAllMessage": "Sind Sie sicher, dass Sie alle Bilder löschen möchten?",
+		"confirmClearAllDetail": "Diese Aktion kann nicht rückgängig gemacht werden.",
+		"confirmClearButton0": "Alles löschen",
+		"confirmClearButton1": "Stornieren",
+		"confirmDeleteImageTitle": "Bestätigen Sie das Löschen",
+		"confirmDeleteImageMessage": "Sind Sie sicher, dass Sie diese Datei löschen möchten?",
+		"confirmDeleteImageDetail": "Diese Aktion kann nicht rückgängig gemacht werden.",
+		"confirmDeleteImageButton0": "Löschen",
+		"confirmDeleteImageButton1": "Stornieren",
+		"quit": "Aufhören"
 	}
 }

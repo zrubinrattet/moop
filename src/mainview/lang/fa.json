@@ -84,6 +84,17 @@
 		"kn": "کانارا",
 		"yo": "یوروبایی",
 		"bho": "بوجپوری",
-		"ml": "مالایالامی"
+		"ml": "مالایالامی",
+		"confirmClearAllTitle": "پاک کردن همه را تأیید کنید",
+		"confirmClearAllMessage": "آیا مطمئن هستید که می خواهید همه تصاویر را حذف کنید؟",
+		"confirmClearAllDetail": "این عمل قابل بازگشت نیست.",
+		"confirmClearButton0": "پاک کردن همه",
+		"confirmClearButton1": "لغو کنید",
+		"confirmDeleteImageTitle": "حذف را تایید کنید",
+		"confirmDeleteImageMessage": "آیا مطمئن هستید که می خواهید این فایل را حذف کنید؟",
+		"confirmDeleteImageDetail": "این عمل قابل بازگشت نیست.",
+		"confirmDeleteImageButton0": "حذف کنید",
+		"confirmDeleteImageButton1": "لغو کنید",
+		"quit": "ترک کنید"
 	}
 }

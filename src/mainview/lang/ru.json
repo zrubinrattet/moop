@@ -84,6 +84,17 @@
 		"kn": "каннада",
 		"yo": "йоруба",
 		"bho": "бходжпури",
-		"ml": "малаялам"
+		"ml": "малаялам",
+		"confirmClearAllTitle": "Подтвердить, очистить все",
+		"confirmClearAllMessage": "Вы уверены, что хотите удалить все изображения?",
+		"confirmClearAllDetail": "Это действие невозможно отменить.",
+		"confirmClearButton0": "Очистить все",
+		"confirmClearButton1": "Отмена",
+		"confirmDeleteImageTitle": "Подтвердить удаление",
+		"confirmDeleteImageMessage": "Вы уверены, что хотите удалить этот файл?",
+		"confirmDeleteImageDetail": "Это действие невозможно отменить.",
+		"confirmDeleteImageButton0": "Удалить",
+		"confirmDeleteImageButton1": "Отмена",
+		"quit": "Покидать"
 	}
 }

@@ -84,6 +84,17 @@
 		"kn": "கன்னடம்",
 		"yo": "யோருபா",
 		"bho": "போஜ்பூரி",
-		"ml": "மலையாளம்"
+		"ml": "மலையாளம்",
+		"confirmClearAllTitle": "அனைத்தையும் அழிக்க உறுதி செய்யவும்",
+		"confirmClearAllMessage": "எல்லா படங்களையும் நிச்சயமாக நீக்க வேண்டுமா?",
+		"confirmClearAllDetail": "இந்தச் செயலைச் செயல்தவிர்க்க முடியாது.",
+		"confirmClearButton0": "அனைத்தையும் அழிக்கவும்",
+		"confirmClearButton1": "ரத்து செய்",
+		"confirmDeleteImageTitle": "நீக்குவதை உறுதிப்படுத்தவும்",
+		"confirmDeleteImageMessage": "இந்தக் கோப்பை நிச்சயமாக நீக்க விரும்புகிறீர்களா?",
+		"confirmDeleteImageDetail": "இந்தச் செயலைச் செயல்தவிர்க்க முடியாது.",
+		"confirmDeleteImageButton0": "நீக்கு",
+		"confirmDeleteImageButton1": "ரத்து செய்",
+		"quit": "வெளியேறு"
 	}
 }

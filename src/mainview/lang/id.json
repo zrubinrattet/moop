@@ -84,6 +84,17 @@
 		"kn": "Kannada",
 		"yo": "Yoruba",
 		"bho": "Bhojpuri",
-		"ml": "Malayalam"
+		"ml": "Malayalam",
+		"confirmClearAllTitle": "Konfirmasi hapus semua",
+		"confirmClearAllMessage": "Apakah Anda yakin ingin menghapus semua gambar?",
+		"confirmClearAllDetail": "Tindakan ini tidak dapat dibatalkan.",
+		"confirmClearButton0": "Hapus semuanya",
+		"confirmClearButton1": "Membatalkan",
+		"confirmDeleteImageTitle": "Konfirmasi penghapusan",
+		"confirmDeleteImageMessage": "Apakah Anda yakin ingin menghapus file ini?",
+		"confirmDeleteImageDetail": "Tindakan ini tidak dapat dibatalkan.",
+		"confirmDeleteImageButton0": "Menghapus",
+		"confirmDeleteImageButton1": "Membatalkan",
+		"quit": "Berhenti"
 	}
 }

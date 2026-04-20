@@ -84,6 +84,17 @@
 		"kn": "Kannada dili",
 		"yo": "Yorubaca",
 		"bho": "Arayanice",
-		"ml": "Malayalam dili"
+		"ml": "Malayalam dili",
+		"confirmClearAllTitle": "Tümünü temizlemeyi onayla",
+		"confirmClearAllMessage": "Tüm resimleri silmek istediğinizden emin misiniz?",
+		"confirmClearAllDetail": "Bu eylem geri alınamaz.",
+		"confirmClearButton0": "Tümünü temizle",
+		"confirmClearButton1": "İptal etmek",
+		"confirmDeleteImageTitle": "Silmeyi onayla",
+		"confirmDeleteImageMessage": "Bu dosyayı silmek istediğinizden emin misiniz?",
+		"confirmDeleteImageDetail": "Bu eylem geri alınamaz.",
+		"confirmDeleteImageButton0": "Silmek",
+		"confirmDeleteImageButton1": "İptal etmek",
+		"quit": "Çıkış yapmak"
 	}
 }

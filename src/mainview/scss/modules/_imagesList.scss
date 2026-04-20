@@ -169,6 +169,9 @@
 		transition: box-shadow 0.5s ease, border-color 0.5s ease;
 		border: 2px solid transparent;
 		text-decoration: none;
+		box-sizing: border-box;
+		background-clip: border-box;
+		background-origin: border-box;
 	}
 
 	.imageslist-list-item-filename {
@@ -185,31 +188,6 @@
 		opacity: 0;
 		transition: opacity 0.25s ease, transform 0.25s ease;
 		transform: scale(0);
-	}
-
-	.imageslist-list-item-actions {
-		display: grid;
-		grid-template-columns: 1fr 1fr;
-		grid-gap: 24px 17px;
-		padding: 15px;
-		min-width: 0;
-	}
-
-	.imageslist-list-item-actions-action {
-		display: inline-block;
-		text-decoration: none;
-		font-family: var(--font-body);
-		font-size: 20px;
-		background-image: var(--imagelist-action-gradient);
-		border: 1px solid var(--imagelist-action-stroke-color);
-		padding: 10px 20px;
-		color: var(--imagelist-font-color);
-		text-align: center;
-
-		&.delete {
-			background-image: var(--imagelist-delete-gradient);
-			border: 1px solid var(--imagelist-delete-stroke-color);
-		}
 	}
 
 	.imageslist-list-loading {

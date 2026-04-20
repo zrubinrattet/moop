@@ -9,7 +9,6 @@
 	--tooltip-bg: rgb(0, 0, 0);
 	--tooltip-color: #fff;
 
-	--imagelist-header-color: rgba(217, 217, 217, 0.8);
 	--imagelist-header-bg: rgba(88, 88, 88, 0.25);
 	--imagelist-bg: rgba(32, 32, 32, 0.5);
 	--imagelist-reveal-bg: rgba(52, 52, 52, 0.5);
@@ -63,35 +62,34 @@
 	--tooltip-bg: rgb(207, 207, 207);
 	--tooltip-color: #000;
 
-	--imagelist-header-color: rgba(217, 217, 217, 0.8);
-	--imagelist-header-bg: rgba(88, 88, 88, 0.25);
-	--imagelist-bg: rgba(32, 32, 32, 0.5);
-	--imagelist-reveal-bg: rgba(52, 52, 52, 0.5);
-	--imagelist-font-color: #D6D6E9;
-	--imagelist-reveal-button-bg: rgba(52, 52, 52, 0.8);
-	--imagelist-reveal-button-font-color: #fff;
-	--imagelist-reveal-button-stroke-color: #fff;
-	--imagelist-item-close-bg: #c72782;
-	--imagelist-item-reveal-bg: rgb(97, 97, 97);
-	--imagelist-item-border-color: rgba(255, 255, 255, 0.6);
-	--imagelist-item-shadow-color: #000;
-	--imagelist-item-close-font-color: #fff;
-	--imagelist-item-close-stroke-color: rgba(255, 255, 255, 0.25);
+	--imagelist-header-bg: rgba(255, 255, 255, 0.4);
+	--imagelist-bg: rgba(194, 194, 194, 0.5);
+	--imagelist-reveal-bg: rgba(201, 201, 201, 0.5);
+	--imagelist-font-color: #131313;
+	--imagelist-reveal-button-bg: rgba(215, 215, 215, 0.8);
+	--imagelist-reveal-button-font-color: #000;
+	--imagelist-reveal-button-stroke-color: #000;
+	--imagelist-item-close-bg: rgba(255, 94, 233, 0.8);
+	--imagelist-item-reveal-bg: rgb(191, 191, 191);
+	--imagelist-item-border-color: rgb(0, 0, 0);
+	--imagelist-item-shadow-color: #7d7d7d;
+	--imagelist-item-close-font-color: #000;
+	--imagelist-item-close-stroke-color: rgba(0, 0, 0, 0.25);
 	--imagelist-item-loading-color1: #ababab;
 	--imagelist-item-loading-color2: #515151;
-	--imagelist-loading-fill: #514b82;
+	--imagelist-loading-fill: #5a5772;
 
-	--imagecanvas-bg: rgba(0, 0, 0, 0.25);
-	--imagecanvas-header-bg: rgba(52, 52, 52, 0.8);
-	--imagecanvas-footer-bg: rgba(52, 52, 52, 0.8);
-	--imagecanvas-header-font-color: #fff;
-	--imagecanvas-sliders-bg: rgba(41, 39, 46, 1);
-	--imagecanvas-sliders-font-color: #fff;
-	--imagecanvas-slider-handle-fill: #989898;
-	--imagecanvas-slider-handle-stroke: #B4B4B4;
-	--imagecanvas-slider-track: #CFCFCF;
-	--imagecanvas-slider-number-bg: #595959;
-	--imagecanvas-slider-number-font-color: #fff;
+	--imagecanvas-bg: rgba(255, 255, 255, 0.25);
+	--imagecanvas-header-bg: rgba(213, 213, 213, 0.8);
+	--imagecanvas-footer-bg: rgba(213, 213, 213, 0.8);
+	--imagecanvas-header-font-color: #000;
+	--imagecanvas-sliders-bg: rgba(196, 196, 196, 1);
+	--imagecanvas-sliders-font-color: #000;
+	--imagecanvas-slider-handle-fill: #595162;
+	--imagecanvas-slider-handle-stroke: #4a4a4a;
+	--imagecanvas-slider-track: #000;
+	--imagecanvas-slider-number-bg: #ababab;
+	--imagecanvas-slider-number-font-color: #000;
 
 	--hottoast-bg: #b3b3b3;
 	--hottoast-font-color: #000000;

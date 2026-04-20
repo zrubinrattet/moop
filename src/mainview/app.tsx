@@ -19,9 +19,13 @@ export default function Moop() {
 	const [quality, setQuality] = useState(appContextDefaults.quality);
 	const [effort, setEffort] = useState(appContextDefaults.effort);
 
+	// run on app load and whenever settings.language or settings.theme change
 	useEffect(() => {
+		// set theme on app load
 		setLocale(settings.language);
+		// remove theme body classes
 		['auto', 'light', 'dark'].forEach(name => document.body.classList.remove(`theme-${name}`));
+		// add the appropriate theme class
 		document.body.classList.add(`theme-${settings.theme}`);
 	}, [settings.language, settings.theme]);
 

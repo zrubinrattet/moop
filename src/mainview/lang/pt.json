@@ -84,6 +84,17 @@
 		"kn": "canarim",
 		"yo": "iorubá",
 		"bho": "bhojpuri",
-		"ml": "malaiala"
+		"ml": "malaiala",
+		"confirmClearAllTitle": "Confirme limpar tudo",
+		"confirmClearAllMessage": "Tem certeza de que deseja excluir todas as imagens?",
+		"confirmClearAllDetail": "Esta ação não pode ser desfeita.",
+		"confirmClearButton0": "Limpar tudo",
+		"confirmClearButton1": "Cancelar",
+		"confirmDeleteImageTitle": "Confirmar exclusão",
+		"confirmDeleteImageMessage": "Tem certeza de que deseja excluir este arquivo?",
+		"confirmDeleteImageDetail": "Esta ação não pode ser desfeita.",
+		"confirmDeleteImageButton0": "Excluir",
+		"confirmDeleteImageButton1": "Cancelar",
+		"quit": "Desistir"
 	}
 }

@@ -338,6 +338,7 @@ const rpc = BrowserView.defineRPC<AppRPCSchema>({
 				const oldImageDirectory = getImageDirectories().imageDirectory;
 
 				await setSettings(newSettings);
+				setLocale(newSettings.language);
 
 				const newImageDirectory = getImageDirectories().imageDirectory;
 				console.log(oldImageDirectory, newImageDirectory)
@@ -441,10 +442,10 @@ const rpc = BrowserView.defineRPC<AppRPCSchema>({
 				const { outputDirectory } = getImageDirectories();
 				const { response } = await Utils.showMessageBox({
 					type: "question",
-					title: "Confirm Delete",
-					message: "Are you sure you want to delete this file?",
-					detail: "This action cannot be undone.",
-					buttons: ["Delete", "Cancel"],
+					title: t('confirmDeleteImageTitle'),
+					message: t('confirmDeleteImageMessage'),
+					detail: t('confirmDeleteImageDetail'),
+					buttons: [t('confirmDeleteImageButton0'), t('confirmDeleteImageButton1')],
 					defaultId: 1,  // Focus "Cancel" by default
 					cancelId: 1    // Pressing Escape returns 1 (Cancel)
 				});
@@ -501,10 +502,10 @@ const rpc = BrowserView.defineRPC<AppRPCSchema>({
 
 				const { response } = await Utils.showMessageBox({
 					type: "question",
-					title: "Confirm clear all",
-					message: "Are you sure you want to delete all images?",
-					detail: "This action cannot be undone.",
-					buttons: ["Clear all", "Cancel"],
+					title: t('confirmClearAllTitle'),
+					message: t('confirmClearAllMessage'),
+					detail: t('confirmClearAllDetail'),
+					buttons: [t('confirmClearButton0'), t('confirmClearButton1')],
 					// Focus on the cancel button by default
 					defaultId: 1,  
 					// Pressing Escape returns 1 (Cancel)
@@ -531,6 +532,7 @@ const rpc = BrowserView.defineRPC<AppRPCSchema>({
 				}
 				else {
 					ret.message = t('deleteImagesCancel');
+					ret.severity = 'WARNING';
 				}
 				console.log('returning: ', ret);
 				return ret;
@@ -542,8 +544,8 @@ const rpc = BrowserView.defineRPC<AppRPCSchema>({
 ApplicationMenu.setApplicationMenu([
 	{
 		submenu: [
-			{ label: "Settings", action: "settings", accelerator: ',' },
-			{ label: "Quit", role: "quit", accelerator: 'q' }
+			{ label: t('settings'), action: "settings", accelerator: ',' },
+			{ label: t('quit'), role: "quit", accelerator: 'q' }
 		],
 	}
 ]);

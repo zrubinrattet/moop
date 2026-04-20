@@ -84,6 +84,17 @@
 		"kn": "Kannada",
 		"yo": "Yarbanci",
 		"bho": "Bhojpuri",
-		"ml": "Malayalamci"
+		"ml": "Malayalamci",
+		"confirmClearAllTitle": "Tabbatar da share duk",
+		"confirmClearAllMessage": "Shin kun tabbata kuna son share duk hotuna?",
+		"confirmClearAllDetail": "Ba za a iya soke wannan aikin ba.",
+		"confirmClearButton0": "Share duk",
+		"confirmClearButton1": "Soke",
+		"confirmDeleteImageTitle": "Tabbatar da gogewa",
+		"confirmDeleteImageMessage": "Shin kun tabbata kuna son share wannan fayil ɗin?",
+		"confirmDeleteImageDetail": "Ba za a iya soke wannan aikin ba.",
+		"confirmDeleteImageButton0": "Share",
+		"confirmDeleteImageButton1": "Soke",
+		"quit": "Dakata"
 	}
 }

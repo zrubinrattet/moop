@@ -84,6 +84,17 @@
 		"kn": "ਕੰਨੜ",
 		"yo": "ਯੋਰੂਬਾ",
 		"bho": "ਭੋਜਪੁਰੀ",
-		"ml": "ਮਲਿਆਲਮ"
+		"ml": "ਮਲਿਆਲਮ",
+		"confirmClearAllTitle": "ਸਭ ਨੂੰ ਸਾਫ਼ ਕਰਨ ਦੀ ਪੁਸ਼ਟੀ ਕਰੋ",
+		"confirmClearAllMessage": "ਕੀ ਤੁਸੀਂ ਯਕੀਨੀ ਤੌਰ 'ਤੇ ਸਾਰੀਆਂ ਤਸਵੀਰਾਂ ਨੂੰ ਮਿਟਾਉਣਾ ਚਾਹੁੰਦੇ ਹੋ?",
+		"confirmClearAllDetail": "ਇਸ ਕਾਰਵਾਈ ਨੂੰ ਅਣਕੀਤਾ ਨਹੀਂ ਕੀਤਾ ਜਾ ਸਕਦਾ।",
+		"confirmClearButton0": "ਸਭ ਸਾਫ਼ ਕਰੋ",
+		"confirmClearButton1": "ਰੱਦ ਕਰੋ",
+		"confirmDeleteImageTitle": "ਮਿਟਾਉਣ ਦੀ ਪੁਸ਼ਟੀ ਕਰੋ",
+		"confirmDeleteImageMessage": "ਕੀ ਤੁਸੀਂ ਯਕੀਨੀ ਤੌਰ 'ਤੇ ਇਸ ਫ਼ਾਈਲ ਨੂੰ ਮਿਟਾਉਣਾ ਚਾਹੁੰਦੇ ਹੋ?",
+		"confirmDeleteImageDetail": "ਇਸ ਕਾਰਵਾਈ ਨੂੰ ਅਣਕੀਤਾ ਨਹੀਂ ਕੀਤਾ ਜਾ ਸਕਦਾ।",
+		"confirmDeleteImageButton0": "ਮਿਟਾਓ",
+		"confirmDeleteImageButton1": "ਰੱਦ ਕਰੋ",
+		"quit": "ਛੱਡੋ"
 	}
 }

@@ -84,6 +84,17 @@
 		"kn": "कन्नड़",
 		"yo": "योरूबा",
 		"bho": "भोजपुरी",
-		"ml": "मलयालम"
+		"ml": "मलयालम",
+		"confirmClearAllTitle": "पुष्टि करें सभी साफ़ करें",
+		"confirmClearAllMessage": "क्या आप वाकई सभी छवियां हटाना चाहते हैं?",
+		"confirmClearAllDetail": "इस एक्शन को वापस नहीं किया जा सकता।",
+		"confirmClearButton0": "सभी साफ करें",
+		"confirmClearButton1": "रद्द करना",
+		"confirmDeleteImageTitle": "हटाने की पुष्टि करें",
+		"confirmDeleteImageMessage": "क्या आप द्वारा इस फाइल को हटाया जाना सुनिश्चित है?",
+		"confirmDeleteImageDetail": "इस एक्शन को वापस नहीं किया जा सकता।",
+		"confirmDeleteImageButton0": "मिटाना",
+		"confirmDeleteImageButton1": "रद्द करना",
+		"quit": "छोड़ना"
 	}
 }

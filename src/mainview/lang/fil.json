@@ -84,6 +84,17 @@
 		"kn": "Kannada",
 		"yo": "Yoruba",
 		"bho": "Bhojpuri",
-		"ml": "Malayalam"
+		"ml": "Malayalam",
+		"confirmClearAllTitle": "Kumpirmahin ang lahat",
+		"confirmClearAllMessage": "Sigurado ka bang gusto mong tanggalin ang lahat ng larawan?",
+		"confirmClearAllDetail": "Ang pagkilos na ito ay hindi maaaring i-undo.",
+		"confirmClearButton0": "I-clear lahat",
+		"confirmClearButton1": "Kanselahin",
+		"confirmDeleteImageTitle": "Kumpirmahin ang pagtanggal",
+		"confirmDeleteImageMessage": "Sigurado ka bang gusto mong tanggalin ang file na ito?",
+		"confirmDeleteImageDetail": "Ang pagkilos na ito ay hindi maaaring i-undo.",
+		"confirmDeleteImageButton0": "Tanggalin",
+		"confirmDeleteImageButton1": "Kanselahin",
+		"quit": "quit"
 	}
 }

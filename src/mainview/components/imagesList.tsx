@@ -44,11 +44,11 @@ export default function ImagesList() {
 			console.log(res)
 			if (res?.severity === 'SUCCESS') {
 				appContext.setImages([]);
-			}
-			if (res?.message) {
-				toast(res.message, {
-					className: 'hottoast',
-				});
+				if (res?.message) {
+					toast(res.message, {
+						className: 'hottoast',
+					});
+				}
 			}
 		} catch (error) {
 			handleRPCRequestCatch(error)

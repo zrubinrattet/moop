@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react"
+import { useContext, useEffect, useMemo, useState } from "react"
 import { electroview } from "../../shared/shared-electroview";
 import { appContextDefaults, sharedContext } from "../../shared/shared-context";
 import { AvailableLangs, AvailableOutputFormats, AvailableThemes } from "../../shared/shared-types";
@@ -19,45 +19,49 @@ export default function SettingsPane() {
 		{ value: 'dark', label: t('dark') },
 		{ value: 'light', label: t('light') },
 	];
-	const langs = {
-		"am": "Amharic",
-		"ar": "Arabic",
-		"bn": "Bangla",
-		"bho": "Bhojpuri",
-		"zh": "Chinese",
-		"en": "English",
-		"fil": "Filipino",
-		"fr": "French",
-		"de": "German",
-		"gu": "Gujarati",
-		"ha": "Hausa",
-		"hi": "Hindi",
-		"id": "Indonesian",
-		"it": "Italian",
-		"ja": "Japanese",
-		"jv": "Javanese",
-		"kn": "Kannada",
-		"ko": "Korean",
-		"ml": "Malayalam",
-		"mr": "Marathi",
-		"fa": "Persian",
-		"pt": "Portuguese",
-		"pa": "Punjabi",
-		"ru": "Russian",
-		"es": "Spanish",
-		"sw": "Swahili",
-		"ta": "Tamil",
-		"te": "Telugu",
-		"th": "Thai",
-		"tr": "Turkish",
-		"ur": "Urdu",
-		"vi": "Vietnamese",
-		"yo": "Yoruba"
-	};
-	const languageOptions: Array<{ value: AvailableLangs; label: string }> = Object.keys(langs).map((value) => ({
-		value: value as AvailableLangs,
-		label: t(value)
-	}));
+	const languageOptions: Array<{ value: AvailableLangs; label: string }> = useMemo(() => {
+		const langs = {
+			"am": "Amharic",
+			"ar": "Arabic",
+			"bn": "Bangla",
+			"bho": "Bhojpuri",
+			"zh": "Chinese",
+			"en": "English",
+			"fil": "Filipino",
+			"fr": "French",
+			"de": "German",
+			"gu": "Gujarati",
+			"ha": "Hausa",
+			"hi": "Hindi",
+			"id": "Indonesian",
+			"it": "Italian",
+			"ja": "Japanese",
+			"jv": "Javanese",
+			"kn": "Kannada",
+			"ko": "Korean",
+			"ml": "Malayalam",
+			"mr": "Marathi",
+			"fa": "Persian",
+			"pt": "Portuguese",
+			"pa": "Punjabi",
+			"ru": "Russian",
+			"es": "Spanish",
+			"sw": "Swahili",
+			"ta": "Tamil",
+			"te": "Telugu",
+			"th": "Thai",
+			"tr": "Turkish",
+			"ur": "Urdu",
+			"vi": "Vietnamese",
+			"yo": "Yoruba"
+		};
+		return (Object.keys(langs) as Array<AvailableLangs>)
+			.map((value) => ({
+				value,
+				label: t(value),
+			}))
+			.sort((a, b) => a.label.localeCompare(b.label, settings.language, { sensitivity: 'base' }));
+	}, [settings.language]);
 	const outputFormatOptions: Array<{ value: AvailableOutputFormats; label: string }> = [
 		{ value: 'webp', label: 'WebP' },
 	];
@@ -66,7 +70,7 @@ export default function SettingsPane() {
 		{ value: 'custom', label: t('custom') },
 	];
 
-	const [outputFolder, setOutputFolder] = useState('');
+	const [draftSettings, setDraftSettings] = useState(settings);
 	const [settingsPaneOpen, setSettingsPaneOpen] = useState(false);
 
 	useEffect(() => {
@@ -74,21 +78,22 @@ export default function SettingsPane() {
 			try {
 				const loadedSettings = await electroview.rpc?.request.getSettings();
 				console.log('laoded settings: ', loadedSettings)
-				if (loadedSettings) {
-					setSettings({
-						effort: loadedSettings.effort,
-						quality: loadedSettings.quality,
-						theme: loadedSettings.theme,
-						maxWidth: loadedSettings.maxWidth,
-						maxHeight: loadedSettings.maxHeight,
-						outputFolder: loadedSettings.outputFolder,
-						language: loadedSettings.language,
-						outputFormat: loadedSettings.outputFormat,
-					});
-					setOutputFolder(loadedSettings.outputFolder ?? '');
-					setQuality(loadedSettings.quality);
-					setEffort(loadedSettings.effort);
-					setLocale(loadedSettings.language);
+					if (loadedSettings) {
+						const nextSettings = {
+							effort: loadedSettings.effort,
+							quality: loadedSettings.quality,
+							theme: loadedSettings.theme,
+							maxWidth: loadedSettings.maxWidth,
+							maxHeight: loadedSettings.maxHeight,
+							outputFolder: loadedSettings.outputFolder,
+							language: loadedSettings.language,
+							outputFormat: loadedSettings.outputFormat,
+						};
+						setSettings(nextSettings);
+						setDraftSettings(nextSettings);
+						setQuality(loadedSettings.quality);
+						setEffort(loadedSettings.effort);
+						setLocale(loadedSettings.language);
 				}
 			} catch (error) {
 				handleRPCRequestCatch(error);
@@ -133,16 +138,13 @@ export default function SettingsPane() {
 		const submitterName = e.nativeEvent.submitter?.getAttribute('name');
 		console.log('submithander', submitterName)
 		if (submitterName === 'save') {
-			const formData = new FormData(e.currentTarget);
-			const formProps = Object.fromEntries(formData)
-			delete formProps.output;
-			console.log(formProps)
-			delete formProps.output;
+			const newSettings = { ...appContextDefaults.settings, ...draftSettings };
 			try {
-				const res = await electroview.rpc?.request.setSettings({ ...appContextDefaults.settings, ...formProps })
+				const res = await electroview.rpc?.request.setSettings(newSettings)
 				console.log(res)
-				const newSettings = { ...appContextDefaults.settings, ...formProps };
 				setSettings(newSettings);
+				setQuality(newSettings.quality);
+				setEffort(newSettings.effort);
 				setLocale(newSettings.language);
 				toast(t('settingsUpdated'), {
 					className: 'hottoast'
@@ -156,6 +158,9 @@ export default function SettingsPane() {
 				const res = await electroview.rpc?.request.setSettings({ ...appContextDefaults.settings })
 				console.log(res)
 				setSettings(appContextDefaults.settings)
+				setDraftSettings(appContextDefaults.settings)
+				setQuality(appContextDefaults.settings.quality);
+				setEffort(appContextDefaults.settings.effort);
 				setLocale(appContextDefaults.settings.language);
 				toast(t('settingsRestoredDefaults'), {
 					className: 'hottoast'
@@ -173,20 +178,29 @@ export default function SettingsPane() {
 		if (option.value === 'custom') {
 			try {
 				const res = await electroview.rpc?.request.openFileDialog() || { path: '' };
-				setOutputFolder(res.path);
+				setDraftSettings((current) => ({
+					...current,
+					outputFolder: res.path,
+				}));
 			} catch (error) {
 				handleRPCRequestCatch(error)
 			}
 		}
 		else {
-			setOutputFolder('');
+			setDraftSettings((current) => ({
+				...current,
+				outputFolder: '',
+			}));
 		}
 	}
 	const outputFolderButtonClickHandler = async () => {
 		try {
 			const res = await electroview.rpc?.request.openFileDialog() || { path: '' };
 			if (res.path.length) {
-				setOutputFolder(res.path);
+				setDraftSettings((current) => ({
+					...current,
+					outputFolder: res.path,
+				}));
 			}
 		} catch (error) {
 			handleRPCRequestCatch(error)
@@ -215,20 +229,20 @@ export default function SettingsPane() {
 									content={t('theme')}
 									className="tooltip"
 								/>
-								<Select
-									inputId="theme"
-									name="theme"
-									className="settingspane-inner-fields-form-fields-field-select"
-									options={themeOptions}
-									value={themeOptions.find((option) => option.value === settings.theme)}
-									onChange={(option) => {
-										if (!option) {
-											return;
-										}
-										setSettings((current) => ({
-											...current,
-											theme: option.value,
-										}));
+									<Select
+										inputId="theme"
+										name="theme"
+										className="settingspane-inner-fields-form-fields-field-select"
+										options={themeOptions}
+										value={themeOptions.find((option) => option.value === draftSettings.theme)}
+										onChange={(option) => {
+											if (!option) {
+												return;
+											}
+											setDraftSettings((current) => ({
+												...current,
+												theme: option.value,
+											}));
 									}}
 								/>
 							</div>
@@ -240,13 +254,13 @@ export default function SettingsPane() {
 									content={t('qualityTooltip')}
 									className="tooltip"
 								/>
-								<NumberField
-									min={1}
-									max={100}
-									name="quality"
-									value={settings.quality}
-									onChange={(val) => setSettings((current) => ({ ...current, quality: Number(val) }))}
-								/>
+									<NumberField
+										min={1}
+										max={100}
+										name="quality"
+										value={draftSettings.quality}
+										onChange={(val) => setDraftSettings((current) => ({ ...current, quality: Number(val) }))}
+									/>
 							</div>
 							<div className="settingspane-inner-fields-form-fields-field number">
 								<label data-tooltip-id="effort" htmlFor="effort" className="settingspane-inner-fields-form-fields-field-label">{t('defaultEffort')}</label>
@@ -256,13 +270,13 @@ export default function SettingsPane() {
 									content={t('effortTooltip')}
 									className="tooltip"
 								/>
-								<NumberField
-									min={0}
-									max={6}
-									name="effort"
-									value={settings.effort}
-									onChange={(val) => setSettings((current) => ({ ...current, effort: Number(val) }))}
-								/>
+									<NumberField
+										min={0}
+										max={6}
+										name="effort"
+										value={draftSettings.effort}
+										onChange={(val) => setDraftSettings((current) => ({ ...current, effort: Number(val) }))}
+									/>
 							</div>
 							<div className="settingspane-inner-fields-form-fields-field number">
 								<label htmlFor="maxWidth" data-tooltip-id="maxwidth" className="settingspane-inner-fields-form-fields-field-label">{t('maxWidth')}</label>
@@ -272,13 +286,13 @@ export default function SettingsPane() {
 									content={t('maxWidthTooltip')}
 									className="tooltip"
 								/>
-								<NumberField
-									min={0}
-									max={16383}
-									name="maxWidth"
-									value={settings.maxWidth}
-									onChange={(val) => setSettings((current) => ({ ...current, maxWidth: Number(val) }))}
-								/>
+									<NumberField
+										min={0}
+										max={16383}
+										name="maxWidth"
+										value={draftSettings.maxWidth}
+										onChange={(val) => setDraftSettings((current) => ({ ...current, maxWidth: Number(val) }))}
+									/>
 							</div>
 							<div className="settingspane-inner-fields-form-fields-field number">
 								<label htmlFor="maxHeight" data-tooltip-id="maxheight" className="settingspane-inner-fields-form-fields-field-label">{t('maxHeight')}</label>
@@ -288,13 +302,13 @@ export default function SettingsPane() {
 									content={t('maxHeightTooltip')}
 									className="tooltip"
 								/>
-								<NumberField
-									min={0}
-									max={16383}
-									name="maxHeight"
-									value={settings.maxHeight}
-									onChange={(val) => setSettings((current) => ({ ...current, maxHeight: Number(val) }))}
-								/>
+									<NumberField
+										min={0}
+										max={16383}
+										name="maxHeight"
+										value={draftSettings.maxHeight}
+										onChange={(val) => setDraftSettings((current) => ({ ...current, maxHeight: Number(val) }))}
+									/>
 							</div>
 							<div className="settingspane-inner-fields-form-fields-field">
 								<label htmlFor="output" data-tooltip-id="outputfolder" className="settingspane-inner-fields-form-fields-field-label">{t('outputFolder')}</label>
@@ -304,17 +318,17 @@ export default function SettingsPane() {
 									content={t('outputFolderTooltip')}
 									className="tooltip"
 								/>
-								<Select
-									inputId="output"
-									name="output"
-									className="settingspane-inner-fields-form-fields-field-select"
-									options={outputFolderOptions}
-									value={outputFolderOptions.find((option) => option.value === (outputFolder === '' ? 'default' : 'custom'))}
-									onChange={outputFolderSelectHandler}
-								/>
-								{outputFolder.length ? <><input className="settingspane-inner-fields-form-fields-field-button" onClick={outputFolderButtonClickHandler} type="button" value={t('changeLocation')} />
-									<div className="settingspane-inner-fields-form-fields-field-desc">{outputFolder}</div></> : ''}
-								<input className="settingspane-inner-fields-form-fields-field-desc" name="outputFolder" type="hidden" readOnly value={outputFolder} />
+									<Select
+										inputId="output"
+										name="output"
+										className="settingspane-inner-fields-form-fields-field-select"
+										options={outputFolderOptions}
+										value={outputFolderOptions.find((option) => option.value === (draftSettings.outputFolder === '' ? 'default' : 'custom'))}
+										onChange={outputFolderSelectHandler}
+									/>
+									{draftSettings.outputFolder.length ? <><input className="settingspane-inner-fields-form-fields-field-button" onClick={outputFolderButtonClickHandler} type="button" value={t('changeLocation')} />
+										<div className="settingspane-inner-fields-form-fields-field-desc">{draftSettings.outputFolder}</div></> : ''}
+									<input className="settingspane-inner-fields-form-fields-field-desc" name="outputFolder" type="hidden" readOnly value={draftSettings.outputFolder} />
 							</div>
 							<div className="settingspane-inner-fields-form-fields-field">
 								<label htmlFor="language" data-tooltip-id="language" className="settingspane-inner-fields-form-fields-field-label">{t('language')}</label>
@@ -324,20 +338,20 @@ export default function SettingsPane() {
 									content={t('languageTooltip')}
 									className="tooltip"
 								/>
-								<Select
-									inputId="language"
-									name="language"
-									className="settingspane-inner-fields-form-fields-field-select"
-									options={languageOptions}
-									value={languageOptions.find((option) => option.value === settings.language)}
-									onChange={(option) => {
-										if (!option) {
-											return;
-										}
-										setSettings((current) => ({
-											...current,
-											language: option.value,
-										}));
+									<Select
+										inputId="language"
+										name="language"
+										className="settingspane-inner-fields-form-fields-field-select"
+										options={languageOptions}
+										value={languageOptions.find((option) => option.value === draftSettings.language)}
+										onChange={(option) => {
+											if (!option) {
+												return;
+											}
+											setDraftSettings((current) => ({
+												...current,
+												language: option.value,
+											}));
 									}}
 								/>
 							</div>
@@ -349,20 +363,20 @@ export default function SettingsPane() {
 									content={t('formatTooltip')}
 									className="tooltip"
 								/>
-								<Select
-									inputId="format"
-									name="format"
-									className="settingspane-inner-fields-form-fields-field-select"
-									options={outputFormatOptions}
-									value={outputFormatOptions.find((option) => option.value === settings.outputFormat)}
-									onChange={(option) => {
-										if (!option) {
-											return;
-										}
-										setSettings((current) => ({
-											...current,
-											outputFormat: option.value,
-										}));
+									<Select
+										inputId="format"
+										name="format"
+										className="settingspane-inner-fields-form-fields-field-select"
+										options={outputFormatOptions}
+										value={outputFormatOptions.find((option) => option.value === draftSettings.outputFormat)}
+										onChange={(option) => {
+											if (!option) {
+												return;
+											}
+											setDraftSettings((current) => ({
+												...current,
+												outputFormat: option.value,
+											}));
 									}}
 								/>
 							</div>

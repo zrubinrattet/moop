@@ -84,6 +84,17 @@
 		"kn": "Kikannada",
 		"yo": "Kiyoruba",
 		"bho": "Kibhojpuri",
-		"ml": "Kimalayalamu"
+		"ml": "Kimalayalamu",
+		"confirmClearAllTitle": "Thibitisha wazi yote",
+		"confirmClearAllMessage": "Je, una uhakika unataka kufuta picha zote?",
+		"confirmClearAllDetail": "Kitendo hiki hakiwezi kutenduliwa.",
+		"confirmClearButton0": "Futa zote",
+		"confirmClearButton1": "Ghairi",
+		"confirmDeleteImageTitle": "Thibitisha kufuta",
+		"confirmDeleteImageMessage": "Je, una uhakika unataka kufuta faili hii?",
+		"confirmDeleteImageDetail": "Kitendo hiki hakiwezi kutenduliwa.",
+		"confirmDeleteImageButton0": "Futa",
+		"confirmDeleteImageButton1": "Ghairi",
+		"quit": "Acha"
 	}
 }

@@ -84,6 +84,17 @@
 		"kn": "กันนาดา",
 		"yo": "โยรูบา",
 		"bho": "โภชปุรี",
-		"ml": "มาลายาลัม"
+		"ml": "มาลายาลัม",
+		"confirmClearAllTitle": "ยืนยันเคลียร์ทั้งหมด",
+		"confirmClearAllMessage": "คุณแน่ใจหรือไม่ว่าต้องการลบภาพทั้งหมด",
+		"confirmClearAllDetail": "การดำเนินการนี้ไม่สามารถยกเลิกได้",
+		"confirmClearButton0": "เคลียร์ทั้งหมด",
+		"confirmClearButton1": "ยกเลิก",
+		"confirmDeleteImageTitle": "ยืนยันการลบ",
+		"confirmDeleteImageMessage": "คุณแน่ใจหรือไม่ว่าต้องการลบไฟล์นี้",
+		"confirmDeleteImageDetail": "การดำเนินการนี้ไม่สามารถยกเลิกได้",
+		"confirmDeleteImageButton0": "ลบ",
+		"confirmDeleteImageButton1": "ยกเลิก",
+		"quit": "ล้มเลิก"
 	}
 }

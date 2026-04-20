@@ -84,6 +84,17 @@
 		"kn": "canarés",
 		"yo": "yoruba",
 		"bho": "bhoyapurí",
-		"ml": "malayálam"
+		"ml": "malayálam",
+		"confirmClearAllTitle": "Confirmar borrar todo",
+		"confirmClearAllMessage": "¿Estás seguro de que deseas eliminar todas las imágenes?",
+		"confirmClearAllDetail": "Esta acción no se puede deshacer.",
+		"confirmClearButton0": "Borrar todo",
+		"confirmClearButton1": "Cancelar",
+		"confirmDeleteImageTitle": "Confirmar eliminación",
+		"confirmDeleteImageMessage": "¿Está seguro de que desea eliminar este archivo?",
+		"confirmDeleteImageDetail": "Esta acción no se puede deshacer.",
+		"confirmDeleteImageButton0": "Borrar",
+		"confirmDeleteImageButton1": "Cancelar",
+		"quit": "Abandonar"
 	}
 }

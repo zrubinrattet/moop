@@ -84,6 +84,17 @@
 		"kn": "kannada",
 		"yo": "yoruba",
 		"bho": "bhodjpouri",
-		"ml": "malayalam"
+		"ml": "malayalam",
+		"confirmClearAllTitle": "Confirmer tout effacer",
+		"confirmClearAllMessage": "Êtes-vous sûr de vouloir supprimer toutes les images ?",
+		"confirmClearAllDetail": "Cette action ne peut pas être annulée.",
+		"confirmClearButton0": "Tout effacer",
+		"confirmClearButton1": "Annuler",
+		"confirmDeleteImageTitle": "Confirmer la suppression",
+		"confirmDeleteImageMessage": "Êtes-vous sûr de vouloir supprimer ce fichier ?",
+		"confirmDeleteImageDetail": "Cette action ne peut pas être annulée.",
+		"confirmDeleteImageButton0": "Supprimer",
+		"confirmDeleteImageButton1": "Annuler",
+		"quit": "Quitter"
 	}
 }

@@ -84,6 +84,17 @@
 		"kn": "کنّاڈا",
 		"yo": "یوروبا",
 		"bho": "بھوجپوری",
-		"ml": "مالایالم"
+		"ml": "مالایالم",
+		"confirmClearAllTitle": "تمام صاف کرنے کی تصدیق کریں۔",
+		"confirmClearAllMessage": "کیا آپ واقعی تمام تصاویر کو حذف کرنا چاہتے ہیں؟",
+		"confirmClearAllDetail": "اس کارروائی کو کالعدم نہیں کیا جا سکتا۔",
+		"confirmClearButton0": "سب صاف کریں۔",
+		"confirmClearButton1": "منسوخ کریں۔",
+		"confirmDeleteImageTitle": "حذف کی تصدیق کریں۔",
+		"confirmDeleteImageMessage": "کیا آپ واقعی اس فائل کو حذف کرنا چاہتے ہیں؟",
+		"confirmDeleteImageDetail": "اس کارروائی کو کالعدم نہیں کیا جا سکتا۔",
+		"confirmDeleteImageButton0": "حذف کریں۔",
+		"confirmDeleteImageButton1": "منسوخ کریں۔",
+		"quit": "چھوڑو"
 	}
 }
