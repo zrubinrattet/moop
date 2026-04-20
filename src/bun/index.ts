@@ -240,8 +240,6 @@ Bun.serve({
 
 const concurrency = availableParallelism();
 
-
-
 const queue: queueAsPromised<ProcessImageTask> = fastq.promise(processImage, concurrency);
 
 
