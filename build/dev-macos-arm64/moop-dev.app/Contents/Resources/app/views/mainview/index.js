@@ -30651,14 +30651,27 @@ function DragDrop() {
       p2.then((val) => {
         if (!firstPromiseResolved) {
           firstPromiseResolved = true;
-          appContext.setImages((images) => {
-            const temp = val.data.images[0];
-            temp.isActive = true;
-            images[images.indexOf(val.data.images[0])] = temp;
-            return images;
-          });
-          appContext.setZoom(appContextDefaults.zoom);
-          appContext.setCrop(appContextDefaults.crop);
+          if (!val.ok) {
+            console.log(val);
+            zt(t("updateImageError"), {
+              className: "hottoast"
+            });
+            return;
+          }
+          try {
+            appContext.setImages((images) => {
+              const temp = val.data.images[0];
+              temp.isActive = true;
+              images[images.indexOf(val.data.images[0])] = temp;
+              return images;
+            });
+            appContext.setZoom(appContextDefaults.zoom);
+            appContext.setCrop(appContextDefaults.crop);
+          } catch (error) {
+            if (error instanceof Error) {
+              console.log(error.message);
+            }
+          }
         }
       });
     });
@@ -40046,7 +40059,9 @@ function SettingsPane() {
     })).sort((a3, b4) => a3.label.localeCompare(b4.label, settings.language, { sensitivity: "base" }));
   }, [settings.language]);
   const outputFormatOptions = [
-    { value: "webp", label: "WebP" }
+    { value: "webp", label: "WebP" },
+    { value: "png", label: "PNG" },
+    { value: "jpeg", label: "JPEG" }
   ];
   const outputFolderOptions = [
     { value: "default", label: t("pictures") },
@@ -40416,20 +40431,20 @@ function SettingsPane() {
                     className: "settingspane-inner-fields-form-fields-field",
                     children: [
                       /* @__PURE__ */ jsx_dev_runtime8.jsxDEV("label", {
-                        htmlFor: "format",
-                        "data-tooltip-id": "format",
+                        htmlFor: "outputFormat",
+                        "data-tooltip-id": "outputFormat",
                         className: "settingspane-inner-fields-form-fields-field-label",
                         children: t("format")
                       }, undefined, false, undefined, this),
                       /* @__PURE__ */ jsx_dev_runtime8.jsxDEV(M, {
-                        id: "format",
+                        id: "outputFormat",
                         place: "top",
                         content: t("formatTooltip"),
                         className: "tooltip"
                       }, undefined, false, undefined, this),
                       /* @__PURE__ */ jsx_dev_runtime8.jsxDEV(StateManagedSelect$1, {
-                        inputId: "format",
-                        name: "format",
+                        inputId: "outputFormat",
+                        name: "outputFormat",
                         className: "settingspane-inner-fields-form-fields-field-select",
                         options: outputFormatOptions,
                         value: outputFormatOptions.find((option) => option.value === draftSettings.outputFormat),

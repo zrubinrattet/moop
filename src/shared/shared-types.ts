@@ -68,12 +68,14 @@ export type Image = {
 	isActive: boolean,
 	quality: number,
 	effort: number,
+	outputFormat: AvailableOutputFormats,
 }
 export type ProcessImageTask = {
 	// the input path
 	path: string,
 	quality?: number,
 	effort?: number,
+	outputFormat?: AvailableOutputFormats
 }
 export type AppRPCSchema = {
 	bun: RPCSchema<{

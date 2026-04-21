@@ -64,6 +64,8 @@ export default function SettingsPane() {
 	}, [settings.language]);
 	const outputFormatOptions: Array<{ value: AvailableOutputFormats; label: string }> = [
 		{ value: 'webp', label: 'WebP' },
+		{ value: 'png', label: 'PNG' },
+		{ value: 'jpeg', label: 'JPEG' },
 	];
 	const outputFolderOptions: Array<{ value: 'default' | 'custom'; label: string }> = [
 		{ value: 'default', label: t('pictures') },
@@ -356,16 +358,16 @@ export default function SettingsPane() {
 								/>
 							</div>
 							<div className="settingspane-inner-fields-form-fields-field">
-								<label htmlFor="format" data-tooltip-id="format" className="settingspane-inner-fields-form-fields-field-label">{t('format')}</label>
+								<label htmlFor="outputFormat" data-tooltip-id="outputFormat" className="settingspane-inner-fields-form-fields-field-label">{t('format')}</label>
 								<Tooltip
-									id="format"
+									id="outputFormat"
 									place="top"
 									content={t('formatTooltip')}
 									className="tooltip"
 								/>
 									<Select
-										inputId="format"
-										name="format"
+										inputId="outputFormat"
+										name="outputFormat"
 										className="settingspane-inner-fields-form-fields-field-select"
 										options={outputFormatOptions}
 										value={outputFormatOptions.find((option) => option.value === draftSettings.outputFormat)}

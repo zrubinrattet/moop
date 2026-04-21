@@ -75,14 +75,27 @@ export default function DragDrop() {
 			p.then(val => {
 				if (!firstPromiseResolved) {
 					firstPromiseResolved = true;
-					appContext.setImages((images) => {
-						const temp: Image = val.data.images[0];
-						temp.isActive = true;
-						images[images.indexOf(val.data.images[0])] = temp;
-						return images;
-					});
-					appContext.setZoom(appContextDefaults.zoom);
-					appContext.setCrop(appContextDefaults.crop);
+					if (!val.ok) {
+						console.log(val)
+						toast(t('updateImageError'), {
+							className: 'hottoast'
+						})
+						return;
+					}
+					try {
+						appContext.setImages((images) => {
+							const temp: Image = val.data.images[0];
+							temp.isActive = true;
+							images[images.indexOf(val.data.images[0])] = temp;
+							return images;
+						});
+						appContext.setZoom(appContextDefaults.zoom);
+						appContext.setCrop(appContextDefaults.crop);
+					} catch (error) {
+						if (error instanceof Error) {
+							console.log(error.message)
+						}
+					}
 				}
 			});
 		});

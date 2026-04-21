@@ -12,7 +12,9 @@ export default function Moop() {
 	const [images, setImages] = useState(appContextDefaults.images);
 	const [outputFolderSize, setOutputFolderSize] = useState(appContextDefaults.outputFolderSize);
 	const [inputFolderSize, setInputFolderSize] = useState(appContextDefaults.inputFolderSize);
+	// if images are processing after first drag & drop
 	const [imagesLoading, setImagesLoading] = useState(appContextDefaults.imagesLoading);
+	// if images are processing via imageCanvas's sliders
 	const [imagesProcessing, setImagesProcessing] = useState(appContextDefaults.imagesProcessing);
 	const [crop, setCrop] = useState(appContextDefaults.crop);
 	const [zoom, setZoom] = useState(appContextDefaults.zoom);

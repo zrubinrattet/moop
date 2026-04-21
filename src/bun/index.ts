@@ -92,6 +92,8 @@ Bun.serve({
 				const form = await req.formData();
 				const image = form.get('image');
 
+				let ok = true;
+
 				if (!(image instanceof File)) {
 					return new Response('Missing file', {
 						status: 400,
@@ -130,7 +132,7 @@ Bun.serve({
 					})
 
 					// check if the output file got made
-					const outputPath = join(outputDirectory, `${path.parse(image.name).name}.webp`);
+					const outputPath = join(outputDirectory, `${path.parse(image.name).name}.${appSettings.outputFormat}`);
 
 					if (await Bun.file(outputPath).exists()) {
 						ret.message = `Successfully processed image.`;
@@ -154,6 +156,7 @@ Bun.serve({
 							isActive: false,
 							effort: appSettings.effort,
 							quality: appSettings.quality,
+							outputFormat: appSettings.outputFormat
 						};
 
 						ret.images = [image];
@@ -161,8 +164,9 @@ Bun.serve({
 						ret.outputFolderSize = await dirSize(outputDirectory);
 					}
 					else {
-						ret.message = `Could not process image.`;
+						ret.message = t('updateImageError');
 						ret.severity = 'ERROR';
+						ok = false;
 					}
 
 				} catch (error) {
@@ -170,14 +174,14 @@ Bun.serve({
 						ret.message = error.message;
 					}
 					else {
-						ret.message = 'Unknown error occurred.';
+						ret.message = t('unknownError');
 					}
 
 					ret.severity = 'ERROR';
 				}
 
 				return Response.json(
-					{ ok: true, data: ret },
+					{ ok: ok, data: ret },
 					{ headers: corsHeaders }
 				);
 			},
@@ -244,24 +248,42 @@ const queue: queueAsPromised<ProcessImageTask> = fastq.promise(processImage, con
 
 
 async function processImage(arg: ProcessImageTask): Promise<void> {
+	// No need for a try-catch block, fastq handles errors automatically
 	const { outputDirectory } = getImageDirectories();
 	const appSettings = getSettings();
-	// No need for a try-catch block, fastq handles errors automatically
+	
 	const parsed = path.parse(arg.path);
-	const outputPath = join(outputDirectory, `${parsed.name}.webp`);
-
-	// webp's quality/effort defaults are 80/4
-	await sharp(arg.path, {
+	const outputFormat = arg.outputFormat?.toLowerCase() || appSettings.outputFormat || 'webp';
+	const outputPath = join(outputDirectory, `${parsed.name}.${outputFormat}`);
+	
+	const resized = sharp(arg.path, {
 		density: 72,
-		animated: true,
+		animated: outputFormat === 'jpeg' ? false : true,
 	}).resize({
 		width: Number(appSettings.maxWidth) ? Number(appSettings.maxWidth) : undefined,
 		height: Number(appSettings.maxHeight) ? Number(appSettings.maxHeight) : undefined,
 		withoutEnlargement: true
-	}).webp({
-		quality: Number(arg.quality) || Number(appSettings.quality),
-		effort: Number(arg.effort) || Number(appSettings.effort),
-	}).toFile(outputPath);
+	})
+	
+	console.log('processing image', outputFormat)
+
+	if (outputFormat === 'webp') {
+		await resized.webp({
+			quality: Number(arg.quality) || Number(appSettings.quality),
+			effort: Number(arg.effort) || Number(appSettings.effort),
+		}).toFile(outputPath);
+	}
+	else if (outputFormat === 'png') {
+		await resized.png({
+			quality: Number(arg.quality) || Number(appSettings.quality),
+			effort: Number(arg.effort) || Number(appSettings.effort),
+		}).toFile(outputPath);
+	}
+	else if (outputFormat === 'jpeg') {
+		await resized.jpeg({
+			quality: Number(arg.quality) || Number(appSettings.quality)
+		}).toFile(outputPath);
+	}
 }
 
 
@@ -374,7 +396,7 @@ const rpc = BrowserView.defineRPC<AppRPCSchema>({
 			},
 			updateImage: async (params) => {
 				const { outputDirectory } = getImageDirectories();
-				const { quality, effort } = params;
+				const { quality, effort, outputFormat } = params;
 				const appSettings = getSettings();
 
 				if (quality === undefined || effort === undefined) {
@@ -407,10 +429,11 @@ const rpc = BrowserView.defineRPC<AppRPCSchema>({
 					path: inputPath,
 					quality: quality,
 					effort: effort,
+					outputFormat: outputFormat
 				}).then(async () => {
 					ret.message = t('updateImageSuccess');
 
-					const outputPath = join(outputDirectory, `${path.parse(inputPath).name}.webp`);
+					const outputPath = join(outputDirectory, `${path.parse(inputPath).name}.${outputFormat?.toLowerCase()||'webp'}`);
 					const inputResolution = await imageSizeFromFile(inputPath);
 					const outputResolution = await imageSizeFromFile(outputPath);
 
@@ -430,6 +453,7 @@ const rpc = BrowserView.defineRPC<AppRPCSchema>({
 						isActive: false,
 						effort: effort || appSettings.effort,
 						quality: quality || appSettings.quality,
+						outputFormat: outputFormat || appSettings.outputFormat,
 					};
 				}).catch((err) => {
 					console.error(err)
@@ -460,6 +484,8 @@ const rpc = BrowserView.defineRPC<AppRPCSchema>({
 						type: 'localtoabsolute',
 					});
 					const outputPath = join(outputDirectory, `${path.parse(inputPath).name}.webp`);
+					const outputPathPng = join(outputDirectory, `${path.parse(inputPath).name}.png`);
+					const outputPathJpeg = join(outputDirectory, `${path.parse(inputPath).name}.jpeg`);
 					const inputResolution = await imageSizeFromFile(inputPath);
 					const outputResolution = await imageSizeFromFile(outputPath);
 					const image = {
@@ -481,8 +507,10 @@ const rpc = BrowserView.defineRPC<AppRPCSchema>({
 
 					const inputTrashSuccessful = Utils.moveToTrash(inputPath)
 					const outputTrashSuccessful = Utils.moveToTrash(outputPath)
+					const outputPngTrashSuccessful = await exists(outputPathPng) ? Utils.moveToTrash(outputPathPng) : true;
+					const outputJpegTrashSuccessful = await exists(outputPathPng) ? Utils.moveToTrash(outputPathJpeg) : true;
 
-					if (inputTrashSuccessful && outputTrashSuccessful) {
+					if (inputTrashSuccessful && outputTrashSuccessful && outputJpegTrashSuccessful && outputPngTrashSuccessful) {
 						ret.message = t('deleteImageSuccess');
 					}
 					else {
@@ -600,14 +628,16 @@ Electrobun.events.on("application-menu-clicked", (e) => {
 	if (e.data.action === 'settings') {
 		mainWindow.webview.rpc?.send.openSettings()
 	}
-	else if( e.data.action === 'about' ){
+	else if (e.data.action === 'about') {
 		Utils.showMessageBox({
 			type: 'info',
 			title: '',
-			message: `Version: ${APP_VERSION}
+			message: `Version
+			${APP_VERSION}
+			
 			Learn more at https://getmoop.app
 
-			Made with ♥️ in Oakland, CA.`
+			Made with 💜 in Oakland, CA.`
 		});
 	}
 });
