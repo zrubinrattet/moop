@@ -6,7 +6,7 @@
 		"quality": "Ubora",
 		"effort": "Juhudi",
 		"qualityTooltip": "Ubora wa compression kutoka 1-100. Ubora wa juu unamaanisha mbano kidogo na faili kubwa.",
-		"effortTooltip": "Kiwango cha juhudi za CPU kupunguza ukubwa wa faili kutoka 0-6.\r\nJuhudi za juu humaanisha uchakataji wa picha utachukua muda mrefu lakini kwa kawaida utakuwa na mwonekano bora na wa chini katika saizi ya faili.",
+		"effortTooltip": "Kiwango cha juhudi za CPU kupunguza ukubwa wa faili kutoka 0-6 kwa webp na 1-10 kwa png.\r\nJuhudi za juu humaanisha uchakataji wa picha utachukua muda mrefu lakini kwa kawaida utaonekana bora na ukubwa wa faili utakuwa mdogo.",
 		"clearAll": "Futa zote",
 		"revealFolder": "Onyesha folda katika kidhibiti faili",
 		"reduction": "kupunguza",

@@ -6,7 +6,7 @@
 		"quality": "Kualitas",
 		"effort": "Upaya",
 		"qualityTooltip": "Kualitas kompresi dari 1-100. Kualitas lebih tinggi berarti lebih sedikit kompresi dan file lebih besar.",
-		"effortTooltip": "Tingkat upaya CPU untuk mengurangi ukuran file dari 0-6.\r\nUpaya yang lebih tinggi berarti pemrosesan gambar akan memakan waktu lebih lama tetapi biasanya akan terlihat lebih baik & ukuran file lebih rendah.",
+		"effortTooltip": "Tingkat upaya CPU untuk mengurangi ukuran file dari 0-6 untuk webp dan 1-10 untuk png.\r\nUpaya yang lebih tinggi berarti pemrosesan gambar akan memakan waktu lebih lama tetapi biasanya akan terlihat lebih baik dan ukuran file lebih kecil.",
 		"clearAll": "Hapus semuanya",
 		"revealFolder": "Buka folder di pengelola file",
 		"reduction": "pengurangan",

@@ -6,7 +6,7 @@
 		"quality": "chất lượng",
 		"effort": "nỗ lực",
 		"qualityTooltip": "Chất lượng nén từ 1-100. Chất lượng cao hơn có nghĩa là nén ít hơn và tệp lớn hơn.",
-		"effortTooltip": "Mức nỗ lực của CPU để giảm kích thước tệp từ 0-6.\r\nNỗ lực cao hơn có nghĩa là quá trình xử lý hình ảnh sẽ mất nhiều thời gian hơn nhưng thường sẽ trông đẹp hơn và kích thước tệp thấp hơn.",
+		"effortTooltip": "Mức nỗ lực của CPU để giảm kích thước tệp từ 0-6 cho webp và 1-10 cho png.\r\nNỗ lực cao hơn có nghĩa là quá trình xử lý hình ảnh sẽ mất nhiều thời gian hơn nhưng thường sẽ trông đẹp hơn và kích thước tệp nhỏ hơn.",
 		"clearAll": "Xóa tất cả",
 		"revealFolder": "Hiển thị thư mục trong trình quản lý tập tin",
 		"reduction": "giảm bớt",

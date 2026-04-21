@@ -6,7 +6,7 @@
 		"quality": "inganci",
 		"effort": "Ƙoƙari",
 		"qualityTooltip": "Ingancin matsawa daga 1-100. Mafi girman inganci yana nufin ƙarancin matsawa da manyan fayiloli.",
-		"effortTooltip": "Matsayin ƙoƙarin CPU don rage girman fayil daga 0-6.\r\nƘoƙari mafi girma yana nufin sarrafa hoto zai ɗauki lokaci mai tsawo amma yawanci zai fi kyau dubawa & ƙasa a cikin fayiloli.",
+		"effortTooltip": "Matsayin ƙoƙarin CPU don rage girman fayil daga 0-6 don webp da 1-10 don png.\r\nƘoƙari mafi girma yana nufin sarrafa hoto zai ɗauki lokaci mai tsawo amma yawanci zai fi kyau kallo kuma girman fayil ya ragu.",
 		"clearAll": "Share duk",
 		"revealFolder": "Bayyana babban fayil a cikin mai sarrafa fayil",
 		"reduction": "raguwa",

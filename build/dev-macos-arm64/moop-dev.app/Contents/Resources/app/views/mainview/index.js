@@ -24097,8 +24097,8 @@ var am_default = {
     quality: "ጥራት",
     effort: "ጥረት",
     qualityTooltip: "የመጭመቂያ ጥራት ከ1-100. ከፍተኛ ጥራት ማለት አነስተኛ መጭመቂያ እና ትላልቅ ፋይሎች ማለት ነው.",
-    effortTooltip: `የፋይል መጠንን ከ0-6 ለመቀነስ የሲፒዩ ጥረት ደረጃ።\r
-ከፍተኛ ጥረት ማለት ምስልን ማቀናበር ረዘም ያለ ጊዜ ይወስዳል ነገር ግን አብዛኛውን ጊዜ በተሻለ መልክ እና በፋይል አጠራር ዝቅተኛ ይሆናል።`,
+    effortTooltip: `የWebP ፋይል መጠንን ከ0-6 እና የPNG ከ1-10 ለመቀነስ የሲፒዩ ጥረት ደረጃ።\r
+ከፍተኛ ጥረት ማለት ምስልን ማቀናበር ረዘም ያለ ጊዜ ይወስዳል ነገር ግን ብዙውን ጊዜ የተሻለ መልክ እና ዝቅተኛ የፋይል መጠን ይኖረዋል።`,
     clearAll: "ሁሉንም አጽዳ",
     revealFolder: "በፋይል አቀናባሪ ውስጥ አቃፊን አሳይ",
     reduction: "ቅነሳ",
@@ -24202,8 +24202,8 @@ var ar_default = {
     quality: "الجودة",
     effort: "جهد",
     qualityTooltip: "جودة الضغط من 1-100. الجودة الأعلى تعني ضغطًا أقل وملفات أكبر.",
-    effortTooltip: `مستوى جهد وحدة المعالجة المركزية لتقليل حجم الملف من 0-6.\r
-يعني الجهد العالي أن معالجة الصور ستستغرق وقتًا أطول ولكنها عادةً ما تكون ذات مظهر أفضل وأقل حجمًا.`,
+    effortTooltip: `مستوى جهد وحدة المعالجة المركزية لتقليل حجم الملف من 0-6 لملفات webp ومن 1-10 لملفات png.\r
+يعني الجهد العالي أن معالجة الصور ستستغرق وقتًا أطول ولكنها عادةً ما تكون ذات مظهر أفضل وحجم ملف أقل.`,
     clearAll: "مسح الكل",
     revealFolder: "كشف المجلد في مدير الملفات",
     reduction: "تخفيض",
@@ -24307,8 +24307,8 @@ var bho_default = {
     quality: "गुणवत्ता",
     effort: "प्रयास",
     qualityTooltip: "संपीड़न गुणवत्ता 1-100 तक। उच्च गुणवत्ता का अर्थ है कम संपीड़न और बड़ी फ़ाइलें।",
-    effortTooltip: `फ़ाइल का आकार 0-6 से कम करने के लिए CPU प्रयास का स्तर।\r
-अधिक प्रयास का मतलब है कि छवि प्रसंस्करण में अधिक समय लगेगा लेकिन आमतौर पर यह बेहतर दिखेगी और फ़ाइल का आकार कम होगा।`,
+    effortTooltip: `webp खातिर फ़ाइल के आकार के 0-6 आ png खातिर 1-10 तक घटावे खातिर CPU प्रयास के स्तर।\r
+अधिक प्रयास के मतलब बा कि छवि प्रसंस्करण में अधिक समय लागी लेकिन आमतौर पर ई बेहतर दिखी आ फ़ाइल आकार कम होई।`,
     clearAll: "सब साफ़ करें",
     revealFolder: "फ़ाइल प्रबंधक में फ़ोल्डर प्रकट करें",
     reduction: "कमी",
@@ -24412,7 +24412,7 @@ var bn_default = {
     quality: "গুণমান",
     effort: "প্রচেষ্টা",
     qualityTooltip: "1-100 থেকে কম্প্রেশন গুণমান। উচ্চ মানের মানে কম কম্প্রেশন এবং বড় ফাইল।",
-    effortTooltip: `ফাইলের আকার 0-6 থেকে কমাতে CPU প্রচেষ্টার স্তর।\r
+    effortTooltip: `webp-এর জন্য ফাইলের আকার 0-6 এবং png-এর জন্য 1-10 কমাতে CPU প্রচেষ্টার স্তর।\r
 উচ্চতর প্রচেষ্টার অর্থ হল ছবি প্রক্রিয়াকরণে বেশি সময় লাগবে কিন্তু সাধারণত দেখতে ভালো এবং ফাইলের আকার কম হবে।`,
     clearAll: "সব সাফ করুন",
     revealFolder: "ফাইল ম্যানেজারে ফোল্ডার প্রকাশ করুন",
@@ -24517,7 +24517,7 @@ var de_default = {
     quality: "Qualität",
     effort: "Aufwand",
     qualityTooltip: "Komprimierungsqualität von 1-100. Höhere Qualität bedeutet weniger Komprimierung und größere Dateien.",
-    effortTooltip: `CPU-Aufwand zur Reduzierung der Dateigröße von 0 bis 6.\r
+    effortTooltip: `CPU-Aufwandsstufe zur Reduzierung der Dateigröße von 0-6 für webp und 1-10 für png.\r
 Höherer Aufwand bedeutet, dass die Bildverarbeitung länger dauert, aber in der Regel besser aussieht und eine geringere Dateigröße aufweist.`,
     clearAll: "Alles löschen",
     revealFolder: "Ordner im Dateimanager anzeigen",
@@ -24622,7 +24622,7 @@ var en_default = {
     quality: "Quality",
     effort: "Effort",
     qualityTooltip: "Compression quality from 1-100. Higher quality means less compression and larger files.",
-    effortTooltip: `Level of CPU effort to reduce file size from 0-6.\r
+    effortTooltip: `Level of CPU effort to reduce file size from 0-6 for webp and 1-10 for png.\r
 Higher effort means image processing will take longer but will usually be better looking & lower in filesize.`,
     clearAll: "Clear all",
     revealFolder: "Reveal folder in file manager",
@@ -24727,7 +24727,7 @@ var es_default = {
     quality: "Calidad",
     effort: "Esfuerzo",
     qualityTooltip: "Calidad de compresión de 1 a 100. Una calidad más alta significa menos compresión y archivos más grandes.",
-    effortTooltip: `Nivel de esfuerzo de CPU para reducir el tamaño del archivo de 0 a 6.\r
+    effortTooltip: `Nivel de esfuerzo de CPU para reducir el tamaño del archivo de 0-6 para webp y de 1-10 para png.\r
 Un esfuerzo mayor hará que el procesamiento de imágenes tarde más, pero por lo general dará mejor calidad visual y menor tamaño de archivo.`,
     clearAll: "Borrar todo",
     revealFolder: "Abrir carpeta",
@@ -24832,8 +24832,8 @@ var fa_default = {
     quality: "کیفیت",
     effort: "تلاش",
     qualityTooltip: "کیفیت فشرده سازی از 1-100. کیفیت بالاتر به معنی فشرده سازی کمتر و حجم فایل ها است.",
-    effortTooltip: `سطح تلاش CPU برای کاهش اندازه فایل از 0-6.\r
-تلاش بیشتر به این معنی است که پردازش تصویر بیشتر طول می کشد، اما معمولاً ظاهر بهتر و حجم فایل کمتری دارد.`,
+    effortTooltip: `سطح تلاش CPU برای کاهش اندازه فایل از 0-6 برای webp و 1-10 برای png.\r
+تلاش بیشتر به این معنی است که پردازش تصویر بیشتر طول می‌کشد، اما معمولاً ظاهر بهتر و حجم فایل کمتری دارد.`,
     clearAll: "همه را پاک کنید",
     revealFolder: "پوشه را در فایل منیجر آشکار کنید",
     reduction: "کاهش",
@@ -24937,8 +24937,8 @@ var fil_default = {
     quality: "Kalidad",
     effort: "Pagsisikap",
     qualityTooltip: "Kalidad ng compression mula 1-100. Ang mas mataas na kalidad ay nangangahulugan ng mas kaunting compression at mas malalaking file.",
-    effortTooltip: `Antas ng pagsisikap ng CPU na bawasan ang laki ng file mula 0-6.\r
-Ang mas mataas na pagsisikap ay nangangahulugan na ang pagpoproseso ng imahe ay mas magtatagal ngunit kadalasan ay magiging mas maganda at mas mababa ang laki ng mga file.`,
+    effortTooltip: `Antas ng pagsisikap ng CPU para bawasan ang laki ng file mula 0-6 para sa webp at 1-10 para sa png.\r
+Ang mas mataas na pagsisikap ay nangangahulugan na mas magtatagal ang pagproseso ng imahe ngunit kadalasan ay mas maganda ang magiging hitsura at mas mababa ang laki ng file.`,
     clearAll: "I-clear lahat",
     revealFolder: "Ipakita ang folder sa file manager",
     reduction: "pagbabawas",
@@ -25042,7 +25042,7 @@ var fr_default = {
     quality: "Qualité",
     effort: "Effort",
     qualityTooltip: "Qualité de compression de 1 à 100. Une qualité supérieure signifie moins de compression et des fichiers plus volumineux.",
-    effortTooltip: `Niveau d'effort du processeur pour réduire la taille du fichier de 0 à 6.\r
+    effortTooltip: `Niveau d'effort du processeur pour réduire la taille du fichier de 0 à 6 pour webp et de 1 à 10 pour png.\r
 Un effort plus élevé signifie que le traitement de l'image prendra plus de temps, mais sera généralement plus beau et plus petit en taille de fichier.`,
     clearAll: "Tout effacer",
     revealFolder: "Révéler le dossier dans le gestionnaire de fichiers",
@@ -25147,7 +25147,7 @@ var gu_default = {
     quality: "ગુણવત્તા",
     effort: "પ્રયત્ન",
     qualityTooltip: "1-100 થી કમ્પ્રેશન ગુણવત્તા. ઉચ્ચ ગુણવત્તા એટલે ઓછી કમ્પ્રેશન અને મોટી ફાઇલો.",
-    effortTooltip: `ફાઇલનું કદ 0-6 થી ઘટાડવા માટે CPU પ્રયાસનું સ્તર.\r
+    effortTooltip: `webp માટે ફાઇલનું કદ 0-6 અને png માટે 1-10 સુધી ઘટાડવા માટે CPU પ્રયત્નનું સ્તર.\r
 ઉચ્ચ પ્રયત્નોનો અર્થ એ છે કે ઇમેજ પ્રોસેસિંગમાં વધુ સમય લાગશે પરંતુ સામાન્ય રીતે તે વધુ સારું દેખાશે અને ફાઇલ કદમાં ઓછું હશે.`,
     clearAll: "બધા સાફ કરો",
     revealFolder: "ફાઇલ મેનેજરમાં ફોલ્ડર જણાવો",
@@ -25252,8 +25252,8 @@ var ha_default = {
     quality: "inganci",
     effort: "Ƙoƙari",
     qualityTooltip: "Ingancin matsawa daga 1-100. Mafi girman inganci yana nufin ƙarancin matsawa da manyan fayiloli.",
-    effortTooltip: `Matsayin ƙoƙarin CPU don rage girman fayil daga 0-6.\r
-Ƙoƙari mafi girma yana nufin sarrafa hoto zai ɗauki lokaci mai tsawo amma yawanci zai fi kyau dubawa & ƙasa a cikin fayiloli.`,
+    effortTooltip: `Matsayin ƙoƙarin CPU don rage girman fayil daga 0-6 don webp da 1-10 don png.\r
+Ƙoƙari mafi girma yana nufin sarrafa hoto zai ɗauki lokaci mai tsawo amma yawanci zai fi kyau kallo kuma girman fayil ya ragu.`,
     clearAll: "Share duk",
     revealFolder: "Bayyana babban fayil a cikin mai sarrafa fayil",
     reduction: "raguwa",
@@ -25357,7 +25357,7 @@ var hi_default = {
     quality: "गुणवत्ता",
     effort: "प्रयास",
     qualityTooltip: "संपीड़न गुणवत्ता 1-100 तक। उच्च गुणवत्ता का अर्थ है कम संपीड़न और बड़ी फ़ाइलें।",
-    effortTooltip: `फ़ाइल का आकार 0-6 से कम करने के लिए CPU प्रयास का स्तर।\r
+    effortTooltip: `webp के लिए फ़ाइल का आकार 0-6 और png के लिए 1-10 तक कम करने के लिए CPU प्रयास का स्तर।\r
 अधिक प्रयास का मतलब है कि छवि प्रसंस्करण में अधिक समय लगेगा लेकिन आमतौर पर यह बेहतर दिखेगी और फ़ाइल का आकार कम होगा।`,
     clearAll: "सब साफ़ करें",
     revealFolder: "फ़ाइल प्रबंधक में फ़ोल्डर प्रकट करें",
@@ -25462,8 +25462,8 @@ var id_default = {
     quality: "Kualitas",
     effort: "Upaya",
     qualityTooltip: "Kualitas kompresi dari 1-100. Kualitas lebih tinggi berarti lebih sedikit kompresi dan file lebih besar.",
-    effortTooltip: `Tingkat upaya CPU untuk mengurangi ukuran file dari 0-6.\r
-Upaya yang lebih tinggi berarti pemrosesan gambar akan memakan waktu lebih lama tetapi biasanya akan terlihat lebih baik & ukuran file lebih rendah.`,
+    effortTooltip: `Tingkat upaya CPU untuk mengurangi ukuran file dari 0-6 untuk webp dan 1-10 untuk png.\r
+Upaya yang lebih tinggi berarti pemrosesan gambar akan memakan waktu lebih lama tetapi biasanya akan terlihat lebih baik dan ukuran file lebih kecil.`,
     clearAll: "Hapus semuanya",
     revealFolder: "Buka folder di pengelola file",
     reduction: "pengurangan",
@@ -25567,7 +25567,7 @@ var it_default = {
     quality: "Qualità",
     effort: "Sforzo",
     qualityTooltip: "Qualità di compressione da 1 a 100. Una qualità superiore significa meno compressione e file più grandi.",
-    effortTooltip: `Livello di impegno della CPU per ridurre la dimensione del file da 0 a 6.\r
+    effortTooltip: `Livello di impegno della CPU per ridurre la dimensione del file da 0 a 6 per webp e da 1 a 10 per png.\r
 Uno sforzo maggiore significa che l'elaborazione delle immagini richiederà più tempo ma di solito avrà un aspetto migliore e una dimensione del file inferiore.`,
     clearAll: "Cancella tutto",
     revealFolder: "Rivela la cartella nel file manager",
@@ -25672,8 +25672,8 @@ var ja_default = {
     quality: "品質",
     effort: "努力",
     qualityTooltip: "圧縮品質は 1 ～ 100 です。品質が高いほど、圧縮率が低くなり、ファイルが大きくなります。",
-    effortTooltip: `ファイル サイズを削減するための CPU 負荷のレベル (0 ～ 6)。\r
-労力がかかると、画像処理に時間がかかりますが、通常は見栄えが良くなり、ファイルサイズが小さくなります。`,
+    effortTooltip: `webp では 0〜6、png では 1〜10 の範囲でファイルサイズを削減する CPU 負荷のレベル。\r
+負荷が高いほど画像処理に時間がかかりますが、通常は見た目が良くなり、ファイルサイズも小さくなります。`,
     clearAll: "すべてクリア",
     revealFolder: "ファイルマネージャーでフォルダーを表示",
     reduction: "削減",
@@ -25777,8 +25777,8 @@ var jv_default = {
     quality: "Kualitas",
     effort: "Upaya",
     qualityTooltip: "Kualitas komprèsi saka 1-100. Kualitas sing luwih dhuwur tegese kurang kompresi lan file sing luwih gedhe.",
-    effortTooltip: `Tingkat gaweyan CPU kanggo nyuda ukuran file saka 0-6.\r
-Usaha sing luwih dhuwur tegese pangolahan gambar bakal luwih suwe nanging biasane katon luwih apik & ukuran file luwih murah.`,
+    effortTooltip: `Tingkat gaweyan CPU kanggo nyuda ukuran file saka 0-6 kanggo webp lan 1-10 kanggo png.\r
+Usaha sing luwih dhuwur tegese pangolahan gambar bakal luwih suwe nanging biasane katon luwih apik lan ukuran file luwih cilik.`,
     clearAll: "Mbusak kabeh",
     revealFolder: "Bukak folder ing manajer file",
     reduction: "pangurangan",
@@ -25882,8 +25882,8 @@ var kn_default = {
     quality: "ಗುಣಮಟ್ಟ",
     effort: "ಪ್ರಯತ್ನ",
     qualityTooltip: "1-100 ರಿಂದ ಸಂಕುಚಿತ ಗುಣಮಟ್ಟ. ಹೆಚ್ಚಿನ ಗುಣಮಟ್ಟ ಎಂದರೆ ಕಡಿಮೆ ಕಂಪ್ರೆಷನ್ ಮತ್ತು ದೊಡ್ಡ ಫೈಲ್‌ಗಳು.",
-    effortTooltip: `ಫೈಲ್ ಗಾತ್ರವನ್ನು 0-6 ರಿಂದ ಕಡಿಮೆ ಮಾಡಲು CPU ಪ್ರಯತ್ನದ ಮಟ್ಟ.\r
-ಹೆಚ್ಚಿನ ಪ್ರಯತ್ನ ಎಂದರೆ ಇಮೇಜ್ ಪ್ರಕ್ರಿಯೆಯು ಹೆಚ್ಚು ಸಮಯ ತೆಗೆದುಕೊಳ್ಳುತ್ತದೆ ಆದರೆ ಸಾಮಾನ್ಯವಾಗಿ ಉತ್ತಮವಾಗಿ ಕಾಣುತ್ತದೆ ಮತ್ತು ಫೈಲ್ ಗಾತ್ರದಲ್ಲಿ ಕಡಿಮೆ ಇರುತ್ತದೆ.`,
+    effortTooltip: `webp ಗೆ 0-6 ಮತ್ತು png ಗೆ 1-10 ಮಟ್ಟದಲ್ಲಿ ಫೈಲ್ ಗಾತ್ರವನ್ನು ಕಡಿಮೆ ಮಾಡಲು CPU ಪ್ರಯತ್ನದ ಮಟ್ಟ.\r
+ಹೆಚ್ಚಿನ ಪ್ರಯತ್ನ ಎಂದರೆ ಚಿತ್ರ ಸಂಸ್ಕರಣೆಗೆ ಹೆಚ್ಚು ಸಮಯ ಬೇಕಾಗುತ್ತದೆ, ಆದರೆ ಸಾಮಾನ್ಯವಾಗಿ ಅದು ಉತ್ತಮವಾಗಿ ಕಾಣುತ್ತದೆ ಮತ್ತು ಫೈಲ್ ಗಾತ್ರ ಕಡಿಮೆಯಾಗುತ್ತದೆ.`,
     clearAll: "ಎಲ್ಲವನ್ನೂ ತೆರವುಗೊಳಿಸಿ",
     revealFolder: "ಫೈಲ್ ಮ್ಯಾನೇಜರ್‌ನಲ್ಲಿ ಫೋಲ್ಡರ್ ಅನ್ನು ಬಹಿರಂಗಪಡಿಸಿ",
     reduction: "ಕಡಿತ",
@@ -25987,8 +25987,8 @@ var ko_default = {
     quality: "품질",
     effort: "노력",
     qualityTooltip: "1-100의 압축 품질. 품질이 높을수록 압축률이 낮아지고 파일 크기가 커집니다.",
-    effortTooltip: `파일 크기를 0-6으로 줄이기 위한 CPU 노력 수준입니다.\r
-노력이 많이 든다는 것은 이미지 처리 시간이 더 오래 걸리지만 일반적으로 더 보기 좋고 파일 크기가 더 낮다는 것을 의미합니다.`,
+    effortTooltip: `webp는 0-6, png는 1-10 범위에서 파일 크기를 줄이기 위한 CPU 노력 수준입니다.\r
+노력이 높을수록 이미지 처리 시간이 더 오래 걸리지만 일반적으로 더 보기 좋고 파일 크기가 더 작아집니다.`,
     clearAll: "모두 지우기",
     revealFolder: "파일 관리자에 폴더 표시",
     reduction: "감소",
@@ -26092,8 +26092,8 @@ var ml_default = {
     quality: "ഗുണനിലവാരം",
     effort: "പരിശ്രമം",
     qualityTooltip: "1-100 മുതൽ കംപ്രഷൻ നിലവാരം. ഉയർന്ന നിലവാരം എന്നാൽ കുറഞ്ഞ കംപ്രഷൻ, വലിയ ഫയലുകൾ.",
-    effortTooltip: `ഫയൽ വലുപ്പം 0-6 ൽ നിന്ന് കുറയ്ക്കുന്നതിനുള്ള സിപിയു ശ്രമത്തിൻ്റെ ലെവൽ.\r
-ഉയർന്ന പ്രയത്നം അർത്ഥമാക്കുന്നത് ഇമേജ് പ്രോസസ്സ് ചെയ്യുന്നതിന് കൂടുതൽ സമയമെടുക്കും എന്നാൽ സാധാരണയായി മികച്ചതായി കാണുകയും ഫയലുകളുടെ വലുപ്പം കുറയുകയും ചെയ്യും.`,
+    effortTooltip: `webp-ന് 0-6 ഉം png-ന് 1-10 ഉം ആയി ഫയൽ വലുപ്പം കുറയ്ക്കുന്നതിനുള്ള CPU ശ്രമത്തിന്റെ നില.\r
+ശ്രമം കൂടുതലായാൽ ചിത്രസംസ്കരണത്തിന് കൂടുതൽ സമയം എടുക്കും, പക്ഷേ സാധാരണയായി ചിത്രം കൂടുതൽ മനോഹരമായി കാണപ്പെടുകയും ഫയൽ വലുപ്പം കുറയുകയും ചെയ്യും.`,
     clearAll: "എല്ലാം മായ്‌ക്കുക",
     revealFolder: "ഫയൽ മാനേജറിൽ ഫോൾഡർ വെളിപ്പെടുത്തുക",
     reduction: "കുറയ്ക്കൽ",
@@ -26197,8 +26197,8 @@ var mr_default = {
     quality: "गुणवत्ता",
     effort: "प्रयत्न",
     qualityTooltip: "1-100 पासून कॉम्प्रेशन गुणवत्ता. उच्च गुणवत्तेचा अर्थ कमी कॉम्प्रेशन आणि मोठ्या फाइल्स.",
-    effortTooltip: `फाइल आकार 0-6 पासून कमी करण्यासाठी CPU प्रयत्नांची पातळी.\r
-जास्त प्रयत्न म्हणजे इमेज प्रोसेसिंगला जास्त वेळ लागेल पण ते सहसा चांगले दिसले आणि फाइल आकार कमी होईल.`,
+    effortTooltip: `webp साठी फाइल आकार 0-6 आणि png साठी 1-10 पर्यंत कमी करण्यासाठी CPU प्रयत्नांची पातळी.\r
+जास्त प्रयत्न म्हणजे इमेज प्रोसेसिंगला जास्त वेळ लागेल पण ते सहसा चांगले दिसेल आणि फाइल आकार कमी होईल.`,
     clearAll: "सर्व साफ करा",
     revealFolder: "फाइल व्यवस्थापकात फोल्डर उघड करा",
     reduction: "कपात",
@@ -26302,8 +26302,8 @@ var pa_default = {
     quality: "ਗੁਣਵੱਤਾ",
     effort: "ਜਤਨ",
     qualityTooltip: "1-100 ਤੱਕ ਕੰਪਰੈਸ਼ਨ ਗੁਣਵੱਤਾ। ਉੱਚ ਗੁਣਵੱਤਾ ਦਾ ਮਤਲਬ ਹੈ ਘੱਟ ਕੰਪਰੈਸ਼ਨ ਅਤੇ ਵੱਡੀਆਂ ਫਾਈਲਾਂ।",
-    effortTooltip: `ਫਾਈਲ ਦਾ ਆਕਾਰ 0-6 ਤੋਂ ਘਟਾਉਣ ਲਈ CPU ਕੋਸ਼ਿਸ਼ ਦਾ ਪੱਧਰ।\r
-ਉੱਚ ਕੋਸ਼ਿਸ਼ ਦਾ ਮਤਲਬ ਹੈ ਕਿ ਚਿੱਤਰ ਪ੍ਰੋਸੈਸਿੰਗ ਵਿੱਚ ਲੰਬਾ ਸਮਾਂ ਲੱਗੇਗਾ ਪਰ ਆਮ ਤੌਰ 'ਤੇ ਫਾਈਲਾਂ ਦਾ ਆਕਾਰ ਬਿਹਤਰ ਅਤੇ ਘੱਟ ਹੋਵੇਗਾ।`,
+    effortTooltip: `webp ਲਈ ਫਾਈਲ ਦਾ ਆਕਾਰ 0-6 ਅਤੇ png ਲਈ 1-10 ਤੱਕ ਘਟਾਉਣ ਲਈ CPU ਕੋਸ਼ਿਸ਼ ਦਾ ਪੱਧਰ।\r
+ਉੱਚ ਕੋਸ਼ਿਸ਼ ਦਾ ਮਤਲਬ ਹੈ ਕਿ ਚਿੱਤਰ ਪ੍ਰੋਸੈਸਿੰਗ ਵਿੱਚ ਵੱਧ ਸਮਾਂ ਲੱਗੇਗਾ ਪਰ ਆਮ ਤੌਰ ਤੇ ਵਧੀਆ ਦਿਖੇਗੀ ਅਤੇ ਫਾਈਲ ਦਾ ਆਕਾਰ ਘੱਟ ਹੋਵੇਗਾ।`,
     clearAll: "ਸਭ ਸਾਫ਼ ਕਰੋ",
     revealFolder: "ਫਾਈਲ ਮੈਨੇਜਰ ਵਿੱਚ ਫੋਲਡਰ ਨੂੰ ਪ੍ਰਗਟ ਕਰੋ",
     reduction: "ਕਮੀ",
@@ -26407,7 +26407,7 @@ var pt_default = {
     quality: "Qualidade",
     effort: "Esforço",
     qualityTooltip: "Qualidade de compressão de 1 a 100. Maior qualidade significa menos compactação e arquivos maiores.",
-    effortTooltip: `Nível de esforço da CPU para reduzir o tamanho do arquivo de 0 a 6.\r
+    effortTooltip: `Nível de esforço da CPU para reduzir o tamanho do arquivo de 0 a 6 para webp e de 1 a 10 para png.\r
 Maior esforço significa que o processamento da imagem levará mais tempo, mas geralmente terá melhor aparência e menor tamanho de arquivo.`,
     clearAll: "Limpar tudo",
     revealFolder: "Revelar pasta no gerenciador de arquivos",
@@ -26512,7 +26512,7 @@ var ru_default = {
     quality: "Качество",
     effort: "Усилие",
     qualityTooltip: "Качество сжатия от 1-100. Более высокое качество означает меньшее сжатие и файлы большего размера.",
-    effortTooltip: `Уровень усилий ЦП по уменьшению размера файла от 0 до 6.\r
+    effortTooltip: `Уровень нагрузки на ЦП для уменьшения размера файла: 0-6 для webp и 1-10 для png.\r
 Более высокие усилия означают, что обработка изображений займет больше времени, но обычно они будут выглядеть лучше и иметь меньший размер файла.`,
     clearAll: "Очистить все",
     revealFolder: "Показать папку в файловом менеджере",
@@ -26617,8 +26617,8 @@ var sw_default = {
     quality: "Ubora",
     effort: "Juhudi",
     qualityTooltip: "Ubora wa compression kutoka 1-100. Ubora wa juu unamaanisha mbano kidogo na faili kubwa.",
-    effortTooltip: `Kiwango cha juhudi za CPU kupunguza ukubwa wa faili kutoka 0-6.\r
-Juhudi za juu humaanisha uchakataji wa picha utachukua muda mrefu lakini kwa kawaida utakuwa na mwonekano bora na wa chini katika saizi ya faili.`,
+    effortTooltip: `Kiwango cha juhudi za CPU kupunguza ukubwa wa faili kutoka 0-6 kwa webp na 1-10 kwa png.\r
+Juhudi za juu humaanisha uchakataji wa picha utachukua muda mrefu lakini kwa kawaida utaonekana bora na ukubwa wa faili utakuwa mdogo.`,
     clearAll: "Futa zote",
     revealFolder: "Onyesha folda katika kidhibiti faili",
     reduction: "kupunguza",
@@ -26722,8 +26722,8 @@ var ta_default = {
     quality: "தரம்",
     effort: "முயற்சி",
     qualityTooltip: "1-100 முதல் சுருக்க தரம். உயர் தரம் என்றால் குறைந்த சுருக்கம் மற்றும் பெரிய கோப்புகள்.",
-    effortTooltip: `கோப்பின் அளவை 0-6 இலிருந்து குறைக்க CPU முயற்சியின் நிலை.\r
-அதிக முயற்சி என்றால் படத்தைச் செயலாக்க அதிக நேரம் எடுக்கும், ஆனால் பொதுவாக அழகாகவும் கோப்பு அளவு குறைவாகவும் இருக்கும்.`,
+    effortTooltip: `webp-க்கு 0-6 மற்றும் png-க்கு 1-10 வரையில் கோப்பு அளவை குறைக்க CPU முயற்சியின் நிலை.\r
+அதிக முயற்சி என்றால் பட செயலாக்கத்திற்கு அதிக நேரம் எடுக்கும், ஆனால் பொதுவாக படம் மேலும் அழகாகவும் கோப்பு அளவு குறைவாகவும் இருக்கும்.`,
     clearAll: "அனைத்தையும் அழிக்கவும்",
     revealFolder: "கோப்பு மேலாளரில் கோப்புறையை வெளிப்படுத்தவும்",
     reduction: "குறைப்பு",
@@ -26827,8 +26827,8 @@ var te_default = {
     quality: "నాణ్యత",
     effort: "ప్రయత్నం",
     qualityTooltip: "1-100 నుండి కుదింపు నాణ్యత. అధిక నాణ్యత అంటే తక్కువ కుదింపు మరియు పెద్ద ఫైల్‌లు.",
-    effortTooltip: `ఫైల్ పరిమాణాన్ని 0-6 నుండి తగ్గించడానికి CPU ప్రయత్నం స్థాయి.\r
-అధిక ప్రయత్నం అంటే ఇమేజ్ ప్రాసెసింగ్‌కు ఎక్కువ సమయం పడుతుంది కానీ సాధారణంగా మెరుగ్గా & ఫైల్‌సైజ్ తక్కువగా ఉంటుంది.`,
+    effortTooltip: `webp కోసం 0-6 మరియు png కోసం 1-10 వరకు ఫైల్ పరిమాణాన్ని తగ్గించడానికి CPU ప్రయత్న స్థాయి.\r
+ఎక్కువ ప్రయత్నం అంటే ఇమేజ్ ప్రాసెసింగ్‌కు ఎక్కువ సమయం పడుతుంది కానీ సాధారణంగా మరింత బాగా కనిపించి ఫైల్ పరిమాణం తక్కువగా ఉంటుంది.`,
     clearAll: "అన్నీ క్లియర్ చేయండి",
     revealFolder: "ఫైల్ మేనేజర్‌లో ఫోల్డర్‌ను బహిర్గతం చేయండి",
     reduction: "తగ్గింపు",
@@ -26932,8 +26932,8 @@ var th_default = {
     quality: "คุณภาพ",
     effort: "ความพยายาม",
     qualityTooltip: "คุณภาพการบีบอัดตั้งแต่ 1-100 คุณภาพที่สูงขึ้นหมายถึงการบีบอัดที่น้อยลงและไฟล์ที่ใหญ่ขึ้น",
-    effortTooltip: `ระดับความพยายามของ CPU ในการลดขนาดไฟล์จาก 0-6\r
-ความพยายามที่สูงขึ้นหมายถึงการประมวลผลภาพจะใช้เวลานานกว่า แต่โดยปกติแล้วจะดูดีขึ้น & ขนาดไฟล์ลดลง`,
+    effortTooltip: `ระดับความพยายามของ CPU ในการลดขนาดไฟล์ที่ 0-6 สำหรับ webp และ 1-10 สำหรับ png\r
+ความพยายามที่สูงขึ้นหมายถึงการประมวลผลภาพจะใช้เวลานานกว่า แต่โดยปกติแล้วจะดูดีกว่าและขนาดไฟล์เล็กลง`,
     clearAll: "เคลียร์ทั้งหมด",
     revealFolder: "เปิดเผยโฟลเดอร์ในตัวจัดการไฟล์",
     reduction: "การลดลง",
@@ -27037,7 +27037,7 @@ var tr_default = {
     quality: "Kalite",
     effort: "Çaba",
     qualityTooltip: "1-100 arası sıkıştırma kalitesi. Daha yüksek kalite, daha az sıkıştırma ve daha büyük dosyalar anlamına gelir.",
-    effortTooltip: `Dosya boyutunu 0-6'ya düşürmek için CPU çabası düzeyi.\r
+    effortTooltip: `webp için 0-6 ve png için 1-10 aralığında dosya boyutunu düşürmek için CPU çabası düzeyi.\r
 Daha yüksek çaba, görüntü işlemenin daha uzun süreceği ancak genellikle daha iyi görüneceği ve dosya boyutunun daha düşük olacağı anlamına gelir.`,
     clearAll: "Tümünü temizle",
     revealFolder: "Dosya yöneticisindeki klasörü göster",
@@ -27142,8 +27142,8 @@ var ur_default = {
     quality: "معیار",
     effort: "کوشش",
     qualityTooltip: "1-100 سے کمپریشن کا معیار۔ اعلی معیار کا مطلب کم کمپریشن اور بڑی فائلیں ہیں۔",
-    effortTooltip: `فائل کے سائز کو 0-6 سے کم کرنے کے لیے CPU کی کوشش کی سطح۔\r
-زیادہ کوشش کا مطلب ہے کہ امیج پروسیسنگ میں زیادہ وقت لگے گا لیکن عام طور پر فائل سائز میں بہتر اور کم نظر آئے گا۔`,
+    effortTooltip: `webp کے لیے فائل کا سائز 0-6 اور png کے لیے 1-10 تک کم کرنے کے لیے CPU کوشش کی سطح۔\r
+زیادہ کوشش کا مطلب ہے کہ امیج پروسیسنگ میں زیادہ وقت لگے گا لیکن عام طور پر تصویر بہتر نظر آئے گی اور فائل سائز کم ہوگا۔`,
     clearAll: "سب صاف کریں۔",
     revealFolder: "فائل مینیجر میں فولڈر ظاہر کریں۔",
     reduction: "کمی",
@@ -27247,8 +27247,8 @@ var vi_default = {
     quality: "chất lượng",
     effort: "nỗ lực",
     qualityTooltip: "Chất lượng nén từ 1-100. Chất lượng cao hơn có nghĩa là nén ít hơn và tệp lớn hơn.",
-    effortTooltip: `Mức nỗ lực của CPU để giảm kích thước tệp từ 0-6.\r
-Nỗ lực cao hơn có nghĩa là quá trình xử lý hình ảnh sẽ mất nhiều thời gian hơn nhưng thường sẽ trông đẹp hơn và kích thước tệp thấp hơn.`,
+    effortTooltip: `Mức nỗ lực của CPU để giảm kích thước tệp từ 0-6 cho webp và 1-10 cho png.\r
+Nỗ lực cao hơn có nghĩa là quá trình xử lý hình ảnh sẽ mất nhiều thời gian hơn nhưng thường sẽ trông đẹp hơn và kích thước tệp nhỏ hơn.`,
     clearAll: "Xóa tất cả",
     revealFolder: "Hiển thị thư mục trong trình quản lý tập tin",
     reduction: "giảm bớt",
@@ -27352,8 +27352,8 @@ var yo_default = {
     quality: "Didara",
     effort: "Igbiyanju",
     qualityTooltip: "Didara funmorawon lati 1-100. Didara ti o ga julọ tumọ si funmorawon ati awọn faili nla.",
-    effortTooltip: `Ipele igbiyanju Sipiyu lati dinku iwọn faili lati 0-6.\r
-Igbiyanju ti o ga julọ tumọ si sisẹ aworan yoo gba to gun ṣugbọn yoo nigbagbogbo dara julọ wiwa & kekere ni faili.`,
+    effortTooltip: `Ipele igbiyanju CPU lati dinku iwọn faili lati 0-6 fun webp ati 1-10 fun png.\r
+Igbiyanju ti o ga julọ tumọ si sisẹ aworan yoo gba akoko to gun ṣugbọn maa n wo dara julọ ati pe iwọn faili yoo dinku.`,
     clearAll: "Ko gbogbo rẹ kuro",
     revealFolder: "Ṣe afihan folda ninu oluṣakoso faili",
     reduction: "idinku",
@@ -27457,8 +27457,8 @@ var zh_default = {
     quality: "品质",
     effort: "努力",
     qualityTooltip: "压缩质量从 1-100。更高的质量意味着更少的压缩和更大的文件。",
-    effortTooltip: `将文件大小从 0 减少到 6 的 CPU 努力级别。\r
-更高的工作量意味着图像处理将花费更长的时间，但通常会更好看并且文件大小更小。`,
+    effortTooltip: `将文件大小减小所需的 CPU 努力级别：webp 为 0-6，png 为 1-10。\r
+更高的努力意味着图像处理时间会更长，但通常画质更好且文件更小。`,
     clearAll: "全部清除",
     revealFolder: "在文件管理器中显示文件夹",
     reduction: "减少",
@@ -34120,7 +34120,8 @@ function ImagesCanvas() {
       const updateImageProps = {
         path: targetInput,
         quality,
-        effort
+        effort,
+        outputFormat: activeImage.outputFormat
       };
       console.log("updateImageProps: ", updateImageProps);
       appContext.setImagesProcessing((oldImages) => {
@@ -34272,7 +34273,7 @@ function ImagesCanvas() {
               }, undefined, false, undefined, this)
             ]
           }, undefined, true, undefined, this),
-          /* @__PURE__ */ jsx_dev_runtime5.jsxDEV("label", {
+          ["webp", "png"].filter((format) => activeImage.outputFormat === format).length ? /* @__PURE__ */ jsx_dev_runtime5.jsxDEV("label", {
             className: "imagescanvas-sliders-slider",
             children: [
               /* @__PURE__ */ jsx_dev_runtime5.jsxDEV("div", {
@@ -34289,8 +34290,8 @@ function ImagesCanvas() {
                 onMouseUp: mouseUpHandler,
                 className: "imagescanvas-sliders-slider-input",
                 type: "range",
-                min: "0",
-                max: "6",
+                min: activeImage.outputFormat === "webp" ? 0 : 1,
+                max: activeImage.outputFormat === "webp" ? 6 : 10,
                 value: appContext.effort
               }, undefined, false, undefined, this),
               /* @__PURE__ */ jsx_dev_runtime5.jsxDEV("div", {
@@ -34298,7 +34299,7 @@ function ImagesCanvas() {
                 children: appContext.effort
               }, undefined, false, undefined, this)
             ]
-          }, undefined, true, undefined, this)
+          }, undefined, true, undefined, this) : ""
         ]
       }, undefined, true, undefined, this),
       /* @__PURE__ */ jsx_dev_runtime5.jsxDEV(M, {
@@ -34327,7 +34328,7 @@ function ImagesEditor() {
     async function pollInputs() {
       try {
         const res = await electroview.rpc?.request.pollInputs();
-        if (res && res.inputPaths.length < images.length) {
+        if (res && res.inputPaths.length < images.length && images.length) {
           setImages((oldImages) => oldImages.filter((oldImage) => res.inputPaths.includes(oldImage.input)));
           zt(t("imagesMissing"), { className: "hottoast" });
         }
@@ -40291,12 +40292,14 @@ function SettingsPane() {
                         content: t("effortTooltip"),
                         className: "tooltip"
                       }, undefined, false, undefined, this),
-                      /* @__PURE__ */ jsx_dev_runtime8.jsxDEV(NumberField, {
-                        min: 0,
-                        max: 6,
-                        name: "effort",
-                        value: draftSettings.effort,
-                        onChange: (val) => setDraftSettings((current) => ({ ...current, effort: Number(val) }))
+                      /* @__PURE__ */ jsx_dev_runtime8.jsxDEV("div", {
+                        children: /* @__PURE__ */ jsx_dev_runtime8.jsxDEV(NumberField, {
+                          min: draftSettings.outputFormat === "webp" ? 0 : 1,
+                          max: draftSettings.outputFormat === "webp" ? 6 : 10,
+                          name: "effort",
+                          value: draftSettings.effort,
+                          onChange: (val) => setDraftSettings((current) => ({ ...current, effort: Number(val) }))
+                        }, undefined, false, undefined, this)
                       }, undefined, false, undefined, this)
                     ]
                   }, undefined, true, undefined, this),

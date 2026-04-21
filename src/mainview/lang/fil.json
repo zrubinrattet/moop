@@ -6,7 +6,7 @@
 		"quality": "Kalidad",
 		"effort": "Pagsisikap",
 		"qualityTooltip": "Kalidad ng compression mula 1-100. Ang mas mataas na kalidad ay nangangahulugan ng mas kaunting compression at mas malalaking file.",
-		"effortTooltip": "Antas ng pagsisikap ng CPU na bawasan ang laki ng file mula 0-6.\r\nAng mas mataas na pagsisikap ay nangangahulugan na ang pagpoproseso ng imahe ay mas magtatagal ngunit kadalasan ay magiging mas maganda at mas mababa ang laki ng mga file.",
+		"effortTooltip": "Antas ng pagsisikap ng CPU para bawasan ang laki ng file mula 0-6 para sa webp at 1-10 para sa png.\r\nAng mas mataas na pagsisikap ay nangangahulugan na mas magtatagal ang pagproseso ng imahe ngunit kadalasan ay mas maganda ang magiging hitsura at mas mababa ang laki ng file.",
 		"clearAll": "I-clear lahat",
 		"revealFolder": "Ipakita ang folder sa file manager",
 		"reduction": "pagbabawas",

@@ -6,7 +6,7 @@
 		"quality": "Qualité",
 		"effort": "Effort",
 		"qualityTooltip": "Qualité de compression de 1 à 100. Une qualité supérieure signifie moins de compression et des fichiers plus volumineux.",
-		"effortTooltip": "Niveau d'effort du processeur pour réduire la taille du fichier de 0 à 6.\r\nUn effort plus élevé signifie que le traitement de l'image prendra plus de temps, mais sera généralement plus beau et plus petit en taille de fichier.",
+		"effortTooltip": "Niveau d'effort du processeur pour réduire la taille du fichier de 0 à 6 pour webp et de 1 à 10 pour png.\r\nUn effort plus élevé signifie que le traitement de l'image prendra plus de temps, mais sera généralement plus beau et plus petit en taille de fichier.",
 		"clearAll": "Tout effacer",
 		"revealFolder": "Révéler le dossier dans le gestionnaire de fichiers",
 		"reduction": "réduction",

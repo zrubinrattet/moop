@@ -6,7 +6,7 @@
 		"quality": "Didara",
 		"effort": "Igbiyanju",
 		"qualityTooltip": "Didara funmorawon lati 1-100. Didara ti o ga julọ tumọ si funmorawon ati awọn faili nla.",
-		"effortTooltip": "Ipele igbiyanju Sipiyu lati dinku iwọn faili lati 0-6.\r\nIgbiyanju ti o ga julọ tumọ si sisẹ aworan yoo gba to gun ṣugbọn yoo nigbagbogbo dara julọ wiwa & kekere ni faili.",
+		"effortTooltip": "Ipele igbiyanju CPU lati dinku iwọn faili lati 0-6 fun webp ati 1-10 fun png.\r\nIgbiyanju ti o ga julọ tumọ si sisẹ aworan yoo gba akoko to gun ṣugbọn maa n wo dara julọ ati pe iwọn faili yoo dinku.",
 		"clearAll": "Ko gbogbo rẹ kuro",
 		"revealFolder": "Ṣe afihan folda ninu oluṣakoso faili",
 		"reduction": "idinku",

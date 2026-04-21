@@ -6,7 +6,7 @@
 		"quality": "Qualität",
 		"effort": "Aufwand",
 		"qualityTooltip": "Komprimierungsqualität von 1-100. Höhere Qualität bedeutet weniger Komprimierung und größere Dateien.",
-		"effortTooltip": "CPU-Aufwand zur Reduzierung der Dateigröße von 0 bis 6.\r\nHöherer Aufwand bedeutet, dass die Bildverarbeitung länger dauert, aber in der Regel besser aussieht und eine geringere Dateigröße aufweist.",
+		"effortTooltip": "CPU-Aufwandsstufe zur Reduzierung der Dateigröße von 0-6 für webp und 1-10 für png.\r\nHöherer Aufwand bedeutet, dass die Bildverarbeitung länger dauert, aber in der Regel besser aussieht und eine geringere Dateigröße aufweist.",
 		"clearAll": "Alles löschen",
 		"revealFolder": "Ordner im Dateimanager anzeigen",
 		"reduction": "Reduzierung",

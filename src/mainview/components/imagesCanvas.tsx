@@ -49,6 +49,7 @@ export default function ImagesCanvas() {
 				path: targetInput,
 				quality,
 				effort,
+				outputFormat: activeImage.outputFormat
 			};
 			console.log('updateImageProps: ', updateImageProps)
 			appContext.setImagesProcessing((oldImages) => {
@@ -164,13 +165,14 @@ export default function ImagesCanvas() {
 					<input onChange={(e) => inputHandler('quality', e)} onMouseDown={mouseDownHandler} onMouseUp={mouseUpHandler} className="imagescanvas-sliders-slider-input" type="range" min="1" max="100" value={appContext.quality} />
 					<div className="imagescanvas-sliders-slider-inputvalue">{appContext.quality}</div>
 				</label>
-				<label className="imagescanvas-sliders-slider">
+				{ ['webp', 'png'].filter( format => activeImage.outputFormat === format ).length ? <label className="imagescanvas-sliders-slider">
 					<div className="imagescanvas-sliders-slider-label">
 						<span className="imagescanvas-sliders-slider-label-span" data-tooltip-id="effort">{t('effort')}</span>
 					</div>
-					<input onChange={(e) => inputHandler('effort', e)} onMouseDown={mouseDownHandler} onMouseUp={mouseUpHandler} className="imagescanvas-sliders-slider-input" type="range" min="0" max="6" value={appContext.effort} />
+					<input onChange={(e) => inputHandler('effort', e)} onMouseDown={mouseDownHandler} onMouseUp={mouseUpHandler} className="imagescanvas-sliders-slider-input" type="range" min={activeImage.outputFormat === 'webp' ? 0 : 1} max={activeImage.outputFormat === 'webp' ? 6 : 10} value={appContext.effort} />
 					<div className="imagescanvas-sliders-slider-inputvalue">{appContext.effort}</div>
-				</label>
+				</label> : '' }
+				
 			</div>
 			<Tooltip
 				id="quality"

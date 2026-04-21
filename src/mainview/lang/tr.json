@@ -6,7 +6,7 @@
 		"quality": "Kalite",
 		"effort": "Çaba",
 		"qualityTooltip": "1-100 arası sıkıştırma kalitesi. Daha yüksek kalite, daha az sıkıştırma ve daha büyük dosyalar anlamına gelir.",
-		"effortTooltip": "Dosya boyutunu 0-6'ya düşürmek için CPU çabası düzeyi.\r\nDaha yüksek çaba, görüntü işlemenin daha uzun süreceği ancak genellikle daha iyi görüneceği ve dosya boyutunun daha düşük olacağı anlamına gelir.",
+		"effortTooltip": "webp için 0-6 ve png için 1-10 aralığında dosya boyutunu düşürmek için CPU çabası düzeyi.\r\nDaha yüksek çaba, görüntü işlemenin daha uzun süreceği ancak genellikle daha iyi görüneceği ve dosya boyutunun daha düşük olacağı anlamına gelir.",
 		"clearAll": "Tümünü temizle",
 		"revealFolder": "Dosya yöneticisindeki klasörü göster",
 		"reduction": "azaltma",

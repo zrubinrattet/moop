@@ -256,13 +256,13 @@ export default function SettingsPane() {
 									content={t('qualityTooltip')}
 									className="tooltip"
 								/>
-									<NumberField
-										min={1}
-										max={100}
-										name="quality"
-										value={draftSettings.quality}
-										onChange={(val) => setDraftSettings((current) => ({ ...current, quality: Number(val) }))}
-									/>
+								<NumberField
+									min={1}
+									max={100}
+									name="quality"
+									value={draftSettings.quality}
+									onChange={(val) => setDraftSettings((current) => ({ ...current, quality: Number(val) }))}
+								/>
 							</div>
 							<div className="settingspane-inner-fields-form-fields-field number">
 								<label data-tooltip-id="effort" htmlFor="effort" className="settingspane-inner-fields-form-fields-field-label">{t('defaultEffort')}</label>
@@ -272,13 +272,15 @@ export default function SettingsPane() {
 									content={t('effortTooltip')}
 									className="tooltip"
 								/>
+								<div>
 									<NumberField
-										min={0}
-										max={6}
+										min={draftSettings.outputFormat === 'webp' ? 0 : 1}
+										max={draftSettings.outputFormat === 'webp' ? 6 : 10}
 										name="effort"
 										value={draftSettings.effort}
 										onChange={(val) => setDraftSettings((current) => ({ ...current, effort: Number(val) }))}
 									/>
+								</div>
 							</div>
 							<div className="settingspane-inner-fields-form-fields-field number">
 								<label htmlFor="maxWidth" data-tooltip-id="maxwidth" className="settingspane-inner-fields-form-fields-field-label">{t('maxWidth')}</label>

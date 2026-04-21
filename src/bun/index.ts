@@ -265,8 +265,6 @@ async function processImage(arg: ProcessImageTask): Promise<void> {
 		withoutEnlargement: true
 	})
 	
-	console.log('processing image', outputFormat)
-
 	if (outputFormat === 'webp') {
 		await resized.webp({
 			quality: Number(arg.quality) || Number(appSettings.quality),

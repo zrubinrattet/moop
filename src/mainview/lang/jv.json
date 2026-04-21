@@ -6,7 +6,7 @@
 		"quality": "Kualitas",
 		"effort": "Upaya",
 		"qualityTooltip": "Kualitas komprèsi saka 1-100. Kualitas sing luwih dhuwur tegese kurang kompresi lan file sing luwih gedhe.",
-		"effortTooltip": "Tingkat gaweyan CPU kanggo nyuda ukuran file saka 0-6.\r\nUsaha sing luwih dhuwur tegese pangolahan gambar bakal luwih suwe nanging biasane katon luwih apik & ukuran file luwih murah.",
+		"effortTooltip": "Tingkat gaweyan CPU kanggo nyuda ukuran file saka 0-6 kanggo webp lan 1-10 kanggo png.\r\nUsaha sing luwih dhuwur tegese pangolahan gambar bakal luwih suwe nanging biasane katon luwih apik lan ukuran file luwih cilik.",
 		"clearAll": "Mbusak kabeh",
 		"revealFolder": "Bukak folder ing manajer file",
 		"reduction": "pangurangan",
