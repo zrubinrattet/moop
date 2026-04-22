@@ -21,6 +21,7 @@ import { cp } from "node:fs/promises";
 import { setLocale, t } from "../mainview/lang/lang";
 import pkg from "../../package.json" with { type: "json" };
 
+
 const APP_VERSION = pkg.version;
 
 
@@ -251,11 +252,11 @@ async function processImage(arg: ProcessImageTask): Promise<void> {
 	// No need for a try-catch block, fastq handles errors automatically
 	const { outputDirectory } = getImageDirectories();
 	const appSettings = getSettings();
-	
+
 	const parsed = path.parse(arg.path);
 	const outputFormat = arg.outputFormat?.toLowerCase() || appSettings.outputFormat || 'webp';
 	const outputPath = join(outputDirectory, `${parsed.name}.${outputFormat}`);
-	
+
 	const resized = sharp(arg.path, {
 		density: 72,
 		animated: outputFormat === 'jpeg' ? false : true,
@@ -264,7 +265,7 @@ async function processImage(arg: ProcessImageTask): Promise<void> {
 		height: Number(appSettings.maxHeight) ? Number(appSettings.maxHeight) : undefined,
 		withoutEnlargement: true
 	})
-	
+
 	if (outputFormat === 'webp') {
 		await resized.webp({
 			quality: Number(arg.quality) || Number(appSettings.quality),
@@ -431,7 +432,7 @@ const rpc = BrowserView.defineRPC<AppRPCSchema>({
 				}).then(async () => {
 					ret.message = t('updateImageSuccess');
 
-					const outputPath = join(outputDirectory, `${path.parse(inputPath).name}.${outputFormat?.toLowerCase()||'webp'}`);
+					const outputPath = join(outputDirectory, `${path.parse(inputPath).name}.${outputFormat?.toLowerCase() || 'webp'}`);
 					const inputResolution = await imageSizeFromFile(inputPath);
 					const outputResolution = await imageSizeFromFile(outputPath);
 
@@ -607,8 +608,11 @@ mainWindow.on("resize", () => {
 	}
 });
 
-// crack open dev tools
-mainWindow.webview.openDevTools();
+// crack open dev tools only for dev channel
+const appChannel = path.basename(Utils.paths.userData);
+if (appChannel === "dev") {
+	mainWindow.webview.openDevTools();
+}
 
 // mainWindow.webview.on("will-navigate", (event) => {
 // 	console.log("webview will-navigate", event);
