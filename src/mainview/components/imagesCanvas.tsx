@@ -1,5 +1,5 @@
-import { useContext, useEffect, useRef } from "react";
 import { sharedContext, } from "../../shared/shared-context";
+import { useContext, useEffect, useRef, useState } from "react";
 import { formatBytes } from "../../shared/shared-snippets";
 import Cropper from 'react-easy-crop'
 import { electroview } from "../../shared/shared-electroview";
@@ -7,17 +7,15 @@ import { Tooltip } from "react-tooltip";
 import toast from "react-hot-toast";
 import { t } from "../lang/lang";
 import { handleRPCRequestCatch } from "../../shared/shared-utils";
+import Select from "react-select";
+import type { AvailableOutputFormats } from "../../shared/shared-types";
 
 export default function ImagesCanvas() {
 	const appContext = useContext(sharedContext);
 	const mouseUpDebounceRef = useRef<NodeJS.Timeout>(null);
-	const mouseDownQualityEffort = useRef({ quality: 0, effort: 0 });
+	const mouseDownFieldValues = useRef({ outputFormat: appContext.settings.outputFormat, quality: 0, effort: 0 });
 
 	const activeImage = appContext.images.find(image => image.isActive);
-	useEffect(() => {
-		console.log("activeimage:", activeImage);
-	}, [activeImage]);
-
 
 	useEffect(() => {
 		return () => {
@@ -43,13 +41,13 @@ export default function ImagesCanvas() {
 		}
 	}
 
-	const updateImage = async (targetInput: string, quality: number, effort: number) => {
+	const updateImage = async (targetInput: string, quality: number, effort: number, outputFormat: AvailableOutputFormats) => {
 		try {
 			const updateImageProps = {
 				path: targetInput,
 				quality,
 				effort,
-				outputFormat: activeImage.outputFormat
+				outputFormat: outputFormat
 			};
 			console.log('updateImageProps: ', updateImageProps)
 			appContext.setImagesProcessing((oldImages) => {
@@ -87,16 +85,22 @@ export default function ImagesCanvas() {
 	}
 
 	const mouseDownHandler = () => {
-		mouseDownQualityEffort.current = { quality: appContext.quality, effort: appContext.effort };
+		mouseDownFieldValues.current = { quality: appContext.quality, effort: appContext.effort, outputFormat: activeImage.outputFormat };
 	}
 
-	const mouseUpHandler = () => {
+	const mouseUpHandler = (outputFormat?: AvailableOutputFormats) => {
 		const targetInput = activeImage.input;
 		const quality = appContext.quality;
 		const effort = appContext.effort;
 
-		// bail if quality and effort hasn't changed
-		if (quality === mouseDownQualityEffort.current.quality && effort === mouseDownQualityEffort.current.effort) {
+		// bail if fields hasn't changed
+		if (
+			quality === mouseDownFieldValues.current.quality
+			&&
+			effort === mouseDownFieldValues.current.effort
+			&&
+			outputFormat === mouseDownFieldValues.current.outputFormat
+		) {
 			return;
 		}
 
@@ -104,9 +108,15 @@ export default function ImagesCanvas() {
 			clearTimeout(mouseUpDebounceRef.current);
 		}
 		mouseUpDebounceRef.current = setTimeout(() => {
-			updateImage(targetInput, quality, effort);
+			updateImage(targetInput, quality, effort, outputFormat || activeImage.outputFormat);
 		}, 500);
 	}
+
+	const outputFormatOptions: Array<{ value: AvailableOutputFormats; label: string }> = [
+		{ value: 'webp', label: 'WebP' },
+		{ value: 'png', label: 'PNG' },
+		{ value: 'jpeg', label: 'JPEG' },
+	];
 
 	return (
 		<div className="imagescanvas">
@@ -154,26 +164,46 @@ export default function ImagesCanvas() {
 					</div>
 				</div>
 			</div>
-			<div className="imagescanvas-sliders">
-				<div className={"imagescanvas-sliders-loading " + (appContext.imagesProcessing.filter(input => activeImage.input === input).length ? 'active' : '')}>
-					<div className={"imagescanvas-sliders-loading-icon " + (appContext.imagesProcessing.filter(input => activeImage.input === input).length ? 'active' : '')}></div>
+			<div className="imagescanvas-fields">
+				<div className={"imagescanvas-fields-loading " + (appContext.imagesProcessing.filter(input => activeImage.input === input).length ? 'active' : '')}>
+					<div className={"imagescanvas-fields-loading-icon " + (appContext.imagesProcessing.filter(input => activeImage.input === input).length ? 'active' : '')}></div>
 				</div>
-				<label className="imagescanvas-sliders-slider">
-					<div className="imagescanvas-sliders-slider-label">
-						<span className="imagescanvas-sliders-slider-label-span" data-tooltip-id="quality">{t('quality')}</span>
+				<label className="imagescanvas-fields-slider">
+					<div className="imagescanvas-fields-slider-label">
+						<span className="imagescanvas-fields-slider-label-span" data-tooltip-id="quality">{t('quality')}</span>
 					</div>
-					<input onChange={(e) => inputHandler('quality', e)} onMouseDown={mouseDownHandler} onMouseUp={mouseUpHandler} className="imagescanvas-sliders-slider-input" type="range" min="1" max="100" value={appContext.quality} />
-					<div className="imagescanvas-sliders-slider-inputvalue">{appContext.quality}</div>
+					<input onChange={(e) => inputHandler('quality', e)} onMouseDown={mouseDownHandler} onMouseUp={mouseUpHandler} className="imagescanvas-fields-slider-input" type="range" min="1" max="100" value={appContext.quality} />
+					<div className="imagescanvas-fields-slider-inputvalue">{appContext.quality}</div>
 				</label>
-				{ ['webp', 'png'].filter( format => activeImage.outputFormat === format ).length ? <label className="imagescanvas-sliders-slider">
-					<div className="imagescanvas-sliders-slider-label">
-						<span className="imagescanvas-sliders-slider-label-span" data-tooltip-id="effort">{t('effort')}</span>
+				{['webp', 'png'].filter(format => activeImage.outputFormat === format).length ? <label className="imagescanvas-fields-slider">
+					<div className="imagescanvas-fields-slider-label">
+						<span className="imagescanvas-fields-slider-label-span" data-tooltip-id="effort">{t('effort')}</span>
 					</div>
-					<input onChange={(e) => inputHandler('effort', e)} onMouseDown={mouseDownHandler} onMouseUp={mouseUpHandler} className="imagescanvas-sliders-slider-input" type="range" min={activeImage.outputFormat === 'webp' ? 0 : 1} max={activeImage.outputFormat === 'webp' ? 6 : 10} value={appContext.effort} />
-					<div className="imagescanvas-sliders-slider-inputvalue">{appContext.effort}</div>
-				</label> : '' }
-				
+					<input onChange={(e) => inputHandler('effort', e)} onMouseDown={mouseDownHandler} onMouseUp={mouseUpHandler} className="imagescanvas-fields-slider-input" type="range" min={activeImage.outputFormat === 'webp' ? 0 : 1} max={activeImage.outputFormat === 'webp' ? 6 : 10} value={appContext.effort} />
+					<div className="imagescanvas-fields-slider-inputvalue">{appContext.effort}</div>
+				</label> : ''}
+				<label className="imagescanvas-fields-select">
+					<div className="imagescanvas-fields-select-label">
+						<span className="imagescanvas-fields-select-label-span" data-tooltip-id="format">{t('format')}</span>
+					</div>
+					<Select
+						inputId="outputFormat"
+						name="outputFormat"
+						className="imagescanvas-fields-select-select"
+						options={outputFormatOptions}
+						value={outputFormatOptions.find(option => option.value === activeImage.outputFormat)}
+						onChange={(option) => mouseUpHandler(option?.value)}
+						onMenuOpen={mouseDownHandler}
+						menuPlacement="top"
+					/>
+				</label>
 			</div>
+			<Tooltip
+				id="format"
+				place="top"
+				content={t('formatTooltip')}
+				className="tooltip"
+			/>
 			<Tooltip
 				id="quality"
 				place="top"

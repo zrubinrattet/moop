@@ -30743,7 +30743,7 @@ function DragDrop() {
 }
 
 // src/mainview/components/imagesEditor.tsx
-var import_react11 = __toESM(require_react(), 1);
+var import_react19 = __toESM(require_react(), 1);
 
 // src/mainview/components/imagesList.tsx
 var import_react9 = __toESM(require_react(), 1);
@@ -33197,7 +33197,7 @@ function ImagesList() {
 }
 
 // src/mainview/components/imagesCanvas.tsx
-var import_react10 = __toESM(require_react(), 1);
+var import_react18 = __toESM(require_react(), 1);
 
 // node_modules/react-easy-crop/index.module.mjs
 var React2 = __toESM(require_react(), 1);
@@ -34120,280 +34120,6 @@ var Cropper = function(_super) {
   return Cropper2;
 }(React2.Component);
 
-// src/mainview/components/imagesCanvas.tsx
-var jsx_dev_runtime5 = __toESM(require_jsx_dev_runtime(), 1);
-function ImagesCanvas() {
-  const appContext = import_react10.useContext(sharedContext);
-  const mouseUpDebounceRef = import_react10.useRef(null);
-  const mouseDownQualityEffort = import_react10.useRef({ quality: 0, effort: 0 });
-  const activeImage = appContext.images.find((image) => image.isActive);
-  import_react10.useEffect(() => {
-    console.log("activeimage:", activeImage);
-  }, [activeImage]);
-  import_react10.useEffect(() => {
-    return () => {
-      if (mouseUpDebounceRef.current) {
-        clearTimeout(mouseUpDebounceRef.current);
-      }
-    };
-  }, []);
-  if (typeof activeImage === "undefined") {
-    return;
-  }
-  const inputHandler = (field, e3) => {
-    const value = Number(e3.target.value);
-    if (field === "quality") {
-      appContext.setQuality(value);
-    } else {
-      appContext.setEffort(value);
-    }
-  };
-  const updateImage = async (targetInput, quality, effort) => {
-    try {
-      const updateImageProps = {
-        path: targetInput,
-        quality,
-        effort,
-        outputFormat: activeImage.outputFormat
-      };
-      console.log("updateImageProps: ", updateImageProps);
-      appContext.setImagesProcessing((oldImages) => {
-        return [...new Set([...oldImages, targetInput])];
-      });
-      const res = await electroview.rpc?.request.updateImage(updateImageProps);
-      if (typeof res !== "undefined") {
-        console.log(res);
-        appContext.setImages((images) => images.map((image) => {
-          if (image.input === targetInput) {
-            return { ...res.image, isActive: image.isActive };
-          } else {
-            return image;
-          }
-        }));
-      } else {
-        zt(t("unableToUpdateImage"), {
-          className: "hottoast"
-        });
-      }
-    } catch (error) {
-      console.log("updateImageprops error: ", typeof error);
-      handleRPCRequestCatch(error);
-    } finally {
-      appContext.setImagesProcessing((oldImages) => {
-        return oldImages.filter((oldImage) => oldImage !== targetInput);
-      });
-    }
-  };
-  const mouseDownHandler = () => {
-    mouseDownQualityEffort.current = { quality: appContext.quality, effort: appContext.effort };
-  };
-  const mouseUpHandler = () => {
-    const targetInput = activeImage.input;
-    const quality = appContext.quality;
-    const effort = appContext.effort;
-    if (quality === mouseDownQualityEffort.current.quality && effort === mouseDownQualityEffort.current.effort) {
-      return;
-    }
-    if (mouseUpDebounceRef.current) {
-      clearTimeout(mouseUpDebounceRef.current);
-    }
-    mouseUpDebounceRef.current = setTimeout(() => {
-      updateImage(targetInput, quality, effort);
-    }, 500);
-  };
-  return /* @__PURE__ */ jsx_dev_runtime5.jsxDEV("div", {
-    className: "imagescanvas",
-    children: [
-      /* @__PURE__ */ jsx_dev_runtime5.jsxDEV("div", {
-        className: "imagescanvas-col",
-        children: [
-          /* @__PURE__ */ jsx_dev_runtime5.jsxDEV("div", {
-            className: "imagescanvas-col-header",
-            children: t("input")
-          }, undefined, false, undefined, this),
-          /* @__PURE__ */ jsx_dev_runtime5.jsxDEV("div", {
-            className: "imagescanvas-col-bg",
-            children: /* @__PURE__ */ jsx_dev_runtime5.jsxDEV(Cropper, {
-              image: activeImage.input,
-              crop: appContext.crop,
-              zoom: appContext.zoom,
-              maxZoom: 10,
-              onCropChange: appContext.setCrop,
-              onZoomChange: appContext.setZoom
-            }, activeImage.input, false, undefined, this)
-          }, undefined, false, undefined, this),
-          /* @__PURE__ */ jsx_dev_runtime5.jsxDEV("div", {
-            className: "imagescanvas-col-footer",
-            children: [
-              /* @__PURE__ */ jsx_dev_runtime5.jsxDEV("div", {
-                className: "imagescanvas-col-footer-bytes",
-                children: formatBytes(activeImage.inputSizeBytes)
-              }, undefined, false, undefined, this),
-              /* @__PURE__ */ jsx_dev_runtime5.jsxDEV("div", {
-                className: "imagescanvas-col-footer-size",
-                children: activeImage.inputResolution.width + "px x " + activeImage.inputResolution.height + "px"
-              }, undefined, false, undefined, this)
-            ]
-          }, undefined, true, undefined, this)
-        ]
-      }, undefined, true, undefined, this),
-      /* @__PURE__ */ jsx_dev_runtime5.jsxDEV("div", {
-        className: "imagescanvas-col",
-        children: [
-          /* @__PURE__ */ jsx_dev_runtime5.jsxDEV("div", {
-            className: "imagescanvas-col-header",
-            children: t("output")
-          }, undefined, false, undefined, this),
-          /* @__PURE__ */ jsx_dev_runtime5.jsxDEV("div", {
-            className: "imagescanvas-col-bg",
-            children: /* @__PURE__ */ jsx_dev_runtime5.jsxDEV(Cropper, {
-              image: activeImage.output,
-              crop: appContext.crop,
-              zoom: appContext.zoom,
-              maxZoom: 10,
-              onCropChange: appContext.setCrop,
-              onZoomChange: appContext.setZoom
-            }, activeImage.output, false, undefined, this)
-          }, undefined, false, undefined, this),
-          /* @__PURE__ */ jsx_dev_runtime5.jsxDEV("div", {
-            className: "imagescanvas-col-footer",
-            children: [
-              /* @__PURE__ */ jsx_dev_runtime5.jsxDEV("div", {
-                className: "imagescanvas-col-footer-bytes",
-                children: formatBytes(activeImage.outputSizeBytes)
-              }, undefined, false, undefined, this),
-              /* @__PURE__ */ jsx_dev_runtime5.jsxDEV("div", {
-                className: "imagescanvas-col-footer-size",
-                children: activeImage.outputResolution.width + "px x " + activeImage.outputResolution.height + "px"
-              }, undefined, false, undefined, this)
-            ]
-          }, undefined, true, undefined, this)
-        ]
-      }, undefined, true, undefined, this),
-      /* @__PURE__ */ jsx_dev_runtime5.jsxDEV("div", {
-        className: "imagescanvas-sliders",
-        children: [
-          /* @__PURE__ */ jsx_dev_runtime5.jsxDEV("div", {
-            className: "imagescanvas-sliders-loading " + (appContext.imagesProcessing.filter((input) => activeImage.input === input).length ? "active" : ""),
-            children: /* @__PURE__ */ jsx_dev_runtime5.jsxDEV("div", {
-              className: "imagescanvas-sliders-loading-icon " + (appContext.imagesProcessing.filter((input) => activeImage.input === input).length ? "active" : "")
-            }, undefined, false, undefined, this)
-          }, undefined, false, undefined, this),
-          /* @__PURE__ */ jsx_dev_runtime5.jsxDEV("label", {
-            className: "imagescanvas-sliders-slider",
-            children: [
-              /* @__PURE__ */ jsx_dev_runtime5.jsxDEV("div", {
-                className: "imagescanvas-sliders-slider-label",
-                children: /* @__PURE__ */ jsx_dev_runtime5.jsxDEV("span", {
-                  className: "imagescanvas-sliders-slider-label-span",
-                  "data-tooltip-id": "quality",
-                  children: t("quality")
-                }, undefined, false, undefined, this)
-              }, undefined, false, undefined, this),
-              /* @__PURE__ */ jsx_dev_runtime5.jsxDEV("input", {
-                onChange: (e3) => inputHandler("quality", e3),
-                onMouseDown: mouseDownHandler,
-                onMouseUp: mouseUpHandler,
-                className: "imagescanvas-sliders-slider-input",
-                type: "range",
-                min: "1",
-                max: "100",
-                value: appContext.quality
-              }, undefined, false, undefined, this),
-              /* @__PURE__ */ jsx_dev_runtime5.jsxDEV("div", {
-                className: "imagescanvas-sliders-slider-inputvalue",
-                children: appContext.quality
-              }, undefined, false, undefined, this)
-            ]
-          }, undefined, true, undefined, this),
-          ["webp", "png"].filter((format) => activeImage.outputFormat === format).length ? /* @__PURE__ */ jsx_dev_runtime5.jsxDEV("label", {
-            className: "imagescanvas-sliders-slider",
-            children: [
-              /* @__PURE__ */ jsx_dev_runtime5.jsxDEV("div", {
-                className: "imagescanvas-sliders-slider-label",
-                children: /* @__PURE__ */ jsx_dev_runtime5.jsxDEV("span", {
-                  className: "imagescanvas-sliders-slider-label-span",
-                  "data-tooltip-id": "effort",
-                  children: t("effort")
-                }, undefined, false, undefined, this)
-              }, undefined, false, undefined, this),
-              /* @__PURE__ */ jsx_dev_runtime5.jsxDEV("input", {
-                onChange: (e3) => inputHandler("effort", e3),
-                onMouseDown: mouseDownHandler,
-                onMouseUp: mouseUpHandler,
-                className: "imagescanvas-sliders-slider-input",
-                type: "range",
-                min: activeImage.outputFormat === "webp" ? 0 : 1,
-                max: activeImage.outputFormat === "webp" ? 6 : 10,
-                value: appContext.effort
-              }, undefined, false, undefined, this),
-              /* @__PURE__ */ jsx_dev_runtime5.jsxDEV("div", {
-                className: "imagescanvas-sliders-slider-inputvalue",
-                children: appContext.effort
-              }, undefined, false, undefined, this)
-            ]
-          }, undefined, true, undefined, this) : ""
-        ]
-      }, undefined, true, undefined, this),
-      /* @__PURE__ */ jsx_dev_runtime5.jsxDEV(M, {
-        id: "quality",
-        place: "top",
-        content: t("qualityTooltip"),
-        className: "tooltip"
-      }, undefined, false, undefined, this),
-      /* @__PURE__ */ jsx_dev_runtime5.jsxDEV(M, {
-        id: "effort",
-        place: "top",
-        content: t("effortTooltip"),
-        className: "tooltip"
-      }, undefined, false, undefined, this)
-    ]
-  }, undefined, true, undefined, this);
-}
-
-// src/mainview/components/imagesEditor.tsx
-var jsx_dev_runtime6 = __toESM(require_jsx_dev_runtime(), 1);
-function ImagesEditor() {
-  const appContext = import_react11.useContext(sharedContext);
-  const { images, setImages } = appContext;
-  const pollInputsRef = import_react11.useRef(null);
-  import_react11.useEffect(() => {
-    async function pollInputs() {
-      try {
-        const res = await electroview.rpc?.request.pollInputs();
-        if (res && res.inputPaths.length < images.length && images.length) {
-          setImages((oldImages) => oldImages.filter((oldImage) => res.inputPaths.includes(oldImage.input)));
-          zt(t("imagesMissing"), { className: "hottoast" });
-        }
-      } catch (error) {
-        handleRPCRequestCatch(error);
-      }
-    }
-    try {
-      pollInputsRef.current = setInterval(pollInputs, 3000);
-    } catch {
-      if (pollInputsRef.current !== null) {
-        clearInterval(pollInputsRef.current);
-      }
-    }
-    return () => {
-      if (pollInputsRef.current !== null) {
-        clearInterval(pollInputsRef.current);
-      }
-    };
-  }, [images, setImages]);
-  return /* @__PURE__ */ jsx_dev_runtime6.jsxDEV("div", {
-    className: "imageseditor" + (appContext.imagesLoading || Object.keys(appContext.images).length > 0 ? " active" : ""),
-    children: [
-      /* @__PURE__ */ jsx_dev_runtime6.jsxDEV(ImagesList, {}, undefined, false, undefined, this),
-      /* @__PURE__ */ jsx_dev_runtime6.jsxDEV(ImagesCanvas, {}, undefined, false, undefined, this)
-    ]
-  }, undefined, true, undefined, this);
-}
-
-// src/mainview/components/settings.tsx
-var import_react21 = __toESM(require_react(), 1);
-
 // node_modules/@babel/runtime/helpers/esm/typeof.js
 function _typeof(o3) {
   "@babel/helpers - typeof";
@@ -34548,33 +34274,33 @@ function _objectWithoutProperties2(e3, t4) {
 }
 
 // node_modules/react-select/dist/useStateManager-7e1e8489.esm.js
-var import_react12 = __toESM(require_react(), 1);
+var import_react10 = __toESM(require_react(), 1);
 var _excluded5 = ["defaultInputValue", "defaultMenuIsOpen", "defaultValue", "inputValue", "menuIsOpen", "onChange", "onInputChange", "onMenuClose", "onMenuOpen", "value"];
 function useStateManager(_ref) {
   var _ref$defaultInputValu = _ref.defaultInputValue, defaultInputValue = _ref$defaultInputValu === undefined ? "" : _ref$defaultInputValu, _ref$defaultMenuIsOpe = _ref.defaultMenuIsOpen, defaultMenuIsOpen = _ref$defaultMenuIsOpe === undefined ? false : _ref$defaultMenuIsOpe, _ref$defaultValue = _ref.defaultValue, defaultValue = _ref$defaultValue === undefined ? null : _ref$defaultValue, propsInputValue = _ref.inputValue, propsMenuIsOpen = _ref.menuIsOpen, propsOnChange = _ref.onChange, propsOnInputChange = _ref.onInputChange, propsOnMenuClose = _ref.onMenuClose, propsOnMenuOpen = _ref.onMenuOpen, propsValue = _ref.value, restSelectProps = _objectWithoutProperties2(_ref, _excluded5);
-  var _useState = import_react12.useState(propsInputValue !== undefined ? propsInputValue : defaultInputValue), _useState2 = _slicedToArray3(_useState, 2), stateInputValue = _useState2[0], setStateInputValue = _useState2[1];
-  var _useState3 = import_react12.useState(propsMenuIsOpen !== undefined ? propsMenuIsOpen : defaultMenuIsOpen), _useState4 = _slicedToArray3(_useState3, 2), stateMenuIsOpen = _useState4[0], setStateMenuIsOpen = _useState4[1];
-  var _useState5 = import_react12.useState(propsValue !== undefined ? propsValue : defaultValue), _useState6 = _slicedToArray3(_useState5, 2), stateValue = _useState6[0], setStateValue = _useState6[1];
-  var onChange = import_react12.useCallback(function(value2, actionMeta) {
+  var _useState = import_react10.useState(propsInputValue !== undefined ? propsInputValue : defaultInputValue), _useState2 = _slicedToArray3(_useState, 2), stateInputValue = _useState2[0], setStateInputValue = _useState2[1];
+  var _useState3 = import_react10.useState(propsMenuIsOpen !== undefined ? propsMenuIsOpen : defaultMenuIsOpen), _useState4 = _slicedToArray3(_useState3, 2), stateMenuIsOpen = _useState4[0], setStateMenuIsOpen = _useState4[1];
+  var _useState5 = import_react10.useState(propsValue !== undefined ? propsValue : defaultValue), _useState6 = _slicedToArray3(_useState5, 2), stateValue = _useState6[0], setStateValue = _useState6[1];
+  var onChange = import_react10.useCallback(function(value2, actionMeta) {
     if (typeof propsOnChange === "function") {
       propsOnChange(value2, actionMeta);
     }
     setStateValue(value2);
   }, [propsOnChange]);
-  var onInputChange = import_react12.useCallback(function(value2, actionMeta) {
+  var onInputChange = import_react10.useCallback(function(value2, actionMeta) {
     var newValue;
     if (typeof propsOnInputChange === "function") {
       newValue = propsOnInputChange(value2, actionMeta);
     }
     setStateInputValue(newValue !== undefined ? newValue : value2);
   }, [propsOnInputChange]);
-  var onMenuOpen = import_react12.useCallback(function() {
+  var onMenuOpen = import_react10.useCallback(function() {
     if (typeof propsOnMenuOpen === "function") {
       propsOnMenuOpen();
     }
     setStateMenuIsOpen(true);
   }, [propsOnMenuOpen]);
-  var onMenuClose = import_react12.useCallback(function() {
+  var onMenuClose = import_react10.useCallback(function() {
     if (typeof propsOnMenuClose === "function") {
       propsOnMenuClose();
     }
@@ -34608,7 +34334,7 @@ function _extends() {
 
 // node_modules/react-select/dist/react-select.esm.js
 var React7 = __toESM(require_react(), 1);
-var import_react19 = __toESM(require_react(), 1);
+var import_react17 = __toESM(require_react(), 1);
 
 // node_modules/@babel/runtime/helpers/esm/classCallCheck.js
 function _classCallCheck(a3, n4) {
@@ -34723,11 +34449,11 @@ function _toConsumableArray3(r2) {
 
 // node_modules/react-select/dist/Select-ef7c0426.esm.js
 var React6 = __toESM(require_react(), 1);
-var import_react17 = __toESM(require_react(), 1);
+var import_react15 = __toESM(require_react(), 1);
 
 // node_modules/@emotion/react/dist/emotion-element-489459f2.browser.development.esm.js
 var React4 = __toESM(require_react(), 1);
-var import_react13 = __toESM(require_react(), 1);
+var import_react11 = __toESM(require_react(), 1);
 
 // node_modules/@emotion/sheet/dist/emotion-sheet.development.esm.js
 var isDevelopment = true;
@@ -35954,8 +35680,8 @@ var EmotionCacheContext = /* @__PURE__ */ React4.createContext(typeof HTMLElemen
 }
 var CacheProvider = EmotionCacheContext.Provider;
 var withEmotionCache = function withEmotionCache2(func) {
-  return /* @__PURE__ */ import_react13.forwardRef(function(props, ref) {
-    var cache = import_react13.useContext(EmotionCacheContext);
+  return /* @__PURE__ */ import_react11.forwardRef(function(props, ref) {
+    var cache = import_react11.useContext(EmotionCacheContext);
     return func(props, cache, ref);
   });
 };
@@ -36602,12 +36328,12 @@ function _taggedTemplateLiteral(e3, t4) {
 }
 
 // node_modules/react-select/dist/index-641ee5b8.esm.js
-var import_react16 = __toESM(require_react(), 1);
+var import_react14 = __toESM(require_react(), 1);
 var import_react_dom = __toESM(require_react_dom(), 1);
 
 // node_modules/use-isomorphic-layout-effect/dist/use-isomorphic-layout-effect.browser.esm.js
-var import_react14 = __toESM(require_react(), 1);
-var index = import_react14.useLayoutEffect;
+var import_react12 = __toESM(require_react(), 1);
+var index = import_react12.useLayoutEffect;
 
 // node_modules/react-select/dist/index-641ee5b8.esm.js
 var _excluded$4 = ["className", "clearValue", "cx", "getStyles", "getClassNames", "getValue", "hasValue", "isMulti", "isRtl", "options", "selectOption", "selectProps", "setValue", "theme"];
@@ -36944,13 +36670,13 @@ var menuCSS = function menuCSS2(_ref2, unstyled) {
     marginTop: spacing.menuGutter
   });
 };
-var PortalPlacementContext = /* @__PURE__ */ import_react16.createContext(null);
+var PortalPlacementContext = /* @__PURE__ */ import_react14.createContext(null);
 var MenuPlacer = function MenuPlacer2(props) {
   var { children, minMenuHeight, maxMenuHeight, menuPlacement, menuPosition, menuShouldScrollIntoView, theme } = props;
-  var _ref3 = import_react16.useContext(PortalPlacementContext) || {}, setPortalPlacement = _ref3.setPortalPlacement;
-  var ref = import_react16.useRef(null);
-  var _useState = import_react16.useState(maxMenuHeight), _useState2 = _slicedToArray3(_useState, 2), maxHeight = _useState2[0], setMaxHeight = _useState2[1];
-  var _useState3 = import_react16.useState(null), _useState4 = _slicedToArray3(_useState3, 2), placement = _useState4[0], setPlacement = _useState4[1];
+  var _ref3 = import_react14.useContext(PortalPlacementContext) || {}, setPortalPlacement = _ref3.setPortalPlacement;
+  var ref = import_react14.useRef(null);
+  var _useState = import_react14.useState(maxMenuHeight), _useState2 = _slicedToArray3(_useState, 2), maxHeight = _useState2[0], setMaxHeight = _useState2[1];
+  var _useState3 = import_react14.useState(null), _useState4 = _slicedToArray3(_useState3, 2), placement = _useState4[0], setPlacement = _useState4[1];
   var controlHeight = theme.spacing.controlHeight;
   index(function() {
     var menuEl = ref.current;
@@ -37052,16 +36778,16 @@ var menuPortalCSS = function menuPortalCSS2(_ref8) {
 };
 var MenuPortal = function MenuPortal2(props) {
   var { appendTo, children, controlElement, innerProps, menuPlacement, menuPosition } = props;
-  var menuPortalRef = import_react16.useRef(null);
-  var cleanupRef = import_react16.useRef(null);
-  var _useState5 = import_react16.useState(coercePlacement(menuPlacement)), _useState6 = _slicedToArray3(_useState5, 2), placement = _useState6[0], setPortalPlacement = _useState6[1];
-  var portalPlacementContext = import_react16.useMemo(function() {
+  var menuPortalRef = import_react14.useRef(null);
+  var cleanupRef = import_react14.useRef(null);
+  var _useState5 = import_react14.useState(coercePlacement(menuPlacement)), _useState6 = _slicedToArray3(_useState5, 2), placement = _useState6[0], setPortalPlacement = _useState6[1];
+  var portalPlacementContext = import_react14.useMemo(function() {
     return {
       setPortalPlacement
     };
   }, []);
-  var _useState7 = import_react16.useState(null), _useState8 = _slicedToArray3(_useState7, 2), computedPosition = _useState8[0], setComputedPosition = _useState8[1];
-  var updateComputedPosition = import_react16.useCallback(function() {
+  var _useState7 = import_react14.useState(null), _useState8 = _slicedToArray3(_useState7, 2), computedPosition = _useState8[0], setComputedPosition = _useState8[1];
+  var updateComputedPosition = import_react14.useCallback(function() {
     if (!controlElement)
       return;
     var rect = getBoundingClientObj(controlElement);
@@ -37077,7 +36803,7 @@ var MenuPortal = function MenuPortal2(props) {
   index(function() {
     updateComputedPosition();
   }, [updateComputedPosition]);
-  var runAutoUpdate = import_react16.useCallback(function() {
+  var runAutoUpdate = import_react14.useCallback(function() {
     if (typeof cleanupRef.current === "function") {
       cleanupRef.current();
       cleanupRef.current = null;
@@ -37091,7 +36817,7 @@ var MenuPortal = function MenuPortal2(props) {
   index(function() {
     runAutoUpdate();
   }, [runAutoUpdate]);
-  var setMenuPortalElement = import_react16.useCallback(function(menuPortalElement) {
+  var setMenuPortalElement = import_react14.useCallback(function(menuPortalElement) {
     menuPortalRef.current = menuPortalElement;
     runAutoUpdate();
   }, [runAutoUpdate]);
@@ -37756,10 +37482,10 @@ var LiveRegion = function LiveRegion2(props) {
   var { ariaLiveMessages, getOptionLabel, inputValue, isMulti, isOptionDisabled, isSearchable, menuIsOpen, options: options2, screenReaderStatus, tabSelectsValue, isLoading } = selectProps;
   var ariaLabel = selectProps["aria-label"];
   var ariaLive = selectProps["aria-live"];
-  var messages = import_react17.useMemo(function() {
+  var messages = import_react15.useMemo(function() {
     return _objectSpread22(_objectSpread22({}, defaultAriaLiveMessages), ariaLiveMessages || {});
   }, [ariaLiveMessages]);
-  var ariaSelected = import_react17.useMemo(function() {
+  var ariaSelected = import_react15.useMemo(function() {
     var message = "";
     if (ariaSelection && messages.onChange) {
       var { option, options: selectedOptions, removedValue, removedValues, value } = ariaSelection;
@@ -37779,7 +37505,7 @@ var LiveRegion = function LiveRegion2(props) {
     }
     return message;
   }, [ariaSelection, messages, isOptionDisabled, selectValue, getOptionLabel]);
-  var ariaFocused = import_react17.useMemo(function() {
+  var ariaFocused = import_react15.useMemo(function() {
     var focusMsg = "";
     var focused = focusedOption || focusedValue;
     var isSelected = !!(focusedOption && selectValue && selectValue.includes(focusedOption));
@@ -37798,7 +37524,7 @@ var LiveRegion = function LiveRegion2(props) {
     }
     return focusMsg;
   }, [focusedOption, focusedValue, getOptionLabel, isOptionDisabled, messages, focusableOptions, selectValue, isAppleDevice]);
-  var ariaResults = import_react17.useMemo(function() {
+  var ariaResults = import_react15.useMemo(function() {
     var resultsMsg = "";
     if (menuIsOpen && options2.length && !isLoading && messages.onFilter) {
       var resultsMessage = screenReaderStatus({
@@ -37812,7 +37538,7 @@ var LiveRegion = function LiveRegion2(props) {
     return resultsMsg;
   }, [focusableOptions, inputValue, menuIsOpen, messages, options2, screenReaderStatus, isLoading]);
   var isInitialFocus = (ariaSelection === null || ariaSelection === undefined ? undefined : ariaSelection.action) === "initial-input-focus";
-  var ariaGuidance = import_react17.useMemo(function() {
+  var ariaGuidance = import_react15.useMemo(function() {
     var guidanceMsg = "";
     if (messages.guidance) {
       var context = focusedValue ? "value" : menuIsOpen ? "menu" : "input";
@@ -37828,7 +37554,7 @@ var LiveRegion = function LiveRegion2(props) {
     }
     return guidanceMsg;
   }, [ariaLabel, focusedOption, focusedValue, isMulti, isOptionDisabled, isSearchable, menuIsOpen, messages, selectValue, tabSelectsValue, isInitialFocus]);
-  var ScreenReaderText = jsx(import_react17.Fragment, null, jsx("span", {
+  var ScreenReaderText = jsx(import_react15.Fragment, null, jsx("span", {
     id: "aria-selection"
   }, ariaSelected), jsx("span", {
     id: "aria-focused"
@@ -37837,7 +37563,7 @@ var LiveRegion = function LiveRegion2(props) {
   }, ariaResults), jsx("span", {
     id: "aria-guidance"
   }, ariaGuidance));
-  return jsx(import_react17.Fragment, null, jsx(A11yText$1, {
+  return jsx(import_react15.Fragment, null, jsx(A11yText$1, {
     id
   }, isInitialFocus && ScreenReaderText), jsx(A11yText$1, {
     "aria-live": ariaLive,
@@ -38181,11 +37907,11 @@ var cancelScroll = function cancelScroll2(event) {
 };
 function useScrollCapture(_ref3) {
   var { isEnabled, onBottomArrive, onBottomLeave, onTopArrive, onTopLeave } = _ref3;
-  var isBottom = import_react17.useRef(false);
-  var isTop = import_react17.useRef(false);
-  var touchStart = import_react17.useRef(0);
-  var scrollTarget = import_react17.useRef(null);
-  var handleEventDelta = import_react17.useCallback(function(event, delta) {
+  var isBottom = import_react15.useRef(false);
+  var isTop = import_react15.useRef(false);
+  var touchStart = import_react15.useRef(0);
+  var scrollTarget = import_react15.useRef(null);
+  var handleEventDelta = import_react15.useCallback(function(event, delta) {
     if (scrollTarget.current === null)
       return;
     var _scrollTarget$current = scrollTarget.current, scrollTop = _scrollTarget$current.scrollTop, scrollHeight = _scrollTarget$current.scrollHeight, clientHeight = _scrollTarget$current.clientHeight;
@@ -38222,17 +37948,17 @@ function useScrollCapture(_ref3) {
       cancelScroll(event);
     }
   }, [onBottomArrive, onBottomLeave, onTopArrive, onTopLeave]);
-  var onWheel = import_react17.useCallback(function(event) {
+  var onWheel = import_react15.useCallback(function(event) {
     handleEventDelta(event, event.deltaY);
   }, [handleEventDelta]);
-  var onTouchStart = import_react17.useCallback(function(event) {
+  var onTouchStart = import_react15.useCallback(function(event) {
     touchStart.current = event.changedTouches[0].clientY;
   }, []);
-  var onTouchMove = import_react17.useCallback(function(event) {
+  var onTouchMove = import_react15.useCallback(function(event) {
     var deltaY = touchStart.current - event.changedTouches[0].clientY;
     handleEventDelta(event, deltaY);
   }, [handleEventDelta]);
-  var startListening = import_react17.useCallback(function(el) {
+  var startListening = import_react15.useCallback(function(el) {
     if (!el)
       return;
     var notPassive = supportsPassiveEvents ? {
@@ -38242,14 +37968,14 @@ function useScrollCapture(_ref3) {
     el.addEventListener("touchstart", onTouchStart, notPassive);
     el.addEventListener("touchmove", onTouchMove, notPassive);
   }, [onTouchMove, onTouchStart, onWheel]);
-  var stopListening = import_react17.useCallback(function(el) {
+  var stopListening = import_react15.useCallback(function(el) {
     if (!el)
       return;
     el.removeEventListener("wheel", onWheel, false);
     el.removeEventListener("touchstart", onTouchStart, false);
     el.removeEventListener("touchmove", onTouchMove, false);
   }, [onTouchMove, onTouchStart, onWheel]);
-  import_react17.useEffect(function() {
+  import_react15.useEffect(function() {
     if (!isEnabled)
       return;
     var element = scrollTarget.current;
@@ -38297,9 +38023,9 @@ var listenerOptions = {
 };
 function useScrollLock(_ref3) {
   var { isEnabled, accountForScrollbars: _ref$accountForScroll } = _ref3, accountForScrollbars = _ref$accountForScroll === undefined ? true : _ref$accountForScroll;
-  var originalStyles = import_react17.useRef({});
-  var scrollTarget = import_react17.useRef(null);
-  var addScrollLock = import_react17.useCallback(function(touchScrollTarget) {
+  var originalStyles = import_react15.useRef({});
+  var scrollTarget = import_react15.useRef(null);
+  var addScrollLock = import_react15.useCallback(function(touchScrollTarget) {
     if (!canUseDOM)
       return;
     var target = document.body;
@@ -38333,7 +38059,7 @@ function useScrollLock(_ref3) {
     }
     activeScrollLocks += 1;
   }, [accountForScrollbars]);
-  var removeScrollLock = import_react17.useCallback(function(touchScrollTarget) {
+  var removeScrollLock = import_react15.useCallback(function(touchScrollTarget) {
     if (!canUseDOM)
       return;
     var target = document.body;
@@ -38355,7 +38081,7 @@ function useScrollLock(_ref3) {
       }
     }
   }, [accountForScrollbars]);
-  import_react17.useEffect(function() {
+  import_react15.useEffect(function() {
     if (!isEnabled)
       return;
     var element = scrollTarget.current;
@@ -38397,7 +38123,7 @@ function ScrollManager(_ref3) {
     setScrollCaptureTarget(element);
     setScrollLockTarget(element);
   };
-  return jsx(import_react17.Fragment, null, lockEnabled && jsx("div", {
+  return jsx(import_react15.Fragment, null, lockEnabled && jsx("div", {
     onClick: blurSelectInput,
     css: _ref2$1
   }), children(targetRef));
@@ -39973,18 +39699,323 @@ var Select = /* @__PURE__ */ function(_Component) {
     }
   }]);
   return Select2;
-}(import_react17.Component);
+}(import_react15.Component);
 Select.defaultProps = defaultProps2;
 
 // node_modules/react-select/dist/react-select.esm.js
 var import_react_dom2 = __toESM(require_react_dom(), 1);
-var StateManagedSelect = /* @__PURE__ */ import_react19.forwardRef(function(props, ref) {
+var StateManagedSelect = /* @__PURE__ */ import_react17.forwardRef(function(props, ref) {
   var baseSelectProps = useStateManager(props);
   return /* @__PURE__ */ React7.createElement(Select, _extends({
     ref
   }, baseSelectProps));
 });
 var StateManagedSelect$1 = StateManagedSelect;
+
+// src/mainview/components/imagesCanvas.tsx
+var jsx_dev_runtime5 = __toESM(require_jsx_dev_runtime(), 1);
+function ImagesCanvas() {
+  const appContext = import_react18.useContext(sharedContext);
+  const mouseUpDebounceRef = import_react18.useRef(null);
+  const mouseDownFieldValues = import_react18.useRef({ outputFormat: appContext.settings.outputFormat, quality: 0, effort: 0 });
+  const activeImage = appContext.images.find((image) => image.isActive);
+  import_react18.useEffect(() => {
+    return () => {
+      if (mouseUpDebounceRef.current) {
+        clearTimeout(mouseUpDebounceRef.current);
+      }
+    };
+  }, []);
+  if (typeof activeImage === "undefined") {
+    return;
+  }
+  const inputHandler = (field, e3) => {
+    const value = Number(e3.target.value);
+    if (field === "quality") {
+      appContext.setQuality(value);
+    } else {
+      appContext.setEffort(value);
+    }
+  };
+  const updateImage = async (targetInput, quality, effort, outputFormat) => {
+    try {
+      const updateImageProps = {
+        path: targetInput,
+        quality,
+        effort,
+        outputFormat
+      };
+      console.log("updateImageProps: ", updateImageProps);
+      appContext.setImagesProcessing((oldImages) => {
+        return [...new Set([...oldImages, targetInput])];
+      });
+      const res = await electroview.rpc?.request.updateImage(updateImageProps);
+      if (typeof res !== "undefined") {
+        console.log(res);
+        appContext.setImages((images) => images.map((image) => {
+          if (image.input === targetInput) {
+            return { ...res.image, isActive: image.isActive };
+          } else {
+            return image;
+          }
+        }));
+      } else {
+        zt(t("unableToUpdateImage"), {
+          className: "hottoast"
+        });
+      }
+    } catch (error) {
+      console.log("updateImageprops error: ", typeof error);
+      handleRPCRequestCatch(error);
+    } finally {
+      appContext.setImagesProcessing((oldImages) => {
+        return oldImages.filter((oldImage) => oldImage !== targetInput);
+      });
+    }
+  };
+  const mouseDownHandler = () => {
+    mouseDownFieldValues.current = { quality: appContext.quality, effort: appContext.effort, outputFormat: activeImage.outputFormat };
+  };
+  const mouseUpHandler = (outputFormat) => {
+    const targetInput = activeImage.input;
+    const quality = appContext.quality;
+    const effort = appContext.effort;
+    if (quality === mouseDownFieldValues.current.quality && effort === mouseDownFieldValues.current.effort && outputFormat === mouseDownFieldValues.current.outputFormat) {
+      return;
+    }
+    if (mouseUpDebounceRef.current) {
+      clearTimeout(mouseUpDebounceRef.current);
+    }
+    mouseUpDebounceRef.current = setTimeout(() => {
+      updateImage(targetInput, quality, effort, outputFormat || activeImage.outputFormat);
+    }, 500);
+  };
+  const outputFormatOptions = [
+    { value: "webp", label: "WebP" },
+    { value: "png", label: "PNG" },
+    { value: "jpeg", label: "JPEG" }
+  ];
+  return /* @__PURE__ */ jsx_dev_runtime5.jsxDEV("div", {
+    className: "imagescanvas",
+    children: [
+      /* @__PURE__ */ jsx_dev_runtime5.jsxDEV("div", {
+        className: "imagescanvas-col",
+        children: [
+          /* @__PURE__ */ jsx_dev_runtime5.jsxDEV("div", {
+            className: "imagescanvas-col-header",
+            children: t("input")
+          }, undefined, false, undefined, this),
+          /* @__PURE__ */ jsx_dev_runtime5.jsxDEV("div", {
+            className: "imagescanvas-col-bg",
+            children: /* @__PURE__ */ jsx_dev_runtime5.jsxDEV(Cropper, {
+              image: activeImage.input,
+              crop: appContext.crop,
+              zoom: appContext.zoom,
+              maxZoom: 10,
+              onCropChange: appContext.setCrop,
+              onZoomChange: appContext.setZoom
+            }, activeImage.input, false, undefined, this)
+          }, undefined, false, undefined, this),
+          /* @__PURE__ */ jsx_dev_runtime5.jsxDEV("div", {
+            className: "imagescanvas-col-footer",
+            children: [
+              /* @__PURE__ */ jsx_dev_runtime5.jsxDEV("div", {
+                className: "imagescanvas-col-footer-bytes",
+                children: formatBytes(activeImage.inputSizeBytes)
+              }, undefined, false, undefined, this),
+              /* @__PURE__ */ jsx_dev_runtime5.jsxDEV("div", {
+                className: "imagescanvas-col-footer-size",
+                children: activeImage.inputResolution.width + "px x " + activeImage.inputResolution.height + "px"
+              }, undefined, false, undefined, this)
+            ]
+          }, undefined, true, undefined, this)
+        ]
+      }, undefined, true, undefined, this),
+      /* @__PURE__ */ jsx_dev_runtime5.jsxDEV("div", {
+        className: "imagescanvas-col",
+        children: [
+          /* @__PURE__ */ jsx_dev_runtime5.jsxDEV("div", {
+            className: "imagescanvas-col-header",
+            children: t("output")
+          }, undefined, false, undefined, this),
+          /* @__PURE__ */ jsx_dev_runtime5.jsxDEV("div", {
+            className: "imagescanvas-col-bg",
+            children: /* @__PURE__ */ jsx_dev_runtime5.jsxDEV(Cropper, {
+              image: activeImage.output,
+              crop: appContext.crop,
+              zoom: appContext.zoom,
+              maxZoom: 10,
+              onCropChange: appContext.setCrop,
+              onZoomChange: appContext.setZoom
+            }, activeImage.output, false, undefined, this)
+          }, undefined, false, undefined, this),
+          /* @__PURE__ */ jsx_dev_runtime5.jsxDEV("div", {
+            className: "imagescanvas-col-footer",
+            children: [
+              /* @__PURE__ */ jsx_dev_runtime5.jsxDEV("div", {
+                className: "imagescanvas-col-footer-bytes",
+                children: formatBytes(activeImage.outputSizeBytes)
+              }, undefined, false, undefined, this),
+              /* @__PURE__ */ jsx_dev_runtime5.jsxDEV("div", {
+                className: "imagescanvas-col-footer-size",
+                children: activeImage.outputResolution.width + "px x " + activeImage.outputResolution.height + "px"
+              }, undefined, false, undefined, this)
+            ]
+          }, undefined, true, undefined, this)
+        ]
+      }, undefined, true, undefined, this),
+      /* @__PURE__ */ jsx_dev_runtime5.jsxDEV("div", {
+        className: "imagescanvas-fields",
+        children: [
+          /* @__PURE__ */ jsx_dev_runtime5.jsxDEV("div", {
+            className: "imagescanvas-fields-loading " + (appContext.imagesProcessing.filter((input) => activeImage.input === input).length ? "active" : ""),
+            children: /* @__PURE__ */ jsx_dev_runtime5.jsxDEV("div", {
+              className: "imagescanvas-fields-loading-icon " + (appContext.imagesProcessing.filter((input) => activeImage.input === input).length ? "active" : "")
+            }, undefined, false, undefined, this)
+          }, undefined, false, undefined, this),
+          /* @__PURE__ */ jsx_dev_runtime5.jsxDEV("label", {
+            className: "imagescanvas-fields-slider",
+            children: [
+              /* @__PURE__ */ jsx_dev_runtime5.jsxDEV("div", {
+                className: "imagescanvas-fields-slider-label",
+                children: /* @__PURE__ */ jsx_dev_runtime5.jsxDEV("span", {
+                  className: "imagescanvas-fields-slider-label-span",
+                  "data-tooltip-id": "quality",
+                  children: t("quality")
+                }, undefined, false, undefined, this)
+              }, undefined, false, undefined, this),
+              /* @__PURE__ */ jsx_dev_runtime5.jsxDEV("input", {
+                onChange: (e3) => inputHandler("quality", e3),
+                onMouseDown: mouseDownHandler,
+                onMouseUp: mouseUpHandler,
+                className: "imagescanvas-fields-slider-input",
+                type: "range",
+                min: "1",
+                max: "100",
+                value: appContext.quality
+              }, undefined, false, undefined, this),
+              /* @__PURE__ */ jsx_dev_runtime5.jsxDEV("div", {
+                className: "imagescanvas-fields-slider-inputvalue",
+                children: appContext.quality
+              }, undefined, false, undefined, this)
+            ]
+          }, undefined, true, undefined, this),
+          ["webp", "png"].filter((format) => activeImage.outputFormat === format).length ? /* @__PURE__ */ jsx_dev_runtime5.jsxDEV("label", {
+            className: "imagescanvas-fields-slider",
+            children: [
+              /* @__PURE__ */ jsx_dev_runtime5.jsxDEV("div", {
+                className: "imagescanvas-fields-slider-label",
+                children: /* @__PURE__ */ jsx_dev_runtime5.jsxDEV("span", {
+                  className: "imagescanvas-fields-slider-label-span",
+                  "data-tooltip-id": "effort",
+                  children: t("effort")
+                }, undefined, false, undefined, this)
+              }, undefined, false, undefined, this),
+              /* @__PURE__ */ jsx_dev_runtime5.jsxDEV("input", {
+                onChange: (e3) => inputHandler("effort", e3),
+                onMouseDown: mouseDownHandler,
+                onMouseUp: mouseUpHandler,
+                className: "imagescanvas-fields-slider-input",
+                type: "range",
+                min: activeImage.outputFormat === "webp" ? 0 : 1,
+                max: activeImage.outputFormat === "webp" ? 6 : 10,
+                value: appContext.effort
+              }, undefined, false, undefined, this),
+              /* @__PURE__ */ jsx_dev_runtime5.jsxDEV("div", {
+                className: "imagescanvas-fields-slider-inputvalue",
+                children: appContext.effort
+              }, undefined, false, undefined, this)
+            ]
+          }, undefined, true, undefined, this) : "",
+          /* @__PURE__ */ jsx_dev_runtime5.jsxDEV("label", {
+            className: "imagescanvas-fields-select",
+            children: [
+              /* @__PURE__ */ jsx_dev_runtime5.jsxDEV("div", {
+                className: "imagescanvas-fields-select-label",
+                children: /* @__PURE__ */ jsx_dev_runtime5.jsxDEV("span", {
+                  className: "imagescanvas-fields-select-label-span",
+                  "data-tooltip-id": "format",
+                  children: t("format")
+                }, undefined, false, undefined, this)
+              }, undefined, false, undefined, this),
+              /* @__PURE__ */ jsx_dev_runtime5.jsxDEV(StateManagedSelect$1, {
+                inputId: "outputFormat",
+                name: "outputFormat",
+                className: "imagescanvas-fields-select-select",
+                options: outputFormatOptions,
+                value: outputFormatOptions.find((option) => option.value === activeImage.outputFormat),
+                onChange: (option) => mouseUpHandler(option?.value),
+                onMenuOpen: mouseDownHandler,
+                menuPlacement: "top"
+              }, undefined, false, undefined, this)
+            ]
+          }, undefined, true, undefined, this)
+        ]
+      }, undefined, true, undefined, this),
+      /* @__PURE__ */ jsx_dev_runtime5.jsxDEV(M, {
+        id: "format",
+        place: "top",
+        content: t("formatTooltip"),
+        className: "tooltip"
+      }, undefined, false, undefined, this),
+      /* @__PURE__ */ jsx_dev_runtime5.jsxDEV(M, {
+        id: "quality",
+        place: "top",
+        content: t("qualityTooltip"),
+        className: "tooltip"
+      }, undefined, false, undefined, this),
+      /* @__PURE__ */ jsx_dev_runtime5.jsxDEV(M, {
+        id: "effort",
+        place: "top",
+        content: t("effortTooltip"),
+        className: "tooltip"
+      }, undefined, false, undefined, this)
+    ]
+  }, undefined, true, undefined, this);
+}
+
+// src/mainview/components/imagesEditor.tsx
+var jsx_dev_runtime6 = __toESM(require_jsx_dev_runtime(), 1);
+function ImagesEditor() {
+  const appContext = import_react19.useContext(sharedContext);
+  const { images, setImages } = appContext;
+  const pollInputsRef = import_react19.useRef(null);
+  import_react19.useEffect(() => {
+    async function pollInputs() {
+      try {
+        const res = await electroview.rpc?.request.pollInputs();
+        if (res && res.inputPaths.length < images.length && images.length) {
+          setImages((oldImages) => oldImages.filter((oldImage) => res.inputPaths.includes(oldImage.input)));
+          zt(t("imagesMissing"), { className: "hottoast" });
+        }
+      } catch (error) {
+        handleRPCRequestCatch(error);
+      }
+    }
+    try {
+      pollInputsRef.current = setInterval(pollInputs, 3000);
+    } catch {
+      if (pollInputsRef.current !== null) {
+        clearInterval(pollInputsRef.current);
+      }
+    }
+    return () => {
+      if (pollInputsRef.current !== null) {
+        clearInterval(pollInputsRef.current);
+      }
+    };
+  }, [images, setImages]);
+  return /* @__PURE__ */ jsx_dev_runtime6.jsxDEV("div", {
+    className: "imageseditor" + (appContext.imagesLoading || Object.keys(appContext.images).length > 0 ? " active" : ""),
+    children: [
+      /* @__PURE__ */ jsx_dev_runtime6.jsxDEV(ImagesList, {}, undefined, false, undefined, this),
+      /* @__PURE__ */ jsx_dev_runtime6.jsxDEV(ImagesCanvas, {}, undefined, false, undefined, this)
+    ]
+  }, undefined, true, undefined, this);
+}
+
+// src/mainview/components/settings.tsx
+var import_react21 = __toESM(require_react(), 1);
 
 // src/mainview/components/numberField.tsx
 var import_react20 = __toESM(require_react(), 1);
@@ -40277,7 +40308,7 @@ function SettingsPane() {
                       /* @__PURE__ */ jsx_dev_runtime8.jsxDEV(M, {
                         id: "theme",
                         place: "top",
-                        content: t("theme"),
+                        content: t("themeTooltip"),
                         className: "tooltip"
                       }, undefined, false, undefined, this),
                       /* @__PURE__ */ jsx_dev_runtime8.jsxDEV(StateManagedSelect$1, {
@@ -40337,14 +40368,12 @@ function SettingsPane() {
                         content: t("effortTooltip"),
                         className: "tooltip"
                       }, undefined, false, undefined, this),
-                      /* @__PURE__ */ jsx_dev_runtime8.jsxDEV("div", {
-                        children: /* @__PURE__ */ jsx_dev_runtime8.jsxDEV(NumberField, {
-                          min: draftSettings.outputFormat === "webp" ? 0 : 1,
-                          max: draftSettings.outputFormat === "webp" ? 6 : 10,
-                          name: "effort",
-                          value: draftSettings.effort,
-                          onChange: (val) => setDraftSettings((current) => ({ ...current, effort: Number(val) }))
-                        }, undefined, false, undefined, this)
+                      /* @__PURE__ */ jsx_dev_runtime8.jsxDEV(NumberField, {
+                        min: draftSettings.outputFormat === "webp" ? 0 : 1,
+                        max: draftSettings.outputFormat === "webp" ? 6 : 10,
+                        name: "effort",
+                        value: draftSettings.effort,
+                        onChange: (val) => setDraftSettings((current) => ({ ...current, effort: Number(val) }))
                       }, undefined, false, undefined, this)
                     ]
                   }, undefined, true, undefined, this),

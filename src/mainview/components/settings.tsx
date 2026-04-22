@@ -62,11 +62,13 @@ export default function SettingsPane() {
 			}))
 			.sort((a, b) => a.label.localeCompare(b.label, settings.language, { sensitivity: 'base' }));
 	}, [settings.language]);
+	
 	const outputFormatOptions: Array<{ value: AvailableOutputFormats; label: string }> = [
 		{ value: 'webp', label: 'WebP' },
 		{ value: 'png', label: 'PNG' },
 		{ value: 'jpeg', label: 'JPEG' },
 	];
+
 	const outputFolderOptions: Array<{ value: 'default' | 'custom'; label: string }> = [
 		{ value: 'default', label: t('pictures') },
 		{ value: 'custom', label: t('custom') },
@@ -228,23 +230,23 @@ export default function SettingsPane() {
 								<Tooltip
 									id="theme"
 									place="top"
-									content={t('theme')}
+									content={t('themeTooltip')}
 									className="tooltip"
 								/>
-									<Select
-										inputId="theme"
-										name="theme"
-										className="settingspane-inner-fields-form-fields-field-select"
-										options={themeOptions}
-										value={themeOptions.find((option) => option.value === draftSettings.theme)}
-										onChange={(option) => {
-											if (!option) {
-												return;
-											}
-											setDraftSettings((current) => ({
-												...current,
-												theme: option.value,
-											}));
+								<Select
+									inputId="theme"
+									name="theme"
+									className="settingspane-inner-fields-form-fields-field-select"
+									options={themeOptions}
+									value={themeOptions.find((option) => option.value === draftSettings.theme)}
+									onChange={(option) => {
+										if (!option) {
+											return;
+										}
+										setDraftSettings((current) => ({
+											...current,
+											theme: option.value,
+										}));
 									}}
 								/>
 							</div>
@@ -272,15 +274,13 @@ export default function SettingsPane() {
 									content={t('effortTooltip')}
 									className="tooltip"
 								/>
-								<div>
-									<NumberField
-										min={draftSettings.outputFormat === 'webp' ? 0 : 1}
-										max={draftSettings.outputFormat === 'webp' ? 6 : 10}
-										name="effort"
-										value={draftSettings.effort}
-										onChange={(val) => setDraftSettings((current) => ({ ...current, effort: Number(val) }))}
-									/>
-								</div>
+								<NumberField
+									min={draftSettings.outputFormat === 'webp' ? 0 : 1}
+									max={draftSettings.outputFormat === 'webp' ? 6 : 10}
+									name="effort"
+									value={draftSettings.effort}
+									onChange={(val) => setDraftSettings((current) => ({ ...current, effort: Number(val) }))}
+								/>
 							</div>
 							<div className="settingspane-inner-fields-form-fields-field number">
 								<label htmlFor="maxWidth" data-tooltip-id="maxwidth" className="settingspane-inner-fields-form-fields-field-label">{t('maxWidth')}</label>
@@ -290,13 +290,13 @@ export default function SettingsPane() {
 									content={t('maxWidthTooltip')}
 									className="tooltip"
 								/>
-									<NumberField
-										min={0}
-										max={16383}
-										name="maxWidth"
-										value={draftSettings.maxWidth}
-										onChange={(val) => setDraftSettings((current) => ({ ...current, maxWidth: Number(val) }))}
-									/>
+								<NumberField
+									min={0}
+									max={16383}
+									name="maxWidth"
+									value={draftSettings.maxWidth}
+									onChange={(val) => setDraftSettings((current) => ({ ...current, maxWidth: Number(val) }))}
+								/>
 							</div>
 							<div className="settingspane-inner-fields-form-fields-field number">
 								<label htmlFor="maxHeight" data-tooltip-id="maxheight" className="settingspane-inner-fields-form-fields-field-label">{t('maxHeight')}</label>
@@ -322,17 +322,17 @@ export default function SettingsPane() {
 									content={t('outputFolderTooltip')}
 									className="tooltip"
 								/>
-									<Select
-										inputId="output"
-										name="output"
-										className="settingspane-inner-fields-form-fields-field-select"
-										options={outputFolderOptions}
-										value={outputFolderOptions.find((option) => option.value === (draftSettings.outputFolder === '' ? 'default' : 'custom'))}
-										onChange={outputFolderSelectHandler}
-									/>
-									{draftSettings.outputFolder.length ? <><input className="settingspane-inner-fields-form-fields-field-button" onClick={outputFolderButtonClickHandler} type="button" value={t('changeLocation')} />
-										<div className="settingspane-inner-fields-form-fields-field-desc">{draftSettings.outputFolder}</div></> : ''}
-									<input className="settingspane-inner-fields-form-fields-field-desc" name="outputFolder" type="hidden" readOnly value={draftSettings.outputFolder} />
+								<Select
+									inputId="output"
+									name="output"
+									className="settingspane-inner-fields-form-fields-field-select"
+									options={outputFolderOptions}
+									value={outputFolderOptions.find((option) => option.value === (draftSettings.outputFolder === '' ? 'default' : 'custom'))}
+									onChange={outputFolderSelectHandler}
+								/>
+								{draftSettings.outputFolder.length ? <><input className="settingspane-inner-fields-form-fields-field-button" onClick={outputFolderButtonClickHandler} type="button" value={t('changeLocation')} />
+									<div className="settingspane-inner-fields-form-fields-field-desc">{draftSettings.outputFolder}</div></> : ''}
+								<input className="settingspane-inner-fields-form-fields-field-desc" name="outputFolder" type="hidden" readOnly value={draftSettings.outputFolder} />
 							</div>
 							<div className="settingspane-inner-fields-form-fields-field">
 								<label htmlFor="language" data-tooltip-id="language" className="settingspane-inner-fields-form-fields-field-label">{t('language')}</label>
@@ -342,20 +342,20 @@ export default function SettingsPane() {
 									content={t('languageTooltip')}
 									className="tooltip"
 								/>
-									<Select
-										inputId="language"
-										name="language"
-										className="settingspane-inner-fields-form-fields-field-select"
-										options={languageOptions}
-										value={languageOptions.find((option) => option.value === draftSettings.language)}
-										onChange={(option) => {
-											if (!option) {
-												return;
-											}
-											setDraftSettings((current) => ({
-												...current,
-												language: option.value,
-											}));
+								<Select
+									inputId="language"
+									name="language"
+									className="settingspane-inner-fields-form-fields-field-select"
+									options={languageOptions}
+									value={languageOptions.find((option) => option.value === draftSettings.language)}
+									onChange={(option) => {
+										if (!option) {
+											return;
+										}
+										setDraftSettings((current) => ({
+											...current,
+											language: option.value,
+										}));
 									}}
 								/>
 							</div>
@@ -367,20 +367,20 @@ export default function SettingsPane() {
 									content={t('formatTooltip')}
 									className="tooltip"
 								/>
-									<Select
-										inputId="outputFormat"
-										name="outputFormat"
-										className="settingspane-inner-fields-form-fields-field-select"
-										options={outputFormatOptions}
-										value={outputFormatOptions.find((option) => option.value === draftSettings.outputFormat)}
-										onChange={(option) => {
-											if (!option) {
-												return;
-											}
-											setDraftSettings((current) => ({
-												...current,
-												outputFormat: option.value,
-											}));
+								<Select
+									inputId="outputFormat"
+									name="outputFormat"
+									className="settingspane-inner-fields-form-fields-field-select"
+									options={outputFormatOptions}
+									value={outputFormatOptions.find((option) => option.value === draftSettings.outputFormat)}
+									onChange={(option) => {
+										if (!option) {
+											return;
+										}
+										setDraftSettings((current) => ({
+											...current,
+											outputFormat: option.value,
+										}));
 									}}
 								/>
 							</div>

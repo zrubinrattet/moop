@@ -415,6 +415,7 @@ const rpc = BrowserView.defineRPC<AppRPCSchema>({
 						...ProcessImageResponse.image,
 						effort,
 						quality,
+						outputFormat: outputFormat || appSettings.outputFormat
 					},
 				};
 

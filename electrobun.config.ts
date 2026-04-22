@@ -1,16 +1,20 @@
 import type { ElectrobunConfig } from "electrobun";
+import pkg from "./package.json" with { type: "json" };
 
 export default {
 	app: {
-		name: "moop",
+		name: pkg.name,
 		identifier: "com.moop.moop",
-		version: "0.0.1",
+		version: pkg.version,
 	},
 	build: {
 		views: {
 			mainview: {
-				entrypoint: "src/mainview/index.tsx"
+				entrypoint: "src/mainview/index.tsx",
 			},
+		},
+		bun: {
+			entrypoint: "src/bun/index.ts",
 		},
 		copy: {
 			"src/mainview/index.html": "views/mainview/index.html",
