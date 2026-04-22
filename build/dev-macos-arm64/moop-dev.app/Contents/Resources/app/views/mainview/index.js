@@ -39739,10 +39739,11 @@ function ImagesCanvas() {
   };
   const updateImage = async (targetInput, quality, effort, outputFormat) => {
     try {
+      const clampedEffort = Math.max(outputFormat === "webp" ? 0 : 1, Math.min(effort, outputFormat === "webp" ? 6 : 10));
       const updateImageProps = {
         path: targetInput,
         quality,
-        effort,
+        effort: clampedEffort,
         outputFormat
       };
       console.log("updateImageProps: ", updateImageProps);
@@ -39759,6 +39760,7 @@ function ImagesCanvas() {
             return image;
           }
         }));
+        appContext.setEffort(clampedEffort);
       } else {
         zt(t("unableToUpdateImage"), {
           className: "hottoast"
@@ -39787,7 +39789,7 @@ function ImagesCanvas() {
       clearTimeout(mouseUpDebounceRef.current);
     }
     mouseUpDebounceRef.current = setTimeout(() => {
-      updateImage(targetInput, quality, effort, outputFormat || activeImage.outputFormat);
+      updateImage(targetInput, quality, effort, outputFormat ? outputFormat : activeImage.outputFormat);
     }, 500);
   };
   const outputFormatOptions = [
@@ -39813,7 +39815,10 @@ function ImagesCanvas() {
               zoom: appContext.zoom,
               maxZoom: 10,
               onCropChange: appContext.setCrop,
-              onZoomChange: appContext.setZoom
+              onZoomChange: appContext.setZoom,
+              onMediaLoaded: () => {
+                console.log(activeImage.input);
+              }
             }, activeImage.input, false, undefined, this)
           }, undefined, false, undefined, this),
           /* @__PURE__ */ jsx_dev_runtime5.jsxDEV("div", {
@@ -39887,7 +39892,7 @@ function ImagesCanvas() {
               /* @__PURE__ */ jsx_dev_runtime5.jsxDEV("input", {
                 onChange: (e3) => inputHandler("quality", e3),
                 onMouseDown: mouseDownHandler,
-                onMouseUp: mouseUpHandler,
+                onMouseUp: () => mouseUpHandler(),
                 className: "imagescanvas-fields-slider-input",
                 type: "range",
                 min: "1",
@@ -39914,7 +39919,7 @@ function ImagesCanvas() {
               /* @__PURE__ */ jsx_dev_runtime5.jsxDEV("input", {
                 onChange: (e3) => inputHandler("effort", e3),
                 onMouseDown: mouseDownHandler,
-                onMouseUp: mouseUpHandler,
+                onMouseUp: () => mouseUpHandler(),
                 className: "imagescanvas-fields-slider-input",
                 type: "range",
                 min: activeImage.outputFormat === "webp" ? 0 : 1,

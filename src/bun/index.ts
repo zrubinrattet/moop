@@ -266,21 +266,24 @@ async function processImage(arg: ProcessImageTask): Promise<void> {
 		withoutEnlargement: true
 	})
 
+	const parsedQuality = Math.max(1, Math.min(Number(arg.quality) || Number(appSettings.quality), 100));
 	if (outputFormat === 'webp') {
+		const parsedEffort = Math.max(0, Math.min(Number(arg.effort) || Number(appSettings.effort), 6));
 		await resized.webp({
-			quality: Number(arg.quality) || Number(appSettings.quality),
-			effort: Number(arg.effort) || Number(appSettings.effort),
+			quality: parsedQuality,
+			effort: parsedEffort,
 		}).toFile(outputPath);
 	}
 	else if (outputFormat === 'png') {
+		const parsedEffort = Math.max(1, Math.min(Number(arg.effort) || Number(appSettings.effort), 10));
 		await resized.png({
-			quality: Number(arg.quality) || Number(appSettings.quality),
-			effort: Number(arg.effort) || Number(appSettings.effort),
+			quality: parsedQuality,
+			effort: parsedEffort,
 		}).toFile(outputPath);
 	}
 	else if (outputFormat === 'jpeg') {
 		await resized.jpeg({
-			quality: Number(arg.quality) || Number(appSettings.quality)
+			quality: parsedQuality
 		}).toFile(outputPath);
 	}
 }
@@ -424,11 +427,14 @@ const rpc = BrowserView.defineRPC<AppRPCSchema>({
 					type: 'localtoabsolute',
 				});
 
+				const clampedQuality = Math.max(1, Math.min((quality || appSettings.quality), 100));
+				const clampedEffort = Math.max( (outputFormat || appSettings.outputFormat) === 'webp' ? 0 : 1 , Math.min(effort || appSettings.effort, (outputFormat || appSettings.outputFormat) === 'webp' ? 6 : 10));
+
 
 				await queue.push({
 					path: inputPath,
-					quality: quality,
-					effort: effort,
+					quality: clampedQuality,
+					effort: clampedEffort,
 					outputFormat: outputFormat
 				}).then(async () => {
 					ret.message = t('updateImageSuccess');
@@ -451,8 +457,8 @@ const rpc = BrowserView.defineRPC<AppRPCSchema>({
 							height: outputResolution.height,
 						},
 						isActive: false,
-						effort: effort || appSettings.effort,
-						quality: quality || appSettings.quality,
+						effort: clampedEffort,
+						quality: clampedQuality,
 						outputFormat: outputFormat || appSettings.outputFormat,
 					};
 				}).catch((err) => {
