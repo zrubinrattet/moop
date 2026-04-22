@@ -22,6 +22,7 @@
 		"light": "เบา",
 		"pictures": "รูปภาพ",
 		"custom": "กำหนดเอง",
+		"clickDragChange" : "คลิกและลากเพื่อเปลี่ยนค่า",
 		"defaultQuality": "คุณภาพเริ่มต้น",
 		"defaultEffort": "ความพยายามเริ่มต้น",
 		"maxWidth": "ความกว้างสูงสุด",

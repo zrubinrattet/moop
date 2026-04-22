@@ -22,6 +22,7 @@
 		"light": "Işık",
 		"pictures": "Resimler",
 		"custom": "Özel",
+		"clickDragChange" : "Değeri değiştirmek için tıklayıp sürükleyin",
 		"defaultQuality": "Varsayılan Kalite",
 		"defaultEffort": "Varsayılan İşgücü",
 		"maxWidth": "Maksimum Genişlik",

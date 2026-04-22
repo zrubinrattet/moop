@@ -22,6 +22,7 @@
 		"light": "আলো",
 		"pictures": "ছবি",
 		"custom": "কাস্টম",
+		"clickDragChange" : "মান পরিবর্তন করতে ক্লিক করে টেনে আনুন",
 		"defaultQuality": "ডিফল্ট গুণমান",
 		"defaultEffort": "ডিফল্ট প্রচেষ্টা",
 		"maxWidth": "সর্বোচ্চ প্রস্থ",

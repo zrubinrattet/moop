@@ -22,6 +22,7 @@
 		"light": "ضوء",
 		"pictures": "الصور",
 		"custom": "مخصص",
+		"clickDragChange" : "انقر واسحب لتغيير القيمة",
 		"defaultQuality": "الجودة الافتراضية",
 		"defaultEffort": "الجهد الافتراضي",
 		"maxWidth": "أقصى عرض",

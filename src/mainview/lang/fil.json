@@ -22,6 +22,7 @@
 		"light": "Liwanag",
 		"pictures": "Mga larawan",
 		"custom": "Custom",
+		"clickDragChange" : "I-click at i-drag para baguhin ang value",
 		"defaultQuality": "Default na Kalidad",
 		"defaultEffort": "Default na Pagsisikap",
 		"maxWidth": "Max Lapad",

@@ -22,6 +22,7 @@
 		"light": "Luce",
 		"pictures": "Immagini",
 		"custom": "Personalizzato",
+		"clickDragChange" : "Fai clic e trascina per cambiare il valore",
 		"defaultQuality": "Qualità predefinita",
 		"defaultEffort": "Sforzo predefinito",
 		"maxWidth": "Larghezza massima",

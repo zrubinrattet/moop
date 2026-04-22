@@ -22,6 +22,7 @@
 		"light": "빛",
 		"pictures": "사진",
 		"custom": "맞춤",
+		"clickDragChange" : "값을 변경하려면 클릭 후 드래그하세요",
 		"defaultQuality": "기본 품질",
 		"defaultEffort": "기본 노력",
 		"maxWidth": "최대 너비",

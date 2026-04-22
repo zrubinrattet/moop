@@ -22,6 +22,7 @@
 		"light": "ライト",
 		"pictures": "写真",
 		"custom": "カスタム",
+		"clickDragChange" : "クリック＆ドラッグで値を変更",
 		"defaultQuality": "デフォルトの品質",
 		"defaultEffort": "デフォルトの労力",
 		"maxWidth": "最大幅",

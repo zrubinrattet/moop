@@ -306,13 +306,13 @@ export default function SettingsPane() {
 									content={t('maxHeightTooltip')}
 									className="tooltip"
 								/>
-									<NumberField
-										min={0}
-										max={16383}
-										name="maxHeight"
-										value={draftSettings.maxHeight}
-										onChange={(val) => setDraftSettings((current) => ({ ...current, maxHeight: Number(val) }))}
-									/>
+								<NumberField
+									min={0}
+									max={16383}
+									name="maxHeight"
+									value={draftSettings.maxHeight}
+									onChange={(val) => setDraftSettings((current) => ({ ...current, maxHeight: Number(val) }))}
+								/>
 							</div>
 							<div className="settingspane-inner-fields-form-fields-field">
 								<label htmlFor="output" data-tooltip-id="outputfolder" className="settingspane-inner-fields-form-fields-field-label">{t('outputFolder')}</label>

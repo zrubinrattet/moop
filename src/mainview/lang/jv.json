@@ -22,6 +22,7 @@
 		"light": "cahya",
 		"pictures": "Gambar",
 		"custom": "adat",
+		"clickDragChange" : "Klik lan seret kanggo ngowahi nilai",
 		"defaultQuality": "Kualitas Default",
 		"defaultEffort": "Usaha Default",
 		"maxWidth": "Jembaré Max",

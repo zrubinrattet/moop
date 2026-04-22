@@ -22,6 +22,7 @@
 		"light": "Ringan",
 		"pictures": "Gambar",
 		"custom": "Adat",
+		"clickDragChange" : "Klik dan seret untuk mengubah nilai",
 		"defaultQuality": "Kualitas Standar",
 		"defaultEffort": "Upaya Default",
 		"maxWidth": "Lebar Maks",

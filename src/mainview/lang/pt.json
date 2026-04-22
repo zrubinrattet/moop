@@ -22,6 +22,7 @@
 		"light": "Luz",
 		"pictures": "Fotos",
 		"custom": "Personalizado",
+		"clickDragChange" : "Clique e arraste para alterar o valor",
 		"defaultQuality": "Qualidade padrão",
 		"defaultEffort": "Esforço Padrão",
 		"maxWidth": "Largura máxima",

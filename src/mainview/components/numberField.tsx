@@ -1,4 +1,6 @@
-import { useCallback, useEffect, useRef } from "react";
+import { useCallback, useEffect, useId, useRef } from "react";
+import { Tooltip } from "react-tooltip";
+import { t } from "../lang/lang";
 
 type NumberFieldProps = {
 	min?: number;
@@ -55,17 +57,28 @@ export default function NumberField({
 		};
 	}, [sensitivity, updateValue]);
 
+	const tooltipId = useId();
+
 	return (
-		<input
-			type="number"
-			min={min}
-			max={max}
-			value={value}
-			name={name}
-			id={name}
-			className="settingspane-inner-fields-form-fields-field-number"
-			onChange={(e) => updateValue(Number(e.target.value))}
-			onPointerDown={handlePointerDown}
-		/>
+		<>
+			<Tooltip
+				id={tooltipId}
+				place="right"
+				content={t('clickDragChange')}
+				className="tooltip"
+			/>
+			<input
+				data-tooltip-id={tooltipId}
+				type="number"
+				min={min}
+				max={max}
+				value={value}
+				name={name}
+				id={name}
+				className="settingspane-inner-fields-form-fields-field-number"
+				onChange={(e) => updateValue(Number(e.target.value))}
+				onPointerDown={handlePointerDown}
+			/>
+		</>
 	);
 }

@@ -22,6 +22,7 @@
 		"light": "Claro",
 		"pictures": "Imágenes",
 		"custom": "Personalizado",
+		"clickDragChange" : "Haz clic y arrastra para cambiar el valor",
 		"defaultQuality": "Calidad predeterminada",
 		"defaultEffort": "Esfuerzo predeterminado",
 		"maxWidth": "Ancho máximo",

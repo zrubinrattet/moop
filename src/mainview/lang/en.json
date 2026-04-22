@@ -24,6 +24,7 @@
 		"light": "Light",
 		"pictures": "Pictures",
 		"custom": "Custom",
+		"clickDragChange" : "Click & drag to change value",
 		"defaultQuality": "Default Quality",
 		"defaultEffort": "Default Effort",
 		"maxWidth": "Max Width",

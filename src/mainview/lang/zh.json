@@ -22,6 +22,7 @@
 		"light": "光",
 		"pictures": "图片",
 		"custom": "定制",
+		"clickDragChange" : "点击并拖动以更改数值",
 		"defaultQuality": "默认质量",
 		"defaultEffort": "默认努力",
 		"maxWidth": "最大宽度",
