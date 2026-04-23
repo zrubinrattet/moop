@@ -30,5 +30,6 @@ export const ProcessImageResponse: ProcessImageResponseType = {
 		isActive: false,
 		effort: 0,
 		quality: 0,
+		outputFormat: 'webp',
 	}
 }

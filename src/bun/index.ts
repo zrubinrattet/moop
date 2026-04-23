@@ -29,6 +29,7 @@ mkdirSync(Utils.paths.userData, { recursive: true });
 
 await initSettings();
 
+// set the locale for the translations
 setLocale(getSettings().language);
 
 
