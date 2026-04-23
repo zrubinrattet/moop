@@ -890,9 +890,6 @@ body.theme-dark {
   .imagescanvas-fields-select-select div[class*=indicatorContainer] svg {
     color: var(--imagecanvas-slider-track);
   }
-  .imagescanvas-fields-select-select span[class*=indicatorSeparator] {
-    background-color: var(--imagecanvas-slider-track);
-  }
 }
 @media only screen {
   div.tooltip[role=tooltip] {

@@ -192,7 +192,6 @@
 		width: 100%;
 
 		div[class*="control"] {
-
 			&,
 			&:hover {
 				border-color: var(--imagecanvas-slider-track);
@@ -203,8 +202,5 @@
 			color: var(--imagecanvas-slider-track);
 		}
 
-		span[class*="indicatorSeparator"] {
-			background-color: var(--imagecanvas-slider-track);
-		}
 	}
 }
