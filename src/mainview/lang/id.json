@@ -22,7 +22,7 @@
 		"light": "Ringan",
 		"pictures": "Gambar",
 		"custom": "Adat",
-		"clickDragChange" : "Klik dan seret untuk mengubah nilai",
+		"clickDragChange": "Klik dan seret untuk mengubah nilai",
 		"defaultQuality": "Kualitas Standar",
 		"defaultEffort": "Upaya Default",
 		"maxWidth": "Lebar Maks",
@@ -97,6 +97,9 @@
 		"confirmDeleteImageButton0": "Menghapus",
 		"confirmDeleteImageButton1": "Membatalkan",
 		"quit": "Berhenti",
-		"about": "Tentang"
+		"about": "Tentang",
+		"version": "Versi",
+		"learnMore": "Pelajari lebih lanjut di",
+		"madeWith": "Dibuat dengan 💜 di Oakland, CA."
 	}
 }

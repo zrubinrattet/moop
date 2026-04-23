@@ -22,7 +22,7 @@
 		"light": "روشنی",
 		"pictures": "تصویریں",
 		"custom": "حسب ضرورت",
-		"clickDragChange" : "قدر تبدیل کرنے کے لیے کلک کریں اور کھینچیں",
+		"clickDragChange": "قدر تبدیل کرنے کے لیے کلک کریں اور کھینچیں",
 		"defaultQuality": "پہلے سے طے شدہ معیار",
 		"defaultEffort": "پہلے سے طے شدہ کوشش",
 		"maxWidth": "زیادہ سے زیادہ چوڑائی",
@@ -97,6 +97,9 @@
 		"confirmDeleteImageButton0": "حذف کریں۔",
 		"confirmDeleteImageButton1": "منسوخ کریں۔",
 		"quit": "چھوڑو",
-		"about": "کے بارے میں"
+		"about": "کے بارے میں",
+		"version": "ورژن",
+		"learnMore": "مزید جانیں",
+		"madeWith": "اوکلینڈ، کیلیفورنیا میں 💜 کے ساتھ بنایا گیا۔"
 	}
 }

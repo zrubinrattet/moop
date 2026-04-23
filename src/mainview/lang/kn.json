@@ -22,7 +22,7 @@
 		"light": "ಬೆಳಕು",
 		"pictures": "ಚಿತ್ರಗಳು",
 		"custom": "ಕಸ್ಟಮ್",
-		"clickDragChange" : "ಮೌಲ್ಯವನ್ನು ಬದಲಾಯಿಸಲು ಕ್ಲಿಕ್ ಮಾಡಿ ಎಳೆದುಕೊಳ್ಳಿ",
+		"clickDragChange": "ಮೌಲ್ಯವನ್ನು ಬದಲಾಯಿಸಲು ಕ್ಲಿಕ್ ಮಾಡಿ ಎಳೆದುಕೊಳ್ಳಿ",
 		"defaultQuality": "ಡೀಫಾಲ್ಟ್ ಗುಣಮಟ್ಟ",
 		"defaultEffort": "ಡೀಫಾಲ್ಟ್ ಪ್ರಯತ್ನ",
 		"maxWidth": "ಗರಿಷ್ಠ ಅಗಲ",
@@ -97,6 +97,9 @@
 		"confirmDeleteImageButton0": "ಅಳಿಸಿ",
 		"confirmDeleteImageButton1": "ರದ್ದುಮಾಡು",
 		"quit": "ತ್ಯಜಿಸು",
-		"about": "ಬಗ್ಗೆ"
+		"about": "ಬಗ್ಗೆ",
+		"version": "ಆವೃತ್ತಿ",
+		"learnMore": "ಇನ್ನಷ್ಟು ತಿಳಿಯಲು",
+		"madeWith": "ಒಕ್‌ಲ್ಯಾಂಡ್, ಕ್ಯಾಲಿಫೋರ್ನಿಯಾದಲ್ಲಿ 💜 ಜೊತೆ ನಿರ್ಮಿಸಲಾಗಿದೆ."
 	}
 }

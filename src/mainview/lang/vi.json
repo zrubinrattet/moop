@@ -22,7 +22,7 @@
 		"light": "Ánh sáng",
 		"pictures": "Hình Ảnh",
 		"custom": "tùy chỉnh",
-		"clickDragChange" : "Nhấp và kéo để thay đổi giá trị",
+		"clickDragChange": "Nhấp và kéo để thay đổi giá trị",
 		"defaultQuality": "Chất lượng mặc định",
 		"defaultEffort": "Nỗ lực mặc định",
 		"maxWidth": "Chiều rộng tối đa",
@@ -97,6 +97,9 @@
 		"confirmDeleteImageButton0": "Xóa bỏ",
 		"confirmDeleteImageButton1": "Hủy bỏ",
 		"quit": "Từ bỏ",
-		"about": "Về"
+		"about": "Về",
+		"version": "Phiên bản",
+		"learnMore": "Tìm hiểu thêm tại",
+		"madeWith": "Được tạo với 💜 tại Oakland, CA."
 	}
 }

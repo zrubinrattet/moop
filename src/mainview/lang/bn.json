@@ -22,7 +22,7 @@
 		"light": "আলো",
 		"pictures": "ছবি",
 		"custom": "কাস্টম",
-		"clickDragChange" : "মান পরিবর্তন করতে ক্লিক করে টেনে আনুন",
+		"clickDragChange": "মান পরিবর্তন করতে ক্লিক করে টেনে আনুন",
 		"defaultQuality": "ডিফল্ট গুণমান",
 		"defaultEffort": "ডিফল্ট প্রচেষ্টা",
 		"maxWidth": "সর্বোচ্চ প্রস্থ",
@@ -97,6 +97,9 @@
 		"confirmDeleteImageButton0": "মুছুন",
 		"confirmDeleteImageButton1": "বাতিল করুন",
 		"quit": "প্রস্থান করুন",
-		"about": "সম্পর্কে"
+		"about": "সম্পর্কে",
+		"version": "সংস্করণ",
+		"learnMore": "আরও জানুন এখানে",
+		"madeWith": "ওকল্যান্ড, ক্যালিফোর্নিয়ায় 💜 দিয়ে তৈরি।"
 	}
 }

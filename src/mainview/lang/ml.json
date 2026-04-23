@@ -22,7 +22,7 @@
 		"light": "വെളിച്ചം",
 		"pictures": "ചിത്രങ്ങൾ",
 		"custom": "കസ്റ്റം",
-		"clickDragChange" : "മൂല്യം മാറ്റാൻ ക്ലിക്ക് ചെയ്ത് വലിച്ചിടുക",
+		"clickDragChange": "മൂല്യം മാറ്റാൻ ക്ലിക്ക് ചെയ്ത് വലിച്ചിടുക",
 		"defaultQuality": "സ്ഥിര നിലവാരം",
 		"defaultEffort": "സ്വതവേയുള്ള ശ്രമം",
 		"maxWidth": "പരമാവധി വീതി",
@@ -97,6 +97,9 @@
 		"confirmDeleteImageButton0": "ഇല്ലാതാക്കുക",
 		"confirmDeleteImageButton1": "റദ്ദാക്കുക",
 		"quit": "ഉപേക്ഷിക്കുക",
-		"about": "കുറിച്ച്"
+		"about": "കുറിച്ച്",
+		"version": "പതിപ്പ്",
+		"learnMore": "കൂടുതൽ അറിയാൻ",
+		"madeWith": "കാലിഫോർണിയയിലെ ഓക്‌ലാൻഡിൽ 💜 കൊണ്ട് നിർമ്മിച്ചത്."
 	}
 }

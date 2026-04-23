@@ -22,7 +22,7 @@
 		"light": "Işık",
 		"pictures": "Resimler",
 		"custom": "Özel",
-		"clickDragChange" : "Değeri değiştirmek için tıklayıp sürükleyin",
+		"clickDragChange": "Değeri değiştirmek için tıklayıp sürükleyin",
 		"defaultQuality": "Varsayılan Kalite",
 		"defaultEffort": "Varsayılan İşgücü",
 		"maxWidth": "Maksimum Genişlik",
@@ -97,6 +97,9 @@
 		"confirmDeleteImageButton0": "Silmek",
 		"confirmDeleteImageButton1": "İptal etmek",
 		"quit": "Çıkış yapmak",
-		"about": "Hakkında"
+		"about": "Hakkında",
+		"version": "Sürüm",
+		"learnMore": "Daha fazla bilgi için",
+		"madeWith": "Oakland, CA’da 💜 ile yapıldı."
 	}
 }

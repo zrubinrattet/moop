@@ -22,7 +22,7 @@
 		"light": "نور",
 		"pictures": "تصاویر",
 		"custom": "سفارشی",
-		"clickDragChange" : "برای تغییر مقدار کلیک کرده و بکشید",
+		"clickDragChange": "برای تغییر مقدار کلیک کرده و بکشید",
 		"defaultQuality": "کیفیت پیش فرض",
 		"defaultEffort": "تلاش پیش فرض",
 		"maxWidth": "حداکثر عرض",
@@ -97,6 +97,9 @@
 		"confirmDeleteImageButton0": "حذف کنید",
 		"confirmDeleteImageButton1": "لغو کنید",
 		"quit": "ترک کنید",
-		"about": "درباره"
+		"about": "درباره",
+		"version": "نسخه",
+		"learnMore": "بیشتر بدانید در",
+		"madeWith": "با 💜 در اوکلند، کالیفرنیا ساخته شده است."
 	}
 }

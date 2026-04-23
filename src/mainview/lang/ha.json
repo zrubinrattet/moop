@@ -22,7 +22,7 @@
 		"light": "Haske",
 		"pictures": "Hotuna",
 		"custom": "Custom",
-		"clickDragChange" : "Danna ka ja don canza ƙima",
+		"clickDragChange": "Danna ka ja don canza ƙima",
 		"defaultQuality": "Ingancin Tsohuwar",
 		"defaultEffort": "Ƙoƙarin Default",
 		"maxWidth": "Matsakaicin Nisa",
@@ -97,6 +97,9 @@
 		"confirmDeleteImageButton0": "Share",
 		"confirmDeleteImageButton1": "Soke",
 		"quit": "Dakata",
-		"about": "Game da"
+		"about": "Game da",
+		"version": "Siga",
+		"learnMore": "Karin bayani a",
+		"madeWith": "An yi shi da 💜 a Oakland, CA."
 	}
 }

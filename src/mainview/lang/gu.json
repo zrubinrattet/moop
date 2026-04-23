@@ -22,7 +22,7 @@
 		"light": "પ્રકાશ",
 		"pictures": "ચિત્રો",
 		"custom": "કસ્ટમ",
-		"clickDragChange" : "મૂલ્ય બદલવા માટે ક્લિક કરો અને ખેંચો",
+		"clickDragChange": "મૂલ્ય બદલવા માટે ક્લિક કરો અને ખેંચો",
 		"defaultQuality": "ડિફૉલ્ટ ગુણવત્તા",
 		"defaultEffort": "ડિફૉલ્ટ પ્રયાસ",
 		"maxWidth": "મહત્તમ પહોળાઈ",
@@ -97,6 +97,9 @@
 		"confirmDeleteImageButton0": "કાઢી નાખો",
 		"confirmDeleteImageButton1": "રદ કરો",
 		"quit": "છોડો",
-		"about": "વિશે"
+		"about": "વિશે",
+		"version": "આવૃત્તિ",
+		"learnMore": "વધુ જાણો અહીં",
+		"madeWith": "ઓકલેન્ડ, કેલિફોર્નિયામાં 💜 સાથે બનાવ્યું."
 	}
 }

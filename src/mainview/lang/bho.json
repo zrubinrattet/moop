@@ -22,7 +22,7 @@
 		"light": "रोशनी",
 		"pictures": "चित्र",
 		"custom": "कस्टम",
-		"clickDragChange" : "मान बदल खातिर क्लिक करीं आ घसीटीं",
+		"clickDragChange": "मान बदल खातिर क्लिक करीं आ घसीटीं",
 		"defaultQuality": "डिफ़ॉल्ट गुणवत्ता",
 		"defaultEffort": "डिफ़ॉल्ट प्रयास",
 		"maxWidth": "अधिकतम चौड़ाई",
@@ -97,6 +97,9 @@
 		"confirmDeleteImageButton0": "मिटाना",
 		"confirmDeleteImageButton1": "रद्द करना",
 		"quit": "छोड़ना",
-		"about": "के बारे में"
+		"about": "के बारे में",
+		"version": "संस्करण",
+		"learnMore": "अधिक जानकारी खातिर",
+		"madeWith": "ओकलैंड, कैलिफ़ोर्निया में 💜 से बनावल गइल।"
 	}
 }

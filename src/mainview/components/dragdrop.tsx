@@ -21,7 +21,7 @@ export default function DragDrop() {
 			try {
 				const formData = new FormData();
 				formData.append("image", droppedFile);
-				const res = await fetch("http://127.0.0.1:3000/images", {
+				const res = await fetch("http://localhost:43117/images", {
 					method: "POST",
 					body: formData,
 				});

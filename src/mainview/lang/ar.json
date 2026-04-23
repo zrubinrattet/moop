@@ -22,7 +22,7 @@
 		"light": "ضوء",
 		"pictures": "الصور",
 		"custom": "مخصص",
-		"clickDragChange" : "انقر واسحب لتغيير القيمة",
+		"clickDragChange": "انقر واسحب لتغيير القيمة",
 		"defaultQuality": "الجودة الافتراضية",
 		"defaultEffort": "الجهد الافتراضي",
 		"maxWidth": "أقصى عرض",
@@ -97,6 +97,9 @@
 		"confirmDeleteImageButton0": "يمسح",
 		"confirmDeleteImageButton1": "يلغي",
 		"quit": "يترك",
-		"about": "عن"
+		"about": "عن",
+		"version": "الإصدار",
+		"learnMore": "اعرف المزيد على",
+		"madeWith": "صُنع بـ 💜 في أوكلاند، كاليفورنيا."
 	}
 }

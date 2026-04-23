@@ -22,7 +22,7 @@
 		"light": "ብርሃን",
 		"pictures": "ስዕሎች",
 		"custom": "ብጁ",
-		"clickDragChange" : "እሴት ለመቀየር ጠቅ አድርገው ይጎትቱ",
+		"clickDragChange": "እሴት ለመቀየር ጠቅ አድርገው ይጎትቱ",
 		"defaultQuality": "ነባሪ ጥራት",
 		"defaultEffort": "ነባሪ ጥረት",
 		"maxWidth": "ከፍተኛው ስፋት",
@@ -97,6 +97,9 @@
 		"confirmDeleteImageButton0": "ሰርዝ",
 		"confirmDeleteImageButton1": "ሰርዝ",
 		"quit": "አቁም",
-		"about": "ስለ"
+		"about": "ስለ",
+		"version": "ስሪት",
+		"learnMore": "ተጨማሪ ለማወቅ በ",
+		"madeWith": "በኦክላንድ፣ ካሊፎርኒያ በ💜 ተሰርቷል።"
 	}
 }

@@ -17,7 +17,6 @@ export default function ImagesEditor() {
 		async function pollInputs() {
 			try {
 				const res = await electroview.rpc?.request.pollInputs();
-				
 				if (res && res.inputPaths.length < images.length && images.length) {
 					setImages((oldImages) =>
 						oldImages.filter(oldImage => res.inputPaths.includes(oldImage.input))

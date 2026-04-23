@@ -185,10 +185,26 @@
 		width: 20px;
 	}
 
-	.imagescanvas-fields-select-select{
+	.imagescanvas-fields-select-select {
 		@include mixins.reactSelectStyle;
 		font-size: 10px;
 		margin-top: 10px;
 		width: 100%;
+
+		div[class*="control"] {
+
+			&,
+			&:hover {
+				border-color: var(--imagecanvas-slider-track);
+			}
+		}
+
+		div[class*="indicatorContainer"] svg {
+			color: var(--imagecanvas-slider-track);
+		}
+
+		span[class*="indicatorSeparator"] {
+			background-color: var(--imagecanvas-slider-track);
+		}
 	}
 }

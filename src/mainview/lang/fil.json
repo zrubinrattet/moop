@@ -22,7 +22,7 @@
 		"light": "Liwanag",
 		"pictures": "Mga larawan",
 		"custom": "Custom",
-		"clickDragChange" : "I-click at i-drag para baguhin ang value",
+		"clickDragChange": "I-click at i-drag para baguhin ang value",
 		"defaultQuality": "Default na Kalidad",
 		"defaultEffort": "Default na Pagsisikap",
 		"maxWidth": "Max Lapad",
@@ -97,6 +97,9 @@
 		"confirmDeleteImageButton0": "Tanggalin",
 		"confirmDeleteImageButton1": "Kanselahin",
 		"quit": "quit",
-		"about": "Tungkol sa"
+		"about": "Tungkol sa",
+		"version": "Bersyon",
+		"learnMore": "Matuto pa sa",
+		"madeWith": "Ginawa nang may 💜 sa Oakland, CA."
 	}
 }

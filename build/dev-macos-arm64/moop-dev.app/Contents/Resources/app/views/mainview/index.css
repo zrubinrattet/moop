@@ -516,6 +516,8 @@ body.theme-dark {
     opacity: 0;
     transition: opacity 0.25s ease, transform 0.25s ease;
     transform: scale(0);
+    box-sizing: border-box;
+    max-width: calc(100% - 10px);
   }
   .imageslist-list-loading {
     border-radius: 50%;
@@ -871,6 +873,9 @@ body.theme-dark {
   .imagescanvas-fields-select-select div[class*=indicatorContainer] {
     color: var(--settings-font-color);
   }
+  .imagescanvas-fields-select-select span[class*=indicatorSeparator] {
+    background-color: var(--settings-field-border-color);
+  }
   .imagescanvas-fields-select-select .css-hlgwow input, .imagescanvas-fields-select-select .css-hlgwow input:after {
     opacity: 0 !important;
   }
@@ -878,6 +883,15 @@ body.theme-dark {
     font-size: 10px;
     margin-top: 10px;
     width: 100%;
+  }
+  .imagescanvas-fields-select-select div[class*=control], .imagescanvas-fields-select-select div[class*=control]:hover {
+    border-color: var(--imagecanvas-slider-track);
+  }
+  .imagescanvas-fields-select-select div[class*=indicatorContainer] svg {
+    color: var(--imagecanvas-slider-track);
+  }
+  .imagescanvas-fields-select-select span[class*=indicatorSeparator] {
+    background-color: var(--imagecanvas-slider-track);
   }
 }
 @media only screen {
@@ -1057,6 +1071,9 @@ body.theme-dark {
   }
   .settingspane-inner-fields-form-fields-field-select div[class*=indicatorContainer] {
     color: var(--settings-font-color);
+  }
+  .settingspane-inner-fields-form-fields-field-select span[class*=indicatorSeparator] {
+    background-color: var(--settings-field-border-color);
   }
   .settingspane-inner-fields-form-fields-field-select .css-hlgwow input, .settingspane-inner-fields-form-fields-field-select .css-hlgwow input:after {
     opacity: 0 !important;

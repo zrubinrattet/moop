@@ -22,7 +22,7 @@
 		"light": "ライト",
 		"pictures": "写真",
 		"custom": "カスタム",
-		"clickDragChange" : "クリック＆ドラッグで値を変更",
+		"clickDragChange": "クリック＆ドラッグで値を変更",
 		"defaultQuality": "デフォルトの品質",
 		"defaultEffort": "デフォルトの労力",
 		"maxWidth": "最大幅",
@@ -97,6 +97,9 @@
 		"confirmDeleteImageButton0": "消去",
 		"confirmDeleteImageButton1": "キャンセル",
 		"quit": "やめる",
-		"about": "について"
+		"about": "について",
+		"version": "バージョン",
+		"learnMore": "詳しくは",
+		"madeWith": "カリフォルニア州オークランドで💜を込めて作られました。"
 	}
 }

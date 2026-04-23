@@ -22,7 +22,7 @@
 		"light": "빛",
 		"pictures": "사진",
 		"custom": "맞춤",
-		"clickDragChange" : "값을 변경하려면 클릭 후 드래그하세요",
+		"clickDragChange": "값을 변경하려면 클릭 후 드래그하세요",
 		"defaultQuality": "기본 품질",
 		"defaultEffort": "기본 노력",
 		"maxWidth": "최대 너비",
@@ -97,6 +97,9 @@
 		"confirmDeleteImageButton0": "삭제",
 		"confirmDeleteImageButton1": "취소",
 		"quit": "그만두다",
-		"about": "에 대한"
+		"about": "에 대한",
+		"version": "버전",
+		"learnMore": "자세히 알아보기",
+		"madeWith": "캘리포니아 오클랜드에서 💜로 만들었습니다."
 	}
 }

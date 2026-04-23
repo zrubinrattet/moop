@@ -1,5 +1,5 @@
 import { sharedContext, } from "../../shared/shared-context";
-import { useContext, useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef } from "react";
 import { formatBytes } from "../../shared/shared-snippets";
 import Cropper from 'react-easy-crop'
 import { electroview } from "../../shared/shared-electroview";

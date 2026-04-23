@@ -22,7 +22,7 @@
 		"light": "Luce",
 		"pictures": "Immagini",
 		"custom": "Personalizzato",
-		"clickDragChange" : "Fai clic e trascina per cambiare il valore",
+		"clickDragChange": "Fai clic e trascina per cambiare il valore",
 		"defaultQuality": "Qualità predefinita",
 		"defaultEffort": "Sforzo predefinito",
 		"maxWidth": "Larghezza massima",
@@ -97,6 +97,9 @@
 		"confirmDeleteImageButton0": "Eliminare",
 		"confirmDeleteImageButton1": "Cancellare",
 		"quit": "Esentato",
-		"about": "Di"
+		"about": "Di",
+		"version": "Versione",
+		"learnMore": "Scopri di più su",
+		"madeWith": "Realizzato con 💜 a Oakland, CA."
 	}
 }

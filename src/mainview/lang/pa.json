@@ -22,7 +22,7 @@
 		"light": "ਚਾਨਣ",
 		"pictures": "ਤਸਵੀਰਾਂ",
 		"custom": "ਕਸਟਮ",
-		"clickDragChange" : "ਮੁੱਲ ਬਦਲਣ ਲਈ ਕਲਿੱਕ ਕਰੋ ਅਤੇ ਖਿੱਚੋ",
+		"clickDragChange": "ਮੁੱਲ ਬਦਲਣ ਲਈ ਕਲਿੱਕ ਕਰੋ ਅਤੇ ਖਿੱਚੋ",
 		"defaultQuality": "ਪੂਰਵ-ਨਿਰਧਾਰਤ ਗੁਣਵੱਤਾ",
 		"defaultEffort": "ਡਿਫਾਲਟ ਯਤਨ",
 		"maxWidth": "ਅਧਿਕਤਮ ਚੌੜਾਈ",
@@ -97,6 +97,9 @@
 		"confirmDeleteImageButton0": "ਮਿਟਾਓ",
 		"confirmDeleteImageButton1": "ਰੱਦ ਕਰੋ",
 		"quit": "ਛੱਡੋ",
-		"about": "ਬਾਰੇ"
+		"about": "ਬਾਰੇ",
+		"version": "ਵਰਜਨ",
+		"learnMore": "ਹੋਰ ਜਾਣੋ",
+		"madeWith": "ਓਕਲੈਂਡ, ਕੈਲੀਫ਼ੋਰਨੀਆ ਵਿੱਚ 💜 ਨਾਲ ਬਣਾਇਆ ਗਿਆ।"
 	}
 }

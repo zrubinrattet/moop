@@ -22,7 +22,7 @@
 		"light": "Mwanga",
 		"pictures": "Picha",
 		"custom": "Desturi",
-		"clickDragChange" : "Bofya na uburute kubadilisha thamani",
+		"clickDragChange": "Bofya na uburute kubadilisha thamani",
 		"defaultQuality": "Ubora Chaguomsingi",
 		"defaultEffort": "Juhudi Chaguomsingi",
 		"maxWidth": "Upana wa Max",
@@ -97,6 +97,9 @@
 		"confirmDeleteImageButton0": "Futa",
 		"confirmDeleteImageButton1": "Ghairi",
 		"quit": "Acha",
-		"about": "Kuhusu"
+		"about": "Kuhusu",
+		"version": "Toleo",
+		"learnMore": "Jifunze zaidi kwenye",
+		"madeWith": "Imetengenezwa kwa 💜 huko Oakland, CA."
 	}
 }

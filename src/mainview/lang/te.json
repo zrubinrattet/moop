@@ -22,7 +22,7 @@
 		"light": "కాంతి",
 		"pictures": "చిత్రాలు",
 		"custom": "కస్టమ్",
-		"clickDragChange" : "విలువను మార్చడానికి క్లిక్ చేసి డ్రాగ్ చేయండి",
+		"clickDragChange": "విలువను మార్చడానికి క్లిక్ చేసి డ్రాగ్ చేయండి",
 		"defaultQuality": "డిఫాల్ట్ నాణ్యత",
 		"defaultEffort": "డిఫాల్ట్ ప్రయత్నం",
 		"maxWidth": "గరిష్ట వెడల్పు",
@@ -97,6 +97,9 @@
 		"confirmDeleteImageButton0": "తొలగించు",
 		"confirmDeleteImageButton1": "రద్దు చేయి",
 		"quit": "నిష్క్రమించు",
-		"about": "గురించి"
+		"about": "గురించి",
+		"version": "వెర్షన్",
+		"learnMore": "ఇంకా తెలుసుకోండి",
+		"madeWith": "ఓక్లాండ్, కాలిఫోర్నియాలో 💜 తో రూపొందించబడింది."
 	}
 }

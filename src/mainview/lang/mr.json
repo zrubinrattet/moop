@@ -22,7 +22,7 @@
 		"light": "प्रकाश",
 		"pictures": "चित्रे",
 		"custom": "सानुकूल",
-		"clickDragChange" : "मूल्य बदलण्यासाठी क्लिक करा आणि ड्रॅग करा",
+		"clickDragChange": "मूल्य बदलण्यासाठी क्लिक करा आणि ड्रॅग करा",
 		"defaultQuality": "डीफॉल्ट गुणवत्ता",
 		"defaultEffort": "डीफॉल्ट प्रयत्न",
 		"maxWidth": "कमाल रुंदी",
@@ -97,6 +97,9 @@
 		"confirmDeleteImageButton0": "हटवा",
 		"confirmDeleteImageButton1": "रद्द करा",
 		"quit": "सोडा",
-		"about": "बद्दल"
+		"about": "बद्दल",
+		"version": "आवृत्ती",
+		"learnMore": "अधिक जाणून घ्या येथे",
+		"madeWith": "ओकलँड, कॅलिफोर्निया येथे 💜 ने तयार केले."
 	}
 }

@@ -22,7 +22,7 @@
 		"light": "ஒளி",
 		"pictures": "படங்கள்",
 		"custom": "தனிப்பயன்",
-		"clickDragChange" : "மதிப்பை மாற்ற கிளிக் செய்து இழுக்கவும்",
+		"clickDragChange": "மதிப்பை மாற்ற கிளிக் செய்து இழுக்கவும்",
 		"defaultQuality": "இயல்புநிலை தரம்",
 		"defaultEffort": "இயல்புநிலை முயற்சி",
 		"maxWidth": "அதிகபட்ச அகலம்",
@@ -97,6 +97,9 @@
 		"confirmDeleteImageButton0": "நீக்கு",
 		"confirmDeleteImageButton1": "ரத்து செய்",
 		"quit": "வெளியேறு",
-		"about": "பற்றி"
+		"about": "பற்றி",
+		"version": "பதிப்பு",
+		"learnMore": "மேலும் அறிய",
+		"madeWith": "ஓக்லாந்து, கலிபோர்னியாவில் 💜 உடன் உருவாக்கப்பட்டது."
 	}
 }

@@ -22,7 +22,7 @@
 		"light": "Imọlẹ",
 		"pictures": "Awọn aworan",
 		"custom": "Aṣa",
-		"clickDragChange" : "Tẹ ki o fa lati yi iye pada",
+		"clickDragChange": "Tẹ ki o fa lati yi iye pada",
 		"defaultQuality": "Didara aiyipada",
 		"defaultEffort": "Aiyipada akitiyan",
 		"maxWidth": "Iwọn ti o pọju",
@@ -97,6 +97,9 @@
 		"confirmDeleteImageButton0": "Paarẹ",
 		"confirmDeleteImageButton1": "Fagilee",
 		"quit": "Jade",
-		"about": "Nipa"
+		"about": "Nipa",
+		"version": "Ẹya",
+		"learnMore": "Kọ ẹkọ diẹ sii ní",
+		"madeWith": "A ṣe e pẹlu 💜 ní Oakland, CA."
 	}
 }

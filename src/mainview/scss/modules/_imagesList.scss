@@ -189,6 +189,8 @@
 		opacity: 0;
 		transition: opacity 0.25s ease, transform 0.25s ease;
 		transform: scale(0);
+		box-sizing: border-box;
+		max-width: calc(100% - 10px);
 	}
 
 	.imageslist-list-loading {

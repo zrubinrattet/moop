@@ -22,7 +22,7 @@
 		"light": "Свет",
 		"pictures": "Картинки",
 		"custom": "Пользовательский",
-		"clickDragChange" : "Нажмите и перетащите, чтобы изменить значение",
+		"clickDragChange": "Нажмите и перетащите, чтобы изменить значение",
 		"defaultQuality": "Качество по умолчанию",
 		"defaultEffort": "Усилия по умолчанию",
 		"maxWidth": "Макс. ширина",
@@ -97,6 +97,9 @@
 		"confirmDeleteImageButton0": "Удалить",
 		"confirmDeleteImageButton1": "Отмена",
 		"quit": "Покидать",
-		"about": "О"
+		"about": "О",
+		"version": "Версия",
+		"learnMore": "Подробнее на",
+		"madeWith": "Сделано с 💜 в Окленде, Калифорния."
 	}
 }

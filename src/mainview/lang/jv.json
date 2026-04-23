@@ -22,7 +22,7 @@
 		"light": "cahya",
 		"pictures": "Gambar",
 		"custom": "adat",
-		"clickDragChange" : "Klik lan seret kanggo ngowahi nilai",
+		"clickDragChange": "Klik lan seret kanggo ngowahi nilai",
 		"defaultQuality": "Kualitas Default",
 		"defaultEffort": "Usaha Default",
 		"maxWidth": "Jembaré Max",
@@ -97,6 +97,9 @@
 		"confirmDeleteImageButton0": "Mbusak",
 		"confirmDeleteImageButton1": "Batal",
 		"quit": "mandek",
-		"about": "Babagan"
+		"about": "Babagan",
+		"version": "Versi",
+		"learnMore": "Sinau luwih lengkap ing",
+		"madeWith": "Digawe nganggo 💜 ing Oakland, CA."
 	}
 }

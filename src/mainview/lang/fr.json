@@ -22,7 +22,7 @@
 		"light": "Lumière",
 		"pictures": "Photos",
 		"custom": "Personnalisé",
-		"clickDragChange" : "Cliquez et faites glisser pour changer la valeur",
+		"clickDragChange": "Cliquez et faites glisser pour changer la valeur",
 		"defaultQuality": "Qualité par défaut",
 		"defaultEffort": "Effort par défaut",
 		"maxWidth": "Largeur maximale",
@@ -97,6 +97,9 @@
 		"confirmDeleteImageButton0": "Supprimer",
 		"confirmDeleteImageButton1": "Annuler",
 		"quit": "Quitter",
-		"about": "À propos"
+		"about": "À propos",
+		"version": "Version",
+		"learnMore": "En savoir plus sur",
+		"madeWith": "Conçu avec 💜 à Oakland, Californie."
 	}
 }

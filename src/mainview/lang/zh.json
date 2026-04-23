@@ -22,7 +22,7 @@
 		"light": "光",
 		"pictures": "图片",
 		"custom": "定制",
-		"clickDragChange" : "点击并拖动以更改数值",
+		"clickDragChange": "点击并拖动以更改数值",
 		"defaultQuality": "默认质量",
 		"defaultEffort": "默认努力",
 		"maxWidth": "最大宽度",
@@ -97,6 +97,9 @@
 		"confirmDeleteImageButton0": "删除",
 		"confirmDeleteImageButton1": "取消",
 		"quit": "辞职",
-		"about": "关于"
+		"about": "关于",
+		"version": "版本",
+		"learnMore": "了解更多：",
+		"madeWith": "于加州奥克兰用💜制作。"
 	}
 }
