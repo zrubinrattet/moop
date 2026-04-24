@@ -617,11 +617,9 @@ body.theme-dark {
     grid-template-columns: 30% 70%;
     z-index: 50;
     transition: transform 0.25s ease, opacity 0.25s ease;
-    transform: scale(0);
     opacity: 0;
   }
   .imageseditor.active {
-    transform: scale(1);
     opacity: 1;
   }
 }

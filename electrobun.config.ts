@@ -17,6 +17,8 @@ export default {
 			entrypoint: "src/bun/index.ts",
 		},
 		copy: {
+			"node_modules/@img/sharp-darwin-arm64": "bun/node_modules/@img/sharp-darwin-arm64",
+			"node_modules/@img/sharp-libvips-darwin-arm64": "bun/node_modules/@img/sharp-libvips-darwin-arm64",
 			"src/mainview/index.html": "views/mainview/index.html",
 			"src/mainview/index.css": "views/mainview/index.css",
 			"src/mainview/index.css.map": "views/mainview/index.css.map",
