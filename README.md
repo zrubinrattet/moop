@@ -2,7 +2,7 @@
 
 ![moop](icon.iconset/icon_128x128.png)
 
-A simple image optimizer for the web.
+A simple desktop image optimizer for the web.
 
 
 ## Getting Started
@@ -19,7 +19,7 @@ A simple image optimizer for the web.
 
 3. Build for production:
    ```bash
-   bun run build
+   bun run build:stable
    ```
 
 ## Project Structure
