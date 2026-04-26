@@ -27,6 +27,7 @@
 	"dependencies": {
 		"@img/sharp-darwin-arm64": "^0.34.5",
 		"@img/sharp-libvips-darwin-arm64": "^1.2.4",
+		"@playwright/test": "^1.59.1",
 		"electrobun": "^1.16.0",
 		"fastq": "^1.20.1",
 		"get-port": "^7.2.0",

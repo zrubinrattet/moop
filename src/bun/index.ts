@@ -3,9 +3,9 @@ import { mkdirSync } from "node:fs";
 import path from "node:path";
 import Electrobun from "electrobun/bun";
 
-import type { AppRPCSchema  } from '../shared/shared-types';
-import { getSettings, initSettings } from "../shared/shared-settings";
-import { setLocale, t } from "../mainview/lang/lang";
+import type { AppRPCSchema  } from '../shared/types';
+import { getSettings, initSettings } from "./shared/settings";
+import { setLocale, t } from "../lang/lang";
 import pkg from "../../package.json" with { type: "json" };
 
 import pollInputs from "./rpc/pollInputs";
@@ -89,7 +89,7 @@ ApplicationMenu.setApplicationMenu([
 const MIN_WIDTH = 1200;
 const MIN_HEIGHT = 800;
 
-// Create the main application window
+// create the main application window
 const mainWindow = new BrowserWindow({
 	title: "moop",
 	url: "views://mainview/index.html",
@@ -120,7 +120,7 @@ if (appChannel === "dev") {
 	mainWindow.webview.openDevTools();
 }
 
-
+// application menu is open
 Electrobun.events.on("application-menu-clicked", (e) => {
 	if (e.data.action === 'settings') {
 		mainWindow.webview.rpc?.send.openSettings()
@@ -138,7 +138,8 @@ Electrobun.events.on("application-menu-clicked", (e) => {
 		});
 	}
 });
-// Quit the app when the main window is closed
+
+// quit the app when the main window is closed
 mainWindow.on("close", () => {
 	Utils.quit();
 });

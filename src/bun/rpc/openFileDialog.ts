@@ -1,7 +1,7 @@
 import { Utils } from "electrobun";
-import { BaseResponse } from "../../shared/shared-objects";
+import { BaseResponse } from "../shared/objects";
 
-import type { OpenFileDialogResponseType } from "../../shared/shared-types";
+import type { OpenFileDialogResponseType } from "../../shared/types";
 
 export default async () => {
 	const res = await Utils.openFileDialog({

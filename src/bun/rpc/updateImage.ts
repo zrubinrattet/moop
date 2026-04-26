@@ -1,12 +1,12 @@
 import { imageSizeFromFile } from "image-size/fromFile";
-import { getImageDirectories } from "../../shared/shared-directories";
-import { convertImageURL } from "../../shared/shared-funcs";
-import { ProcessImageResponse } from "../../shared/shared-objects";
-import { getSettings } from "../../shared/shared-settings";
-import type { ProcessImageResponseType, ProcessImageTask } from "../../shared/shared-types";
+import { getImageDirectories } from "../shared/directories";
+import { convertImageURL } from "../shared/funcs";
+import { ProcessImageResponse } from "../shared/objects";
+import { getSettings } from "../shared/settings";
+import type { ProcessImageResponseType, ProcessImageTask } from "../../shared/types";
 import path, { join } from "node:path";
 import { statSync } from "node:fs";
-import { t } from "../../mainview/lang/lang";
+import { t } from "../../lang/lang";
 import { queue } from "../processQueue";
 
 export default async (params:ProcessImageTask) => {
@@ -78,6 +78,6 @@ export default async (params:ProcessImageTask) => {
 		ret.message = t('updateImageError');
 		ret.severity = 'ERROR';
 	})
-	console.log('Ret', ret)
+	
 	return ret;
 };

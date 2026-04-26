@@ -1,14 +1,14 @@
-import { sharedContext, } from "../../shared/shared-context";
+import { sharedContext, } from "../../shared/context";
 import { useContext, useEffect, useRef } from "react";
-import { formatBytes } from "../../shared/shared-snippets";
+import { formatBytes } from "../shared/snippets";
 import Cropper from 'react-easy-crop'
-import { electroview } from "../../shared/shared-electroview";
+import { electroview } from "../shared/electroview";
 import { Tooltip } from "react-tooltip";
 import toast from "react-hot-toast";
-import { t } from "../lang/lang";
-import { handleRPCRequestCatch } from "../../shared/shared-utils";
+import { t } from "../../lang/lang";
+import { handleRPCRequestCatch } from "../shared/utils";
 import Select from "react-select";
-import type { AvailableOutputFormats } from "../../shared/shared-types";
+import type { AvailableOutputFormats } from "../../shared/types";
 
 export default function ImagesCanvas() {
 	const appContext = useContext(sharedContext);
@@ -50,13 +50,13 @@ export default function ImagesCanvas() {
 				effort: clampedEffort,
 				outputFormat: outputFormat
 			};
-			console.log('updateImageProps: ', updateImageProps)
+
 			appContext.setImagesProcessing((oldImages) => {
 				return [...new Set([...oldImages, targetInput])];
 			});
 			const res = await electroview.rpc?.request.updateImage(updateImageProps);
 			if (typeof res !== 'undefined') {
-				console.log(res)
+
 				appContext.setImages((images) =>
 					images.map((image) => {
 						if (image.input === targetInput) {
@@ -76,7 +76,7 @@ export default function ImagesCanvas() {
 			}
 		}
 		catch (error) {
-			console.log('updateImageprops error: ', typeof error);
+
 			handleRPCRequestCatch(error);
 		}
 		finally {
@@ -133,9 +133,6 @@ export default function ImagesCanvas() {
 						maxZoom={10}
 						onCropChange={appContext.setCrop}
 						onZoomChange={appContext.setZoom}
-						onMediaLoaded={() => {
-							console.log(activeImage.input)
-						}}
 					/>
 				</div>
 				<div className="imagescanvas-col-footer">

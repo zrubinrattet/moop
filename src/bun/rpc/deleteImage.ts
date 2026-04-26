@@ -1,14 +1,14 @@
 import { Utils } from "electrobun";
-import { getImageDirectories } from "../../shared/shared-directories";
-import { ProcessImageResponse } from "../../shared/shared-objects";
-import { convertImageURL } from "../../shared/shared-funcs";
+import { getImageDirectories } from "../shared/directories";
+import { ProcessImageResponse } from "../shared/objects";
+import { convertImageURL } from "../shared/funcs";
 import { imageSizeFromFile } from "image-size/fromFile";
 import path, { join } from "node:path";
 import { statSync } from "node:fs";
 import { exists } from "node:fs/promises";
-import type { ProcessImageResponseType, ProcessImageTask } from "../../shared/shared-types";
-import { BaseResponse } from "../../shared/shared-objects";
-import { t } from "../../mainview/lang/lang";
+import type { ProcessImageResponseType, ProcessImageTask } from "../../shared/types";
+import { BaseResponse } from "../shared/objects";
+import { t } from "../../lang/lang";
 
 export default async (params: ProcessImageTask) => {
 	const { outputDirectory } = getImageDirectories();
@@ -24,7 +24,7 @@ export default async (params: ProcessImageTask) => {
 
 	if (response === 0) {
 		// User clicked "Delete"
-		console.log("Deleting file...");
+		
 		const ret: ProcessImageResponseType = { ...ProcessImageResponse };
 		const inputPath = convertImageURL({
 			url: params.path,
@@ -68,7 +68,7 @@ export default async (params: ProcessImageTask) => {
 		return ret;
 	} else {
 		// user clicked cancel or closed the dialog
-		console.log("Cancelled");
+		
 		return { ...BaseResponse, message: 'Cancelled delete' };
 	}
 }

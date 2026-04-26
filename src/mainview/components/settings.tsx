@@ -1,14 +1,14 @@
 import { useContext, useEffect, useMemo, useState } from "react"
-import { electroview } from "../../shared/shared-electroview";
-import { appContextDefaults, sharedContext } from "../../shared/shared-context";
-import { AvailableLangs, AvailableOutputFormats, AvailableThemes } from "../../shared/shared-types";
+import { electroview } from "../shared/electroview";
+import { appContextDefaults, sharedContext } from "../../shared/context";
+import { AvailableLangs, AvailableOutputFormats, AvailableThemes } from "../../shared/types";
 import Select from "react-select";
 import NumberField from "./numberField";
 import { Tooltip } from "react-tooltip";
 import toast from "react-hot-toast";
-import { eventBus } from "../../shared/shared-eventbus";
+import { eventBus } from "../shared/eventbus";
 import { setLocale, t } from "../lang/lang";
-import { handleRPCRequestCatch } from "../../shared/shared-utils";
+import { handleRPCRequestCatch } from "../shared/utils";
 
 export default function SettingsPane() {
 	const appContext = useContext(sharedContext);
@@ -81,7 +81,7 @@ export default function SettingsPane() {
 		async function loadSettings() {
 			try {
 				const loadedSettings = await electroview.rpc?.request.getSettings();
-				console.log('laoded settings: ', loadedSettings)
+				
 					if (loadedSettings) {
 						const nextSettings = {
 							effort: loadedSettings.effort,
@@ -108,7 +108,7 @@ export default function SettingsPane() {
 
 		const openSettingsHandler = () => {
 			setSettingsPaneOpen(true)
-			console.log('settings open')
+			
 		};
 
 		eventBus.addEventListener('openSettings', openSettingsHandler)
@@ -140,12 +140,12 @@ export default function SettingsPane() {
 	const submitHandler = async (e: React.SubmitEvent<HTMLFormElement>) => {
 		e.preventDefault();
 		const submitterName = e.nativeEvent.submitter?.getAttribute('name');
-		console.log('submithander', submitterName)
+		
 		if (submitterName === 'save') {
 			const newSettings = { ...appContextDefaults.settings, ...draftSettings };
 			try {
 				const res = await electroview.rpc?.request.setSettings(newSettings)
-				console.log(res)
+				
 				setSettings(newSettings);
 				setQuality(newSettings.quality);
 				setEffort(newSettings.effort);
@@ -160,7 +160,7 @@ export default function SettingsPane() {
 		else if (submitterName === 'restoredefaults') {
 			try {
 				const res = await electroview.rpc?.request.setSettings({ ...appContextDefaults.settings })
-				console.log(res)
+				
 				setSettings(appContextDefaults.settings)
 				setDraftSettings(appContextDefaults.settings)
 				setQuality(appContextDefaults.settings.quality);

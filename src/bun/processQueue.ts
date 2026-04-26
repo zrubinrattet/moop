@@ -4,9 +4,9 @@ import { availableParallelism } from "node:os";
 import path, { join } from "node:path";
 import sharp from "sharp";
 
-import type { ProcessImageTask } from "../shared/shared-types";
-import { getImageDirectories } from "../shared/shared-directories";
-import { getSettings } from "../shared/shared-settings";
+import type { ProcessImageTask } from "../shared/types";
+import { getImageDirectories } from "./shared/directories";
+import { getSettings } from "./shared/settings";
 
 const concurrency = availableParallelism();
 

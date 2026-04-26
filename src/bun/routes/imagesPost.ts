@@ -1,18 +1,18 @@
-import { getImageDirectories } from "../../shared/shared-directories";
-import { getSettings } from "../../shared/shared-settings";
-import type { APIResponseType } from "../../shared/shared-types";
-import { APIResponse } from "../../shared/shared-objects";
+import { getImageDirectories } from "../shared/directories";
+import { getSettings } from "../shared/settings";
+import type { APIResponseType } from "../../shared/types";
+import { APIResponse } from "../shared/objects";
 import { mkdir, readdir, stat } from "node:fs/promises";
 import path, { join } from 'node:path';
 
 
 import corsHeaders from "./corsHeaders";
 import { queue } from "../processQueue";
-import { convertImageURL } from "../../shared/shared-funcs";
+import { convertImageURL } from "../shared/funcs";
 import { imageSizeFromFile } from "image-size/fromFile";
 import { statSync } from "node:fs";
-import { t } from "../../mainview/lang/lang";
-import type { Image } from "../../shared/shared-types";
+import { t } from "../../lang/lang";
+import type { Image } from "../../shared/types";
 
 const dirSize = async (directory: string) => {
 	const files = await readdir(directory);

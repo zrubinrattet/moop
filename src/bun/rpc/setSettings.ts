@@ -1,9 +1,9 @@
-import { BaseResponse } from "../../shared/shared-objects";
-import { appContextDefaults } from "../../shared/shared-context";
-import type { ApplicationSettingsType, SettingsResponseType } from "../../shared/shared-types";
-import { getSettings, setSettings } from "../../shared/shared-settings";
-import { getImageDirectories } from "../../shared/shared-directories";
-import { setLocale } from "../../mainview/lang/lang";
+import { BaseResponse } from "../shared/objects";
+import { appContextDefaults } from "../../shared/context";
+import type { ApplicationSettingsType, SettingsResponseType } from "../../shared/types";
+import { getSettings, setSettings } from "../shared/settings";
+import { getImageDirectories } from "../shared/directories";
+import { setLocale } from "../../lang/lang";
 import { exists, cp } from "node:fs/promises";
 
 export default async (props:ApplicationSettingsType) => {

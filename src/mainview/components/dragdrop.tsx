@@ -1,9 +1,9 @@
-import { sharedContext, appContextDefaults } from "../../shared/shared-context";
+import { sharedContext, appContextDefaults } from "../../shared/context";
 import { useContext } from "react";
 import { useDropzone, FileRejection } from "react-dropzone";
-import { Image } from "../../shared/shared-types";
+import { Image } from "../../shared/types";
 import toast from "react-hot-toast";
-import { t } from "../lang/lang";
+import { t } from "../../lang/lang";
 
 export default function DragDrop() {
 
@@ -12,9 +12,6 @@ export default function DragDrop() {
 	const dropHandler = async (acceptedFiles: Array<File>) => {
 		// we're loading images now!
 		appContext.setImagesLoading(true);
-
-		// keep track of date for performance measuring
-		const dateNow = Date.now();
 
 		// define upload connection
 		const promises = acceptedFiles.map(async (droppedFile) => {
@@ -76,7 +73,7 @@ export default function DragDrop() {
 				if (!firstPromiseResolved) {
 					firstPromiseResolved = true;
 					if (!val.ok) {
-						console.log(val)
+
 						toast(t('updateImageError'), {
 							className: 'hottoast'
 						})
@@ -91,18 +88,18 @@ export default function DragDrop() {
 						});
 						appContext.setZoom(appContextDefaults.zoom);
 						appContext.setCrop(appContextDefaults.crop);
-					} catch (error) {
-						if (error instanceof Error) {
-							console.log(error.message)
-						}
+					} catch {
+						toast(t('unknownError'), {
+							className: 'hottoast'
+						})
+						return;
 					}
 				}
 			});
 		});
 
 		// upload / set files/images
-		const responses = await Promise.all(promises);
-		console.log(`Upload complete in ${(Date.now() - dateNow) / 1000}s`, responses);
+		await Promise.all(promises);
 
 		appContext.setImagesLoading(false);
 	};

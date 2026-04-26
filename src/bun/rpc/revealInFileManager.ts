@@ -1,10 +1,10 @@
 import { Utils } from "electrobun";
-import { getImageDirectories } from "../../shared/shared-directories";
-import { BaseResponse } from "../../shared/shared-objects";
+import { getImageDirectories } from "../shared/directories";
+import { BaseResponse } from "../shared/objects";
 
-import type { BaseResponseType } from "../../shared/shared-types";
-import { convertImageURL } from "../../shared/shared-funcs";
-import { t } from "../../mainview/lang/lang";
+import type { BaseResponseType } from "../../shared/types";
+import { convertImageURL } from "../shared/funcs";
+import { t } from "../../lang/lang";
 
 
 export default async (props:{path?: string}|undefined) => {

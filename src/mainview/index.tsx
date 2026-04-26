@@ -8,7 +8,7 @@ if (rootEl instanceof HTMLElement) {
 	const reactRoot = createRoot(rootEl);
 	reactRoot.render(<App />);
 	
-	console.log("Hello Electrobun Moop view loaded!");
+	
 
 	// over class that enables pointer-events: all so dragdrop el can recieve drag events.
 	window.ondragenter = () => {

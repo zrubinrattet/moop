@@ -1,7 +1,7 @@
-import { appContextDefaults } from "../../shared/shared-context";
-import { BaseResponse } from "../../shared/shared-objects";
-import { getSettings, setSettings } from "../../shared/shared-settings";
-import type { SettingsResponseType } from "../../shared/shared-types";
+import { appContextDefaults } from "../../shared/context";
+import { BaseResponse } from "../shared/objects";
+import { getSettings, setSettings } from "../shared/settings";
+import type { SettingsResponseType } from "../../shared/types";
 
 export default async () => {
 	const ret: SettingsResponseType = {

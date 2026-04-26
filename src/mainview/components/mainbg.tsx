@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { sharedContext } from "../../shared/shared-context";
+import { sharedContext } from "../../shared/context";
 import { t } from "../lang/lang";
 
 export default function MainBG() {

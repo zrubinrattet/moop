@@ -1,11 +1,11 @@
 import { useContext, useEffect, useRef } from "react";
-import { sharedContext } from "../../shared/shared-context";
+import { sharedContext } from "../../shared/context";
 import ImagesList from "./imagesList";
 import ImagesCanvas from "./imagesCanvas";
-import { electroview } from "../../shared/shared-electroview";
+import { electroview } from "../shared/electroview";
 import toast from "react-hot-toast";
-import { t } from "../lang/lang";
-import { handleRPCRequestCatch } from "../../shared/shared-utils";
+import { t } from "../../lang/lang";
+import { handleRPCRequestCatch } from "../shared/utils";
 
 
 export default function ImagesEditor() {
@@ -13,6 +13,7 @@ export default function ImagesEditor() {
 	const { images, setImages } = appContext;
 	const pollInputsRef = useRef<NodeJS.Timeout>(null);
 
+	// update imageseditor UI if images go missing from the filesystem
 	useEffect(() => {
 		async function pollInputs() {
 			try {

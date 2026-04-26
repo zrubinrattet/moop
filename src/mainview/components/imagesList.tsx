@@ -1,13 +1,13 @@
 import { useContext } from "react";
-import { sharedContext } from "../../shared/shared-context";
+import { sharedContext } from "../../shared/context";
 import ImagesListItem from "./imagesListItem";
-import { electroview } from "../../shared/shared-electroview";
+import { electroview } from "../shared/electroview";
 
-import { formatBytes } from "../../shared/shared-snippets";
+import { formatBytes } from "../shared/snippets";
 import toast from "react-hot-toast";
-import { t } from "../lang/lang";
-import { BaseResponseType } from "../../shared/shared-types";
-import { handleRPCRequestCatch } from "../../shared/shared-utils";
+import { t } from "../../lang/lang";
+import { BaseResponseType } from "../../shared/types";
+import { handleRPCRequestCatch } from "../shared/utils";
 
 
 
@@ -41,7 +41,7 @@ export default function ImagesList() {
 		try {
 
 			const res: BaseResponseType | undefined = await electroview.rpc?.request.clearAll();
-			console.log(res)
+			
 			if (res?.severity === 'SUCCESS') {
 				appContext.setImages([]);
 				if (res?.message) {

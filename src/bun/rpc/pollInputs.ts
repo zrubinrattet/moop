@@ -1,7 +1,7 @@
-import { getImageDirectories } from "../../shared/shared-directories";
-import { convertImageURL } from "../../shared/shared-funcs";
-import { BaseResponse } from "../../shared/shared-objects";
-import type { PollInputsResponseType } from "../../shared/shared-types";
+import { getImageDirectories } from "../shared/directories";
+import { convertImageURL } from "../shared/funcs";
+import { BaseResponse } from "../shared/objects";
+import type { PollInputsResponseType } from "../../shared/types";
 
 
 export default async () => {

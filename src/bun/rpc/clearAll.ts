@@ -1,7 +1,7 @@
 import { Utils } from "electrobun";
-import { getImageDirectories } from "../../shared/shared-directories";
-import { BaseResponse } from "../../shared/shared-objects";
-import { t } from "../../mainview/lang/lang";
+import { getImageDirectories } from "../shared/directories";
+import { BaseResponse } from "../shared/objects";
+import { t } from "../../lang/lang";
 import { readdir, mkdir } from "node:fs/promises"
 
 export default async () => {

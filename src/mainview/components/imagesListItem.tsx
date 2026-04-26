@@ -1,11 +1,11 @@
 import { useContext } from "react";
 import { Tooltip } from "react-tooltip";
-import { sharedContext, appContextDefaults } from "../../shared/shared-context";
-import { electroview } from "../../shared/shared-electroview";
+import { sharedContext, appContextDefaults } from "../../shared/context";
+import { electroview } from "../shared/electroview";
 import toast from "react-hot-toast";
-import { t } from "../lang/lang";
-import { handleRPCRequestCatch } from "../../shared/shared-utils";
-import { BaseResponseType, ProcessImageResponseType } from "../../shared/shared-types";
+import { t } from "../../lang/lang";
+import { handleRPCRequestCatch } from "../shared/utils";
+import { BaseResponseType, ProcessImageResponseType } from "../../shared/types";
 
 type ImagesListItemProps = {
 	index: number,
@@ -35,7 +35,7 @@ export default function ImagesListItem(props: ImagesListItemProps) {
 	async function itemDeleteClickHandler(e: React.MouseEvent) {
 		e.preventDefault();
 		try {
-			console.log('Open the modal!');
+			
 			const res: BaseResponseType | ProcessImageResponseType | undefined = await electroview.rpc?.request.deleteImage({ path: props.input });
 
 			if (res && 'image' in res && 'input' in res.image) {
@@ -71,7 +71,7 @@ export default function ImagesListItem(props: ImagesListItemProps) {
 	async function revealItemClickHandler(e: React.MouseEvent) {
 		e.preventDefault();
 		try {
-			console.log('Open in finder!');
+			
 			const res: BaseResponseType | undefined = await electroview.rpc?.request.revealInFileManager({ path: props.input });
 			if (res && res.severity === 'ERROR') {
 				toast(res.message, {

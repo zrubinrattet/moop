@@ -1,4 +1,4 @@
-import { getImageDirectories } from "../../shared/shared-directories";
+import { getImageDirectories } from "../shared/directories";
 
 import { join } from 'node:path'
 import {statSync} from "node:fs";

@@ -2,7 +2,7 @@ import MainBG from './components/mainbg';
 import DragDrop from './components/dragdrop';
 import ImagesEditor from './components/imagesEditor';
 import SettingsPane from './components/settings';
-import { sharedContext, appContextDefaults } from '../shared/shared-context';
+import { sharedContext, appContextDefaults } from '../shared/context';
 import { useEffect, useState } from 'react';
 import { Toaster } from 'react-hot-toast';
 import { setLocale } from './lang/lang';
