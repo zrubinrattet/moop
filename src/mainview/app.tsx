@@ -5,7 +5,7 @@ import SettingsPane from './components/settings';
 import { sharedContext, appContextDefaults } from '../shared/context';
 import { useEffect, useState } from 'react';
 import { Toaster } from 'react-hot-toast';
-import { setLocale } from './lang/lang';
+import { setLocale } from '../lang/lang';
 
 export default function Moop() {
 	const [settings, setSettings] = useState(appContextDefaults.settings);

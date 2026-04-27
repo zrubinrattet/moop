@@ -7,7 +7,7 @@ import NumberField from "./numberField";
 import { Tooltip } from "react-tooltip";
 import toast from "react-hot-toast";
 import { eventBus } from "../shared/eventbus";
-import { setLocale, t } from "../lang/lang";
+import { setLocale, t } from "../../lang/lang";
 import { handleRPCRequestCatch } from "../shared/utils";
 
 export default function SettingsPane() {

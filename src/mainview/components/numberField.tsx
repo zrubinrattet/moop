@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useId, useRef } from "react";
 import { Tooltip } from "react-tooltip";
-import { t } from "../lang/lang";
+import { t } from "../../lang/lang";
 
 type NumberFieldProps = {
 	min?: number;

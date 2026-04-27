@@ -22,8 +22,14 @@ export default async () => {
 			})
 		);
 
-		ret.inputPaths = inputPaths.map(inputPath => convertImageURL({ url: inputPath, type: 'absolutetolocal' }));
-		ret.message = 'Found inputs'
+		if (inputPaths.length) {
+			ret.inputPaths = inputPaths.map(inputPath => convertImageURL({ url: inputPath, type: 'absolutetolocal' }));
+			ret.message = 'Found inputs'
+		}
+		else {
+			ret.message = 'Inputs do not exist yet';
+		}
+
 	} catch (error) {
 
 		if (error && typeof error === 'object' && 'code' in error && error.code === 'ENOENT') {

@@ -15,6 +15,11 @@ function getDefaultSettings(): ApplicationSettingsType {
 	};
 }
 
+export async function purgeSettings() {
+	settingsCache = getDefaultSettings();
+	await Bun.write(settingsPath, JSON.stringify(settingsCache));
+}
+
 export async function initSettings(): Promise<ApplicationSettingsType> {
 	if (settingsCache) return settingsCache; // already cached
 

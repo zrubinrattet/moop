@@ -18,7 +18,7 @@ async function processImage(arg: ProcessImageTask): Promise<void> {
 	const parsed = path.parse(arg.path);
 	const outputFormat = arg.outputFormat?.toLowerCase() || appSettings.outputFormat || 'webp';
 	const outputPath = join(outputDirectory, `${parsed.name}.${outputFormat}`);
-
+	
 	const resized = sharp(arg.path, {
 		density: 72,
 		animated: outputFormat === 'jpeg' ? false : true,

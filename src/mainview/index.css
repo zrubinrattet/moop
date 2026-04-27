@@ -341,6 +341,7 @@ body.theme-dark {
     margin: 12px;
     box-sizing: border-box;
     animation: 0.25s ease 0s 1 normal both running openup;
+    background: repeating-conic-gradient(#808080 0 25%, rgba(0, 0, 0, 0) 0 50%) 50%/20px 20px;
   }
   @keyframes openup {
     0% {

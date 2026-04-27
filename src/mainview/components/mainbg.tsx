@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { sharedContext } from "../../shared/context";
-import { t } from "../lang/lang";
+import { t } from "../../lang/lang";
+
 
 export default function MainBG() {
 	const appContext = useContext(sharedContext);

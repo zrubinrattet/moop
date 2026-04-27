@@ -24,7 +24,7 @@ export default async (params: ProcessImageTask) => {
 
 	if (response === 0) {
 		// User clicked "Delete"
-		
+
 		const ret: ProcessImageResponseType = { ...ProcessImageResponse };
 		const inputPath = convertImageURL({
 			url: params.path,
@@ -68,7 +68,7 @@ export default async (params: ProcessImageTask) => {
 		return ret;
 	} else {
 		// user clicked cancel or closed the dialog
-		
+
 		return { ...BaseResponse, message: 'Cancelled delete' };
 	}
 }
