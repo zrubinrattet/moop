@@ -4,8 +4,8 @@
 </p>
 <p align="center">A desktop app for batch image optimization.</p>
 <p align="center">
-    <a href="https://github.com/zrubinrattet/moop/actions/workflows/tests.yml?query=branch%3Amain+event%3Apush"><img src="https://github.com/zrubinrattet/moop/actions/workflows/tests.yml/badge.svg?branch=main&event=push" alt="CI" /></a>
-    <a href="https://github.com/zrubinrattet/moop/actions/workflows/release.yml?query=event%3Apush"><img src="https://github.com/zrubinrattet/moop/actions/workflows/release.yml/badge.svg?event=push" alt="Release" /></a>
+    <a href="https://github.com/zrubinrattet/moop/actions/workflows/tests.yml"><img src="https://github.com/zrubinrattet/moop/actions/workflows/tests.yml/badge.svg" alt="CI" /></a>
+    <a href="https://github.com/zrubinrattet/moop/actions/workflows/release.yml"><img src="https://github.com/zrubinrattet/moop/actions/workflows/release.yml/badge.svg" alt="Release" /></a>
     <a href="https://github.com/zrubinrattet/moop/releases"><img src="https://img.shields.io/github/v/release/zrubinrattet/moop" alt="Latest Release" /></a>
     <a href="https://github.com/zrubinrattet/moop/blob/main/LICENSE.md"><img src="https://img.shields.io/github/license/zrubinrattet/moop" alt="License" /></a>
 </p>
