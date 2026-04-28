@@ -49,7 +49,7 @@ English, Chinese, Hindi, Spanish, Arabic, French, Bengali, Portuguese, Indonesia
 
 ### Getting Started
 
-Install bun here: [https://bun.com/docs/installation](https://bun.com/docs/installation)
+Install bun: [https://bun.com/docs/installation](https://bun.com/docs/installation)
 
 Once installed, then run to install the build system and spin up the dev build with the watch flag:
 
