@@ -1,4 +1,4 @@
-name: CI
+name: Tests
 on:
     push:
     pull_request:
@@ -15,5 +15,5 @@ jobs:
             - name: Install dependencies
               run: bun install --frozen-lockfile
 
-            - name: Test
+            - name: Run bun test
               run: bun test
