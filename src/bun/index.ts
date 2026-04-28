@@ -3,7 +3,7 @@ import { mkdirSync } from "node:fs";
 import path from "node:path";
 import Electrobun from "electrobun/bun";
 
-import type { AppRPCSchema  } from '../shared/types';
+import type { AppRPCSchema } from '../shared/types';
 import { getSettings, initSettings } from "./shared/settings";
 import { setLocale, t } from "../lang/lang";
 import pkg from "../../package.json" with { type: "json" };
@@ -18,7 +18,7 @@ import updateImage from "./rpc/updateImage";
 import deleteImage from "./rpc/deleteImage";
 import clearAll from "./rpc/clearAll";
 
-import initServer from "./server";
+import { initServer } from "./server";
 
 
 // prime the settings.json file on disk
