@@ -101,6 +101,12 @@
 		"version": "आवृत्ती",
 		"learnMore": "अधिक जाणून घ्या येथे",
 		"madeWith": "ओकलँड, कॅलिफोर्निया येथे 💜 ने तयार केले.",
-		"settingsWriteError": "सेटिंग्ज फाइल लिहिता येत नाही."
+		"settingsWriteError": "सेटिंग्ज फाइल लिहिता येत नाही.",
+		"checkForUpdates": "अपडेट तपासा",
+		"updateAvailable": "अपडेट उपलब्ध आहे!",
+		"downloadUpdate": "अपडेट डाउनलोड करायचा?",
+		"upToDate": "तुमच्याकडे नवीनतम आवृत्ती आहे",
+		"updateUnavailable": "अपडेट उपलब्ध नाही",
+		"downloadUpdateButton1": "रद्द करा"
 	}
 }

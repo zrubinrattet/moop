@@ -101,6 +101,12 @@
 		"version": "പതിപ്പ്",
 		"learnMore": "കൂടുതൽ അറിയാൻ",
 		"madeWith": "കാലിഫോർണിയയിലെ ഓക്‌ലാൻഡിൽ 💜 കൊണ്ട് നിർമ്മിച്ചത്.",
-		"settingsWriteError": "ക്രമീകരണ ഫയൽ എഴുതാൻ കഴിഞ്ഞില്ല."
+		"settingsWriteError": "ക്രമീകരണ ഫയൽ എഴുതാൻ കഴിഞ്ഞില്ല.",
+		"checkForUpdates": "അപ്‌ഡേറ്റുകൾ പരിശോധിക്കുക",
+		"updateAvailable": "അപ്‌ഡേറ്റ് ലഭ്യമാണ്!",
+		"downloadUpdate": "അപ്‌ഡേറ്റ് ഡൗൺലോഡ് ചെയ്യണോ?",
+		"upToDate": "നിങ്ങൾ ഏറ്റവും പുതിയ പതിപ്പിലാണ്",
+		"updateUnavailable": "അപ്‌ഡേറ്റ് ലഭ്യമല്ല",
+		"downloadUpdateButton1": "റദ്ദാക്കുക"
 	}
 }

@@ -1,5 +1,5 @@
 import { useContext, useEffect, useRef } from "react";
-import { sharedContext } from "../../shared/context";
+import { sharedContext } from "../shared/context";
 import ImagesList from "./imagesList";
 import ImagesCanvas from "./imagesCanvas";
 import { electroview } from "../shared/electroview";

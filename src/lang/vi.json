@@ -101,6 +101,12 @@
 		"version": "Phiên bản",
 		"learnMore": "Tìm hiểu thêm tại",
 		"madeWith": "Được tạo với 💜 tại Oakland, CA.",
-		"settingsWriteError": "Không thể ghi tệp cài đặt."
+		"settingsWriteError": "Không thể ghi tệp cài đặt.",
+		"checkForUpdates": "Kiểm tra cập nhật",
+		"updateAvailable": "Có bản cập nhật!",
+		"downloadUpdate": "Tải bản cập nhật?",
+		"upToDate": "Bạn đang dùng phiên bản mới nhất",
+		"updateUnavailable": "Không thể cập nhật",
+		"downloadUpdateButton1": "Hủy bỏ"
 	}
 }

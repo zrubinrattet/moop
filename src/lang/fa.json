@@ -101,6 +101,12 @@
 		"version": "نسخه",
 		"learnMore": "بیشتر بدانید در",
 		"madeWith": "با 💜 در اوکلند، کالیفرنیا ساخته شده است.",
-		"settingsWriteError": "نمی‌توان فایل تنظیمات را نوشت."
+		"settingsWriteError": "نمی‌توان فایل تنظیمات را نوشت.",
+		"checkForUpdates": "بررسی به‌روزرسانی‌ها",
+		"updateAvailable": "به‌روزرسانی موجود است!",
+		"downloadUpdate": "به‌روزرسانی دانلود شود؟",
+		"upToDate": "شما آخرین نسخه را دارید",
+		"updateUnavailable": "به‌روزرسانی در دسترس نیست",
+		"downloadUpdateButton1": "لغو کنید"
 	}
 }

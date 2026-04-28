@@ -101,6 +101,12 @@
 		"version": "Siga",
 		"learnMore": "Karin bayani a",
 		"madeWith": "An yi shi da 💜 a Oakland, CA.",
-		"settingsWriteError": "Ba a iya rubuta fayil ɗin saituna ba."
+		"settingsWriteError": "Ba a iya rubuta fayil ɗin saituna ba.",
+		"checkForUpdates": "Duba sabuntawa",
+		"updateAvailable": "Akwai sabuntawa!",
+		"downloadUpdate": "A sauke sabuntawar?",
+		"upToDate": "Kana da sabuwar sigar",
+		"updateUnavailable": "Sabuntawa ba ya samuwa",
+		"downloadUpdateButton1": "Soke"
 	}
 }

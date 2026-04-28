@@ -101,6 +101,12 @@
 		"version": "Version",
 		"learnMore": "Mehr erfahren unter",
 		"madeWith": "Mit 💜 in Oakland, Kalifornien, gemacht.",
-		"settingsWriteError": "Einstellungsdatei kann nicht geschrieben werden."
+		"settingsWriteError": "Einstellungsdatei kann nicht geschrieben werden.",
+		"checkForUpdates": "Nach Updates suchen",
+		"updateAvailable": "Update verfügbar!",
+		"downloadUpdate": "Update herunterladen?",
+		"upToDate": "Sie haben die neueste Version",
+		"updateUnavailable": "Update nicht verfügbar",
+		"downloadUpdateButton1": "Stornieren"
 	}
 }

@@ -101,6 +101,12 @@
 		"version": "ورژن",
 		"learnMore": "مزید جانیں",
 		"madeWith": "اوکلینڈ، کیلیفورنیا میں 💜 کے ساتھ بنایا گیا۔",
-		"settingsWriteError": "سیٹنگز فائل لکھی نہیں جا سکتی۔"
+		"settingsWriteError": "سیٹنگز فائل لکھی نہیں جا سکتی۔",
+		"checkForUpdates": "اپ ڈیٹس چیک کریں",
+		"updateAvailable": "اپ ڈیٹ دستیاب ہے!",
+		"downloadUpdate": "اپ ڈیٹ ڈاؤن لوڈ کریں؟",
+		"upToDate": "آپ کے پاس تازہ ترین ورژن ہے",
+		"updateUnavailable": "اپ ڈیٹ دستیاب نہیں",
+		"downloadUpdateButton1": "منسوخ کریں۔"
 	}
 }

@@ -1,11 +1,12 @@
 import { useContext } from "react";
 import { Tooltip } from "react-tooltip";
-import { sharedContext, appContextDefaults } from "../../shared/context";
+import { sharedContext } from "../shared/context";
 import { electroview } from "../shared/electroview";
 import toast from "react-hot-toast";
 import { t } from "../../lang/lang";
 import { handleRPCRequestCatch } from "../shared/utils";
 import { BaseResponseType, ProcessImageResponseType } from "../../shared/types";
+import { appContextDefaults } from "../../shared/context";
 
 type ImagesListItemProps = {
 	index: number,

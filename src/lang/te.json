@@ -101,6 +101,12 @@
 		"version": "వెర్షన్",
 		"learnMore": "ఇంకా తెలుసుకోండి",
 		"madeWith": "ఓక్లాండ్, కాలిఫోర్నియాలో 💜 తో రూపొందించబడింది.",
-		"settingsWriteError": "సెట్టింగ్స్ ఫైల్‌ను రాయలేకపోయాం."
+		"settingsWriteError": "సెట్టింగ్స్ ఫైల్‌ను రాయలేకపోయాం.",
+		"checkForUpdates": "అప్‌డేట్‌ల కోసం చూడండి",
+		"updateAvailable": "అప్‌డేట్ అందుబాటులో ఉంది!",
+		"downloadUpdate": "అప్‌డేట్ డౌన్‌లోడ్ చేయాలా?",
+		"upToDate": "మీ వద్ద తాజా వెర్షన్ ఉంది",
+		"updateUnavailable": "అప్‌డేట్ అందుబాటులో లేదు",
+		"downloadUpdateButton1": "రద్దు చేయి"
 	}
 }

@@ -101,6 +101,12 @@
 		"version": "Version",
 		"learnMore": "En savoir plus sur",
 		"madeWith": "Conçu avec 💜 à Oakland, Californie.",
-		"settingsWriteError": "Impossible d'écrire le fichier des paramètres."
+		"settingsWriteError": "Impossible d'écrire le fichier des paramètres.",
+		"checkForUpdates": "Vérifier les mises à jour",
+		"updateAvailable": "Mise à jour disponible !",
+		"downloadUpdate": "Télécharger la mise à jour ?",
+		"upToDate": "Vous disposez de la dernière version",
+		"updateUnavailable": "Mise à jour indisponible",
+		"downloadUpdateButton1": "Annuler"
 	}
 }

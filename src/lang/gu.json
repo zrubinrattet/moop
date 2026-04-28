@@ -101,6 +101,12 @@
 		"version": "આવૃત્તિ",
 		"learnMore": "વધુ જાણો અહીં",
 		"madeWith": "ઓકલેન્ડ, કેલિફોર્નિયામાં 💜 સાથે બનાવ્યું.",
-		"settingsWriteError": "સેટિંગ્સ ફાઇલ લખી શકાતી નથી."
+		"settingsWriteError": "સેટિંગ્સ ફાઇલ લખી શકાતી નથી.",
+		"checkForUpdates": "અપડેટ માટે તપાસો",
+		"updateAvailable": "અપડેટ ઉપલબ્ધ છે!",
+		"downloadUpdate": "અપડેટ ડાઉનલોડ કરશો?",
+		"upToDate": "તમારી પાસે નવીનતમ આવૃત્તિ છે",
+		"updateUnavailable": "અપડેટ ઉપલબ્ધ નથી",
+		"downloadUpdateButton1": "રદ કરો"
 	}
 }

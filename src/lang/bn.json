@@ -101,6 +101,12 @@
 		"version": "সংস্করণ",
 		"learnMore": "আরও জানুন এখানে",
 		"madeWith": "ওকল্যান্ড, ক্যালিফোর্নিয়ায় 💜 দিয়ে তৈরি।",
-		"settingsWriteError": "সেটিংস ফাইল লেখা যাচ্ছে না।"
+		"settingsWriteError": "সেটিংস ফাইল লেখা যাচ্ছে না।",
+		"checkForUpdates": "আপডেট আছে কিনা দেখুন",
+		"updateAvailable": "আপডেট উপলব্ধ!",
+		"downloadUpdate": "আপডেট ডাউনলোড করবেন?",
+		"upToDate": "আপনার কাছে সর্বশেষ সংস্করণ আছে",
+		"updateUnavailable": "আপডেট উপলব্ধ নয়",
+		"downloadUpdateButton1": "বাতিল করুন"
 	}
 }

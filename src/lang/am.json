@@ -101,6 +101,12 @@
 		"version": "ስሪት",
 		"learnMore": "ተጨማሪ ለማወቅ በ",
 		"madeWith": "በኦክላንድ፣ ካሊፎርኒያ በ💜 ተሰርቷል።",
-		"settingsWriteError": "የቅንብሮች ፋይልን መጻፍ አልተቻለም።"
+		"settingsWriteError": "የቅንብሮች ፋይልን መጻፍ አልተቻለም።",
+		"checkForUpdates": "ዝማኔዎችን ፈትሽ",
+		"updateAvailable": "ዝማኔ አለ!",
+		"downloadUpdate": "ዝማኔን አውርድ?",
+		"upToDate": "የቅርብ ጊዜ ስሪት አለዎት",
+		"updateUnavailable": "ዝማኔ አይገኝም",
+		"downloadUpdateButton1": "ሰርዝ"
 	}
 }

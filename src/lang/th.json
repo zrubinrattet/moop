@@ -101,6 +101,12 @@
 		"version": "เวอร์ชัน",
 		"learnMore": "ดูข้อมูลเพิ่มเติมที่",
 		"madeWith": "สร้างด้วย 💜 ที่โอ๊คแลนด์ แคลิฟอร์เนีย",
-		"settingsWriteError": "ไม่สามารถเขียนไฟล์การตั้งค่าได้"
+		"settingsWriteError": "ไม่สามารถเขียนไฟล์การตั้งค่าได้",
+		"checkForUpdates": "ตรวจสอบการอัปเดต",
+		"updateAvailable": "มีอัปเดตใหม่!",
+		"downloadUpdate": "ดาวน์โหลดอัปเดตหรือไม่?",
+		"upToDate": "คุณใช้เวอร์ชันล่าสุดอยู่แล้ว",
+		"updateUnavailable": "ไม่สามารถอัปเดตได้",
+		"downloadUpdateButton1": "ยกเลิก"
 	}
 }

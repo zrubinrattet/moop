@@ -25,27 +25,24 @@ test('pollInputs', async () => {
 	expect(afterInputOutputDirsRes.message).toBe("Inputs do not exist yet");
 	expect(afterInputOutputDirsRes.inputPaths).toEqual([]);
 
-	try {
-		const relPath = '../fixtures/large.jpg';
-		const formData = new FormData();
-		const file = Bun.file(join(__dirname, relPath));
-		formData.append("image", file, path.parse(relPath).base);
-		const res = await fetch("http://localhost:43117/images", {
-			method: "POST",
-			body: formData,
-		});
-		const resJson = await res.json();
 
-		expect(resJson.ok).toBe(true);
-		expect(resJson.data.severity).toBe('SUCCESS');
+	const relPath = '../fixtures/large.jpg';
+	const formData = new FormData();
+	const file = Bun.file(join(__dirname, relPath));
+	formData.append("image", file, path.parse(relPath).base);
+	const afterUploadRes = await fetch("http://localhost:43117/images", {
+		method: "POST",
+		body: formData,
+	});
+	const afterUploadResJson = await afterUploadRes.json();
 
-		const afterInputOutputDirsRes = await pollInputs();
-		expect(afterInputOutputDirsRes.message).toBe("Found inputs");
-		expect(afterInputOutputDirsRes.inputPaths).not.toEqual([]);
-	} catch (error) {
-		console.error(error);
-		throw error;
-	}
+	expect(afterUploadResJson.ok).toBe(true);
+	expect(afterUploadResJson.data.severity).toBe('SUCCESS');
+
+	const afterUploadPollRes = await pollInputs();
+	expect(afterUploadPollRes.message).toBe("Found inputs");
+	expect(afterUploadPollRes.inputPaths).not.toEqual([]);
+
 
 	stopServer();
 })

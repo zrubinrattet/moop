@@ -101,6 +101,12 @@
 		"version": "Toleo",
 		"learnMore": "Jifunze zaidi kwenye",
 		"madeWith": "Imetengenezwa kwa 💜 huko Oakland, CA.",
-		"settingsWriteError": "Haiwezi kuandika faili la mipangilio."
+		"settingsWriteError": "Haiwezi kuandika faili la mipangilio.",
+		"checkForUpdates": "Angalia masasisho",
+		"updateAvailable": "Sasisho linapatikana!",
+		"downloadUpdate": "Pakua sasisho?",
+		"upToDate": "Una toleo jipya zaidi",
+		"updateUnavailable": "Sasisho halipatikani",
+		"downloadUpdateButton1": "Ghairi"
 	}
 }

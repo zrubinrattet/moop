@@ -1,9 +1,10 @@
-import { sharedContext, appContextDefaults } from "../../shared/context";
+import { sharedContext } from "../shared/context";
 import { useContext } from "react";
 import { useDropzone, FileRejection } from "react-dropzone";
 import { Image } from "../../shared/types";
 import toast from "react-hot-toast";
 import { t } from "../../lang/lang";
+import { appContextDefaults } from "../../shared/context";
 
 export default function DragDrop() {
 

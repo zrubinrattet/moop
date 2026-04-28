@@ -101,6 +101,12 @@
 		"version": "ਵਰਜਨ",
 		"learnMore": "ਹੋਰ ਜਾਣੋ",
 		"madeWith": "ਓਕਲੈਂਡ, ਕੈਲੀਫ਼ੋਰਨੀਆ ਵਿੱਚ 💜 ਨਾਲ ਬਣਾਇਆ ਗਿਆ।",
-		"settingsWriteError": "ਸੈਟਿੰਗਜ਼ ਫਾਇਲ ਲਿਖੀ ਨਹੀਂ ਜਾ ਸਕਦੀ।"
+		"settingsWriteError": "ਸੈਟਿੰਗਜ਼ ਫਾਇਲ ਲਿਖੀ ਨਹੀਂ ਜਾ ਸਕਦੀ।",
+		"checkForUpdates": "ਅੱਪਡੇਟ ਜਾਂਚੋ",
+		"updateAvailable": "ਅੱਪਡੇਟ ਉਪਲਬਧ ਹੈ!",
+		"downloadUpdate": "ਅੱਪਡੇਟ ਡਾਊਨਲੋਡ ਕਰੀਏ?",
+		"upToDate": "ਤੁਹਾਡੇ ਕੋਲ ਨਵਾਂਤਮ ਵਰਜਨ ਹੈ",
+		"updateUnavailable": "ਅੱਪਡੇਟ ਉਪਲਬਧ ਨਹੀਂ",
+		"downloadUpdateButton1": "ਰੱਦ ਕਰੋ"
 	}
 }

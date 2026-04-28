@@ -101,6 +101,12 @@
 		"version": "الإصدار",
 		"learnMore": "اعرف المزيد على",
 		"madeWith": "صُنع بـ 💜 في أوكلاند، كاليفورنيا.",
-		"settingsWriteError": "تعذر كتابة ملف الإعدادات."
+		"settingsWriteError": "تعذر كتابة ملف الإعدادات.",
+		"checkForUpdates": "التحقق من وجود تحديثات",
+		"updateAvailable": "يتوفر تحديث!",
+		"downloadUpdate": "تنزيل التحديث؟",
+		"upToDate": "لديك أحدث إصدار",
+		"updateUnavailable": "التحديث غير متاح",
+		"downloadUpdateButton1": "يلغي"
 	}
 }

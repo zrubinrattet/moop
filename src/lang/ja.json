@@ -101,6 +101,12 @@
 		"version": "バージョン",
 		"learnMore": "詳しくは",
 		"madeWith": "カリフォルニア州オークランドで💜を込めて作られました。",
-		"settingsWriteError": "設定ファイルを書き込めません。"
+		"settingsWriteError": "設定ファイルを書き込めません。",
+		"checkForUpdates": "アップデートを確認",
+		"updateAvailable": "アップデートがあります！",
+		"downloadUpdate": "アップデートをダウンロードしますか？",
+		"upToDate": "最新バージョンです",
+		"updateUnavailable": "アップデートは利用できません",
+		"downloadUpdateButton1": "キャンセル"
 	}
 }

@@ -1,6 +1,35 @@
 import type { RPCSchema } from "electrobun/bun";
+import type { Dispatch, SetStateAction } from "react";
+
+type Crop = {
+	x: number,
+	y: number,
+}
+
+export type ApplicationState = {
+	settings: ApplicationSettingsType,
+	setSettings: Dispatch<SetStateAction<ApplicationSettingsType>>,
+	images: Array<Image>,
+	setImages: Dispatch<SetStateAction<Array<Image>>>,
+	inputFolderSize: number,
+	setInputFolderSize: Dispatch<SetStateAction<number>>,
+	outputFolderSize: number,
+	setOutputFolderSize: Dispatch<SetStateAction<number>>,
+	imagesLoading: boolean,
+	setImagesLoading: Dispatch<SetStateAction<boolean>>,
+	imagesProcessing: Array<string>,
+	setImagesProcessing: Dispatch<SetStateAction<Array<string>>>,
+	crop: Crop,
+	setCrop: Dispatch<SetStateAction<Crop>>
+	zoom: number,
+	setZoom: Dispatch<SetStateAction<number>>
+	quality: number,
+	setQuality: Dispatch<SetStateAction<number>>
+	effort: number,
+	setEffort: Dispatch<SetStateAction<number>>
+};
 export type AvailableThemes = 'auto' | 'light' | 'dark';
-// export type AvailableLangs = 'en' | 'es';
+
 export type AvailableLangs =
   | 'en'  // English
   | 'zh'  // Chinese (merged: Mandarin/Yue/Wu)

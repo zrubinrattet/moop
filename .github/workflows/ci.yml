@@ -1,0 +1,12 @@
+name: CI
+on:
+  push:
+  pull_request:
+jobs:
+  test:
+    runs-on: macos-14 # Apple Silicon runner
+    steps:
+      - name: Install dependencies
+        run: bun install
+      - name: Test
+        run: bun test

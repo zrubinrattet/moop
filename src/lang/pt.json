@@ -101,6 +101,12 @@
 		"version": "Versão",
 		"learnMore": "Saiba mais em",
 		"madeWith": "Feito com 💜 em Oakland, CA.",
-		"settingsWriteError": "Não foi possível gravar o arquivo de configurações."
+		"settingsWriteError": "Não foi possível gravar o arquivo de configurações.",
+		"checkForUpdates": "Verificar atualizações",
+		"updateAvailable": "Atualização disponível!",
+		"downloadUpdate": "Baixar atualização?",
+		"upToDate": "Você está com a versão mais recente",
+		"updateUnavailable": "Atualização indisponível",
+		"downloadUpdateButton1": "Cancelar"
 	}
 }

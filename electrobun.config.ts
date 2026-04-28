@@ -38,4 +38,10 @@ export default {
 			icon: "icon.iconset/icon_256x256.png",
 		},
 	},
+	runtime: {
+		exitOnLastWindowClosed: true
+	},
+	release: {
+		baseUrl: "https://github.com/zrubinrattet/moop/releases/download"
+	}
 } satisfies ElectrobunConfig;

@@ -1,4 +1,4 @@
-import { sharedContext, } from "../../shared/context";
+import { sharedContext } from "../shared/context";
 import { useContext, useEffect, useRef } from "react";
 import { formatBytes } from "../shared/snippets";
 import Cropper from 'react-easy-crop'

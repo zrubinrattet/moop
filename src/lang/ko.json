@@ -101,6 +101,12 @@
 		"version": "버전",
 		"learnMore": "자세히 알아보기",
 		"madeWith": "캘리포니아 오클랜드에서 💜로 만들었습니다.",
-		"settingsWriteError": "설정 파일을 쓸 수 없습니다."
+		"settingsWriteError": "설정 파일을 쓸 수 없습니다.",
+		"checkForUpdates": "업데이트 확인",
+		"updateAvailable": "업데이트가 있습니다!",
+		"downloadUpdate": "업데이트를 다운로드할까요?",
+		"upToDate": "최신 버전입니다",
+		"updateUnavailable": "업데이트를 사용할 수 없습니다",
+		"downloadUpdateButton1": "취소"
 	}
 }

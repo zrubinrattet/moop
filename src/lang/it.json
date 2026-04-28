@@ -101,6 +101,12 @@
 		"version": "Versione",
 		"learnMore": "Scopri di più su",
 		"madeWith": "Realizzato con 💜 a Oakland, CA.",
-		"settingsWriteError": "Impossibile scrivere il file delle impostazioni."
+		"settingsWriteError": "Impossibile scrivere il file delle impostazioni.",
+		"checkForUpdates": "Controlla aggiornamenti",
+		"updateAvailable": "Aggiornamento disponibile!",
+		"downloadUpdate": "Scaricare l'aggiornamento?",
+		"upToDate": "Hai l'ultima versione",
+		"updateUnavailable": "Aggiornamento non disponibile",
+		"downloadUpdateButton1": "Cancellare"
 	}
 }

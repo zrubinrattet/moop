@@ -101,6 +101,12 @@
 		"version": "संस्करण",
 		"learnMore": "और जानें यहाँ",
 		"madeWith": "ओकलैंड, कैलिफ़ोर्निया में 💜 से बनाया गया।",
-		"settingsWriteError": "सेटिंग्स फ़ाइल नहीं लिखी जा सकती।"
+		"settingsWriteError": "सेटिंग्स फ़ाइल नहीं लिखी जा सकती।",
+		"checkForUpdates": "अपडेट जांचें",
+		"updateAvailable": "अपडेट उपलब्ध है!",
+		"downloadUpdate": "अपडेट डाउनलोड करें?",
+		"upToDate": "आपके पास नवीनतम संस्करण है",
+		"updateUnavailable": "अपडेट उपलब्ध नहीं है",
+		"downloadUpdateButton1": "रद्द करना"
 	}
 }

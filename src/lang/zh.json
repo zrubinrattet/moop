@@ -101,6 +101,12 @@
 		"version": "版本",
 		"learnMore": "了解更多：",
 		"madeWith": "于加州奥克兰用💜制作。",
-		"settingsWriteError": "无法写入设置文件。"
+		"settingsWriteError": "无法写入设置文件。",
+		"checkForUpdates": "检查更新",
+		"updateAvailable": "有可用更新！",
+		"downloadUpdate": "下载更新吗？",
+		"upToDate": "你已是最新版本",
+		"updateUnavailable": "无法更新",
+		"downloadUpdateButton1": "取消"
 	}
 }

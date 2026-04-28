@@ -101,6 +101,12 @@
 		"version": "Ẹya",
 		"learnMore": "Kọ ẹkọ diẹ sii ní",
 		"madeWith": "A ṣe e pẹlu 💜 ní Oakland, CA.",
-		"settingsWriteError": "Ko le kọ faili eto."
+		"settingsWriteError": "Ko le kọ faili eto.",
+		"checkForUpdates": "Ṣayẹwo imudojuiwọn",
+		"updateAvailable": "Imudojuiwọn wa!",
+		"downloadUpdate": "Ṣe igbasilẹ imudojuiwọn?",
+		"upToDate": "O ni ẹya tuntun julọ",
+		"updateUnavailable": "Imudojuiwọn ko si",
+		"downloadUpdateButton1": "Fagilee"
 	}
 }

@@ -101,6 +101,12 @@
 		"version": "Versi",
 		"learnMore": "Sinau luwih lengkap ing",
 		"madeWith": "Digawe nganggo 💜 ing Oakland, CA.",
-		"settingsWriteError": "Ora bisa nulis berkas setelan."
+		"settingsWriteError": "Ora bisa nulis berkas setelan.",
+		"checkForUpdates": "Priksa nganyari",
+		"updateAvailable": "Ana nganyari!",
+		"downloadUpdate": "Undhuh nganyari?",
+		"upToDate": "Sampeyan wis nganggo versi paling anyar",
+		"updateUnavailable": "Nganyari ora kasedhiya",
+		"downloadUpdateButton1": "Batal"
 	}
 }

@@ -1,6 +1,6 @@
 import { useContext, useEffect, useMemo, useState } from "react"
 import { electroview } from "../shared/electroview";
-import { appContextDefaults, sharedContext } from "../../shared/context";
+import { sharedContext } from "../shared/context";
 import { AvailableLangs, AvailableOutputFormats, AvailableThemes } from "../../shared/types";
 import Select from "react-select";
 import NumberField from "./numberField";
@@ -9,6 +9,7 @@ import toast from "react-hot-toast";
 import { eventBus } from "../shared/eventbus";
 import { setLocale, t } from "../../lang/lang";
 import { handleRPCRequestCatch } from "../shared/utils";
+import { appContextDefaults } from "../../shared/context";
 
 export default function SettingsPane() {
 	const appContext = useContext(sharedContext);

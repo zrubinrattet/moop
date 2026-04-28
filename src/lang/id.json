@@ -101,6 +101,12 @@
 		"version": "Versi",
 		"learnMore": "Pelajari lebih lanjut di",
 		"madeWith": "Dibuat dengan 💜 di Oakland, CA.",
-		"settingsWriteError": "Tidak dapat menulis file pengaturan."
+		"settingsWriteError": "Tidak dapat menulis file pengaturan.",
+		"checkForUpdates": "Periksa pembaruan",
+		"updateAvailable": "Pembaruan tersedia!",
+		"downloadUpdate": "Unduh pembaruan?",
+		"upToDate": "Anda menggunakan versi terbaru",
+		"updateUnavailable": "Pembaruan tidak tersedia",
+		"downloadUpdateButton1": "Membatalkan"
 	}
 }

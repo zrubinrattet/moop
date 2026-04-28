@@ -1,32 +1,4 @@
-import { createContext, Dispatch, SetStateAction } from "react";
-import { Image, ApplicationSettingsType } from "./types";
-
-type Crop = {
-	x: number,
-	y: number,
-}
-type ApplicationState = {
-	settings: ApplicationSettingsType,
-	setSettings: Dispatch<SetStateAction<ApplicationSettingsType>>,
-	images: Array<Image>,
-	setImages: Dispatch<SetStateAction<Array<Image>>>,
-	inputFolderSize: number,
-	setInputFolderSize: Dispatch<SetStateAction<number>>,
-	outputFolderSize: number,
-	setOutputFolderSize: Dispatch<SetStateAction<number>>,
-	imagesLoading: boolean,
-	setImagesLoading: Dispatch<SetStateAction<boolean>>,
-	imagesProcessing: Array<string>,
-	setImagesProcessing: Dispatch<SetStateAction<Array<string>>>,
-	crop: Crop,
-	setCrop: Dispatch<SetStateAction<Crop>>
-	zoom: number,
-	setZoom: Dispatch<SetStateAction<number>>
-	quality: number,
-	setQuality: Dispatch<SetStateAction<number>>
-	effort: number,
-	setEffort: Dispatch<SetStateAction<number>>
-};
+import type { ApplicationState } from "./types";
 
 export const appContextDefaults: ApplicationState = {
 	setOutputFolderSize: () => { },
@@ -65,5 +37,3 @@ export const appContextDefaults: ApplicationState = {
 		outputFormat: 'webp'
 	}
 };
-
-export const sharedContext = createContext(appContextDefaults);

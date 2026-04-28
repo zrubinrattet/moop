@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { sharedContext } from "../../shared/context";
+import { sharedContext } from "../shared/context";
 import ImagesListItem from "./imagesListItem";
 import { electroview } from "../shared/electroview";
 

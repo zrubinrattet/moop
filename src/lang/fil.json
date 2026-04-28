@@ -101,6 +101,12 @@
 		"version": "Bersyon",
 		"learnMore": "Matuto pa sa",
 		"madeWith": "Ginawa nang may 💜 sa Oakland, CA.",
-		"settingsWriteError": "Hindi maisulat ang settings file."
+		"settingsWriteError": "Hindi maisulat ang settings file.",
+		"checkForUpdates": "Suriin kung may update",
+		"updateAvailable": "May available na update!",
+		"downloadUpdate": "I-download ang update?",
+		"upToDate": "Mayroon ka nang pinakabagong bersyon",
+		"updateUnavailable": "Hindi available ang update",
+		"downloadUpdateButton1": "Kanselahin"
 	}
 }

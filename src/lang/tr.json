@@ -101,6 +101,12 @@
 		"version": "Sürüm",
 		"learnMore": "Daha fazla bilgi için",
 		"madeWith": "Oakland, CA’da 💜 ile yapıldı.",
-		"settingsWriteError": "Ayarlar dosyası yazılamıyor."
+		"settingsWriteError": "Ayarlar dosyası yazılamıyor.",
+		"checkForUpdates": "Güncellemeleri kontrol et",
+		"updateAvailable": "Güncelleme mevcut!",
+		"downloadUpdate": "Güncelleme indirilsin mi?",
+		"upToDate": "En güncel sürüme sahipsiniz",
+		"updateUnavailable": "Güncelleme kullanılamıyor",
+		"downloadUpdateButton1": "İptal etmek"
 	}
 }

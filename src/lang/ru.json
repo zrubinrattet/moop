@@ -101,6 +101,12 @@
 		"version": "Версия",
 		"learnMore": "Подробнее на",
 		"madeWith": "Сделано с 💜 в Окленде, Калифорния.",
-		"settingsWriteError": "Не удалось записать файл настроек."
+		"settingsWriteError": "Не удалось записать файл настроек.",
+		"checkForUpdates": "Проверить обновления",
+		"updateAvailable": "Доступно обновление!",
+		"downloadUpdate": "Скачать обновление?",
+		"upToDate": "У вас установлена последняя версия",
+		"updateUnavailable": "Обновление недоступно",
+		"downloadUpdateButton1": "Отмена"
 	}
 }
