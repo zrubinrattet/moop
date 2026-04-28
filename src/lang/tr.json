@@ -100,6 +100,7 @@
 		"about": "Hakkında",
 		"version": "Sürüm",
 		"learnMore": "Daha fazla bilgi için",
-		"madeWith": "Oakland, CA’da 💜 ile yapıldı."
+		"madeWith": "Oakland, CA’da 💜 ile yapıldı.",
+		"settingsWriteError": "Ayarlar dosyası yazılamıyor."
 	}
 }

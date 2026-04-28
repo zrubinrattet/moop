@@ -100,6 +100,7 @@
 		"about": "Babagan",
 		"version": "Versi",
 		"learnMore": "Sinau luwih lengkap ing",
-		"madeWith": "Digawe nganggo 💜 ing Oakland, CA."
+		"madeWith": "Digawe nganggo 💜 ing Oakland, CA.",
+		"settingsWriteError": "Ora bisa nulis berkas setelan."
 	}
 }

@@ -23,7 +23,7 @@ const dirSize = async (directory: string) => {
 
 export default async (req: Bun.BunRequest) => {
 	const { imageDirectory, inputDirectory, outputDirectory } = getImageDirectories();
-	const ret: APIResponseType = APIResponse;
+	const ret: APIResponseType = {...APIResponse};
 	const appSettings = getSettings();
 
 	const form = await req.formData();

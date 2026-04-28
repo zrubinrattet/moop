@@ -100,6 +100,7 @@
 		"about": "Tungkol sa",
 		"version": "Bersyon",
 		"learnMore": "Matuto pa sa",
-		"madeWith": "Ginawa nang may 💜 sa Oakland, CA."
+		"madeWith": "Ginawa nang may 💜 sa Oakland, CA.",
+		"settingsWriteError": "Hindi maisulat ang settings file."
 	}
 }

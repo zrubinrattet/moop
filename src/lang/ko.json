@@ -100,6 +100,7 @@
 		"about": "에 대한",
 		"version": "버전",
 		"learnMore": "자세히 알아보기",
-		"madeWith": "캘리포니아 오클랜드에서 💜로 만들었습니다."
+		"madeWith": "캘리포니아 오클랜드에서 💜로 만들었습니다.",
+		"settingsWriteError": "설정 파일을 쓸 수 없습니다."
 	}
 }

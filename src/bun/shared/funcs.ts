@@ -17,7 +17,8 @@ export function convertImageURL(props: convertImageURLProps) {
 	switch (props.type) {
 		case 'absolutetolocal': {
 			const base = props.url.split(/moop-\d+(.*)/);
-			ret = join('http://localhost:43117/images/', base[1]);
+			const rel = (base[1] || "").replace(/^\/+/, "");
+			ret = new URL(rel, 'http://localhost:43117/images/').toString();
 			break;
 		}
 

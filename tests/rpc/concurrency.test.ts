@@ -46,9 +46,8 @@ test('concurrency', async () => {
 				}),
 			}),
 		);
-
-		expect(item.image.input).toMatch(/^http:\/localhost:43117\/images\/input\/.+\.(jpg|jpeg|png)$/);
-		expect(item.image.output).toMatch(/^http:\/localhost:43117\/images\/output\/.+\.webp\?v=\d+$/);
+		expect(item.image.input).toMatch(/^http:\/\/localhost:43117\/images\/input\/.+\.(jpg|png)$/);
+		expect(item.image.output).toMatch(/^http:\/\/localhost:43117\/images\/output\/.+\.webp\?v=\d+$/);
 		expect(item.image.inputSizeBytes).toBeGreaterThan(0);
 		expect(item.image.outputSizeBytes).toBeGreaterThan(0);
 		expect(item.image.inputResolution.width).toBeGreaterThan(0);

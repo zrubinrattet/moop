@@ -53,6 +53,7 @@
 		"deleteImagesCancel": "Cancelled clear all",
 		"unknownError": "Unknown error occurred.",
 		"rpcTimeout": "RPC request timed out.",
+		"settingsWriteError": "Cannot write settings file.",
 		"settingsUpdated": "Settings updated.",
 		"settingsRestoredDefaults": "Default settings restored.",
 		"confirmClearAllTitle" : "Confirm clear all",

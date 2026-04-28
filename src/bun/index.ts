@@ -18,9 +18,7 @@ import updateImage from "./rpc/updateImage";
 import deleteImage from "./rpc/deleteImage";
 import clearAll from "./rpc/clearAll";
 
-import imagesPost from "./routes/imagesPost";
-import imagesGet from "./routes/imagesGet";
-import corsHeaders from "./routes/corsHeaders";
+import initServer from "./server";
 
 
 // prime the settings.json file on disk
@@ -32,31 +30,8 @@ await initSettings();
 // set the locale for the translations
 setLocale(getSettings().language);
 
-
-Bun.serve({
-	port: 43117,
-	routes: {
-		// rest api to upload images
-		'/images': {
-			POST: imagesPost,
-		},
-		// rest api that serves filesystem images via URL
-		'/images/*': imagesGet,
-	},
-	async fetch(req) {
-		// CORS Preflight, 404 etc.
-		if (req.method === "OPTIONS") {
-			return new Response(null, {
-				status: 204,
-				headers: corsHeaders,
-			});
-		}
-		return new Response('Not found', {
-			status: 404,
-			headers: corsHeaders,
-		});
-	},
-});
+// start the bun server for bulk image upload & static image serving.
+initServer();
 
 const rpc = BrowserView.defineRPC<AppRPCSchema>({
 	maxRequestTime: 600000,

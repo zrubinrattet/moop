@@ -3,6 +3,7 @@ import { join } from "node:path";
 import { mkdirSync } from "node:fs";
 import type { ApplicationSettingsType } from "../../shared/types";
 import { appContextDefaults } from "../../shared/context";
+import { t } from "../../lang/lang";
 
 const settingsPath = join(Utils.paths.userData, "settings.json");
 // in-memory store of settings
@@ -17,7 +18,10 @@ function getDefaultSettings(): ApplicationSettingsType {
 
 export async function purgeSettings() {
 	settingsCache = getDefaultSettings();
-	await Bun.write(settingsPath, JSON.stringify(settingsCache));
+	const ret = await Bun.write(settingsPath, JSON.stringify(settingsCache));
+	if (ret === 0) {
+		throw new Error(t('settingsWriteError'))
+	}
 }
 
 export async function initSettings(): Promise<ApplicationSettingsType> {
@@ -30,7 +34,10 @@ export async function initSettings(): Promise<ApplicationSettingsType> {
 
 	if (!exists) {
 		settingsCache = getDefaultSettings();
-		await Bun.write(settingsPath, JSON.stringify(settingsCache));
+		const ret = await Bun.write(settingsPath, JSON.stringify(settingsCache));
+		if (ret === 0) {
+			throw new Error(t('settingsWriteError'))
+		}
 		return settingsCache;
 	}
 
@@ -39,7 +46,10 @@ export async function initSettings(): Promise<ApplicationSettingsType> {
 		settingsCache = { ...getDefaultSettings(), ...loaded };
 	} catch {
 		settingsCache = getDefaultSettings();
-		await Bun.write(settingsPath, JSON.stringify(settingsCache));
+		const ret = await Bun.write(settingsPath, JSON.stringify(settingsCache));
+		if (ret === 0) {
+			throw new Error(t('settingsWriteError'))
+		}
 	}
 
 	return settingsCache;
@@ -47,7 +57,8 @@ export async function initSettings(): Promise<ApplicationSettingsType> {
 
 export function getSettings(): ApplicationSettingsType {
 	if (!settingsCache) {
-		throw new Error("Settings not initialized. Call initSettings() first.");
+		// this only occurs if initSettings() wasn't called first.
+		throw new Error(t('unknownError'));
 	}
 	return settingsCache;
 }
@@ -57,7 +68,10 @@ export async function setSettings(
 ): Promise<ApplicationSettingsType> {
 	const current = getSettings();
 	settingsCache = { ...current, ...patch };
-	await Bun.write(settingsPath, JSON.stringify(settingsCache));
+	const ret = await Bun.write(settingsPath, JSON.stringify(settingsCache));
+	if (ret === 0) {
+		throw new Error(t('settingsWriteError'))
+	}
 	return settingsCache;
 }
 

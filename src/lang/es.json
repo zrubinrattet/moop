@@ -100,6 +100,7 @@
 		"about": "Acerca de",
 		"version": "Versión",
 		"learnMore": "Más información en",
-		"madeWith": "Hecho con 💜 en Oakland, California."
+		"madeWith": "Hecho con 💜 en Oakland, California.",
+		"settingsWriteError": "No se puede escribir el archivo de configuración."
 	}
 }

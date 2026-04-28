@@ -100,6 +100,7 @@
 		"about": "Về",
 		"version": "Phiên bản",
 		"learnMore": "Tìm hiểu thêm tại",
-		"madeWith": "Được tạo với 💜 tại Oakland, CA."
+		"madeWith": "Được tạo với 💜 tại Oakland, CA.",
+		"settingsWriteError": "Không thể ghi tệp cài đặt."
 	}
 }

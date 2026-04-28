@@ -100,6 +100,7 @@
 		"about": "Kuhusu",
 		"version": "Toleo",
 		"learnMore": "Jifunze zaidi kwenye",
-		"madeWith": "Imetengenezwa kwa 💜 huko Oakland, CA."
+		"madeWith": "Imetengenezwa kwa 💜 huko Oakland, CA.",
+		"settingsWriteError": "Haiwezi kuandika faili la mipangilio."
 	}
 }

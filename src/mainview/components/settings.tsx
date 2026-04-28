@@ -144,7 +144,7 @@ export default function SettingsPane() {
 		if (submitterName === 'save') {
 			const newSettings = { ...appContextDefaults.settings, ...draftSettings };
 			try {
-				const res = await electroview.rpc?.request.setSettings(newSettings)
+				await electroview.rpc?.request.setSettings(newSettings)
 				
 				setSettings(newSettings);
 				setQuality(newSettings.quality);
@@ -159,7 +159,7 @@ export default function SettingsPane() {
 		}
 		else if (submitterName === 'restoredefaults') {
 			try {
-				const res = await electroview.rpc?.request.setSettings({ ...appContextDefaults.settings })
+				await electroview.rpc?.request.setSettings({ ...appContextDefaults.settings })
 				
 				setSettings(appContextDefaults.settings)
 				setDraftSettings(appContextDefaults.settings)

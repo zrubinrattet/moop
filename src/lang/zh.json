@@ -100,6 +100,7 @@
 		"about": "关于",
 		"version": "版本",
 		"learnMore": "了解更多：",
-		"madeWith": "于加州奥克兰用💜制作。"
+		"madeWith": "于加州奥克兰用💜制作。",
+		"settingsWriteError": "无法写入设置文件。"
 	}
 }

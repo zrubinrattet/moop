@@ -78,4 +78,8 @@ export function setLocale(language: string) {
 	i18n.locale = language;
 }
 
+export function getLocale(){
+	return i18n.locale;
+}
+
 export default i18n;

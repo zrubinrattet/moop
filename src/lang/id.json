@@ -100,6 +100,7 @@
 		"about": "Tentang",
 		"version": "Versi",
 		"learnMore": "Pelajari lebih lanjut di",
-		"madeWith": "Dibuat dengan 💜 di Oakland, CA."
+		"madeWith": "Dibuat dengan 💜 di Oakland, CA.",
+		"settingsWriteError": "Tidak dapat menulis file pengaturan."
 	}
 }
