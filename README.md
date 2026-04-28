@@ -8,6 +8,16 @@
     <a href="https://github.com/zrubinrattet/moop/actions/workflows/release.yml"><img src="https://github.com/zrubinrattet/moop/actions/workflows/release.yml/badge.svg" alt="Release" /></a>
 </p>
 
+## Install
+
+[Download the latest release for macOS](https://github.com/zrubinrattet/moop/releases)
+
+If you get an error about the application can't be opened it's because the app is not codesigned/validated by the Apple App Store.
+
+You can safely open and run the app after running this in Terminal:
+
+```xattr -cr /Applications/moop.app ```
+
 ## What It Does
 
 * Drag/drop local images
