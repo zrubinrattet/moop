@@ -1,6 +1,6 @@
 {
 	"name": "moop",
-	"version": "0.1.0",
+	"version": "0.1.1",
 	"description": "A simple Electrobun app showcasing core features",
 	"scripts": {
 		"scss": "sass src/mainview/index.scss src/mainview/index.css --watch",
