@@ -23,7 +23,7 @@ jobs:
               run: bun install --frozen-lockfile
 
             - name: Run bun test
-              run: bun test --concurrent=1
+              run: bun test --max-concurrency=1
 
     build-macos-arm64:
         needs: test
