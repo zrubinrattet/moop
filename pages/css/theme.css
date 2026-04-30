@@ -1,0 +1,23 @@
+@media (prefers-color-scheme: dark) {
+	:root {
+		--font-body: #e9e6dc;
+		--body-bg: #101010;
+		--hero-gradient: linear-gradient(135deg, #000, #3b2752, #583555, #3d0042, #000);
+		--features-gradient: radial-gradient(ellipse at center, #353658 0%, #272952 20%, var(--body-bg) 80%);
+		--faq-gradient: linear-gradient(0deg, var(--body-bg) 0%, #252248 15%, #000 100%);
+		--button-primary-bg: #3b338d;
+		--button-secondary-bg: #2e2e2e;
+	}
+}
+
+@media (prefers-color-scheme: light) {
+	:root {
+		--font-body: #1d1b1b;
+		--body-bg: #edcfe5;
+		--hero-gradient: linear-gradient(135deg, #8569bb, #c478cb);
+		--features-gradient: linear-gradient(255deg, #000, #3b2752, #583555, #3d0042, #000);
+		--faq-gradient: linear-gradient(135deg, #000, #3b2752, #353658, #001742, #000);
+		--button-primary-bg: #dc82c5;
+		--button-secondary-bg: #ded3e0;
+	}
+}

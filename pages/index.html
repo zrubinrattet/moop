@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="moop is a modern desktop image optimizer for batch compression, resizing, and format conversion with local-only processing.">
+	<meta name="keywords" content="moop,image optimizer,batch image compression,webp,png,jpeg,desktop app">
+	<meta name="author" content="moop">
+	<meta name="robots" content="index, follow">
+	<link rel="canonical" href="https://zrubinrattet.github.io/moop/">
+	<meta property="og:type" content="website">
+	<meta property="og:site_name" content="moop">
+	<meta property="og:title" content="moop | Desktop Image Optimizer">
+	<meta property="og:description" content="Batch optimize, resize, and convert images with local-only processing.">
+	<meta property="og:url" content="https://zrubinrattet.github.io/moop/">
+	<meta property="og:image" content="./assets/img/icon.webp">
+	<meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:title" content="moop | Desktop Image Optimizer">
+	<meta name="twitter:description" content="Batch optimize, resize, and convert images with local-only processing.">
+	<meta name="twitter:image" content="./assets/img/icon.webp">
+	<link href=" https://cdn.jsdelivr.net/npm/futura-font@1.0.0/styles.min.css" rel="stylesheet">
+	<title>moop</title>
+	<link rel="stylesheet" href="css/theme.css">
+	<link rel="stylesheet" href="css/reset.css">
+	<link rel="stylesheet" href="css/hero.css">
+	<link rel="stylesheet" href="css/features.css">
+	<link rel="stylesheet" href="css/faq.css">
+	<link rel="stylesheet" href="css/footer.css">
+	
+</head>
+
+<body>
+
+	<section class="hero">
+		<div class="hero-wrapper">
+			<div class="hero-wrapper-left">
+				<img src="./assets/img/icon.webp" alt="moop" class="hero-wrapper-left-icon">
+				<h1 class="hero-wrapper-left-header">moop</h1>
+				<h2 class="hero-wrapper-left-subheader1">A modern desktop image optimizer.</h2>
+				<h3 class="hero-wrapper-left-subheader2">Allowing you to <em>moo-ve</em> faster with lighter images.
+				</h3>
+				<div class="hero-wrapper-left-buttons">
+					<a target="_blank"
+						href="https://github.com/zrubinrattet/moop/releases/latest/download/stable-macos-arm64-moop.dmg"
+						class="hero-wrapper-left-buttons-button">Download for macOS (Apple Silcon)</a>
+					<a href="https://github.com/zrubinrattet/moop/" class="hero-wrapper-left-buttons-button">View on
+						Github <svg aria-hidden="true" focusable="false" class="octicon octicon-mark-github"
+							viewBox="0 0 24 24" width="24" height="24" fill="currentColor" display="inline-block"
+							overflow="visible" style="vertical-align:text-bottom">
+							<path
+								d="M12 1C5.9225 1 1 5.9225 1 12C1 16.8675 4.14875 20.9787 8.52125 22.4362C9.07125 22.5325 9.2775 22.2025 9.2775 21.9137C9.2775 21.6525 9.26375 20.7862 9.26375 19.865C6.5 20.3737 5.785 19.1912 5.565 18.5725C5.44125 18.2562 4.905 17.28 4.4375 17.0187C4.0525 16.8125 3.5025 16.3037 4.42375 16.29C5.29 16.2762 5.90875 17.0875 6.115 17.4175C7.105 19.0812 8.68625 18.6137 9.31875 18.325C9.415 17.61 9.70375 17.1287 10.02 16.8537C7.5725 16.5787 5.015 15.63 5.015 11.4225C5.015 10.2262 5.44125 9.23625 6.1425 8.46625C6.0325 8.19125 5.6475 7.06375 6.2525 5.55125C6.2525 5.55125 7.17375 5.2625 9.2775 6.67875C10.1575 6.43125 11.0925 6.3075 12.0275 6.3075C12.9625 6.3075 13.8975 6.43125 14.7775 6.67875C16.8813 5.24875 17.8025 5.55125 17.8025 5.55125C18.4075 7.06375 18.0225 8.19125 17.9125 8.46625C18.6138 9.23625 19.04 10.2125 19.04 11.4225C19.04 15.6437 16.4688 16.5787 14.0213 16.8537C14.42 17.1975 14.7638 17.8575 14.7638 18.8887C14.7638 20.36 14.75 21.5425 14.75 21.9137C14.75 22.2025 14.9563 22.5462 15.5063 22.4362C19.8513 20.9787 23 16.8537 23 12C23 5.9225 18.0775 1 12 1Z">
+							</path>
+						</svg></a>
+				</div>
+				<div class="hero-wrapper-install">
+					<p class="hero-wrapper-install-label">After copying the app to your Applications folder, run the
+						following in Terminal to remove the app from Apple's Quarantine:</p>
+					<pre class="hero-wrapper-install-pre">xattr -cr /Applications/moop.app</pre>
+				</div>
+			</div>
+			<div class="hero-wrapper-right">
+				<video class="hero-wrapper-right-video" muted autoplay loop playsinline>
+					<source src="./assets/vid/moop_intro.webm" type="video/webm">
+				</video>
+			</div>
+		</div>
+		<div class="hero-bg"></div>
+	</section>
+
+	<section class="features">
+		<div class="features-wrapper">
+			<h2 class="features-wrapper-header">Features</h2>
+			<div class="features-wrapper-features">
+				<article class="features-wrapper-features-feature batch">
+					<svg class="features-wrapper-features-feature-image" fill="#000000" height="800px" width="800px"
+						version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
+						xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 488.657 488.657" xml:space="preserve">
+						<g>
+							<path d="M448.104,0.006H192.858c-22.363,0-40.551,18.193-40.551,40.547v35.598h-35.611c-22.363,0-40.551,18.195-40.551,40.55
+		v35.614H40.549C18.184,152.315,0,170.51,0,192.862v255.243c0,22.352,18.184,40.547,40.549,40.547h255.249
+		c22.357,0,40.545-18.195,40.545-40.547v-35.608h35.619c22.361,0,40.547-18.195,40.547-40.549V336.34h35.596
+		c22.365,0,40.553-18.192,40.553-40.547V40.553C488.657,18.198,470.47,0.006,448.104,0.006z M34.356,192.862
+		c0-3.413,2.785-6.191,6.192-6.191h255.249c3.405,0,6.192,2.778,6.192,6.191V375.79l-77.825-5.778l-35.668-40.91
+		c-4.563-5.199-12.385-5.895-17.75-1.602l-29.004,23.135l-32.377-72.709c-1.951-4.36-6.158-7.297-10.926-7.615
+		c-4.816-0.345-9.311,2.038-11.826,6.098L34.356,361.23V192.862z M301.99,408.731H35.362l60.379-98.016l29.223,65.621
+		c1.631,3.64,4.85,6.325,8.727,7.273c3.84,0.947,7.951,0.049,11.088-2.441l32.396-25.836l31.051,35.608
+		c2.23,2.55,5.385,4.126,8.758,4.378l85.007,6.315V408.731z M301.99,448.105c0,3.414-2.787,6.19-6.192,6.19H40.549
+		c-3.407,0-6.192-2.776-6.192-6.19v-13.606H301.99V448.105z M378.149,371.948c0,3.417-2.783,6.19-6.188,6.19h-35.619V192.862
+		c0-22.352-18.188-40.547-40.545-40.547H110.507V116.7c0-3.416,2.781-6.19,6.189-6.19h255.266c3.404,0,6.188,2.775,6.188,6.19
+		V371.948z M454.298,295.793c0,3.413-2.785,6.19-6.193,6.19h-35.596V116.7c0-22.354-18.185-40.55-40.547-40.55H186.667V40.553
+		c0-3.413,2.785-6.19,6.191-6.19h255.246c3.408,0,6.193,2.777,6.193,6.19V295.793z" />
+							<path d="M219.854,294.719c22.155,0,40.144-17.966,40.144-40.137c0-22.159-17.988-40.128-40.144-40.128
+		c-22.161,0-40.148,17.968-40.148,40.128C179.706,276.753,197.692,294.719,219.854,294.719z" />
+						</g>
+					</svg>
+					<h3 class="features-wrapper-features-feature-heading">Batch Jobs</h3>
+					<div class="features-wrapper-features-feature-desc">Optimize many images in one run.</div>
+				</article>
+
+				<article class="features-wrapper-features-feature dragdrop">
+					<svg class="features-wrapper-features-feature-image" width="800px" height="800px"
+						viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+						<g>
+							<path fill="none" d="M0 0h24v24H0z" />
+							<path fill-rule="nonzero"
+								d="M16 13l6.964 4.062-2.973.85 2.125 3.681-1.732 1-2.125-3.68-2.223 2.15L16 13zm-2-7h2v2h5a1 1 0 0 1 1 1v4h-2v-3H10v10h4v2H9a1 1 0 0 1-1-1v-5H6v-2h2V9a1 1 0 0 1 1-1h5V6zM4 14v2H2v-2h2zm0-4v2H2v-2h2zm0-4v2H2V6h2zm0-4v2H2V2h2zm4 0v2H6V2h2zm4 0v2h-2V2h2zm4 0v2h-2V2h2z" />
+						</g>
+					</svg>
+					<h3 class="features-wrapper-features-feature-heading">Drag &amp; Drop</h3>
+					<div class="features-wrapper-features-feature-desc">Drop files in and start instantly.</div>
+				</article>
+
+				<article class="features-wrapper-features-feature formatchoice">
+					<svg class="features-wrapper-features-feature-image" width="800px" height="800px"
+						viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
+						<path fill="#000000"
+							d="M96 896a32 32 0 0 1-32-32V160a32 32 0 0 1 32-32h832a32 32 0 0 1 32 32v704a32 32 0 0 1-32 32H96zm315.52-228.48-68.928-68.928a32 32 0 0 0-45.248 0L128 768.064h778.688l-242.112-290.56a32 32 0 0 0-49.216 0L458.752 665.408a32 32 0 0 1-47.232 2.112zM256 384a96 96 0 1 0 192.064-.064A96 96 0 0 0 256 384z" />
+					</svg>
+					<h3 class="features-wrapper-features-feature-heading">Format Choice</h3>
+					<div class="features-wrapper-features-feature-desc">Output as WebP, PNG, or JPEG.</div>
+				</article>
+
+				<article class="features-wrapper-features-feature qualitytuning">
+					<svg class="features-wrapper-features-feature-image" width="800px" height="800px"
+						viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<path
+							d="M8 8.5C8 9.88071 6.88071 11 5.5 11C4.11929 11 3 9.88071 3 8.5C3 7.11929 4.11929 6 5.5 6C6.88071 6 8 7.11929 8 8.5ZM8 8.5H21M16 15.5C16 16.8807 17.1193 18 18.5 18C19.8807 18 21 16.8807 21 15.5C21 14.1193 19.8807 13 18.5 13C17.1193 13 16 14.1193 16 15.5ZM16 15.5H3"
+							stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+					</svg>
+					<h3 class="features-wrapper-features-feature-heading">Quality Tuning</h3>
+					<div class="features-wrapper-features-feature-desc">Balance file size and visual fidelity.</div>
+				</article>
+
+				<article class="features-wrapper-features-feature smartresize">
+					<svg class="features-wrapper-features-feature-image" fill="#000000" width="800px" height="800px"
+						viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg">
+						<path
+							d="M23.977 28.965v-1.932h3.988v-3.988h2.057v5.92h-6.045zM27.965 5.967h-3.988v-1.932h6.045v5.92h-2.057v-3.988zM3.035 9.955h-2.056v-5.92h6.045v1.932h-3.989v3.988zM4.967 8.023h21.066v16.953h-21.066v-16.953zM7.023 23.045h16.953v-13.090h-16.953v13.090zM9.018 12.012h13.027v8.977h-13.027v-8.977zM3.035 27.033h3.988v1.932h-6.044v-5.92h2.057v3.988z">
+						</path>
+					</svg>
+					<h3 class="features-wrapper-features-feature-heading">Smart Resize</h3>
+					<div class="features-wrapper-features-feature-desc">Scale down while keeping proportions.</div>
+				</article>
+
+				<article class="features-wrapper-features-feature animation">
+					<svg class="features-wrapper-features-feature-image" width="800px" height="800px"
+						viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<path fill-rule="evenodd" clip-rule="evenodd" d="M16 2H0V14H16V2ZM6.5 5V11H7.5L11 8L7.5 5H6.5Z"
+							fill="#000000" />
+					</svg>
+					<h3 class="features-wrapper-features-feature-heading">Animation Ready</h3>
+					<div class="features-wrapper-features-feature-desc">Preserve animation for GIF and WebP.</div>
+				</article>
+
+				<article class="features-wrapper-features-feature languages">
+					<svg class="features-wrapper-features-feature-image" width="800px" height="800px"
+						viewBox="0 0 192 192" xmlns="http://www.w3.org/2000/svg" fill="none">
+						<path fill="#000000"
+							d="M38.675 99.799a3.54 3.54 0 0 0-3.51 3.068c-.235 1.712-.53 4.013-.708 5.016a2.37 2.37 0 0 1-2.333 1.947h-4.51a5.318 5.318 0 0 0-5.314 5.134 180.844 180.844 0 0 0-.137 4.398c-.009.645.341 1.033.983 1.098 1.042.104 2.822.255 4.82.406l3.564.218a2.145 2.145 0 0 1 2.004 2.349c-.094 1.94-.279 3.127-.355 5.309l-.02.613a6 6 0 0 1-3.06 5.024l-.422.237c-13.809 7.849-17.94 22.484-8.793 31.572 3.6 3.6 7.141 5.016 12.511 5.016 15.226 0 27.559-9.678 32.693-25.611 1.24-3.836 1.357-3.955 2.892-3.601 10.209 2.538 10.799 15.58.885 20.714-1.948 1.003-3.836 1.947-4.249 2.065-.531.177-.472 1.417.236 5.253.374 1.757.724 3.348.946 4.308.145.629.563.957 1.187.793.728-.19 1.796-.532 2.942-.97 6.846-2.479 11.98-6.964 14.871-12.983 1.653-3.423 1.83-4.426 1.83-9.147 0-4.485-.236-5.843-1.534-8.557-3.01-6.433-8.616-10.504-17.94-13.101-3.895-1.062-6.374-1.298-14.281-1.298l-5.724-.035a3.92 3.92 0 0 1-3.895-3.919 4.077 4.077 0 0 1 3.891-4.073l5.137-.235c8.439-.413 22.72-1.83 23.192-2.302.25-.249-.51-7.137-.966-9.53-.103-.54-.487-.845-1.036-.823-.988.04-2.746.199-4.666.439-2.833.354-9.56.885-14.871 1.062l-6.474.237a2.766 2.766 0 0 1-2.85-3.07c.236-1.77.59-4.071.767-5.134a1.555 1.555 0 0 0-1.52-1.888h-6.183Zm15.591 40.156a1.71 1.71 0 0 1 1.672 2.156c-.886 3.304-3.777 8.674-5.901 11.094-2.242 2.597-2.36 2.479-4.013-4.485-1.475-6.196-1.476-8.026-.118-8.38.53-.177 3.187-.295 5.843-.354l2.517-.031Zm-21.077 5.343c.493-.416.891-.218 1.042.409.217.899.546 2.349.875 3.957.531 2.597 1.476 5.902 2.066 7.436 1.18 3.246 1.003 3.481-3.304 3.481-3.6 0-5.902-1.298-6.729-3.835-1.003-2.951.06-5.607 3.66-9.207.937-.937 1.799-1.742 2.39-2.241Zm103.42-47.27a5.606 5.606 0 0 0-5.606 5.606v.295a5.901 5.901 0 0 1-5.902 5.901h-13.278a5.606 5.606 0 0 0-5.606 5.606v.65a4.957 4.957 0 0 0 4.898 4.957h.232a6 6 0 0 1 5.833 4.594l.073.304c1.711 6.787 4.366 12.983 8.143 18.767 2.479 3.717 3.069 5.015 2.597 5.664-2.125 2.538-12.747 8.439-19.533 10.859-2.302.767-4.013 1.77-4.013 2.183 0 .649 2.361 9.501 2.656 9.973.177.295 8.379-2.655 12.333-4.484 3.245-1.476 11.508-6.61 16.524-10.328.472-.295 2.183.65 4.956 2.715 2.361 1.771 6.67 4.485 9.561 6.019 5.842 3.069 14.812 6.433 15.402 5.784.397-.496 2.336-7.33 2.77-9.602.092-.482-.153-.85-.608-1.033a64.284 64.284 0 0 0-3.401-1.227c-6.963-2.479-19.946-9.855-20.064-11.448 0-.236 1.121-2.066 2.419-4.073 4.131-6.078 7.908-15.166 9.619-23.073.354-1.594.414-1.594 5.371-1.594a5.015 5.015 0 0 0 5.015-5.015v-.591a5.605 5.605 0 0 0-5.606-5.606h-13.278a5.902 5.902 0 0 1-5.901-5.902v-.295a5.606 5.606 0 0 0-5.606-5.606Zm.295 23.015c4.898 0 8.852.236 8.852.472 0 2.361-5.488 14.813-8.026 18.117-.885 1.181-.885 1.18-2.006-.295-2.951-3.777-7.672-14.459-7.672-17.232 0-1.003.649-1.062 8.852-1.062Zm5.429-92.533a4.957 4.957 0 0 0-4.957-4.986h-24.667a5.754 5.754 0 1 0 0 11.508h16.228c.762 0 1.333.699 1.18 1.446-.708 2.891-3.068 8.38-5.075 11.861-2.773 4.603-11.743 13.455-16.641 16.288a5.252 5.252 0 0 0-1.662 6.985l.162.283c1.507 2.637 4.843 3.594 7.448 2.031 2.157-1.293 4.606-2.853 6.326-4.224 12.983-10.328 21.009-25.612 21.658-41.191ZM47.465 17.83a6 6 0 0 0-5.713 3.923L31.3 50.08A3186.195 3186.195 0 0 0 20.84 79c-.743 2.086.804 4.275 3.018 4.275h3.192a6 6 0 0 0 5.647-3.974l1.909-5.32 1.78-4.902a6 6 0 0 1 5.64-3.95h18.203a6 6 0 0 1 5.655 3.992l1.829 5.154 1.928 5.116a6 6 0 0 0 5.615 3.884h3.251c2.21 0 3.75-2.197 2.994-4.275-.767-2.183-5.91-16.557-11.517-32.313l-8.956-24.834a6 6 0 0 0-5.644-3.964H51.63l-4.165-.059ZM48.902 35c.851-2.385 4.296-2.403 5.095 0l4.654 14c.683 2.056-.848 4.178-3.014 4.178H46.77c-2.167 0-3.683-2.14-2.95-4.178 1.681-4.67 3.413-9.325 5.082-14ZM162.87 21.46a5.459 5.459 0 0 0-5.459-5.46 5.754 5.754 0 0 0-5.754 5.754v57.685a5.606 5.606 0 0 0 5.606 5.606 5.459 5.459 0 0 0 5.459-5.459V61.72a6 6 0 0 1 6.32-5.991l.123.006 1.531-.077A5.585 5.585 0 0 0 176 50.08c0-2.96-2.4-5.36-5.36-5.36h-1.77a6 6 0 0 1-6-6V21.459Z" />
+					</svg>
+					<h3 class="features-wrapper-features-feature-heading">Many Languages</h3>
+					<div class="features-wrapper-features-feature-desc">Use moop in your preferred language.</div>
+				</article>
+
+				<article class="features-wrapper-features-feature localonly">
+					<svg class="features-wrapper-features-feature-image" width="800px" height="800px"
+						viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<path
+							d="M18.5221 18.5208C17.9141 18.8274 17.2272 19 16.5 19L8.4 19C5.41766 19 3 16.6044 3 13.6493C3 11.2001 4.8 8.9375 7.5 8.5C7.59659 8.27034 7.70825 8.04754 7.83373 7.83303M10.9021 5.30015C11.4635 5.10615 12.0645 5 12.6893 5C15.684 5 18.1317 7.32251 18.3 10.25C19.8893 10.9449 21 12.6503 21 14.4969C21 14.7799 20.9739 15.0568 20.924 15.3253M3 3L21 21"
+							stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+					</svg>
+					<h3 class="features-wrapper-features-feature-heading">Local Only</h3>
+					<div class="features-wrapper-features-feature-desc">Processing stays on your device.</div>
+				</article>
+
+			</div>
+		</div>
+		<div class="features-bg"></div>
+	</section>
+
+	<section class="faq">
+		<div class="faq-wrapper">
+			<h2 class="faq-wrapper-header">FAQ</h2>
+			<div class="faq-wrapper-items">
+				<div class="faq-wrapper-items-item">
+					<input type="radio" name="accordion-2" id="rd1">
+					<label for="rd1" class="faq-wrapper-items-item-label">What image formats can I import?</label>
+					<div class="faq-wrapper-items-item-content">
+						<p>You can import JPEG/JPG, PNG, WebP, TIFF/TIF, GIF, SVG/SVGZ, and AVIF.</p>
+					</div>
+				</div>
+				<div class="faq-wrapper-items-item">
+					<input type="radio" name="accordion-2" id="rd2">
+					<label for="rd2" class="faq-wrapper-items-item-label">What formats can I export to?</label>
+					<div class="faq-wrapper-items-item-content">
+						<p>moop currently exports to WebP, PNG, and JPEG.</p>
+					</div>
+				</div>
+				<div class="faq-wrapper-items-item">
+					<input type="radio" name="accordion-2" id="rd3">
+					<label for="rd3" class="faq-wrapper-items-item-label">Can I process multiple images at once?</label>
+					<div class="faq-wrapper-items-item-content">
+						<p>Yes. moop is built for batch processing, so you can optimize many files in one run.</p>
+					</div>
+				</div>
+				<div class="faq-wrapper-items-item">
+					<input type="radio" name="accordion-2" id="rd4">
+					<label for="rd4" class="faq-wrapper-items-item-label">Does moop support drag and drop?</label>
+					<div class="faq-wrapper-items-item-content">
+						<p>Yes. Drag files into the app to queue them instantly.</p>
+					</div>
+				</div>
+				<div class="faq-wrapper-items-item">
+					<input type="radio" name="accordion-2" id="rd5">
+					<label for="rd5" class="faq-wrapper-items-item-label">Can I resize images while converting?</label>
+					<div class="faq-wrapper-items-item-content">
+						<p>Yes. You can set max width and height while keeping proportions intact.</p>
+					</div>
+				</div>
+				<div class="faq-wrapper-items-item">
+					<input type="radio" name="accordion-2" id="rd6">
+					<label for="rd6" class="faq-wrapper-items-item-label">Does it support animated files?</label>
+					<div class="faq-wrapper-items-item-content">
+						<p>Yes. Animated GIF and animated WebP are supported.</p>
+					</div>
+				</div>
+				<div class="faq-wrapper-items-item">
+					<input type="radio" name="accordion-2" id="rd7">
+					<label for="rd7" class="faq-wrapper-items-item-label">Are my images uploaded to the cloud?</label>
+					<div class="faq-wrapper-items-item-content">
+						<p>No. moop is local-only, so your images stay on your machine.</p>
+					</div>
+				</div>
+				<div class="faq-wrapper-items-item">
+					<input type="radio" name="accordion-2" id="rd8">
+					<label for="rd8" class="faq-wrapper-items-item-label">Where are processed files saved?</label>
+					<div class="faq-wrapper-items-item-content">
+						<p>Files are saved in app-managed input and output folders. You can click the reveal in file
+							manager button to view these files at their location.</p>
+					</div>
+				</div>
+				<div class="faq-wrapper-items-item">
+					<input type="radio" name="accordion-2" id="rd9">
+					<label for="rd9" class="faq-wrapper-items-item-label">How do quality controls work?</label>
+					<div class="faq-wrapper-items-item-content">
+						<p>Adjust quality and effort to balance visual fidelity against file size.</p>
+					</div>
+				</div>
+				<div class="faq-wrapper-items-item">
+					<input type="radio" name="accordion-2" id="rd10">
+					<label for="rd10" class="faq-wrapper-items-item-label">Does moop preserve transparency?</label>
+					<div class="faq-wrapper-items-item-content">
+						<p>Yes. Formats like PNG and WebP can preserve alpha transparency.</p>
+					</div>
+				</div>
+				<div class="faq-wrapper-items-item">
+					<input type="radio" name="accordion-2" id="rd11">
+					<label for="rd11" class="faq-wrapper-items-item-label">Can I use moop in different
+						languages?</label>
+					<div class="faq-wrapper-items-item-content">
+						<p>Yes. moop includes multilingual UI support.</p>
+					</div>
+				</div>
+				<div class="faq-wrapper-items-item">
+					<input type="radio" name="accordion-2" id="rd12">
+					<label for="rd12" class="faq-wrapper-items-item-label">Which platforms does moop support?</label>
+					<div class="faq-wrapper-items-item-content">
+						<p>moop is a desktop app currently supported on macOS. Support for Windows & Linux coming soon.
+							Check releases for the latest available builds.</p>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="faq-bg"></div>
+	</section>
+
+	<footer class="footer">
+		<div class="footer-wrapper">
+			&copy; moop
+			<script>document.write(new Date().getFullYear())</script>. All rights reserved. Made with 💜 in Oakland, CA.
+		</div>
+	</footer>
+</body>
+
+</html>

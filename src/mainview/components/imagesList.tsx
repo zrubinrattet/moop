@@ -8,6 +8,7 @@ import toast from "react-hot-toast";
 import { t } from "../../lang/lang";
 import { BaseResponseType } from "../../shared/types";
 import { handleRPCRequestCatch } from "../shared/utils";
+import { eventBus } from "../shared/eventbus";
 
 
 
@@ -39,8 +40,9 @@ export default function ImagesList() {
 		e.preventDefault();
 
 		try {
-
+			eventBus.dispatchEvent(new CustomEvent('clearAllStart'));
 			const res: BaseResponseType | undefined = await electroview.rpc?.request.clearAll();
+			eventBus.dispatchEvent(new CustomEvent('clearAllDone'));
 			
 			if (res?.severity === 'SUCCESS') {
 				appContext.setImages([]);
