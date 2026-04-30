@@ -42,6 +42,6 @@ export default {
 		exitOnLastWindowClosed: true
 	},
 	release: {
-		baseUrl: "https://github.com/zrubinrattet/moop/releases/download"
+		baseUrl: "https://github.com/zrubinrattet/moop/releases/latest/download"
 	}
 } satisfies ElectrobunConfig;
