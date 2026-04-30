@@ -27,7 +27,8 @@ Electrobun.events.on("application-menu-clicked", async (e) => {
 			message: `${t('version')}
 			${currentVersion}
 			
-			${t('learnMore')} https://getmoop.app
+			${t('learnMore')}
+			https://zrubinrattet.github.io/moop/
 
 			${t('madeWith')}`
 		});
