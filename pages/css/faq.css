@@ -13,7 +13,8 @@
 
 	.faq-wrapper-header {
 		font-size: 55px;
-		margin-bottom: 80px;
+		margin-bottom: 45px;
+		margin-top: 0px;
 	}
 
 
@@ -85,5 +86,11 @@
 		background-image: var(--faq-gradient);
 		filter: blur(100px);
 		pointer-events: none;
+	}
+}
+
+@media only screen and (min-width: 768px){
+	.faq{
+		padding: 80px 40px;
 	}
 }
