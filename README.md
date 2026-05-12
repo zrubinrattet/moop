@@ -8,6 +8,11 @@
     <a href="https://github.com/zrubinrattet/moop/actions/workflows/release.yml"><img src="https://github.com/zrubinrattet/moop/actions/workflows/release.yml/badge.svg" alt="Release" /></a>
 </p>
 
+<p align="center">
+    <img src="pages/assets/vid/moop_intro.gif" align="center">
+</p>
+
+
 ## Install
 
 [Download the latest release for macOS](https://github.com/zrubinrattet/moop/releases)
