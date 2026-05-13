@@ -107,6 +107,7 @@
 		"downloadUpdate": "Скачать обновление?",
 		"upToDate": "У вас установлена последняя версия",
 		"updateUnavailable": "Обновление недоступно",
+		"exceedsPixelLimit": "Входное изображение превышает ограничение по пикселям.",
 		"downloadUpdateButton1": "Отмена"
 	}
 }

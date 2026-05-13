@@ -107,6 +107,7 @@
 		"downloadUpdate": "Undhuh nganyari?",
 		"upToDate": "Sampeyan wis nganggo versi paling anyar",
 		"updateUnavailable": "Nganyari ora kasedhiya",
+		"exceedsPixelLimit": "Gambar input ngluwihi watesan piksel.",
 		"downloadUpdateButton1": "Batal"
 	}
 }

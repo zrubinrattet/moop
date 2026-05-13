@@ -107,6 +107,7 @@
 		"downloadUpdate": "అప్‌డేట్ డౌన్‌లోడ్ చేయాలా?",
 		"upToDate": "మీ వద్ద తాజా వెర్షన్ ఉంది",
 		"updateUnavailable": "అప్‌డేట్ అందుబాటులో లేదు",
+		"exceedsPixelLimit": "ఇన్‌పుట్ చిత్రం పిక్సెల్ పరిమితిని మించిపోయింది.",
 		"downloadUpdateButton1": "రద్దు చేయి"
 	}
 }

@@ -64,9 +64,13 @@ export default async (req: Bun.BunRequest) => {
 		const inputPath = join(inputDirectory, image.name);
 		const bytes = await image.bytes();
 		await Bun.write(inputPath, bytes);
-		await queue.push({ path: inputPath }).catch((err) => {
-			console.error(err)
-		})
+		let queueError:Error|undefined;
+		await queue.push({ path: inputPath }).catch((error) => {
+			if( error instanceof Error ){
+				queueError = error;
+			}
+		});
+		
 
 		// check if the output file got made
 		const outputPath = join(outputDirectory, `${path.parse(image.name).name}.${appSettings.outputFormat}`);
@@ -100,6 +104,16 @@ export default async (req: Bun.BunRequest) => {
 			ret.inputFolderSize = await dirSize(inputDirectory);
 			ret.outputFolderSize = await dirSize(outputDirectory);
 		}
+		else if( typeof queueError !== 'undefined' ){
+			if( queueError.message.indexOf('exceeds') > -1 ){
+				ret.message = t('exceedsPixelLimit');
+			}
+			else{
+				ret.message = queueError.message;
+			}
+			ret.severity = 'ERROR';
+			ok = false;
+		}
 		else {
 			ret.message = t('updateImageError');
 			ret.severity = 'ERROR';
@@ -116,7 +130,7 @@ export default async (req: Bun.BunRequest) => {
 
 		ret.severity = 'ERROR';
 	}
-
+	
 	return Response.json(
 		{ ok: ok, data: ret },
 		{ headers: corsHeaders }

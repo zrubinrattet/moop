@@ -107,6 +107,7 @@
 		"downloadUpdate": "ನವೀಕರಣವನ್ನು ಡೌನ್‌ಲೋಡ್ ಮಾಡಬೇಕೆ?",
 		"upToDate": "ನೀವು ಇತ್ತೀಚಿನ ಆವೃತ್ತಿಯನ್ನು ಹೊಂದಿದ್ದೀರಿ",
 		"updateUnavailable": "ನವೀಕರಣ ಲಭ್ಯವಿಲ್ಲ",
+		"exceedsPixelLimit": "ಇನ್‌ಪುಟ್ ಚಿತ್ರವು ಪಿಕ್ಸೆಲ್ ಮಿತಿಯನ್ನು ಮೀರಿದೆ.",
 		"downloadUpdateButton1": "ರದ್ದುಮಾಡು"
 	}
 }

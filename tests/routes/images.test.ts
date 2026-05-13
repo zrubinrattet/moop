@@ -114,4 +114,18 @@ describe('images api route tests', () => {
 		const outputBuffer = Buffer.from(await outputRes.arrayBuffer());
 		expect(isAnimated(outputBuffer)).toBe(true);
 	})
+	test('imageUpload: too big', async () => {
+		const relPath = '../fixtures/toobig.gif';
+		const formData = new FormData();
+		const file = Bun.file(join(__dirname, relPath));
+		formData.append("image", file, path.parse(relPath).base);
+		const res = await fetch("http://localhost:43117/images", {
+			method: "POST",
+			body: formData,
+		});
+		const resJson = await res.json();
+		expect(resJson.ok).toBe(false);
+		expect(resJson.data.severity).toBe('ERROR');
+		expect(resJson.data.message).toContain('exceeds');
+	})
 })

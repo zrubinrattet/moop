@@ -107,6 +107,7 @@
 		"downloadUpdate": "Pakua sasisho?",
 		"upToDate": "Una toleo jipya zaidi",
 		"updateUnavailable": "Sasisho halipatikani",
+		"exceedsPixelLimit": "Picha ya ingizo inazidi kikomo cha pikseli.",
 		"downloadUpdateButton1": "Ghairi"
 	}
 }

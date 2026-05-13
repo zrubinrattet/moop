@@ -107,6 +107,7 @@
 		"downloadUpdate": "புதுப்பிப்பை பதிவிறக்கவா?",
 		"upToDate": "உங்களிடம் சமீபத்திய பதிப்பு உள்ளது",
 		"updateUnavailable": "புதுப்பிப்பு கிடைக்கவில்லை",
+		"exceedsPixelLimit": "உள்ளீட்டு படம் பிக்சல் வரம்பை மீறுகிறது.",
 		"downloadUpdateButton1": "ரத்து செய்"
 	}
 }

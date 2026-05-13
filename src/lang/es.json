@@ -107,6 +107,7 @@
 		"downloadUpdate": "¿Descargar actualización?",
 		"upToDate": "Tienes la versión más reciente",
 		"updateUnavailable": "Actualización no disponible",
+		"exceedsPixelLimit": "La imagen de entrada supera el límite de píxeles.",
 		"downloadUpdateButton1": "Cancelar"
 	}
 }

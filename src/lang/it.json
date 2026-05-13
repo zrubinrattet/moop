@@ -107,6 +107,7 @@
 		"downloadUpdate": "Scaricare l'aggiornamento?",
 		"upToDate": "Hai l'ultima versione",
 		"updateUnavailable": "Aggiornamento non disponibile",
+		"exceedsPixelLimit": "L'immagine di input supera il limite di pixel.",
 		"downloadUpdateButton1": "Cancellare"
 	}
 }

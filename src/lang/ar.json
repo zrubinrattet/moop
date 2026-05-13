@@ -107,6 +107,7 @@
 		"downloadUpdate": "تنزيل التحديث؟",
 		"upToDate": "لديك أحدث إصدار",
 		"updateUnavailable": "التحديث غير متاح",
+		"exceedsPixelLimit": "تتجاوز الصورة المدخلة حد البكسل.",
 		"downloadUpdateButton1": "يلغي"
 	}
 }

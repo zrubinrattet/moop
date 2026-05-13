@@ -107,6 +107,7 @@
 		"downloadUpdate": "Unduh pembaruan?",
 		"upToDate": "Anda menggunakan versi terbaru",
 		"updateUnavailable": "Pembaruan tidak tersedia",
+		"exceedsPixelLimit": "Gambar input melebihi batas piksel.",
 		"downloadUpdateButton1": "Membatalkan"
 	}
 }

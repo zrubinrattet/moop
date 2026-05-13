@@ -107,6 +107,7 @@
 		"downloadUpdate": "Tải bản cập nhật?",
 		"upToDate": "Bạn đang dùng phiên bản mới nhất",
 		"updateUnavailable": "Không thể cập nhật",
+		"exceedsPixelLimit": "Ảnh đầu vào vượt quá giới hạn pixel.",
 		"downloadUpdateButton1": "Hủy bỏ"
 	}
 }

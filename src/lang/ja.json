@@ -107,6 +107,7 @@
 		"downloadUpdate": "アップデートをダウンロードしますか？",
 		"upToDate": "最新バージョンです",
 		"updateUnavailable": "アップデートは利用できません",
+		"exceedsPixelLimit": "入力画像がピクセル制限を超えています。",
 		"downloadUpdateButton1": "キャンセル"
 	}
 }

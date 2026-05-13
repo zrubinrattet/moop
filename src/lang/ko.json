@@ -107,6 +107,7 @@
 		"downloadUpdate": "업데이트를 다운로드할까요?",
 		"upToDate": "최신 버전입니다",
 		"updateUnavailable": "업데이트를 사용할 수 없습니다",
+		"exceedsPixelLimit": "입력 이미지가 픽셀 제한을 초과했습니다.",
 		"downloadUpdateButton1": "취소"
 	}
 }

@@ -107,6 +107,7 @@
 		"downloadUpdate": "अपडेट डाउनलोड करीं?",
 		"upToDate": "रउरा लगे नवीनतम संस्करण बा",
 		"updateUnavailable": "अपडेट उपलब्ध नइखे",
+		"exceedsPixelLimit": "इनपुट छवि पिक्सेल सीमा से अधिक बा।",
 		"downloadUpdateButton1": "रद्द करना"
 	}
 }

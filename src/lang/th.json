@@ -107,6 +107,7 @@
 		"downloadUpdate": "ดาวน์โหลดอัปเดตหรือไม่?",
 		"upToDate": "คุณใช้เวอร์ชันล่าสุดอยู่แล้ว",
 		"updateUnavailable": "ไม่สามารถอัปเดตได้",
+		"exceedsPixelLimit": "รูปภาพอินพุตเกินขีดจำกัดพิกเซล",
 		"downloadUpdateButton1": "ยกเลิก"
 	}
 }

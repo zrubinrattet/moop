@@ -107,6 +107,7 @@
 		"downloadUpdate": "അപ്‌ഡേറ്റ് ഡൗൺലോഡ് ചെയ്യണോ?",
 		"upToDate": "നിങ്ങൾ ഏറ്റവും പുതിയ പതിപ്പിലാണ്",
 		"updateUnavailable": "അപ്‌ഡേറ്റ് ലഭ്യമല്ല",
+		"exceedsPixelLimit": "ഇൻപുട്ട് ചിത്രം പിക്സൽ പരിധി കവിയുന്നു.",
 		"downloadUpdateButton1": "റദ്ദാക്കുക"
 	}
 }

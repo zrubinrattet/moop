@@ -107,6 +107,7 @@
 		"downloadUpdate": "আপডেট ডাউনলোড করবেন?",
 		"upToDate": "আপনার কাছে সর্বশেষ সংস্করণ আছে",
 		"updateUnavailable": "আপডেট উপলব্ধ নয়",
+		"exceedsPixelLimit": "ইনপুট ছবিটি পিক্সেল সীমা অতিক্রম করেছে।",
 		"downloadUpdateButton1": "বাতিল করুন"
 	}
 }

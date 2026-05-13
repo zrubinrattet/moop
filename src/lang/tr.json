@@ -107,6 +107,7 @@
 		"downloadUpdate": "Güncelleme indirilsin mi?",
 		"upToDate": "En güncel sürüme sahipsiniz",
 		"updateUnavailable": "Güncelleme kullanılamıyor",
+		"exceedsPixelLimit": "Giriş görüntüsü piksel sınırını aşıyor.",
 		"downloadUpdateButton1": "İptal etmek"
 	}
 }

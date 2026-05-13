@@ -74,8 +74,7 @@ export default function DragDrop() {
 				if (!firstPromiseResolved) {
 					firstPromiseResolved = true;
 					if (!val.ok) {
-
-						toast(t('updateImageError'), {
+						toast(val.data.message, {
 							className: 'hottoast'
 						})
 						return;

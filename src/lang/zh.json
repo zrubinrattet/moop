@@ -107,6 +107,7 @@
 		"downloadUpdate": "下载更新吗？",
 		"upToDate": "你已是最新版本",
 		"updateUnavailable": "无法更新",
+		"exceedsPixelLimit": "输入图像超出像素限制。",
 		"downloadUpdateButton1": "取消"
 	}
 }

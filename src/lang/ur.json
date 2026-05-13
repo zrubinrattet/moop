@@ -107,6 +107,7 @@
 		"downloadUpdate": "اپ ڈیٹ ڈاؤن لوڈ کریں؟",
 		"upToDate": "آپ کے پاس تازہ ترین ورژن ہے",
 		"updateUnavailable": "اپ ڈیٹ دستیاب نہیں",
+		"exceedsPixelLimit": "ان پٹ تصویر پکسل کی حد سے تجاوز کر گئی ہے۔",
 		"downloadUpdateButton1": "منسوخ کریں۔"
 	}
 }

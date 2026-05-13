@@ -107,6 +107,7 @@
 		"downloadUpdate": "A sauke sabuntawar?",
 		"upToDate": "Kana da sabuwar sigar",
 		"updateUnavailable": "Sabuntawa ba ya samuwa",
+		"exceedsPixelLimit": "Hoton shigarwa ya wuce iyakar pixels.",
 		"downloadUpdateButton1": "Soke"
 	}
 }

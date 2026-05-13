@@ -61,6 +61,7 @@ Once installed, then run to install the build system and spin up the dev build w
 ```bash
 bun install
 bun run dev
+bun run scss
 ```
 
 ### Build

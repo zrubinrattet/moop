@@ -107,6 +107,7 @@
 		"downloadUpdate": "અપડેટ ડાઉનલોડ કરશો?",
 		"upToDate": "તમારી પાસે નવીનતમ આવૃત્તિ છે",
 		"updateUnavailable": "અપડેટ ઉપલબ્ધ નથી",
+		"exceedsPixelLimit": "ઇનપુટ છબી પિક્સેલ મર્યાદા કરતાં વધી ગઈ છે.",
 		"downloadUpdateButton1": "રદ કરો"
 	}
 }

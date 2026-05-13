@@ -107,6 +107,7 @@
 		"downloadUpdate": "ዝማኔን አውርድ?",
 		"upToDate": "የቅርብ ጊዜ ስሪት አለዎት",
 		"updateUnavailable": "ዝማኔ አይገኝም",
+		"exceedsPixelLimit": "የግቤት ምስል የፒክስል ገደብን አልፏል።",
 		"downloadUpdateButton1": "ሰርዝ"
 	}
 }

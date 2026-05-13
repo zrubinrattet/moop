@@ -107,6 +107,7 @@
 		"downloadUpdate": "به‌روزرسانی دانلود شود؟",
 		"upToDate": "شما آخرین نسخه را دارید",
 		"updateUnavailable": "به‌روزرسانی در دسترس نیست",
+		"exceedsPixelLimit": "تصویر ورودی از محدودیت پیکسل فراتر می‌رود.",
 		"downloadUpdateButton1": "لغو کنید"
 	}
 }

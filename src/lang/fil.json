@@ -107,6 +107,7 @@
 		"downloadUpdate": "I-download ang update?",
 		"upToDate": "Mayroon ka nang pinakabagong bersyon",
 		"updateUnavailable": "Hindi available ang update",
+		"exceedsPixelLimit": "Lumampas sa limitasyon ng pixel ang input na larawan.",
 		"downloadUpdateButton1": "Kanselahin"
 	}
 }

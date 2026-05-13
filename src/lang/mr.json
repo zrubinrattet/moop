@@ -107,6 +107,7 @@
 		"downloadUpdate": "अपडेट डाउनलोड करायचा?",
 		"upToDate": "तुमच्याकडे नवीनतम आवृत्ती आहे",
 		"updateUnavailable": "अपडेट उपलब्ध नाही",
+		"exceedsPixelLimit": "इनपुट प्रतिमा पिक्सेल मर्यादा ओलांडते.",
 		"downloadUpdateButton1": "रद्द करा"
 	}
 }

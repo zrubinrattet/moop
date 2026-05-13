@@ -107,6 +107,7 @@
 		"downloadUpdate": "Update herunterladen?",
 		"upToDate": "Sie haben die neueste Version",
 		"updateUnavailable": "Update nicht verfügbar",
+		"exceedsPixelLimit": "Das Eingabebild überschreitet die Pixelgrenze.",
 		"downloadUpdateButton1": "Stornieren"
 	}
 }

@@ -75,6 +75,7 @@
 		"downloadUpdateButton1" : "Cancel",
 		"upToDate" : "You have the latest version",
 		"updateUnavailable" : "Update unavailable",
+		"exceedsPixelLimit" : "Input image exceeds pixel limit.",
 		"en": "English",
 		"zh": "Chinese",
 		"hi": "Hindi",
