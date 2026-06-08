@@ -1,0 +1,17 @@
+{
+	"compilerOptions": {
+		"target": "ESNext",
+		"module": "ESNext",
+		"moduleResolution": "Bundler",
+		"jsx": "react-jsx",
+		"allowSyntheticDefaultImports": true,
+		"skipLibCheck": true
+	},
+	"include": [
+		"electrobun.config.ts",
+		"src/**/*.ts",
+		"src/**/*.tsx",
+		"src/**/*.d.ts",
+		"tests/**/*.ts"
+	]
+}

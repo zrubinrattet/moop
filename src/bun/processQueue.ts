@@ -3,6 +3,9 @@ import type { queueAsPromised } from "fastq";
 import { availableParallelism } from "node:os";
 import path, { join } from "node:path";
 import sharp from "sharp";
+import { convert } from "@ozymandias724/aviphy";
+import apng from "sharp-apng";
+import isAnimated from 'is-animated';
 
 import type { ProcessImageTask } from "../shared/types";
 import { getImageDirectories } from "./shared/directories";
@@ -18,7 +21,7 @@ async function processImage(arg: ProcessImageTask): Promise<void> {
 	const parsed = path.parse(arg.path);
 	const outputFormat = arg.outputFormat?.toLowerCase() || appSettings.outputFormat || 'webp';
 	const outputPath = join(outputDirectory, `${parsed.name}.${outputFormat}`);
-	
+
 	const resized = sharp(arg.path, {
 		density: 72,
 		animated: outputFormat === 'jpeg' ? false : true,
@@ -38,15 +41,32 @@ async function processImage(arg: ProcessImageTask): Promise<void> {
 	}
 	else if (outputFormat === 'png') {
 		const parsedEffort = Math.max(1, Math.min(Number(arg.effort) || Number(appSettings.effort), 10));
-		await resized.png({
-			quality: parsedQuality,
-			effort: parsedEffort,
-		}).toFile(outputPath);
+		if (isAnimated(await resized.toBuffer())) {
+			await apng.sharpToApng(resized, outputPath, {
+				cnum: parsedQuality >= 100 ? 0 : Math.max(2, Math.round(256 * (parsedQuality / 100))),
+			});
+		}
+		else {
+			await resized.png({
+				quality: parsedQuality,
+				effort: parsedEffort,
+			}).toFile(outputPath);
+		}
 	}
 	else if (outputFormat === 'jpeg') {
 		await resized.jpeg({
 			quality: parsedQuality
 		}).toFile(outputPath);
+	}
+	else if (outputFormat === 'avif') {
+		const parsedEffort = Math.max(1, Math.min(Number(arg.effort) || Number(appSettings.effort), 10));
+		await resized.toFile(outputPath);
+		await convert({
+			input: outputPath,
+			output: outputPath,
+			quality: parsedQuality,
+			speed: parsedEffort
+		});
 	}
 }
 

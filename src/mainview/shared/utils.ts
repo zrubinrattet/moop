@@ -3,6 +3,7 @@ For FE shared funcs.
 **/
 import toast from "react-hot-toast";
 import { t } from "../../lang/lang";
+import type { AvailableOutputFormats } from "../../shared/types";
 
 export function handleRPCRequestCatch(error: Error|unknown) {
 	let message = '';
@@ -20,3 +21,10 @@ export function handleRPCRequestCatch(error: Error|unknown) {
 		});
 	}
 }
+
+export const outputFormatOptions: Array<{ value: AvailableOutputFormats; label: string }> = [
+	{ value: 'webp', label: 'WebP' },
+	{ value: 'png', label: 'PNG' },
+	{ value: 'jpeg', label: 'JPEG' },
+	{ value: 'avif', label: 'AVIF' },
+];

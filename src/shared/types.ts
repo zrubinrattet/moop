@@ -64,7 +64,7 @@ export type AvailableLangs =
   | 'yo'  // Yoruba
   | 'bho' // Bhojpuri (ISO 639-3)
   | 'ml'; // Malayalam
-export type AvailableOutputFormats = 'webp' | 'jpeg' | 'png';
+export type AvailableOutputFormats = 'webp' | 'jpeg' | 'png' | 'avif';
 export type ApplicationSettingsType = {
 	theme: AvailableThemes,
 	quality: number,

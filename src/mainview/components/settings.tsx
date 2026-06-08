@@ -1,7 +1,7 @@
 import { useContext, useEffect, useMemo, useState } from "react"
 import { electroview } from "../shared/electroview";
 import { sharedContext } from "../shared/context";
-import { AvailableLangs, AvailableOutputFormats, AvailableThemes } from "../../shared/types";
+import { AvailableLangs, AvailableThemes } from "../../shared/types";
 import Select from "react-select";
 import NumberField from "./numberField";
 import { Tooltip } from "react-tooltip";
@@ -10,6 +10,7 @@ import { eventBus } from "../shared/eventbus";
 import { setLocale, t } from "../../lang/lang";
 import { handleRPCRequestCatch } from "../shared/utils";
 import { appContextDefaults } from "../../shared/context";
+import { outputFormatOptions } from "../shared/utils";
 
 export default function SettingsPane() {
 	const appContext = useContext(sharedContext);
@@ -63,12 +64,6 @@ export default function SettingsPane() {
 			}))
 			.sort((a, b) => a.label.localeCompare(b.label, settings.language, { sensitivity: 'base' }));
 	}, [settings.language]);
-	
-	const outputFormatOptions: Array<{ value: AvailableOutputFormats; label: string }> = [
-		{ value: 'webp', label: 'WebP' },
-		{ value: 'png', label: 'PNG' },
-		{ value: 'jpeg', label: 'JPEG' },
-	];
 
 	const outputFolderOptions: Array<{ value: 'default' | 'custom'; label: string }> = [
 		{ value: 'default', label: t('pictures') },

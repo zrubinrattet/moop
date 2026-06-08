@@ -9,6 +9,7 @@ import { t } from "../../lang/lang";
 import { handleRPCRequestCatch } from "../shared/utils";
 import Select from "react-select";
 import type { AvailableOutputFormats } from "../../shared/types";
+import { outputFormatOptions } from "../shared/utils";
 
 export default function ImagesCanvas() {
 	const appContext = useContext(sharedContext);
@@ -114,12 +115,6 @@ export default function ImagesCanvas() {
 		}, 500);
 	}
 
-	const outputFormatOptions: Array<{ value: AvailableOutputFormats; label: string }> = [
-		{ value: 'webp', label: 'WebP' },
-		{ value: 'png', label: 'PNG' },
-		{ value: 'jpeg', label: 'JPEG' },
-	];
-
 	return (
 		<div className="imagescanvas">
 			<div className="imagescanvas-col">
@@ -177,7 +172,7 @@ export default function ImagesCanvas() {
 					<input onChange={(e) => inputHandler('quality', e)} onMouseDown={mouseDownHandler} onMouseUp={() => mouseUpHandler()} className="imagescanvas-fields-slider-input" type="range" min="1" max="100" value={appContext.quality} />
 					<div className="imagescanvas-fields-slider-inputvalue">{appContext.quality}</div>
 				</label>
-				{['webp', 'png'].filter(format => activeImage.outputFormat === format).length ? <label className="imagescanvas-fields-slider">
+				{['webp', 'png', 'avif'].filter(format => activeImage.outputFormat === format).length ? <label className="imagescanvas-fields-slider">
 					<div className="imagescanvas-fields-slider-label">
 						<span className="imagescanvas-fields-slider-label-span" data-tooltip-id="effort">{t('effort')}</span>
 					</div>
