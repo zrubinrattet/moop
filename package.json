@@ -27,6 +27,7 @@
 	"dependencies": {
 		"@img/sharp-darwin-arm64": "^0.34.5",
 		"@img/sharp-libvips-darwin-arm64": "^1.2.4",
+		"@ozymandias724/aviphy": "^0.3.10",
 		"@playwright/test": "^1.59.1",
 		"electrobun": "^1.16.0",
 		"fastq": "^1.20.1",
@@ -42,6 +43,7 @@
 		"react-hot-toast": "^2.6.0",
 		"react-select": "^5.10.2",
 		"react-tooltip": "^5.30.0",
-		"sharp": "^0.34.5"
+		"sharp": "^0.34.5",
+		"sharp-apng": "^0.1.5"
 	}
 }
