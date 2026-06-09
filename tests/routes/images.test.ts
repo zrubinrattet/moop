@@ -114,6 +114,30 @@ describe('images api route tests', () => {
 		const outputBuffer = Buffer.from(await outputRes.arrayBuffer());
 		expect(isAnimated(outputBuffer)).toBe(true);
 	})
+	test('imageUpload: animated avif', async () => {
+		const relPath = '../fixtures/animated.avif';
+		const formData = new FormData();
+		const file = Bun.file(join(__dirname, relPath));
+		formData.append("image", file, path.parse(relPath).base);
+		const res = await fetch("http://localhost:43117/images", {
+			method: "POST",
+			body: formData,
+		});
+		const resJson = await res.json();
+		console.log(resJson)
+		expect(resJson.ok).toBe(true);
+		expect(resJson.data.severity).toBe('SUCCESS');
+		const outputUrl = resJson.data.images?.[0]?.output;
+		expect(outputUrl).toBeTruthy();
+
+		// strip cache query (?v=...)
+		const cleanOutputUrl = outputUrl.split("?")[0];
+		const outputRes = await fetch(cleanOutputUrl);
+		expect(outputRes.ok).toBe(true);
+
+		const outputBuffer = Buffer.from(await outputRes.arrayBuffer());
+		expect(isAnimated(outputBuffer)).toBe(true);
+	})
 	test('imageUpload: too big', async () => {
 		const relPath = '../fixtures/toobig.gif';
 		const formData = new FormData();
