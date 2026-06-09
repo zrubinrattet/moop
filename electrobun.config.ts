@@ -17,6 +17,7 @@ export default {
 			entrypoint: "src/bun/index.ts",
 		},
 		copy: {
+			"node_modules/@ozymandias724/aviphy/bin/darwin-arm64/avifenc": "bin/darwin-arm64/avifenc",
 			"node_modules/@img/sharp-darwin-arm64": "bun/node_modules/@img/sharp-darwin-arm64",
 			"node_modules/@img/sharp-libvips-darwin-arm64": "bun/node_modules/@img/sharp-libvips-darwin-arm64",
 			"src/mainview/index.html": "views/mainview/index.html",

@@ -1,6 +1,6 @@
 import { imageSizeFromFile } from "image-size/fromFile";
 import { getImageDirectories } from "../shared/directories";
-import { convertImageURL } from "../shared/funcs";
+import { convertImageURL, getImageDimensionsFromPath } from "../shared/funcs";
 import { ProcessImageResponse } from "../shared/objects";
 import { getSettings } from "../shared/settings";
 import type { ProcessImageResponseType, ProcessImageTask } from "../../shared/types";
@@ -53,8 +53,8 @@ export default async (params:ProcessImageTask) => {
 		ret.message = t('updateImageSuccess');
 
 		const outputPath = join(outputDirectory, `${path.parse(inputPath).name}.${outputFormat?.toLowerCase() || 'webp'}`);
-		const inputResolution = await imageSizeFromFile(inputPath);
-		const outputResolution = await imageSizeFromFile(outputPath);
+		const inputResolution = await getImageDimensionsFromPath(inputPath);
+		const outputResolution = await getImageDimensionsFromPath(outputPath);
 
 		ret.image = {
 			input: convertImageURL({ url: inputPath, type: 'absolutetolocal' }),

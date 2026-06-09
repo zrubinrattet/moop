@@ -4,6 +4,9 @@
 
 import { join } from 'node:path';
 import { getImageDirectories } from './directories';
+import { imageDimensionsFromData } from 'image-dimensions';
+import { imageSizeFromFile } from "image-size/fromFile";
+import { readFile } from 'node:fs/promises';
 
 type convertImageURLProps = {
 	url: string,
@@ -30,4 +33,14 @@ export function convertImageURL(props: convertImageURLProps) {
 		}
 	}
 	return ret;
+}
+
+export const getImageDimensionsFromPath = async (filePath: string) => {
+	const dimensions = imageDimensionsFromData(await readFile(filePath));
+
+	if (dimensions) {
+		return dimensions;
+	}
+
+	return imageSizeFromFile(filePath);
 }

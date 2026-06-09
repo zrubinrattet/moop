@@ -60,12 +60,12 @@ async function processImage(arg: ProcessImageTask): Promise<void> {
 	}
 	else if (outputFormat === 'avif') {
 		const parsedEffort = Math.max(1, Math.min(Number(arg.effort) || Number(appSettings.effort), 10));
-		await resized.toFile(outputPath);
 		await convert({
-			input: outputPath,
+			input: await resized.toBuffer(),
 			output: outputPath,
 			quality: parsedQuality,
-			speed: parsedEffort
+			speed: parsedEffort,
+			preset: 'fast'
 		});
 	}
 }

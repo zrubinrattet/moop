@@ -8,8 +8,8 @@ import path, { join } from 'node:path';
 
 import corsHeaders from "./corsHeaders";
 import { queue } from "../processQueue";
-import { convertImageURL } from "../shared/funcs";
-import { imageSizeFromFile } from "image-size/fromFile";
+import { convertImageURL, getImageDimensionsFromPath } from "../shared/funcs";
+
 import { statSync } from "node:fs";
 import { t } from "../../lang/lang";
 import type { Image } from "../../shared/types";
@@ -20,6 +20,7 @@ const dirSize = async (directory: string) => {
 
 	return (await Promise.all(stats)).reduce((accumulator, { size }) => accumulator + size, 0);
 }
+
 
 export default async (req: Bun.BunRequest) => {
 	const { imageDirectory, inputDirectory, outputDirectory } = getImageDirectories();
@@ -78,8 +79,8 @@ export default async (req: Bun.BunRequest) => {
 		if (await Bun.file(outputPath).exists()) {
 			ret.message = `Successfully processed image.`;
 
-			const inputResolution = await imageSizeFromFile(inputPath);
-			const outputResolution = await imageSizeFromFile(outputPath);
+			const inputResolution = await getImageDimensionsFromPath(inputPath);
+			const outputResolution = await getImageDimensionsFromPath(outputPath);
 
 			const image: Image = {
 				input: convertImageURL({ url: inputPath, type: 'absolutetolocal' }),
@@ -129,6 +130,7 @@ export default async (req: Bun.BunRequest) => {
 		}
 
 		ret.severity = 'ERROR';
+		ok = false;
 	}
 	
 	return Response.json(
