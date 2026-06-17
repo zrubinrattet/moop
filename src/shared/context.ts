@@ -34,6 +34,6 @@ export const appContextDefaults: ApplicationState = {
 		maxHeight: 0,
 		outputFolder: '',
 		language: 'en',
-		outputFormat: 'webp'
+		outputFormat: 'avif'
 	}
 };

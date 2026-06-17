@@ -44,3 +44,18 @@ export const getImageDimensionsFromPath = async (filePath: string) => {
 
 	return imageSizeFromFile(filePath);
 }
+
+/**
+ * Maps `v` from the input range `e` to `g` into the output range `a` to `n`.
+ * Values past the input range end clamp to the output range end; values before
+ * the input range start continue to extrapolate. Returns undefined for a
+ * zero-length input range.
+ */
+export function map(v: number, e: number, g: number, a: number, n: number) {
+	if (e === g) {
+		return undefined;
+	}
+
+	const t = Math.max(0, Math.min(1, (v - e) / (g - e)));
+	return a + t * (n - a);
+}

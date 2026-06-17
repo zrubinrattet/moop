@@ -1,4 +1,3 @@
-import { imageSizeFromFile } from "image-size/fromFile";
 import { getImageDirectories } from "../shared/directories";
 import { convertImageURL, getImageDimensionsFromPath } from "../shared/funcs";
 import { ProcessImageResponse } from "../shared/objects";
@@ -41,13 +40,11 @@ export default async (params:ProcessImageTask) => {
 	});
 
 	const clampedQuality = Math.max(1, Math.min((quality || appSettings.quality), 100));
-	const clampedEffort = Math.max((outputFormat || appSettings.outputFormat) === 'webp' ? 0 : 1, Math.min(effort || appSettings.effort, (outputFormat || appSettings.outputFormat) === 'webp' ? 6 : 10));
-
 
 	await queue.push({
 		path: inputPath,
 		quality: clampedQuality,
-		effort: clampedEffort,
+		effort: effort,
 		outputFormat: outputFormat
 	}).then(async () => {
 		ret.message = t('updateImageSuccess');
@@ -70,7 +67,7 @@ export default async (params:ProcessImageTask) => {
 				height: outputResolution.height,
 			},
 			isActive: false,
-			effort: clampedEffort,
+			effort: effort,
 			quality: clampedQuality,
 			outputFormat: outputFormat || appSettings.outputFormat,
 		};

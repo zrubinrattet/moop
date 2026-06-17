@@ -30,12 +30,29 @@ You can safely open and run the app after running this in Terminal:
 * Output management in app-specific input/output folders
 * Max width/height support
 * Multi-language UI support
-* Animated image support (webp & gif)
+* Animated image input support (webp, apng & gif)
+* Animated image output support (webp, apng & avif)
 
 ## Supported File Types
 
-* Input: `jpeg/jpg`,  `png`,  `webp`,  `tiff/tif`,  `gif`,  `svg/svgz`,  `avif`
-* Output: `webp`,  `png`,  `jpeg`
+
+- Input: `jpeg/jpg`,  `png`,  `webp`,  `tiff/tif`,  `gif`,  `svg/svgz`,  `avif`, `animated png`, `animated webp`, `animated gif`
+- Output: `webp`,  `png`,  `jpeg`, `avif`, `animated webp`, `animated png`, `animated avif`
+- Animated avif for input is not supported
+- GIF output is not supported
+- There is a pixel limit for input files of 268,402,689 pixels (calculated as 16,383 × 16,383)
+
+| Input format | WebP output | JPEG output | PNG/APNG output | AVIF output |
+|---|---:|---:|---:|---:|
+| JPEG | Supported | Supported | Supported | Supported |
+| PNG | Supported | Supported | Supported | Supported |
+| WebP | Supported | Supported | Supported | Supported |
+| AVIF, still | Supported | Supported | Supported | Supported |
+| GIF, still | Supported | Supported | Supported | Supported |
+| APNG | Supported as animated WebP | Supported as still JPEG | Supported as animated APNG | Supported as animated AVIF |
+| Animated WebP | Supported as animated WebP | Supported as still JPEG | Supported as animated APNG | Supported as animated AVIF |
+| Animated GIF | Supported as animated WebP | Supported as still JPEG | Supported as animated APNG | Supported as animated AVIF |
+
 
 ## Available Languages
 

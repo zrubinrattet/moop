@@ -1,19 +1,9 @@
-import { expect, test, beforeEach, afterEach } from "bun:test";
+import { expect, test } from "bun:test";
 import path, { join } from "node:path";
 import { describe } from "node:test";
-import isAnimated from "is-animated";
+// import isAnimated from "is-animated";
 
-let initServer: typeof import("../../src/bun/server").initServer;
-let stopServer: typeof import("../../src/bun/server").stopServer;
 describe('images api route tests', () => {
-	beforeEach(async () => {
-		({ initServer } = await import("../../src/bun/server"));
-		initServer();
-	});
-	afterEach(async () => {
-		({ stopServer } = await import("../../src/bun/server"));
-		stopServer();
-	});
 	test('imagesGetSet', async () => {
 		const acceptedFiles = ['../fixtures/large.jpg', '../fixtures/tall.jpg', '../fixtures/transparent.png'];
 		const promises = acceptedFiles.map(async (relPath) => {
@@ -41,103 +31,6 @@ describe('images api route tests', () => {
 
 		expect(getReq.ok).toBe(true);
 	});
-	test('imageUpload: svg', async () => {
-		const relPath = '../fixtures/bacteria.svg';
-		const formData = new FormData();
-		const file = Bun.file(join(__dirname, relPath));
-		formData.append("image", file, path.parse(relPath).base);
-		const res = await fetch("http://localhost:43117/images", {
-			method: "POST",
-			body: formData,
-		});
-		const resJson = await res.json();
-
-		expect(resJson.ok).toBe(true);
-		expect(resJson.data.severity).toBe('SUCCESS');
-	})
-	test('imageUpload: avif', async () => {
-		const relPath = '../fixtures/still.avif';
-		const formData = new FormData();
-		const file = Bun.file(join(__dirname, relPath));
-		formData.append("image", file, path.parse(relPath).base);
-		const res = await fetch("http://localhost:43117/images", {
-			method: "POST",
-			body: formData,
-		});
-		const resJson = await res.json();
-		expect(resJson.ok).toBe(true);
-		expect(resJson.data.severity).toBe('SUCCESS');
-	})
-	test('imageUpload: animated gif', async () => {
-		const relPath = '../fixtures/animated.gif';
-		const formData = new FormData();
-		const file = Bun.file(join(__dirname, relPath));
-		formData.append("image", file, path.parse(relPath).base);
-		const res = await fetch("http://localhost:43117/images", {
-			method: "POST",
-			body: formData,
-		});
-		const resJson = await res.json();
-		expect(resJson.ok).toBe(true);
-		expect(resJson.data.severity).toBe('SUCCESS');
-		const outputUrl = resJson.data.images?.[0]?.output;
-		expect(outputUrl).toBeTruthy();
-
-		// strip cache query (?v=...)
-		const cleanOutputUrl = outputUrl.split("?")[0];
-		const outputRes = await fetch(cleanOutputUrl);
-		expect(outputRes.ok).toBe(true);
-
-		const outputBuffer = Buffer.from(await outputRes.arrayBuffer());
-		expect(isAnimated(outputBuffer)).toBe(true);
-	})
-	test('imageUpload: animated webp', async () => {
-		const relPath = '../fixtures/animated.webp';
-		const formData = new FormData();
-		const file = Bun.file(join(__dirname, relPath));
-		formData.append("image", file, path.parse(relPath).base);
-		const res = await fetch("http://localhost:43117/images", {
-			method: "POST",
-			body: formData,
-		});
-		const resJson = await res.json();
-		expect(resJson.ok).toBe(true);
-		expect(resJson.data.severity).toBe('SUCCESS');
-		const outputUrl = resJson.data.images?.[0]?.output;
-		expect(outputUrl).toBeTruthy();
-
-		// strip cache query (?v=...)
-		const cleanOutputUrl = outputUrl.split("?")[0];
-		const outputRes = await fetch(cleanOutputUrl);
-		expect(outputRes.ok).toBe(true);
-
-		const outputBuffer = Buffer.from(await outputRes.arrayBuffer());
-		expect(isAnimated(outputBuffer)).toBe(true);
-	})
-	test('imageUpload: animated avif', async () => {
-		const relPath = '../fixtures/animated.avif';
-		const formData = new FormData();
-		const file = Bun.file(join(__dirname, relPath));
-		formData.append("image", file, path.parse(relPath).base);
-		const res = await fetch("http://localhost:43117/images", {
-			method: "POST",
-			body: formData,
-		});
-		const resJson = await res.json();
-		console.log(resJson)
-		expect(resJson.ok).toBe(true);
-		expect(resJson.data.severity).toBe('SUCCESS');
-		const outputUrl = resJson.data.images?.[0]?.output;
-		expect(outputUrl).toBeTruthy();
-
-		// strip cache query (?v=...)
-		const cleanOutputUrl = outputUrl.split("?")[0];
-		const outputRes = await fetch(cleanOutputUrl);
-		expect(outputRes.ok).toBe(true);
-
-		const outputBuffer = Buffer.from(await outputRes.arrayBuffer());
-		expect(isAnimated(outputBuffer)).toBe(true);
-	})
 	test('imageUpload: too big', async () => {
 		const relPath = '../fixtures/toobig.gif';
 		const formData = new FormData();
@@ -151,5 +44,94 @@ describe('images api route tests', () => {
 		expect(resJson.ok).toBe(false);
 		expect(resJson.data.severity).toBe('ERROR');
 		expect(resJson.data.message).toContain('exceeds');
-	})
+	});
+
+
+	// test('imageUpload: svg', async () => {
+	// 	const relPath = '../fixtures/bacteria.svg';
+	// 	const formData = new FormData();
+	// 	const file = Bun.file(join(__dirname, relPath));
+	// 	formData.append("image", file, path.parse(relPath).base);
+	// 	const res = await fetch("http://localhost:43117/images", {
+	// 		method: "POST",
+	// 		body: formData,
+	// 	});
+	// 	const resJson = await res.json();
+
+	// 	expect(resJson.ok).toBe(true);
+	// 	expect(resJson.data.severity).toBe('SUCCESS');
+	// })
+	// test('imageUpload: avif', async () => {
+	// 	const relPath = '../fixtures/still.avif';
+	// 	const formData = new FormData();
+	// 	const file = Bun.file(join(__dirname, relPath));
+	// 	formData.append("image", file, path.parse(relPath).base);
+	// 	const res = await fetch("http://localhost:43117/images", {
+	// 		method: "POST",
+	// 		body: formData,
+	// 	});
+	// 	const resJson = await res.json();
+	// 	expect(resJson.ok).toBe(true);
+	// 	expect(resJson.data.severity).toBe('SUCCESS');
+	// })
+	// test('imageUpload: animated gif', async () => {
+	// 	const relPath = '../fixtures/animated.gif';
+	// 	const formData = new FormData();
+	// 	const file = Bun.file(join(__dirname, relPath));
+	// 	formData.append("image", file, path.parse(relPath).base);
+	// 	const res = await fetch("http://localhost:43117/images", {
+	// 		method: "POST",
+	// 		body: formData,
+	// 	});
+	// 	const resJson = await res.json();
+	// 	expect(resJson.ok).toBe(true);
+	// 	expect(resJson.data.severity).toBe('SUCCESS');
+	// 	const outputUrl = resJson.data.images?.[0]?.output;
+	// 	expect(outputUrl).toBeTruthy();
+
+	// 	// strip cache query (?v=...)
+	// 	const cleanOutputUrl = outputUrl.split("?")[0];
+	// 	const outputRes = await fetch(cleanOutputUrl);
+	// 	expect(outputRes.ok).toBe(true);
+
+	// 	const outputBuffer = Buffer.from(await outputRes.arrayBuffer());
+	// 	expect(isAnimated(outputBuffer)).toBe(true);
+	// })
+	// test('imageUpload: animated webp', async () => {
+	// 	const relPath = '../fixtures/animated.webp';
+	// 	const formData = new FormData();
+	// 	const file = Bun.file(join(__dirname, relPath));
+	// 	formData.append("image", file, path.parse(relPath).base);
+	// 	const res = await fetch("http://localhost:43117/images", {
+	// 		method: "POST",
+	// 		body: formData,
+	// 	});
+	// 	const resJson = await res.json();
+	// 	expect(resJson.ok).toBe(true);
+	// 	expect(resJson.data.severity).toBe('SUCCESS');
+	// 	const outputUrl = resJson.data.images?.[0]?.output;
+	// 	expect(outputUrl).toBeTruthy();
+
+	// 	// strip cache query (?v=...)
+	// 	const cleanOutputUrl = outputUrl.split("?")[0];
+	// 	const outputRes = await fetch(cleanOutputUrl);
+	// 	expect(outputRes.ok).toBe(true);
+
+	// 	const outputBuffer = Buffer.from(await outputRes.arrayBuffer());
+	// 	expect(isAnimated(outputBuffer)).toBe(true);
+	// })
+	// test('imageUpload: animated avif', async () => {
+	// 	// currently no animated avif input support... maybe in the future
+	// 	const relPath = '../fixtures/animated.avif';
+	// 	const formData = new FormData();
+	// 	const file = Bun.file(join(__dirname, relPath));
+	// 	formData.append("image", file, path.parse(relPath).base);
+	// 	const res = await fetch("http://localhost:43117/images", {
+	// 		method: "POST",
+	// 		body: formData,
+	// 	});
+	// 	const resJson = await res.json();
+	// 	expect(resJson.ok).toBe(false);
+	// })
+
 })

@@ -1,5 +1,5 @@
 import { sharedContext } from "../shared/context";
-import { useContext, useEffect, useRef } from "react";
+import { useContext, useEffect, useMemo, useRef } from "react";
 import { formatBytes } from "../shared/snippets";
 import Cropper from 'react-easy-crop'
 import { electroview } from "../shared/electroview";
@@ -18,6 +18,28 @@ export default function ImagesCanvas() {
 
 	const activeImage = appContext.images.find(image => image.isActive);
 
+	const effortMin = useMemo(() => {
+		if( !activeImage || activeImage.outputFormat === 'webp' || activeImage.outputFormat === 'avif' ) {
+			return 0
+		}
+		else{
+			return 1
+		}
+	}, [activeImage]);
+	
+	const effortMax = useMemo(() => {
+		if( !activeImage ){
+			return 10;
+		}
+		
+		if( activeImage.outputFormat === 'webp' ) {
+			return 6
+		}
+		else{
+			return 10
+		}
+	}, [activeImage]);
+
 	useEffect(() => {
 		return () => {
 			if (mouseUpDebounceRef.current) {
@@ -31,7 +53,6 @@ export default function ImagesCanvas() {
 		return;
 	}
 
-
 	const inputHandler = (field: 'quality' | 'effort', e: React.ChangeEvent<HTMLInputElement>) => {
 		const value = Number(e.target.value);
 		if (field === 'quality') {
@@ -44,7 +65,8 @@ export default function ImagesCanvas() {
 
 	const updateImage = async (targetInput: string, quality: number, effort: number, outputFormat: AvailableOutputFormats) => {
 		try {
-			const clampedEffort = Math.max(outputFormat === 'webp' ? 0 : 1, Math.min(effort, outputFormat === 'webp' ? 6 : 10));
+			const clampedEffort = Math.max(effortMin, Math.min(effort, effortMax));
+			console.log('clamped effort: ', clampedEffort)
 			const updateImageProps = {
 				path: targetInput,
 				quality,
@@ -176,7 +198,7 @@ export default function ImagesCanvas() {
 					<div className="imagescanvas-fields-slider-label">
 						<span className="imagescanvas-fields-slider-label-span" data-tooltip-id="effort">{t('effort')}</span>
 					</div>
-					<input onChange={(e) => inputHandler('effort', e)} onMouseDown={mouseDownHandler} onMouseUp={() => mouseUpHandler()} className="imagescanvas-fields-slider-input" type="range" min={activeImage.outputFormat === 'webp' ? 0 : 1} max={activeImage.outputFormat === 'webp' ? 6 : 10} value={appContext.effort} />
+					<input onChange={(e) => inputHandler('effort', e)} onMouseDown={mouseDownHandler} onMouseUp={() => mouseUpHandler()} className="imagescanvas-fields-slider-input" type="range" min={effortMin} max={effortMax} value={appContext.effort} />
 					<div className="imagescanvas-fields-slider-inputvalue">{appContext.effort}</div>
 				</label> : ''}
 				<label className="imagescanvas-fields-select">

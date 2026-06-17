@@ -28,6 +28,6 @@ export function initServer() {
 		},
 	});
 }
-export function stopServer() {
-	server.stop();
+export async function stopServer() {
+	return server.stop();
 }

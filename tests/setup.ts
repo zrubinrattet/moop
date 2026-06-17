@@ -1,5 +1,5 @@
 // Global test setup
-import { beforeEach, afterEach, mock } from "bun:test";
+import { beforeEach, afterEach, mock, beforeAll, afterAll } from "bun:test";
 import { rmSync, mkdirSync, existsSync } from "node:fs";
 
 import { USER_DATA, PICTURES, TMP } from "./var";
@@ -7,7 +7,10 @@ import { USER_DATA, PICTURES, TMP } from "./var";
 let purgeSettings: typeof import("../src/bun/shared/settings").purgeSettings;
 let initSettings: typeof import("../src/bun/shared/settings").initSettings;
 
-beforeEach(async () => {
+let initServer: typeof import("../src/bun/server").initServer;
+let stopServer: typeof import("../src/bun/server").stopServer;
+
+beforeAll(async () => {
 	mkdirSync(USER_DATA, { recursive: true });
 	mkdirSync(PICTURES, { recursive: true });
 
@@ -27,7 +30,17 @@ beforeEach(async () => {
 	mock.module("electrobun", () => mockElectroBun);
 	mock.module("electrobun/bun", () => mockElectroBun);
 
-	// import AFTER mocks
+	({ initServer } = await import("../src/bun/server"));
+	initServer();
+});
+
+afterAll( async () => {
+	({ stopServer } = await import("../src/bun/server"));
+	await stopServer();
+} );
+
+// *Each lifecycle hooks run AFTER *All lifecycle hooks
+beforeEach(async () => {
 	({ initSettings } = await import("../src/bun/shared/settings"));
 
 	await initSettings();
