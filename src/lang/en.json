@@ -36,7 +36,7 @@
 		"language": "Language",
 		"languageTooltip": "The written language used throughout the app.",
 		"format": "Format",
-		"formatTooltip": "The output file format. WebP is default and typically offers better compression than the other options.\r\nIt also has wide browser support and offers support for animated formats like gif.\r\nJpeg and png are available as well in case the need comes up.",
+		"formatTooltip": "The output file format. AVIF is default and typically offers better compression than the other options.\r\nIt also has wide browser support and offers support for animated formats like gif.\r\nJpeg and png are available as well in case the need comes up.",
 		"save": "Save",
 		"restoreDefaults": "Restore Defaults",
 		"changeLocation": "Change location",

@@ -5,7 +5,6 @@ import {join} from "node:path";
 let setSettings: typeof import("../../../src/bun/shared/settings").setSettings;
 
 test('images route: webp to webp', async () => {
-
 	({ setSettings } = await import("../../../src/bun/shared/settings"));
 
 	await setSettings({

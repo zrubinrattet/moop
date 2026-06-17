@@ -34,7 +34,7 @@
 		"language": "Idioma",
 		"languageTooltip": "A linguagem escrita usada em todo o aplicativo.",
 		"format": "Formato",
-		"formatTooltip": "O formato do arquivo de saída. WebP é o padrão e normalmente oferece melhor compactação do que as outras opções.\r\nEle também possui amplo suporte a navegadores e oferece suporte para formatos animados como GIF.\r\nJpeg e png também estão disponíveis caso haja necessidade.",
+		"formatTooltip": "O formato do arquivo de saída. AVIF é o padrão e normalmente oferece melhor compactação do que as outras opções.\r\nEle também tem amplo suporte em navegadores e oferece suporte a formatos animados como gif.\r\nJpeg e png também estão disponíveis caso haja necessidade.",
 		"save": "Salvar",
 		"restoreDefaults": "Restaurar padrões",
 		"changeLocation": "Alterar local",

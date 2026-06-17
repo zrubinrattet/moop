@@ -42,12 +42,12 @@ test('concurrency', async () => {
 					isActive: false,
 					effort: 1,
 					quality: 10,
-					outputFormat: "webp",
+					outputFormat: "avif",
 				}),
 			}),
 		);
 		expect(item.image.input).toMatch(/^http:\/\/localhost:43117\/images\/input\/.+\.(jpg|png)$/);
-		expect(item.image.output).toMatch(/^http:\/\/localhost:43117\/images\/output\/.+\.webp\?v=\d+$/);
+		expect(item.image.output).toMatch(/^http:\/\/localhost:43117\/images\/output\/.+\.avif\?v=\d+$/);
 		expect(item.image.inputSizeBytes).toBeGreaterThan(0);
 		expect(item.image.outputSizeBytes).toBeGreaterThan(0);
 		expect(item.image.inputResolution.width).toBeGreaterThan(0);

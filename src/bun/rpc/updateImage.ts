@@ -49,7 +49,7 @@ export default async (params:ProcessImageTask) => {
 	}).then(async () => {
 		ret.message = t('updateImageSuccess');
 
-		const outputPath = join(outputDirectory, `${path.parse(inputPath).name}.${outputFormat?.toLowerCase() || 'webp'}`);
+		const outputPath = join(outputDirectory, `${path.parse(inputPath).name}.${outputFormat?.toLowerCase() || 'avif'}`);
 		const inputResolution = await getImageDimensionsFromPath(inputPath);
 		const outputResolution = await getImageDimensionsFromPath(outputPath);
 

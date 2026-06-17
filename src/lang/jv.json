@@ -34,7 +34,7 @@
 		"language": "Basa",
 		"languageTooltip": "Basa tulis sing digunakake ing saindhenging app.",
 		"format": "Format",
-		"formatTooltip": "Format file output. WebP minangka standar lan biasane nawakake kompresi sing luwih apik tinimbang opsi liyane.\r\nUga nduweni dhukungan browser sing amba lan nawakake dhukungan kanggo format animasi kaya gif.\r\nJpeg lan png kasedhiya uga yen perlu.",
+		"formatTooltip": "Format file output. AVIF minangka standar lan biasane nawakake kompresi sing luwih apik tinimbang opsi liyane.\r\nUga nduweni dhukungan browser sing amba lan ndhukung format animasi kaya gif.\r\nJpeg lan png uga kasedhiya yen perlu.",
 		"save": "Simpen",
 		"restoreDefaults": "Mulihake Default",
 		"changeLocation": "Ganti lokasi",

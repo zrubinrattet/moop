@@ -3,14 +3,13 @@ import { mkdirSync } from "node:fs";
 import path, { join } from "node:path";
 let pollInputs: typeof import('../../src/bun/rpc/pollInputs').default;
 let getImageDirectories: typeof import("../../src/bun/shared/directories").getImageDirectories;
-let initServer: typeof import('../../src/bun/server').initServer;
-let stopServer: typeof import('../../src/bun/server').stopServer;
+
 test('pollInputs', async () => {
 	({ default: pollInputs } = await import("../../src/bun/rpc/pollInputs"));
 	({ getImageDirectories } = await import("../../src/bun/shared/directories"));
-	({ initServer, stopServer } = await import('../../src/bun/server'));
+
 	const { inputDirectory, outputDirectory } = getImageDirectories();
-	initServer();
+
 
 	const res = await pollInputs();
 	expect(res.message).toBe("Folder does not exist yet");
@@ -44,5 +43,5 @@ test('pollInputs', async () => {
 	expect(afterUploadPollRes.inputPaths).not.toEqual([]);
 
 
-	stopServer();
+
 })

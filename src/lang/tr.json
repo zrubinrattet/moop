@@ -34,7 +34,7 @@
 		"language": "Dil",
 		"languageTooltip": "Uygulama genelinde kullanılan yazı dili.",
 		"format": "Biçim",
-		"formatTooltip": "Çıkış dosyası formatı. WebP varsayılandır ve genellikle diğer seçeneklere göre daha iyi sıkıştırma sunar.\r\nAyrıca geniş tarayıcı desteğine sahiptir ve gif gibi animasyonlu formatlara destek sunar.\r\nİhtiyaç duyulması halinde Jpeg ve png de mevcuttur.",
+		"formatTooltip": "Çıkış dosyası formatı. AVIF varsayılandır ve genellikle diğer seçeneklerden daha iyi sıkıştırma sunar.\r\nAyrıca geniş tarayıcı desteğine sahiptir ve gif gibi animasyonlu formatları destekler.\r\nİhtiyaç duyulursa Jpeg ve png de mevcuttur.",
 		"save": "Kaydet",
 		"restoreDefaults": "Varsayılanları Geri Yükle",
 		"changeLocation": "Konumu değiştir",

@@ -34,7 +34,7 @@
 		"language": "Lugha",
 		"languageTooltip": "Lugha iliyoandikwa inayotumika kote kwenye programu.",
 		"format": "Umbizo",
-		"formatTooltip": "Umbizo la faili towe. WebP ni chaguo-msingi na kwa kawaida hutoa mbano bora kuliko chaguzi zingine.\r\nPia ina usaidizi wa kivinjari mpana na inatoa usaidizi kwa umbizo za uhuishaji kama vile gif.\r\nJpeg na png zinapatikana pia ikiwa hitaji litatokea.",
+		"formatTooltip": "Umbizo la faili towe. AVIF ndiyo chaguo-msingi na kwa kawaida hutoa mbano bora kuliko chaguo nyingine.\r\nPia ina usaidizi mpana wa vivinjari na inaauni umbizo za uhuishaji kama gif.\r\nJpeg na png zinapatikana pia ikiwa zitahitajika.",
 		"save": "Hifadhi",
 		"restoreDefaults": "Rejesha Chaguomsingi",
 		"changeLocation": "Badilisha eneo",

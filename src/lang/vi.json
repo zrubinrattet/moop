@@ -34,7 +34,7 @@
 		"language": "Ngôn ngữ",
 		"languageTooltip": "Ngôn ngữ viết được sử dụng xuyên suốt ứng dụng.",
 		"format": "định dạng",
-		"formatTooltip": "Định dạng tập tin đầu ra. WebP là mặc định và thường cung cấp khả năng nén tốt hơn các tùy chọn khác.\r\nNó cũng có hỗ trợ trình duyệt rộng rãi và cung cấp hỗ trợ cho các định dạng hoạt hình như gif.\r\nJpeg và png cũng có sẵn trong trường hợp có nhu cầu.",
+		"formatTooltip": "Định dạng tập tin đầu ra. AVIF là mặc định và thường cung cấp khả năng nén tốt hơn các tùy chọn khác.\r\nNó cũng có hỗ trợ trình duyệt rộng rãi và hỗ trợ các định dạng hoạt hình như gif.\r\nJpeg và png cũng có sẵn khi cần.",
 		"save": "Lưu",
 		"restoreDefaults": "Khôi phục mặc định",
 		"changeLocation": "Thay đổi vị trí",

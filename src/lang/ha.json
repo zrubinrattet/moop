@@ -34,7 +34,7 @@
 		"language": "Harshe",
 		"languageTooltip": "Harshen da aka rubuta da aka yi amfani da shi a ko'ina cikin app.",
 		"format": "Tsarin",
-		"formatTooltip": "Tsarin fayil ɗin fitarwa. WebP tsoho ne kuma yawanci yana ba da mafi kyawun matsawa fiye da sauran zaɓuɓɓuka.\r\nHakanan yana da tallafin mai fa'ida mai fa'ida kuma yana ba da goyan baya ga tsarin raye-raye kamar gif.\r\njpeg da png suna samuwa kuma idan buƙatar ta taso.",
+		"formatTooltip": "Tsarin fayil ɗin fitarwa. AVIF ne tsoho kuma yawanci yana ba da matsewa mafi kyau fiye da sauran zaɓuɓɓuka.\r\nHakanan yana da tallafi mai faɗi a burauza kuma yana goyon bayan tsarin motsi kamar gif.\r\nJpeg da png ma suna samuwa idan buƙata ta taso.",
 		"save": "Ajiye",
 		"restoreDefaults": "Mayar da Defaults",
 		"changeLocation": "Canja wuri",

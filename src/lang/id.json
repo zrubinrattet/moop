@@ -34,7 +34,7 @@
 		"language": "Bahasa",
 		"languageTooltip": "Bahasa tertulis yang digunakan di seluruh aplikasi.",
 		"format": "Format",
-		"formatTooltip": "Format file keluaran. WebP adalah default dan biasanya menawarkan kompresi yang lebih baik daripada opsi lainnya.\r\nIa juga memiliki dukungan browser yang luas dan menawarkan dukungan untuk format animasi seperti gif.\r\nJpeg dan png juga tersedia jika diperlukan.",
+		"formatTooltip": "Format file keluaran. AVIF adalah default dan biasanya menawarkan kompresi yang lebih baik daripada opsi lainnya.\r\nAVIF juga memiliki dukungan browser yang luas dan mendukung format animasi seperti gif.\r\nJpeg dan png juga tersedia jika diperlukan.",
 		"save": "Simpan",
 		"restoreDefaults": "Kembalikan Default",
 		"changeLocation": "Ubah lokasi",

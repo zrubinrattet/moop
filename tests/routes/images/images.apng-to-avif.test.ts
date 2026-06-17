@@ -3,10 +3,11 @@ import { isAnimatedAvif, uploadImage } from "../utils";
 import { join } from "node:path";
 
 let setSettings: typeof import("../../../src/bun/shared/settings").setSettings;
+let convertImageURL: typeof import("../../../src/bun/shared/funcs").convertImageURL;
 
 test('images route: apng to avif', async () => {
-
 	({ setSettings } = await import("../../../src/bun/shared/settings"));
+	({ convertImageURL } = await import("../../../src/bun/shared/funcs"));
 
 	await setSettings({
 		outputFormat: 'avif'
@@ -20,12 +21,11 @@ test('images route: apng to avif', async () => {
 	const outputUrl = resJson.data.images?.[0]?.output;
 	expect(outputUrl).toBeTruthy();
 
-	const cleanOutputUrl = outputUrl.split("?")[0];
+	const outputFilePath = convertImageURL({
+		type: 'localtoabsolute',
+		url: outputUrl,
+	});
 
-	const outputRes = await fetch(cleanOutputUrl);
-	expect(outputRes.ok).toBe(true);
-
-	const outputBuffer = Buffer.from(await outputRes.arrayBuffer());
-	
+	const outputBuffer = Buffer.from(await Bun.file(outputFilePath).arrayBuffer());
 	expect(isAnimatedAvif(outputBuffer)).toBe(true);
 });

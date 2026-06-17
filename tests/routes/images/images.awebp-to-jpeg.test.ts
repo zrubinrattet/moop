@@ -1,13 +1,14 @@
 import { expect, test } from "bun:test";
 import { uploadImage } from "../utils";
-import {join} from "node:path";
+import { join } from "node:path";
 import isAnimated from "is-animated";
 
 let setSettings: typeof import("../../../src/bun/shared/settings").setSettings;
+let convertImageURL: typeof import("../../../src/bun/shared/funcs").convertImageURL;
 
 test('images route: awebp to jpeg', async () => {
-
 	({ setSettings } = await import("../../../src/bun/shared/settings"));
+	({ convertImageURL } = await import("../../../src/bun/shared/funcs"));
 
 	await setSettings({
 		outputFormat: 'jpeg'
@@ -20,10 +21,11 @@ test('images route: awebp to jpeg', async () => {
 	const outputUrl = resJson.data.images?.[0]?.output;
 	expect(outputUrl).toBeTruthy();
 
-	const cleanOutputUrl = outputUrl.split("?")[0];
-	const outputRes = await fetch(cleanOutputUrl);
-	expect(outputRes.ok).toBe(true);
+	const outputFilePath = convertImageURL({
+		type: 'localtoabsolute',
+		url: outputUrl,
+	});
 
-	const outputBuffer = Buffer.from(await outputRes.arrayBuffer());
+	const outputBuffer = Buffer.from(await Bun.file(outputFilePath).arrayBuffer());
 	expect(isAnimated(outputBuffer)).toBe(false);
 });

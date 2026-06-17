@@ -7,6 +7,7 @@ import { t } from "../../lang/lang";
 import { handleRPCRequestCatch } from "../shared/utils";
 import { BaseResponseType, ProcessImageResponseType } from "../../shared/types";
 import { appContextDefaults } from "../../shared/context";
+import { eventBus } from "../shared/eventbus";
 
 type ImagesListItemProps = {
 	index: number,
@@ -36,8 +37,9 @@ export default function ImagesListItem(props: ImagesListItemProps) {
 	async function itemDeleteClickHandler(e: React.MouseEvent) {
 		e.preventDefault();
 		try {
-			
+			eventBus.dispatchEvent(new CustomEvent('clearAllStart'));
 			const res: BaseResponseType | ProcessImageResponseType | undefined = await electroview.rpc?.request.deleteImage({ path: props.input });
+			eventBus.dispatchEvent(new CustomEvent('clearAllDone'));
 
 			if (res && 'image' in res && 'input' in res.image) {
 				appContext.setImages((images) => {

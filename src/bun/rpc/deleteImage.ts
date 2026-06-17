@@ -33,31 +33,33 @@ export default async (params: ProcessImageTask) => {
 		const outputPath = join(outputDirectory, `${path.parse(inputPath).name}.webp`);
 		const outputPathPng = join(outputDirectory, `${path.parse(inputPath).name}.png`);
 		const outputPathJpeg = join(outputDirectory, `${path.parse(inputPath).name}.jpeg`);
-		const inputResolution = await imageSizeFromFile(inputPath);
-		const outputResolution = await imageSizeFromFile(outputPath);
+		const outputPathAvif = join(outputDirectory, `${path.parse(inputPath).name}.avif`);
+		
+		
 		const image = {
 			input: convertImageURL({ url: inputPath, type: 'absolutetolocal' }),
 			inputSizeBytes: statSync(inputPath).size,
 			inputResolution: {
-				width: inputResolution.width,
-				height: inputResolution.height,
+				width: 0,
+				height: 0,
 			},
-			output: `${convertImageURL({ url: outputPath, type: 'absolutetolocal' })}?v=${statSync(outputPath).mtimeMs}`,
-			outputSizeBytes: statSync(outputPath).size,
+			output: ``,
+			outputSizeBytes: 0,
 			outputResolution: {
-				width: outputResolution.width,
-				height: outputResolution.height,
+				width: 0,
+				height: 0,
 			},
 			isActive: true,
 		}
 		ret.image = { ...ProcessImageResponse.image, ...image };
 
 		const inputTrashSuccessful = Utils.moveToTrash(inputPath)
-		const outputTrashSuccessful = Utils.moveToTrash(outputPath)
+		const outputTrashSuccessful = await exists(outputPath) ? Utils.moveToTrash(outputPath) : true;
 		const outputPngTrashSuccessful = await exists(outputPathPng) ? Utils.moveToTrash(outputPathPng) : true;
-		const outputJpegTrashSuccessful = await exists(outputPathPng) ? Utils.moveToTrash(outputPathJpeg) : true;
+		const outputJpegTrashSuccessful = await exists(outputPathJpeg) ? Utils.moveToTrash(outputPathJpeg) : true;
+		const outputAvifTrashSuccessful = await exists(outputPathAvif) ? Utils.moveToTrash(outputPathAvif) : true;
 
-		if (inputTrashSuccessful && outputTrashSuccessful && outputJpegTrashSuccessful && outputPngTrashSuccessful) {
+		if (inputTrashSuccessful && outputTrashSuccessful && outputJpegTrashSuccessful && outputPngTrashSuccessful && outputAvifTrashSuccessful) {
 			ret.message = t('deleteImageSuccess');
 		}
 		else {

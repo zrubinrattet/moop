@@ -25,13 +25,10 @@ test('images route: apng to png', async () => {
 	const outputUrl = resJson.data.images?.[0]?.output;
 	expect(outputUrl).toBeTruthy();
 
-	const cleanOutputUrl = outputUrl.split("?")[0];
-
 	const outputFilePath = convertImageURL({
 		type: 'localtoabsolute',
-		url: cleanOutputUrl
+		url: outputUrl
 	})
 
 	expect(isAnimated(Buffer.from(await Bun.file(outputFilePath).arrayBuffer()))).toBe(true);
-
 });

@@ -34,7 +34,7 @@
 		"language": "语言",
 		"languageTooltip": "整个应用程序中使用的书面语言。",
 		"format": "格式",
-		"formatTooltip": "输出文件格式。 WebP 是默认选项，通常提供比其他选项更好的压缩。\r\n它还具有广泛的浏览器支持，并提供对 gif 等动画格式的支持。\r\n如果需要，也可以使用 Jpeg 和 png。",
+		"formatTooltip": "输出文件格式。AVIF 是默认选项，通常比其他选项提供更好的压缩。\r\n它也具有广泛的浏览器支持，并支持 gif 等动画格式。\r\n如果需要，也可以使用 Jpeg 和 png。",
 		"save": "保存",
 		"restoreDefaults": "恢复默认设置",
 		"changeLocation": "改变地点",

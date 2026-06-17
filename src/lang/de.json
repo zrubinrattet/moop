@@ -34,7 +34,7 @@
 		"language": "Sprache",
 		"languageTooltip": "Die in der gesamten App verwendete Schriftsprache.",
 		"format": "Formatieren",
-		"formatTooltip": "Das Ausgabedateiformat. WebP ist die Standardeinstellung und bietet normalerweise eine bessere Komprimierung als die anderen Optionen.\r\nEs verfügt außerdem über eine umfassende Browserunterstützung und bietet Unterstützung für animierte Formate wie GIF.\r\nBei Bedarf sind auch JPEG und PNG verfügbar.",
+		"formatTooltip": "Das Ausgabedateiformat. AVIF ist die Standardeinstellung und bietet normalerweise eine bessere Komprimierung als die anderen Optionen.\r\nEs verfügt außerdem über eine breite Browserunterstützung und unterstützt animierte Formate wie gif.\r\nBei Bedarf sind auch Jpeg und png verfügbar.",
 		"save": "Speichern",
 		"restoreDefaults": "Standardeinstellungen wiederherstellen",
 		"changeLocation": "Standort ändern",

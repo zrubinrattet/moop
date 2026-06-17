@@ -23,8 +23,8 @@ export function handleRPCRequestCatch(error: Error|unknown) {
 }
 
 export const outputFormatOptions: Array<{ value: AvailableOutputFormats; label: string }> = [
+	{ value: 'avif', label: 'AVIF' },
 	{ value: 'webp', label: 'WebP' },
 	{ value: 'png', label: 'PNG' },
 	{ value: 'jpeg', label: 'JPEG' },
-	{ value: 'avif', label: 'AVIF' },
 ];

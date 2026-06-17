@@ -20,7 +20,7 @@ async function processImage(arg: ProcessImageTask): Promise<void> {
 	const appSettings = getSettings();
 
 	const parsedPath = path.parse(arg.path);
-	const outputFormat = arg.outputFormat?.toLowerCase() || appSettings.outputFormat || 'webp';
+	const outputFormat = arg.outputFormat?.toLowerCase() || appSettings.outputFormat || 'avif';
 	const outputPath = join(outputDirectory, `${parsedPath.name}.${outputFormat}`);
 	const inputFormat = parsedPath.ext.replace('.', '');
 
@@ -87,15 +87,18 @@ async function processImage(arg: ProcessImageTask): Promise<void> {
 				});
 			}
 			else {
-				const frames = apng.framesFromApng(arg.path) as sharp.Sharp[];
-				await apng.framesToApng(frames, outputPath, {
-					cnum: clampedQuality >= 100 ? 0 : Math.max(2, Math.round(256 * (clampedQuality / 100))),
-					resizeOptions: {
-						width: Number(appSettings.maxWidth) || undefined,
-						height: Number(appSettings.maxHeight) || undefined,
-						withoutEnlargement: true
-					}
-				});
+				const apngData = apng.framesFromApng(arg.path, true) as apng.ImageData;
+				if( apngData.frames ){
+					await apng.framesToApng(apngData.frames, outputPath, {
+						cnum: clampedQuality >= 100 ? 0 : Math.max(2, Math.round(256 * (clampedQuality / 100))),
+						delay: apngData.delay,
+						resizeOptions: {
+							width: Number(appSettings.maxWidth) || undefined,
+							height: Number(appSettings.maxHeight) || undefined,
+							withoutEnlargement: true
+						}
+					});
+				}
 			}
 		}
 		else {
@@ -120,7 +123,11 @@ async function processImage(arg: ProcessImageTask): Promise<void> {
 
 			if (inputFormat === 'png') {
 				const apngSharp = await apng.sharpFromApng(arg.path) as sharp.Sharp;
-				resizedAsBuffer = await apngSharp.toBuffer();
+				resizedAsBuffer = await apngSharp.resize({
+					width: Number(appSettings.maxWidth) || undefined,
+					height: Number(appSettings.maxHeight) || undefined,
+					withoutEnlargement: true
+				}).toBuffer();
 			}
 			// must cast to integer
 			const parsedEffort = Math.round(Number(rangeMap(maybeDefaultedEffort, 0, 10, 1, 10)));
