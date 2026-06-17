@@ -2,6 +2,21 @@
 
 All notable changes to moop will be documented in this file.
 
+## [1.1.0] - 2026-06-17
+
+### Added
+- Added AVIF output support, including animated AVIF output for animated inputs.
+- Added APNG output support for animated PNG, GIF, WebP, and AVIF workflows.
+- Added broader conversion test coverage across JPEG, PNG, WebP, AVIF, SVG, TIFF, GIF, APNG, and animated WebP inputs.
+- Added server preflight and 404 route tests.
+
+### Changed
+- Made AVIF the default output format.
+- Organized available output formats in the app UI and settings copy.
+
+### Fixed
+- Improved image deletion handling so removing a list item no longer triggers a missing output image error.
+
 ## [1.0.1] - 2026-05-13
 
 ### Added
