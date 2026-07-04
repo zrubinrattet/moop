@@ -1,6 +1,6 @@
 {
 	"name": "moop",
-	"version": "1.1.0",
+	"version": "1.2.0",
 	"description": "A desktop app for batch image optimization for the web.",
 	"scripts": {
 		"scss": "sass src/mainview/index.scss src/mainview/index.css --watch",
