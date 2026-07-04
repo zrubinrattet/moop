@@ -38,7 +38,7 @@ async function processImage(arg: ProcessImageTask): Promise<void> {
 
 	const clampedQuality = Math.max(1, Math.min(Number(arg.quality) >= 0 ? Number(arg.quality) : Number(appSettings.quality), 100));
 	const maybeDefaultedEffort = typeof arg.effort === 'undefined' ? Number(appSettings.effort) : Number(arg.effort);
-
+	
 	if (outputFormat === 'webp') {
 		const clampedEffort = Math.max(0, Math.min(maybeDefaultedEffort, 6));
 		// special suppoort for animated png input
@@ -118,7 +118,6 @@ async function processImage(arg: ProcessImageTask): Promise<void> {
 		let resizedAsBuffer = await getResized(arg.path).toBuffer();
 
 		const outputBuffer = Buffer.from(await Bun.file(arg.path).arrayBuffer());
-
 		if (isAnimated(outputBuffer)) {
 
 			if (inputFormat === 'png') {
@@ -144,6 +143,7 @@ async function processImage(arg: ProcessImageTask): Promise<void> {
 
 			// must cast to integer
 			const parsedEffort = Math.round(Number(rangeMap(maybeDefaultedEffort, 0, 10, 0, 9)));
+
 			await getResized(arg.path).avif({
 				quality: clampedQuality,
 				effort: parsedEffort,

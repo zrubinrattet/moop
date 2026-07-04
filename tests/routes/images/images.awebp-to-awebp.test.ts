@@ -7,7 +7,6 @@ let setSettings: typeof import("../../../src/bun/shared/settings").setSettings;
 let convertImageURL: typeof import("../../../src/bun/shared/funcs").convertImageURL;
 
 test('images route: awebp to awebp', async () => {
-
 	({ setSettings } = await import("../../../src/bun/shared/settings"));
 	({ convertImageURL } = await import("../../../src/bun/shared/funcs"));
 

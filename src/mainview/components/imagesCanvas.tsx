@@ -64,9 +64,10 @@ export default function ImagesCanvas() {
 	}
 
 	const updateImage = async (targetInput: string, quality: number, effort: number, outputFormat: AvailableOutputFormats) => {
+		
 		try {
 			const clampedEffort = Math.max(effortMin, Math.min(effort, effortMax));
-			console.log('clamped effort: ', clampedEffort)
+
 			const updateImageProps = {
 				path: targetInput,
 				quality,
@@ -78,6 +79,7 @@ export default function ImagesCanvas() {
 				return [...new Set([...oldImages, targetInput])];
 			});
 			const res = await electroview.rpc?.request.updateImage(updateImageProps);
+			
 			if (typeof res !== 'undefined') {
 
 				appContext.setImages((images) =>
@@ -99,7 +101,6 @@ export default function ImagesCanvas() {
 			}
 		}
 		catch (error) {
-
 			handleRPCRequestCatch(error);
 		}
 		finally {

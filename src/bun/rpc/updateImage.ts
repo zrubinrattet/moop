@@ -34,13 +34,14 @@ export default async (params:ProcessImageTask) => {
 		},
 	};
 
+	
 	const inputPath = convertImageURL({
 		url: params.path,
 		type: 'localtoabsolute',
 	});
-
+	
 	const clampedQuality = Math.max(1, Math.min((quality || appSettings.quality), 100));
-
+	
 	await queue.push({
 		path: inputPath,
 		quality: clampedQuality,
